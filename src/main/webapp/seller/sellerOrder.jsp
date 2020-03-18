@@ -44,7 +44,7 @@
 		<tr>
 			<td>202011111
 			<br>
-			<input type="button" onclick="location.href='sellerOrderCheck1.do'" value="주문상세">
+			<input type="button" onclick="location.href='sellerOrderCheck1'" value="주문상세">
 			</td>				<!-- 주문번호 -->		
 				
 			
@@ -66,7 +66,7 @@
 		<tr>
 			<td>202011112
 			<br>
-			<input type="button" onclick="location.href='sellerOrderCheck2.do'" value="주문상세">
+			<input type="button" onclick="location.href='sellerOrderCheck2'" value="주문상세">
 			</td>				<!-- 주문번호 -->
 			
 			
@@ -88,7 +88,7 @@
 		<tr>
 			<td>202011113
 			<br>
-			<input type="button" onclick="location.href='sellerOrderCheck3.do'" value="주문상세">
+			<input type="button" onclick="location.href='sellerOrderCheck3'" value="주문상세">
 			</td>				<!-- 주문번호 -->
 			
 			

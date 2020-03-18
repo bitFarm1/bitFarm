@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import mypage.service.MypageService;
 
@@ -14,6 +15,18 @@ public class MypageController {
 
 	@Autowired
 	private MypageService mypageService;
+	
+//	@RequestMapping(value="/mypageMain", method=RequestMethod.GET)
+//	public ModelAndView infoBoard() {
+//		ModelAndView mav = new ModelAndView();
+//		
+//		mav.addObject("display", "/mypage/mypageMain.jsp");
+//		mav.addObject("mypage", "/mypage/mypagePurchaseList.jsp"); 
+//		
+//		mav.setViewName("/main/main"); 
+//		 
+//		return mav;
+//	}
 	
 	@RequestMapping(value="/mypageMain", method=RequestMethod.GET)
 	public String mypageMain(Model model) {

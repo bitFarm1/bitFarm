@@ -29,9 +29,9 @@
 </div>
 <table >
 	<tr align="center"> 
-		<td class="layoutB" onclick="location.href='sellerWriteForm.do'">판매자</td>
+		<td class="layoutB" onclick="location.href='sellerWriteForm'">판매자</td>
 		<td style="width:100px; height:200px;">&nbsp;</td>
-		<td class="layoutB" onclick="location.href='writeForm.do'">일반회원</td>
+		<td class="layoutB" onclick="location.href='writeForm'">일반회원</td>
 	</tr> 
 </table>   
 </div >

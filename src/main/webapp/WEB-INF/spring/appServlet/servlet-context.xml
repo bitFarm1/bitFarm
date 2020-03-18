@@ -10,11 +10,17 @@
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 	<!-- controller -->
 	<context:component-scan base-package="main.controller" />
+
 	<context:component-scan base-package="cart.controller" />
 	<context:component-scan base-package="item.controller" />
 	<context:component-scan base-package="order.controller" />
 	<context:component-scan base-package="review.controller" />
-	
+
+	<context:component-scan base-package="member.controller"/>
+	<context:component-scan base-package="information.controller"/>
+	<context:component-scan base-package="mypage.controller"/>	  
+
+
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<annotation-driven />
 
@@ -28,6 +34,7 @@
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
+	
 	
 	<!-- json -->
 	<beans:bean id="jsonView" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView">

@@ -79,7 +79,7 @@
 }
 	
 </style>
-<form name="writeForm" method="post" action="/bitFarm/member/write.do">  
+<form name="writeForm" method="post" action="/bitFarm/member/write">  
 <h2 align="center">회원가입</h2>
 <div style="height:20px;"></div>
 <div> 
@@ -243,7 +243,7 @@ $('input[name=writeFormBtn]').click(function(){
 		$('.addressDiv1').text('주소를 입력하세요.');
 		$('.addressDiv1').css('color','#5f0080');
 		$('.addressDiv1').css('font-size','11pt');
-		$('.addressDiv1').css('font-weight','bold');
+		$('.addressDiv1').css('font-weight','bold'); 
 		
 	}else if($('input[name=user_address2]').val()  ==''){
 		$('.addressDiv2').text('상세주소를 입력하세요.');

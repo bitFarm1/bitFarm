@@ -1,21 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <style type="text/css">
 	table.QnAtable{
-		width: 860px;
-	}
+		width: 800px;
+		border-collapse: collapse;
+		border-top: 2px solid #5f0080;
+		border-bottom: 2px solid #5f0080;
+	} 
 	.join {
 	    width: 270px;
 	    height: 54px;
-	    border: 0 none;
-	    border-radius: 3px;
+	    border: 0 none; 
+	    border-radius: 3px; 
 	    background-color: #5f0080;
 	    font-size: 16px;
 	    color: #fff; 
 	    line-height: 44px;
 	    font-weight: bold;
+	    cursor: pointer;
 	}
  	.title{  
- 		width: 100px;
+ 		width: 100px; 
  		text-align: left;
  		font-size: 10pt;
  		font-weight: bold;
@@ -41,6 +45,7 @@
 		border-radius: 5px;
 		font-family: 'Noto Sans';
 		font-weight: bold;
+		cursor: pointer;
 	} 
 	.select{
 		width: 150px;
@@ -54,13 +59,11 @@
 	    outline: none;   
 	}  
 </style>
-<div style="height:50px;">&nbsp;</div>
-<jsp:include page="infoLeft.jsp" />
-<div style="width:68%; float: left;"> 
-<h2>&emsp;1:1 문의</h2> 
+<div style="width:1000px; margin: 0 auto;">  
+<h3>1:1 문의</h3> 
 <form name="infoQnABoardForm" method="post" enctype="multipart/form-data" action="">
-<table class="QnAtable" cellpadding="5px"> 
-	<tr>
+<table border="1" class="QnAtable" cellpadding="5px">  
+	<tr> 
 		<td class="title">&emsp;제목</td>
 		<td width="650" style="text-align: left;">&emsp;<input class="layoutT" type="text" name="subject">&emsp;
 						<select name="itemcd" label="질문유형" class="select">
@@ -90,10 +93,10 @@
 	<tr>
 		<td class="title">&emsp;핸드폰</td>
 		<td style="text-align: left;">&emsp;<input class="layoutT" type="text" name="subject"></td>
-	</tr> 
+	</tr>  
 	<tr>
 		<td class="title">&emsp;내용</td> 
-		<td><p><strong>1:1 문의 작성 전 확인해 주세요!</strong><p><p>
+		<td style="text-align:left;"><p><strong>1:1 문의 작성 전 확인해 주세요!</strong><p><p>
 		<strong>반품 / 환불</strong><p><p>	 반품 / 환불반품 / 환불반품 / 환불반품 / 환불반품 / 환불	<p>
 		<strong>주문취소</strong> <p><p>	주문취소주문취소주문취소주문취소주문취소주문취소주문취소 	<p>
 		<strong>배송 </strong><p><p> 배송안내내용배송안내내용배송안내내용배송안내내용배송안내내용<p>

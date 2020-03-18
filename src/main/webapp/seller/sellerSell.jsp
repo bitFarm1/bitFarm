@@ -42,7 +42,7 @@
 			<td>120,000</td> 	<!-- 주문합계 -->
 			<td>200박스</td> 		<!-- 무통장 -->
 			<td>2,780,000</td>	<!-- 계좌이체 -->
-			<td >6개월간 판매량<br><input type="button" onclick="location.href='sellerSellDetail.do'" value="그래프"></td><!-- 주문번호 -->	
+			<td >6개월간 판매량<br><input type="button" onclick="location.href='sellerSellDetail'" value="그래프"></td><!-- 주문번호 -->	
 			
 		</tr>	
 		<!-- 김자바 주문내역 -->
@@ -52,7 +52,7 @@
 			<td>30,000</td>		<!-- 주문합계 -->
 			<td>10개</td> 			<!-- 무통장 -->
 			<td>780,000</td>			<!-- 계좌이체 -->	
-			<td >6개월간 판매량<br><input type="button" onclick="location.href='sellerSellDetail.do'" value="그래프"></td><!-- 주문번호 -->			
+			<td >6개월간 판매량<br><input type="button" onclick="location.href='sellerSellDetail'" value="그래프"></td><!-- 주문번호 -->			
 		</tr>
 		<!-- 신짱구 주문내역 -->
 		<tr>
@@ -61,7 +61,7 @@
 			<td>19,100</td> 	<!-- 주문합계 -->
 			<td>5개</td> 			<!-- 무통장 -->
 			<td>450,000</td>			<!-- 계좌이체 -->	
-			<td >6개월간 판매량<br><input type="button" onclick="location.href='sellerSellDetail.do'" value="그래프"></td><!-- 주문번호 -->		
+			<td >6개월간 판매량<br><input type="button" onclick="location.href='sellerSellDetail'" value="그래프"></td><!-- 주문번호 -->		
 		</tr>	
 	</table>
 </div>	

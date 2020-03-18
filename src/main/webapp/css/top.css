@@ -1,0 +1,116 @@
+@charset "UTF-8";
+
+a.indexA {color: black; text-decoration: none; }
+a.indexA:link {color: black; text-decoration: none;}
+a.indexA:visited {color: black; text-decoration: none;}
+a.indexA:hover {color: #5f0080; text-decoration: none; font-weight: bolder;}
+a.indexA:active {color: black; text-decoration: none;}
+
+body {
+	margin: 0px;
+	padding: 0px;
+}
+.topHr{
+	width: 80%;
+	height: 2px;
+	background-color: #5f0080;
+}
+.menu{
+	width: 100%;
+	text-align: center;
+	background-color: #ffffff;
+}
+.menu-fixed {
+	position: fixed;
+	top: 0px;
+}
+.menubar{
+	width: 80%;
+	border: none;
+	margin: 0 auto;
+	padding: 0px;
+	text-align: center;
+	font-size: 17px;
+	font-weight: bold;
+	/* border: 1px dotted red; */
+}
+
+.menubar ul{
+	width: 80%;
+	margin: 0;
+	padding: 0;
+	height: 50px;
+	list-style-type: none;
+	text-align: center;
+	display: inline-block;
+}
+
+.menubar li{
+	float: left;
+	padding: 0px;
+	display: inline-block;
+	text-align: center;
+}
+
+.menubar li a{
+	color: #000000;
+	font-weight: normal;
+	line-height: 50px;
+	margin: 0px;
+	padding: 0px 25px;
+	text-align: center;
+	text-decoration: none;
+}
+
+.menubar li a:hover, .menubar ul li:hover a{
+	color: #000000;
+	text-decoration: none;
+}
+
+.menubar li ul{
+	display: none; /* 평상시에는 드랍메뉴가 안보이게 하기 */
+	height: auto;
+	padding: 0px;
+	margin: 0px;
+	border: 0px;
+	position: absolute;
+	width: 200px;
+	z-index: 200;
+}
+
+.menubar li:hover ul{
+	display: block; /* 마우스 커서 올리면 드랍메뉴 보이게 하기 */
+}
+
+.menubar li li {
+	background: #ffffff;
+	display: block;
+	float: none;
+	margin: 0px;
+	padding: 0px;
+	width: 200px;
+}
+
+.menubar li:hover li a{
+	background: none;
+}
+
+.menubar li ul a{
+	display: block;
+	height: 50px;
+	font-size: 12px;
+	font-style: normal;
+	margin: 0px;
+	padding: 0px 10px 0px 15px;
+	text-align: left;
+}
+
+.menubar li ul a:hover, .menubar li ul li:hover a{
+	background: #F7F5F8;
+	border: 0px;
+	text-decoration: none;
+}
+
+.menubar p{
+	clear: left;
+}

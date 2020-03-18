@@ -11,9 +11,6 @@ import mypage.service.MypageService;
 @Controller
 @RequestMapping(value="mypage")
 public class MypageController {
-
-	@Autowired
-	private MypageService mypageService;
 	
 	@RequestMapping(value="/mypageMain", method=RequestMethod.GET)
 	public String mypageMain(Model model) {

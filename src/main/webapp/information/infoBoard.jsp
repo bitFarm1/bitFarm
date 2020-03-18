@@ -11,11 +11,8 @@ th{
 	background-color: #F7F5F8;
 }
 </style>
-
-<div style="height:50px;">&nbsp;</div>
-<jsp:include page="infoLeft.jsp" />
-<div style="width:68%; float: left;"> 
-<h2>공지사항</h2>
+<div style="width:1000px; margin: 0 auto;">
+<h3>공지사항</h3> 
 	<table width="80%" border="1" cellpadding="15" frame="hsides" rules="rows"> 
 		<tr> 
 			<th>글번호</th>
@@ -27,35 +24,35 @@ th{
 		 
 		<tr>
 			<td>공지</td>
-			<td style="text-align: left"><a class="info">공지사항이다.</a></td>
+			<td style="text-align: left"><a class="info" href="/bitFarm/information/infoView.do">공지사항이다.</a></td>
 			<td>BITFARM</td>
 			<td>2020-03-20</td>
 			<td>100</td>
 		</tr> 
 		<tr>
 			<td>공지</td>
-			<td style="text-align: left"><a class="info">공지사항이다.</a></td>
+			<td style="text-align: left"><a class="info" href="/bitFarm/information/infoView.do">공지사항이다.</a></td>
 			<td>BITFARM</td>
 			<td>2020-03-20</td>
 			<td>100</td>
 		</tr>
 		<tr>
 			<td>공지</td>
-			<td style="text-align: left"><a class="info">공지사항이다.</a></td>
+			<td style="text-align: left"><a class="info" href="/bitFarm/information/infoView.do">공지사항이다.</a></td>
 			<td>BITFARM</td>
 			<td>2020-03-20</td>
 			<td>100</td>
 		</tr>
 		<tr>
 			<td>공지</td>
-			<td style="text-align: left"><a class="info">공지사항이다.</a></td>
+			<td style="text-align: left"><a class="info" href="/bitFarm/information/infoView.do">공지사항이다.</a></td>
 			<td>BITFARM</td>
 			<td>2020-03-20</td>
 			<td>100</td>
 		</tr>
 		<tr>
 			<td>공지</td>
-			<td style="text-align: left"><a class="info">공지사항이다.</a></td>
+			<td style="text-align: left"><a class="info" href="/bitFarm/information/infoView.do">공지사항이다.</a></td>
 			<td>BITFARM</td>
 			<td>2020-03-20</td>
 			<td>100</td>
@@ -63,14 +60,14 @@ th{
 		
 		<tr>
 			<td>공지</td>
-			<td style="text-align: left"><a class="info">공지사항이다.</a></td>
+			<td style="text-align: left"><a class="info" href="/bitFarm/information/infoView.do">공지사항이다.</a></td>
 			<td>BITFARM</td>
 			<td>2020-03-20</td>
 			<td>100</td>
 		</tr>
 		<tr>
 			<td>공지</td>
-			<td style="text-align: left"><a class="info">공지사항이다.</a></td>
+			<td style="text-align: left"><a class="info" href="/bitFarm/information/infoView.do">공지사항이다.</a></td>
 			<td>BITFARM</td>
 			<td>2020-03-20</td>
 			<td>100</td>

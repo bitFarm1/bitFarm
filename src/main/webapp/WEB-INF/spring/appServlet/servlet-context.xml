@@ -18,8 +18,8 @@
 
 	<context:component-scan base-package="member.controller"/>
 	<context:component-scan base-package="information.controller"/>
-	<context:component-scan base-package="mypage.controller"/>
-	  
+	<context:component-scan base-package="mypage.controller"/>	  
+
 
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<annotation-driven />

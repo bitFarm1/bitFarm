@@ -45,7 +45,7 @@
 					var age = naverLogin.user.getAge();
 					
 					alert("email="+email+" name="+name+" profileImage="+profileImage+" uniqId="+uniqId+" age="+age); 
-					window.location.replace("http://" + window.location.hostname + ( (location.port==""||location.port==undefined)?"":":" + location.port) + "/bitFarm/member/naver.do?email="+email+"&name="+name+"&type=naver");
+					window.location.replace("http://" + window.location.hostname + ( (location.port==""||location.port==undefined)?"":":" + location.port) + "/bitFarm/member/naver?email="+email+"&name="+name+"&type=naver");
 		
 				} else {
 					console.log("callback 처리에 실패하였습니다.");

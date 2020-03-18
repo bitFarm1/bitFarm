@@ -41,10 +41,6 @@ th{
 			<th>작성자</th>
 			<td>작성자 이름</td>
 		</tr>
-		<tr height="10%">
-			<th>별점</th>
-			<td>★★★★☆</td>
-		</tr>
 		<tr>
 			<th>내용</th>
 			<td><textarea placeholder="내용을 입력하세요" cols="100%" rows="20" style="font-size: 15px;"></textarea></td>

@@ -127,7 +127,7 @@ div.calDiv{
 </div>
 <p style="clear: both; height: 10px;"></p>
 <div style="width: 85%; margin: 0 auto; text-align: center;">
-		<input type="button" class="orderBtn" value="주문하기" onclick="location.href='/bitFarm/order/orderForm.do'">
+		<input type="button" class="orderBtn" value="주문하기" onclick="location.href='/bitFarm/order/orderForm'">
 </div>
 
 <%-- script --%>

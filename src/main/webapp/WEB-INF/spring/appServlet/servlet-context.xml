@@ -10,6 +10,10 @@
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 	<!-- controller -->
 	<context:component-scan base-package="main.controller" />
+	<context:component-scan base-package="cart.controller" />
+	<context:component-scan base-package="item.controller" />
+	<context:component-scan base-package="order.controller" />
+	<context:component-scan base-package="review.controller" />
 	
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<annotation-driven />

@@ -1,17 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <link rel="stylesheet" href= "../css/top.css">
 <div align="right">									<%-- 세션 만들면 수정 --%>
-	<a class="indexA" href="/bitFarm/member/loginForm.do">로그인</a>&emsp;&emsp;
-	<a class="indexA" href="/bitFarm/member/signUp.do">회원가입</a>&emsp;&emsp;
+	<a class="indexA" href="/bitFarm/member/loginForm">로그인</a>&emsp;&emsp;
+	<a class="indexA" href="/bitFarm/member/signUp">회원가입</a>&emsp;&emsp;
 	<a class="indexA" href="#">로그아웃</a>&emsp;&emsp;
-	<a class="indexA" href="/bitFarm/mypage/mypageMain.do">마이페이지</a>&emsp;&emsp;
-	<a class="indexA" href="/bitFarm/cart/cartForm.do">장바구니</a>&emsp;&emsp;
-	<a class="indexA" href="/bitFarm/information/infoBoard.do">고객센터</a>&emsp;&emsp;&emsp;&emsp;
+	<a class="indexA" href="/bitFarm/mypage/mypageMain">마이페이지</a>&emsp;&emsp;
+	<a class="indexA" href="/bitFarm/cart/cartForm">장바구니</a>&emsp;&emsp;
+	<a class="indexA" href="/bitFarm/information/infoBoard">고객센터</a>&emsp;&emsp;&emsp;&emsp;
 </div><br><br>
 
 <div align="center">
 	<img src="../image/mainImage.png" height="90px" style="cursor:pointer"
-		onclick="location.href='/bitFarm/main/main.do'">
+		onclick="location.href='/bitFarm/main/main'">
 </div><br><br>
 
 <div class="menu">

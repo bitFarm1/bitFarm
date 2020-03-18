@@ -17,7 +17,7 @@
 <table class="purchaseListTable" frame="hsides" rules="rows" cellpadding="10">
 	<tr>
 		<th colspan="3" align="left">
-			<a href = "mypagePurchaseDetail.do" class = "purchaseListDetailItemA">[판매자] 판매물품 외 개수</a>
+			<a href = "mypagePurchaseDetail" class = "purchaseListDetailItemA">[판매자] 판매물품 외 개수</a>
 		</th>
 	</tr>
 	<tr>

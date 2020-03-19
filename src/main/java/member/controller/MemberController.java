@@ -1,18 +1,21 @@
 package member.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import member.bean.MemberDTO;
 import member.service.MemberService;
 
 @Controller
 @RequestMapping(value="member")
-public class MemberController {
-	
+public class MemberController {	
 	@Autowired  
 	private MemberService memberService;
 	
@@ -30,6 +33,15 @@ public class MemberController {
 		ModelAndView mav = new ModelAndView();
 		
 		mav.addObject("display", "/member/loginForm.jsp");
+		mav.setViewName("/main/main");
+		return mav; 
+	}
+	
+	@RequestMapping(value="/sellerWriteForm", method=RequestMethod.GET)
+	public ModelAndView sellerWriteForm() {
+		ModelAndView mav = new ModelAndView();
+		
+		mav.addObject("display", "/member/sellerWriteForm.jsp");
 		mav.setViewName("/main/main");
 		return mav; 
 	}
@@ -79,15 +91,19 @@ public class MemberController {
 		return mav; 
 	}
 	
-	@RequestMapping(value="/write", method=RequestMethod.GET)
-	public ModelAndView write() {
+	@RequestMapping(value="/write", method=RequestMethod.POST)
+	public ModelAndView write(@ModelAttribute MemberDTO memberDTO) {
 		ModelAndView mav = new ModelAndView();
-		
-		mav.addObject("display", "/member/write.jsp");
+		int su = memberService.write(memberDTO);
+		if(su > 0) {
+			mav.addObject("display", "/member/writeOK.jsp");
+		}else {
+			mav.addObject("display", "/member/writeFail.jsp");
+		}
 		mav.setViewName("/main/main");
 		return mav; 
 	}
-	
+	 
 	@RequestMapping(value="/findID", method=RequestMethod.GET)
 	public ModelAndView findID() {
 		ModelAndView mav = new ModelAndView();
@@ -98,8 +114,9 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="/findPWD", method=RequestMethod.GET)
-	public ModelAndView findPWD() {
+	public ModelAndView findPWD(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
+		
 		
 		mav.addObject("display", "/member/findPWD.jsp");
 		mav.setViewName("/main/main");
@@ -107,12 +124,12 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="/naver", method=RequestMethod.GET)
-	public ModelAndView naver() {
-		ModelAndView mav = new ModelAndView();
+	public ModelAndView naver(HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView(); 
 		
-		mav.addObject("display", "/member/naver.jsp");
-		mav.setViewName("/main/main");
-		return mav; 
+		mav.addObject("display", "/member/naverInfo.jsp"); 
+		mav.setViewName("/main/main"); 
+		return mav;  
 	}
 	
 }

@@ -7,6 +7,13 @@
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 		<context:component-scan base-package="member.service"/>
+		<context:component-scan base-package="member.dao"/> 
+		<context:component-scan base-package="member.bean"/> 
+		<context:component-scan base-package="spring.conf"/> 
 		
+		<context:component-scan base-package="seller.dao"/> 
+		<context:component-scan base-package="seller.bean"/>
+		<context:component-scan base-package="seller.service"/> 
 </beans>
 
+  

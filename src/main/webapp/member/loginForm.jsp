@@ -52,12 +52,12 @@ a.searchA:active {color: black; text-decoration: none;}
 	</div>  
 		<div style="height:5px;"></div>
 	<div>
-		<input class="layout" type="button" value="회원가입" style="border-radius: 5px; cursor: pointer;"> 
+		<input class="layout" type="button" value="회원가입" onclick="location.href='signUp'" style="border-radius: 5px; cursor: pointer;"> 
 		
 	</div>	 	 
 		<div style="height:5px;"></div>
 	<div style="height:60px; ">
-		<div id="naverIdLogin" style="float:left; width:65px;"></div>
+		<div id="naverIdLogin" style="float:left; width:65px;"></div> 
 		
 		<div>
 			<a id="custom-login-btn" href="javascript:loginWithKakao()">
@@ -186,6 +186,6 @@ a.searchA:active {color: black; text-decoration: none;}
                alert("로그아웃 되었습니다.");
                location.reload();
         });
-      });
+      }); 
 </script>
 

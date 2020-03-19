@@ -4,10 +4,32 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.ModelAttribute;
+
+import seller.bean.SellerDTO;
+import seller.service.SellerService;
 
 @Controller
 @RequestMapping(value="seller")
 public class SellerController {
+	@Autowired
+	private SellerService sellerService;
+	
+	@RequestMapping(value="/write", method=RequestMethod.POST)
+	public ModelAndView write(@ModelAttribute SellerDTO sellerDTO) {
+		ModelAndView mav = new ModelAndView();
+		 
+		int su = sellerService.write(sellerDTO);
+		if(su > 0) {  
+			mav.addObject("display", "/member/writeOK.jsp");
+		}else {
+			mav.addObject("display", "/member/writeFail.jsp");
+		}
+		mav.setViewName("/main/main");
+		return mav; 
+	}
 	
 	@RequestMapping(value="sellerAddForm", method=RequestMethod.GET)
 	public String sellerAddForm(Model model) {
@@ -79,5 +101,6 @@ public class SellerController {
 	public String sellerStore(Model model) {
 		model.addAttribute("display", "/seller/sellerStore.jsp");
 		return "/main/main";
-	}	
-}
+	}
+
+}	

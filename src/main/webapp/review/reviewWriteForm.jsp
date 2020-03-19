@@ -31,8 +31,9 @@ th{
 	고객님의 소중한 리뷰를 작성해주세요.
 </div>
 <p style="clear: both; height: 7px;"></p>
+<div style="width: 60%; margin: 0 auto;">
 <form name="reviewWriteForm" method="post" enctype="multipart/form-data" action="">
-	<table align="center" width="80%" height="600">
+	<table align="center" width="100%" height="600">
 		<tr height="10%">
 			<th width="30%">제목</th>
 			<td><input type="text" class="reviewSubject" placeholder="제목을 입력하세요" size="100%"></td>
@@ -51,6 +52,7 @@ th{
 		</tr> 
 	</table>
 </form>
+</div>
 <p style="clear: both; height: 7px;"></p>
 <div class="reviewDiv">
 	<input type="button" class="reviewBtn" value="후기 등록하기">

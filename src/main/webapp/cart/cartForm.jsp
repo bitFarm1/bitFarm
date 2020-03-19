@@ -65,7 +65,7 @@ div.calDiv{
 
 <br>
 <h2 align="center">장 바 구 니</h2><br>
-<form>
+<form name="cartForm">
 <table class="cartTable" id="cartTable" align="center" width="80%" border="1" cellspacing='0' cellpadding='7' frame="hsides" rules="rows">
 	<tr>
 		<th>
@@ -88,9 +88,9 @@ div.calDiv{
 			상큼상큼한 딸긔		
 		</td>
 		<td class="itemQty"  align="center">
-			<input type="button" id="minusBtn" value="-" class="qtyBtn">
-			<input type="text" id="cart_item_qty" value="1" readOnly>
-			<input type="button" id="plusBtn" value="+" class="qtyBtn">
+			<input type="button" id="minusBtn" value="-" class="qtyBtn" onclick="change(-1);">
+			<input type="text" name="cart_item_qty" id="cart_item_qty" value="1" readOnly>
+			<input type="button" id="plusBtn" value="+" class="qtyBtn" onclick="change(1);">
 		</td>
 		<td  align="center">금액*수량</td>
 	</tr>
@@ -136,6 +136,15 @@ div.calDiv{
 </div>
 
 <%-- script --%>
+<script type="text/javascript">
+function change(num){
+	var x = cartForm;
+	var y = Number(cart_item_qty.value) + num;
+	
+	if(y<1) y = 1;
+	x.cart_item_qty.value = y;
+}
+</script>
 <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
 //전체선택/해제 jQuery

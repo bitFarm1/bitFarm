@@ -11,6 +11,5 @@
 
 		<context:component-scan base-package="member.service"/>
 
-		
 </beans>
 

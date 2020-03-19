@@ -34,7 +34,7 @@
 			<td>
 				<img src="../image/grape.jpg" height="150" width="150">
 				<br><br>
-				<input type="button"  onclick="location.href='sellerSellDetail.do'" value="판매현황">					<%-- 이 버튼은 판매자한테만 보이게하면 될거같아여ㅕㅕㅕ --%>
+				<input type="button"  onclick="location.href='sellerSellDetail'" value="판매현황">					<%-- 이 버튼은 판매자한테만 보이게하면 될거같아여ㅕㅕㅕ --%>
 				<input type="button" value="판매중단">
 			</td>
 			<td>

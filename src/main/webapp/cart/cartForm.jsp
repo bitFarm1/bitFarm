@@ -56,12 +56,17 @@ div.calDiv{
 	border: 0;
 	text-align: center;
 }
+.cartTable{
+	border-top: 2px solid #5f0080;
+	border-bottom: 2px solid #ddd;
+	width: 80%;
+}
 </style>
 
 <br>
 <h2 align="center">장 바 구 니</h2><br>
 <form>
-<table id="cartTable" align="center" width="80%" border="1" cellspacing='0' cellpadding='7' frame="hsides" rules="rows">
+<table class="cartTable" id="cartTable" align="center" width="80%" border="1" cellspacing='0' cellpadding='7' frame="hsides" rules="rows">
 	<tr>
 		<th>
 			<input type="checkbox" id="checkAll">

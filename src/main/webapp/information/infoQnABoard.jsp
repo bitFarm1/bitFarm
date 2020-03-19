@@ -64,8 +64,13 @@
 <form name="infoQnABoardForm" method="post" enctype="multipart/form-data" action="">
 <table border="1" class="QnAtable" cellpadding="5px">  
 	<tr> 
+
+		
+
 		<td class="title">제목</td>
+		<td width="650" style="text-align: left;">&emsp;
 		<td width="650" style="text-align: left;"><input class="layoutT" type="text" name="subject">&emsp;
+
 						<select name="itemcd" label="질문유형" class="select">
                             <option value="">선택해주세요.</option>
                             <option value="01">배송지연/불만</option>

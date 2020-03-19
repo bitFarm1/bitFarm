@@ -178,7 +178,7 @@ var _jsDeliveryCompanyArr = [
 ,
 ["3", "대한항공", {cpName: "대한항공", url: "http://cargo.koreanair.com/ecus/trc/servlet/TrackingServlet?pid=5&version=kor&menu1=m1&menu2=m01-1&awb_no=##NUM##" }]
 ,
-["4", "동부택배", {cpName: "동부익스프레스", url: "http://www.dongbups.com/newHtml/delivery/delivery_search_view.jsp?item_no=##NUM##" }]
+["4", "동부택배", {cpName: "동부익스프레스", url: "http://wwwngbups.com/newHtml/delivery/delivery_search_view.jsp?item_no=##NUM##" }]
 ,
 ["5", "로젠택배", {cpName: "로젠", url: "http://www.ilogen.com/iLOGEN.Web.New/TRACE/TraceView.aspx?gubun=slipno&slipno=##NUM##" }]
 ,
@@ -198,7 +198,7 @@ var _jsDeliveryCompanyArr = [
 ,
 ["13", "현대택배", {cpName: "현대", url: "http://www.hlc.co.kr/personalService/tracking/06/tracking_goods_result.jsp?InvNo=##NUM##" }]
 ,
-["14", "CJ 대한통운택배", {cpName: "CJ대한통운", url: "https://www.doortodoor.co.kr/parcel/doortodoor.do?fsp_action=PARC_ACT_002&fsp_cmd=retrieveInvNoACT&invc_no=##NUM##" }]
+["14", "CJ 대한통운택배", {cpName: "CJ대한통운", url: "https://wwwortodoor.co.kr/parcel/doortodoor?fsp_action=PARC_ACT_002&fsp_cmd=retrieveInvNoACT&invc_no=##NUM##" }]
 ,
 ["15", "CVSnet편의점택배", {cpName: "CVSNET편의점", url: "http://was.cvsnet.co.kr/_ver2/board/ctod_status.jsp?invoice_no=##NUM##" }]
 ,
@@ -214,7 +214,7 @@ var _jsDeliveryCompanyArr = [
 ,
 ["21", "OCS택배", {cpName: "OCS", url: "http://www.ocskorea.com/online_bl_multi.asp?mode=search&search_no=##NUM##" }]
 ,
-["22", "TNT Express", {cpName: "TNTExpress", url: "http://www.tnt.com/webtracker/tracking.do?respCountry=kr&respLang=ko&searchType=CON&cons=##NUM##" }]
+["22", "TNT Express", {cpName: "TNTExpress", url: "http://www.tnt.com/webtracker/tracking?respCountry=kr&respLang=ko&searchType=CON&cons=##NUM##" }]
 ,
 ["23", "UPS택배", {cpName: "UPS", url: "http://wwwapps.ups.com/WebTracking/track?track=yes&trackNums=##NUM##" }]
 ];

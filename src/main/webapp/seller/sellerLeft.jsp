@@ -18,7 +18,7 @@ a.sellerA:active {color: black; text-decoration: none;}
 
 <div style = "padding: 5px 0px 0px 200px;">
 <div class="sellerLeftDiv" >
-	<a class="sellerA" href="/bitFarm/seller/sellerAll"><h2>판매자 홈</h2></a>
+	<h2><a class="sellerA" href="/bitFarm/seller/sellerAll">판매자 홈</a></h2>
 	<br>
 	<img src="../image/user.png" width="90px">
 	<h3>ㅇㅇ님</h3>

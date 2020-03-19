@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <link rel="stylesheet" href= "../css/itemViewForm.css">
+
+<form name="itemViewForm">
 <div class="itemView">
 	<div class="itemMainImageDiv">
 		<img src="../image/berry.jpg" width="470">
@@ -16,9 +18,9 @@
 		<br><br><br><br><br><br><br><br>
 		<span class="count">
 			<font color="gray">구매수량</font>&emsp;
-			<button class="btn_downup">-</button>
-			<input type="text" readonly="readonly" value="1" size="2" style="text-align: center;">
-			<button class="btn_downup">+</button>
+			<input type="button" class="btn_downUp" id="viewTopDownBtn" value="-" onclick="change(-1);">
+			<input type="text" name="itemQtyText" readonly="readonly" value="1" size="2" style="text-align: center;">
+			<input type="button" class="btn_downUp" id="viewTopUpBtn" value="+" onclick="change(1);">
 		</span>
 		<br><br>
 		<p style="float: right;">총 상품금액 : <span style="font-size: 1.7em;"><strong>24,500</strong>원</span></p>
@@ -87,6 +89,10 @@
 			</tr>
 		</table>
 	</div>
+	<p style="clear: both; height: 1px;"></p>
+	<div class="itemBtnDiv">
+		<input type="button" class="itemViewReviewWriteBtn" value="후기 작성하기" onclick="location.href='/bitFarm/review/reviewWriteForm'">
+	</div>
 	
 	<p style="clear: both; height: 100px;"></p>
 	<div class="itemMenu">
@@ -128,6 +134,10 @@
 			</tr>
 		</table>
 	</div>
+	<p style="clear: both; height: 1px;"></p>
+	<div class="itemBtnDiv">
+		<input type="button" class="itemViewSellerQnaBtn" value="판매자에게 문의하기" onclick="location.href='/bitFarm/information/infoQnABoard'">
+	</div>
 	
 </div>
 <p style="clear: both; height: 10px;"></p>
@@ -152,9 +162,9 @@
 			</span>
 			<span style="width: 60%; height: 30px; float: right; background: #f8f8f8;">
 				<span style="width:20%; float: center;">
-					<button class="btn_downup"><strong>-</strong></button>
-					<input type="text" readonly="readonly" value="1" size="2" style="text-align: center;">
-					<button class="btn_downup"><strong>+</strong></button>
+					<input type="button" class="btn_downUp" id="viewTopDownBtn" value="-" onclick="change(-1);">
+					<input type="text" name="itemQtyText" value="1" size="2" style="text-align: center;" readOnly>
+					<input type="button" class="btn_downUp" id="viewTopUpBtn" value="+" onclick="change(1);">
 				</span>
 				<span style="width:30%; float: right;">
 					2,500원
@@ -174,7 +184,22 @@
 		</div>
 	</div>
 </div>
+</form>
+<p style="clear: both; height: 10px;"></p>
 
+<%-- script --%>
+<script type="text/javascript">
+/* function change(num){
+	//alert(num);
+	var x = itemViewForm;
+	//alert(x.name);
+	alert(itemQtyText.value);
+	var y = Number(itemQtyText.value) + num;
+	
+	if(y < 1) y = 1;
+	x.itemQtyText.value = y;
+} */
+</script>
 <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
@@ -214,6 +239,10 @@ $(document).ready(function(){
 	$('.itemQnaLi').click(function(){
 		$('body,html').animate({scrollTop:itemQnaDiv.top-200});
 	});
+});
 
+
+$('#viewTopUpBtn').click(function(){
+	alert($('#itemQtyText').val());	//왜 undefined?
 });
 </script>

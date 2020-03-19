@@ -303,7 +303,7 @@ $('input[name=member_address2]').focusout(function(){
 			$('#member_address1_Div').css('color','#5f0080');
 			$('#member_address1_Div').css('font-weight','bold');
 			$('#member_address1_Div').css('font-size','10pt'); 
-		} 	  
+		} 	 
 });
 
 function checkAll(){
@@ -326,23 +326,27 @@ function checkAll(){
 } 
 
 function checkMemberWrite(){
-	if($('input[name=member_id]').val()!=''&&
-			$('input[name=member_name]').val()!=''&&
-			$('input[name=member_pwd]').val()!=''&&
-			$('input[name=member_email]').val()!=''&&
-			$('input[name=member_phone]').val()!=''&&
-			$('input[name=member_license]').val()!=''&&
-			$('input[name=member_address1]').val()!=''&&
-			$('input[name=member_address2]').val()!=''){
+	if($('#event').is(":checked")==true) $('#mea').val("yes");    
+	else $('#mea').val("no");
+	
+	if($('input[name=member_id]').val()==''||
+		$('input[name=member_name]').val()==''||
+		$('input[name=member_pwd]').val()==''||
+		$('input[name=member_email]').val()==''||
+		$('input[name=member_phone]').val()==''||
+		$('input[name=member_license]').val()==''||
+		$('input[name=member_address1]').val()==''||
+		$('input[name=member_address2]').val()==''){
+		alert("필수 사항을 입력하세요!");
 		
-		if($('#event').is(":checked")==true){   
-			$('#mea').val("yes");    
-		}else{  
-			$('#mea').val("no");  
-		}		
-				document.memberWriteForm.method = 'post';
-				document.memberWriteForm.action = '/bitFarm/member/write';
-				document.memberWriteForm.submit();
-	}else alert("필수 사항을 입력하세요!");
+	}else if($('#member_check1').is(":checked") && $('#member_check2').is(":checked") && $('#member_check3').is(":checked")){
+						
+			document.memberWriteForm.method = 'post';
+			document.memberWriteForm.action = '/bitFarm/member/write';
+			document.memberWriteForm.submit();
+				
+	}else {
+		alert("약관을 체크해주세요!");  
+	}
 }	
 </script>

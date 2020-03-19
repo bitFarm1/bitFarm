@@ -318,19 +318,22 @@ $('input[name=seller_address2]').focusout(function(){
 function checkSellerWrite(){ 
 	 
 	if($('input[name=seller_id]').val()==''||
-			$('input[name=seller_name]').val()==''||
-			$('input[name=seller_pwd]').val()==''||
-			$('input[name=seller_email]').val()==''||
-			$('input[name=seller_phone]').val()==''||
-			$('input[name=seller_license]').val()==''||
-			$('input[name=seller_address1]').val()==''|| 
-			$('input[name=seller_address2]').val()==''){
+		$('input[name=seller_name]').val()==''||
+		$('input[name=seller_pwd]').val()==''||
+		$('input[name=seller_email]').val()==''||
+		$('input[name=seller_phone]').val()==''||
+		$('input[name=seller_license]').val()==''||
+		$('input[name=seller_address1]').val()==''|| 
+		$('input[name=seller_address2]').val()==''){
+		
 		alert("필수 사항을 입력하세요!");
 				
 	}else if($('#seller_check1').is(":checked") && $('#seller_check2').is(":checked") && $('#seller_check3').is(":checked")){
+		
 		document.sellerWriteForm.method = 'post';
 		document.sellerWriteForm.action = '/bitFarm/seller/write';
 		document.sellerWriteForm.submit(); 
+		
 	}else{  
 		alert("약관을 체크해주세요!");			
 	}

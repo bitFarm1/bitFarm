@@ -1,0 +1,58 @@
+@charset "UTF-8";
+.costDiv{
+	width: 22%; 
+	float: left;
+	height: 160px;
+	text-align: center;
+	border: 1px dotted gray;
+}
+.calDiv{
+	width: 3%; 
+	float: left;
+	height: 160px;
+	text-align: center;
+	/* border: 1px dotted blue; */
+}
+.smallBtn{
+	width: 80pt;
+	height: 30pt;
+	color: #ffffff;
+	border: 0;
+	outline: 0;
+	background-color: #5f0080;
+	border-radius: 10px; 
+	font-weight: bold;
+	cursor: pointer;
+}
+.orderBtn{
+	width: 250pt;
+	height: 40pt;
+	color: #ffffff;
+	border: 0;
+	outline: 0;
+	background-color: #5f0080;
+	border-radius: 10px;
+	font-size: 13pt;
+	font-weight: bold;
+	cursor: pointer;
+}
+.qtyBtn{
+	width: 20pt;
+	color: #ffffff;
+	border: 0;
+	outline: 0;
+	background-color: #5f0080;
+	border-radius: 5px;
+	font-size: 13pt;
+	cursor: pointer;
+}
+#cart_item_qty{
+	width: 15pt;
+	border: 0;
+	text-align: center;
+}
+.cartTable{
+	border-top: 2px solid #5f0080;
+	border-bottom: 2px solid #ddd;
+	width: 80%;
+}

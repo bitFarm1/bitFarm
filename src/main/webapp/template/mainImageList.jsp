@@ -20,19 +20,19 @@
 <table align="center" width="80%" cellpadding="40">
 	<tr>
 		<td align="center">
-			<img id="mainImageList_image" src="../image/berry.jpg"><br><br>
+			<img id="mainImageList_image" src="../image/berry.jpg" onclick="location.href='/bitFarm/item/itemViewForm'"><br><br>
 			<h5><strong>상콤상콤 딸기</strong></h5><br>
 		</td>
 		<td align="center">
-			<img id="mainImageList_image" src="../image/berry.jpg"><br><br>
+			<img id="mainImageList_image" src="../image/berry.jpg" onclick="location.href='/bitFarm/item/itemViewForm'"><br><br>
 			<h5><strong>상콤상콤 딸기</strong></h5><br>
 		</td>
 		<td align="center">
-			<img id="mainImageList_image" src="../image/berry.jpg"><br><br>
+			<img id="mainImageList_image" src="../image/berry.jpg" onclick="location.href='/bitFarm/item/itemViewForm'"><br><br>
 			<h5><strong>상콤상콤 딸기</strong></h5><br>
 		</td>
 		<td align="center">
-			<img id="mainImageList_image" src="../image/berry.jpg"><br><br>
+			<img id="mainImageList_image" src="../image/berry.jpg" onclick="location.href='/bitFarm/item/itemViewForm'"><br><br>
 			<h5><strong>상콤상콤 딸기</strong></h5><br>
 		</td>
 	</tr>

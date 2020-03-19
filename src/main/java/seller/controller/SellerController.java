@@ -80,4 +80,18 @@ public class SellerController {
 		model.addAttribute("display", "/seller/sellerStore.jsp");
 		return "/main/main";
 	}	
+	
+	//sellerQnAView 셀러 문의게시판 글 보기
+	@RequestMapping(value="sellerQnAView", method=RequestMethod.GET)
+	public String sellerQnAView(Model model) {
+		model.addAttribute("display", "/seller/sellerQnAView.jsp");
+		return "/main/main";
+	}
+	//sellerQnAView 셀러 문의게시판 답변하기 Form
+		@RequestMapping(value="sellerQnaRe", method=RequestMethod.GET)
+		public String sellerQnaRe(Model model) {
+			model.addAttribute("display", "/seller/sellerQnaRe.jsp");
+			return "/main/main";
+		}
+	
 }

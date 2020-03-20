@@ -6,6 +6,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.Map;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
@@ -18,11 +23,38 @@ public class SellerController {
 	///////////////////////////////////////////////김정훈
 	@Autowired
 	private SellerService sellerService;
+	
+	@RequestMapping(value="/sellerLoginForm", method=RequestMethod.GET)
+	public ModelAndView loginForm() {
+		ModelAndView mav = new ModelAndView();
+		
+		mav.addObject("display", "/seller/sellerLoginForm.jsp");
+		mav.setViewName("/main/main");  
+		return mav; 
+	}
+	
+	@RequestMapping(value="/login", method=RequestMethod.POST) 
+	public ModelAndView login(@RequestParam Map<String, String> map, HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+		SellerDTO sellerDTO = sellerService.login(map);
+		
+		if(sellerDTO == null) {
+			mav.addObject("login", "fail");
+		}else {
+			session.setAttribute("sellerName", sellerDTO.getSeller_name()); //session은 내장 기본 객체 default 30분  
+			session.setAttribute("sellerId", map.get("id"));   
+			session.setAttribute("sellerEmail",sellerDTO.getSeller_email()); 
+		}
+		 
+		mav.setViewName("jsonView");
+		return mav;
+	}
+	
 	 
 	@RequestMapping(value="/write", method=RequestMethod.POST)
 	public ModelAndView write(@ModelAttribute SellerDTO sellerDTO) {
-		ModelAndView mav = new ModelAndView();
-		 
+		ModelAndView mav = new ModelAndView(); 
+		  
 		int su = sellerService.write(sellerDTO);
 		if(su > 0) {  
 			mav.addObject("display", "/member/writeOK.jsp");
@@ -32,19 +64,20 @@ public class SellerController {
 		mav.setViewName("/main/main");
 		return mav; 
 	} 
-	
+	 
 	@RequestMapping(value="/checkID", method=RequestMethod.POST)
-	public String checkID(@RequestParam String id, Model model) {
-			
+	public ModelAndView checkID(@RequestParam String id) {
+		ModelAndView mav = new ModelAndView();	
 		int exist = sellerService.checkID(id);
-		
+		 
 		if(exist==0) 
-			model.addAttribute("exist","none_exist");
+			mav.addObject("exist","none_exist");
 		else
-			model.addAttribute("exist","exist"); 
-				 
-		return "/member/sellerWriteForm";   
-	} 
+			mav.addObject("exist","exist");  
+		
+		mav.setViewName("jsonView");
+		return mav;   
+	}  
 	
 	///////////////////////////////////////////////김정훈
 	@RequestMapping(value="sellerAddForm", method=RequestMethod.GET)

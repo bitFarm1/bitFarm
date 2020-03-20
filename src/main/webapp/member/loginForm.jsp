@@ -38,28 +38,34 @@ a.searchA:active {color: black; text-decoration: none;}
 <h2 align="center">로그인</h2>
 	<div>
 		<input class="layout" type="text" name="id" placeholder=" 아이디를 입력해주세요" style="font-size:15px; width:308px;">
+		<div id="loginIdDiv"></div>
 	</div>
 		<div style="height:5px;"></div>
 	<div>
 		<input class="layout" type="password" name="pwd" placeholder=" 비밀번호를 입력해주세요" style="font-size:15px; width:308px;">
+		<div id="loginPwdDiv" align= "left"></div>  
+		
 	</div>
-	<div style="width:340px; height:54px;" align="right">
-	<a class="searchA" href="/bitFarm/member/findID.do">아이디 찾기</a>
-	<a class="searchA" href="/bitFarm/member/findPWD.do">비밀번호 찾기</a>&nbsp; 
-	</div>
-	<div>
-		<input class="layout" type="button" value="로그인" style="color: white; background-color: #5f0080; border: #5f0080; border-radius: 5px; cursor: pointer;">
+	<div style="width:340px; height:20px;" >
+	 
 	</div>  
+		  
+	<div align="right">
+		<a class="searchA" href="/bitFarm/seller/sellerLoginForm">판매자 로그인</a> 
+		<a class="searchA" href="/bitFarm/member/findID">아이디 찾기</a> 
+		<a class="searchA" href="/bitFarm/member/findPWD">비밀번호 찾기</a>&nbsp;
+		<div style="height:5px;"></div>  
+		<input class="layout" type="button" id="loginBtn" value="로그인" style="color: white; background-color: #5f0080; border: #5f0080; border-radius: 5px; cursor: pointer;">
+	</div>   
 		<div style="height:5px;"></div>
 	<div>
 		<input class="layout" type="button" value="회원가입" onclick="location.href='signUp'" style="border-radius: 5px; cursor: pointer;"> 
-		
-	</div>	 	 
-		<div style="height:5px;"></div>
+	</div>	 
+		<div style="height:5px;"></div>   
 	<div style="height:60px; ">
 		<div id="naverIdLogin" style="float:left; width:65px;"></div> 
 		
-		<div>
+		<div> 
 			<a id="custom-login-btn" href="javascript:loginWithKakao()">
 			<img src="../image/kakao.png" width="54"/>
 			</a>
@@ -186,6 +192,45 @@ a.searchA:active {color: black; text-decoration: none;}
                alert("로그아웃 되었습니다.");
                location.reload();
         });
-      }); 
+      });
+    
+    /////////////////////////////////////////////////// 
+    $('#loginBtn').click(function(){
+    	$('#loginIdDiv').empty();
+    	$('#loginPwdDiv').empty(); 
+    	if($('input[name=id]').val()==''){
+    		$('#loginIdDiv').text('아이디를 입력해주세요.');
+    		$('#loginIdDiv').css('color','red');
+    		$('#loginIdDiv').css('font-weight','bold');
+    		$('#loginIdDiv').css('font-size','9pt');
+    		
+    	}else if($('input[name=pwd]').val()==''){
+        		$('#loginPwdDiv').text('비밀번호를 입력해주세요.'); 
+        		$('#loginPwdDiv').css('color','red');
+        		$('#loginPwdDiv').css('font-weight','bold');
+        		$('#loginPwdDiv').css('font-size','9pt');
+    	}else{ 
+    		$.ajax({ 
+    			type : 'post',
+    			url : '/bitFarm/member/login',
+    			data : {'id' : $('input[name=id]').val(),  
+    					'pwd' : $('input[name=pwd]').val()},
+    			dataType : 'json',
+    			success : function(data){
+    				//alert(data.login);  
+    				if(data.login == 'fail'){ 
+    					$('#loginPwdDiv').text('가입하지 않은 아이디이거나, 잘못된 비밀번호입니다.'); 
+    	        		$('#loginPwdDiv').css('color','red');
+    	        		$('#loginPwdDiv').css('font-weight','bold');
+    	        		$('#loginPwdDiv').css('font-size','9pt');
+    				}else{
+    					location.href="/bitFarm/main/main";
+    				}
+    			}
+    		}); 
+    		
+    	}
+    });
+    
 </script>
 

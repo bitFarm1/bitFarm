@@ -14,5 +14,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		,#{member_birth}
 		,0,0,sysdate,#{member_eventAgree},#{member_loginType}) 
 	</insert> 	  
-	 	
-</mapper>        
+	
+	<select id="checkID" parameterType="String" resultType="int">
+		select count(*) from member where member_id = #{id}    
+	</select> 	
+	
+	<select id="login" parameterType="java.util.Map" resultType="memberDTO">
+		select * from member where member_id = #{id} and member_pwd = #{pwd}       
+	</select> 	  	   	 
+	 	 
+</mapper>         

@@ -1,12 +1,27 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <link rel="stylesheet" href= "../css/top.css">
-<div align="right">									<%-- 세션 만들면 수정 --%>
+<div align="right">							
+<!-- 비회원 -->		
+<c:if test="${memberId==null && sellerId==null }">
 	<a class="indexA" href="/bitFarm/member/loginForm">로그인</a>&emsp;&emsp;
 	<a class="indexA" href="/bitFarm/member/signUp">회원가입</a>&emsp;&emsp;
-	<a class="indexA" href="#">로그아웃</a>&emsp;&emsp;
+</c:if>
+
+<!-- 회원 혹은 판매자  -->
+<c:if test="${memberId!=null || sellerId!=null}">  
+	<a class="indexA" href="/bitFarm/member/logout">로그아웃</a>&emsp;&emsp;
+</c:if>
+
+<!-- 회원만   -->
+<c:if test="${memberId!=null && sellerId==null}"> 
 	<a class="indexA" href="/bitFarm/mypage/mypageMain">마이페이지</a>&emsp;&emsp;
 	<a class="indexA" href="/bitFarm/cart/cartForm">장바구니</a>&emsp;&emsp;
+
+<!-- 전체 사용자 -->
+</c:if>
 	<a class="indexA" href="/bitFarm/information/infoBoard">고객센터</a>&emsp;&emsp;&emsp;&emsp;
+
 </div><br><br>
 
 <div align="center">

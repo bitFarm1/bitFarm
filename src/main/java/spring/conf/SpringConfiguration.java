@@ -27,8 +27,8 @@ public class SpringConfiguration {
 		basicDataSource.setMaxTotal(20);
 		basicDataSource.setMaxIdle(3);
 		return basicDataSource;
-	}
-
+	} 
+	  
 	@Bean
 	public SqlSessionFactory sqlSessionFactory() throws Exception {
 		SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
@@ -41,10 +41,10 @@ public class SpringConfiguration {
 		return sqlSessionFactoryBean.getObject();
 	}
 	
-	@Bean("name=sqlSession")
+	@Bean(name="sqlSession")
 	public SqlSessionTemplate sqlSessionTemplate() throws Exception {
 		return new SqlSessionTemplate(sqlSessionFactory());
-	}
+	} 
 	
 	@Bean
 	public DataSourceTransactionManager transactionManager() {

@@ -1,22 +1,23 @@
-package seller.dao;
-
+package member.dao;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import seller.bean.SellerDTO;
+import member.bean.MemberDTO;
  
-@Repository("sellerDAO") 
+@Repository("memberDAO") 
 @Transactional
-public class SellerDAOMybatis implements SellerDAO { 
+public class MemberDAOMybatis implements MemberDAO { 
 	@Autowired 
-	private SqlSession sqlSession; 
+	private SqlSession sqlSession;
 
 	@Override
-	public int write(SellerDTO sellerDTO) { 
-		return sqlSession.insert("sellerSQL.write", sellerDTO); 
+	public int write(MemberDTO memberDTO) { 
+		return sqlSession.insert("memberSQL.write", memberDTO);
 	}  
+ 
+	
  
 }

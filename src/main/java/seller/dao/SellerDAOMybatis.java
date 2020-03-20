@@ -1,6 +1,8 @@
 package seller.dao;
 
 
+import java.util.Map;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -21,8 +23,14 @@ public class SellerDAOMybatis implements SellerDAO {
 
 	@Override
 	public int checkID(String id) {
+		// TODO Auto-generated method stub 
+		return sqlSession.selectOne("sellerSQL.checkID", id);
+	}
+
+	@Override
+	public SellerDTO login(Map<String, String> map) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne("sellerSQL.checkId", id);
+		return sqlSession.selectOne("sellerSQL.login", map);
 	}  
  
-}
+} 

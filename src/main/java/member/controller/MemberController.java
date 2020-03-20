@@ -1,6 +1,9 @@
 package member.controller;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import member.bean.MemberDTO;
@@ -131,5 +135,52 @@ public class MemberController {
 		mav.setViewName("/main/main"); 
 		return mav;  
 	}
+	
+	@RequestMapping(value="/checkID", method=RequestMethod.POST)
+	public ModelAndView checkID(@RequestParam String id) {
+		ModelAndView mav = new ModelAndView();	
+		int exist = memberService.checkID(id);
+		
+		if(exist==0)  
+			mav.addObject("exist","none_exist");
+		else
+			mav.addObject("exist","exist");  
+		
+		mav.setViewName("jsonView");
+		return mav;   
+	}  
+	
+	@RequestMapping(value="login", method=RequestMethod.POST)
+	public ModelAndView naver(@RequestParam Map<String, String> map, HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+		MemberDTO memberDTO = memberService.login(map);
+		
+		if(memberDTO == null) {
+			mav.addObject("login","fail"); 
+		}else {			
+			session.setAttribute("memberName", memberDTO.getMember_name()); //session은 내장 기본 객체 default 30분  
+			session.setAttribute("memberId", map.get("id"));   
+			session.setAttribute("memberEmail", memberDTO.getMember_email());
+			mav.addObject("login","success"); 
+		}
+				
+		mav.setViewName("jsonView");  
+		return mav; 
+	}
+	
+	@RequestMapping(value="logout", method=RequestMethod.GET)
+	public ModelAndView logout(HttpSession session) { 
+		session.invalidate();
+		return new ModelAndView("redirect:/main/main");
+	}
+	
+//	@RequestMapping(value="checkPwd", method=RequestMethod.POST)
+//	public ModelAndView naver(@RequestParam String pwd, HttpSession session) {
+//		ModelAndView mav = new ModelAndView();
+//		MemberDTO memberDTO = memberService.checkPwd 
+//	}
+//	
+	
+	
 	
 }

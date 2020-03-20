@@ -89,9 +89,9 @@
 		<tr> 
 			<th class="subject">아이디*</th>
 			<td style="vertical-align: top;"><input class="layoutT" type="text" name="member_id" placeholder="6자 이상의 영문 혹은 영문과 숫자를 조합">&emsp;
-			<input class="layoutB" type="button" name="checkId" value="중복확인"><br id="member_id_p" style="display: none;"><span id="member_id_Div" ></span></br></td>					
+			<input class="layoutB" type="button" id="member_checkIdBtn" name="member_checkId" value="중복확인"><br id="member_id_p" style="display: none;"><span id="member_id_Div" ></span></br></td>					
 		</tr>  
-		
+		 
 		<tr>   
 			<th class="subject">비밀번호*</th>   
 			<td><input class="layoutT" type="password" name="member_pwd" placeholder="비밀번호를 입력해주세요"></td>
@@ -199,6 +199,32 @@ $('input[name=member_id]').focusout(function(){
 		} 	
 });
 
+$('#member_checkIdBtn').click(function(){
+	
+	$.ajax({
+		type : 'post',  
+		url : '/bitFarm/member/checkID', 
+		data : {'id' : $('input[name=member_id]').val()}, 
+		dataType : 'json', 
+		success : function(data){
+			//alert(JSON.stringify(data));  
+			if(data.exist == 'exist'){
+				$('#member_id_p').css("display", "block");  
+				$('#member_id_Div').text('이미 존재하는 아이디입니다.');  
+				$('#member_id_Div').css('color','red');
+				$('#member_id_Div').css('font-weight','bold');
+				$('#member_id_Div').css('font-size','10pt');
+			}else{
+				$('#member_id_p').css("display", "block"); 
+				$('#member_id_Div').text('사용가능합니다.');    
+				$('#member_id_Div').css('color','green');
+				$('#member_id_Div').css('font-weight','bold');
+				$('#member_id_Div').css('font-size','10pt');
+			} 			 
+		} 
+	}); 
+});
+
 $('input[name=member_pwd]').focusout(function(){
 	
 	$('#member_pwd_Div').empty();
@@ -303,7 +329,7 @@ $('input[name=member_address2]').focusout(function(){
 			$('#member_address1_Div').css('color','#5f0080');
 			$('#member_address1_Div').css('font-weight','bold');
 			$('#member_address1_Div').css('font-size','10pt'); 
-		} 	  
+		} 	 
 });
 
 function checkAll(){
@@ -326,24 +352,28 @@ function checkAll(){
 } 
 
 function checkMemberWrite(){
-	if($('input[name=member_id]').val()!=''&&
-			$('input[name=member_name]').val()!=''&&
-			$('input[name=member_pwd]').val()!=''&&
-			$('input[name=member_email]').val()!=''&&
-			$('input[name=member_phone]').val()!=''&&
-			$('input[name=member_license]').val()!=''&&
-			$('input[name=member_address1]').val()!=''&&
-			$('input[name=member_address2]').val()!=''){
+	if($('#event').is(":checked")) $('#mea').val("yes");    
+	else $('#mea').val("no");
+	
+	if($('input[name=member_id]').val()==''||
+		$('input[name=member_name]').val()==''||
+		$('input[name=member_pwd]').val()==''||
+		$('input[name=member_email]').val()==''||
+		$('input[name=member_phone]').val()==''||
+		$('input[name=member_license]').val()==''||
+		$('input[name=member_address1]').val()==''||
+		$('input[name=member_address2]').val()==''){
 		
-		if($('#event').is(":checked")==true){   
-			$('#mea').val("yes");    
-		}else{  
-			$('#mea').val("no");  
-		}		
-				document.memberWriteForm.method = 'post';
-				document.memberWriteForm.action = '/bitFarm/member/write';
-				document.memberWriteForm.submit();
+		alert("필수 사항을 입력하세요!"); 
+		
+	}else if($('#member_check1').is(":checked") && $('#member_check2').is(":checked") && $('#member_check3').is(":checked")){
+						
+			document.memberWriteForm.method = 'post';
+			document.memberWriteForm.action = '/bitFarm/member/write';
+			document.memberWriteForm.submit();
 				
-	}else alert("필수 사항을 입력하세요!");
+	}else {
+		alert("약관을 체크해주세요!");   
+	}
 }	
 </script>

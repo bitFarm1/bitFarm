@@ -4,8 +4,8 @@
 
 <div id="profile">
 	&emsp;&emsp;<img src = "../image/person.svg" width="70px">
-	&emsp;<strong>농장님</strong>
-</div>
+	&emsp;<strong>${memberName}님</strong>  
+</div>  
 <div id="blank"></div>
 <div id="point">
 	&emsp;&emsp;적립금<br><br>

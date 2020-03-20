@@ -1,6 +1,8 @@
 package seller.service;
 
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +26,12 @@ public class SellerServiceImpl implements SellerService {
 	public int checkID(String id) {
 		// TODO Auto-generated method stub
 		return sellerDAO.checkID(id);
+	}
+
+	@Override
+	public SellerDTO login(Map<String, String> map) {
+		// TODO Auto-generated method stub
+		return sellerDAO.login(map);
 	} 
 
 } 

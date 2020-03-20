@@ -18,9 +18,9 @@
 
 	<context:component-scan base-package="member.controller"/>
 	<context:component-scan base-package="information.controller"/>
-	<context:component-scan base-package="mypage.controller"/>	  
-	
-	<context:component-scan base-package="seller.controller"/>	 
+
+	<context:component-scan base-package="mypage.controller"/>	   
+	<context:component-scan base-package="seller.controller"/> 
 
 
 	<!-- Enables the Spring MVC @Controller programming model -->
@@ -36,13 +36,13 @@
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
-	
+	 
 	
 	<!-- json -->
 	<beans:bean id="jsonView" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView">
 		<beans:property name="contentType" value="text/html;charset=UTF-8" />
 	</beans:bean>
-	<beans:bean id="beanNameViewResolver" class="org.springframework.web.servlet.view.BeanNameViewResolver">
+	<beans:bean id="member.beanNameViewResolver" class="org.springframework.web.servlet.view.BeanNameViewResolver">
 		<beans:property name="order" value="0" />
 	</beans:bean>
 	

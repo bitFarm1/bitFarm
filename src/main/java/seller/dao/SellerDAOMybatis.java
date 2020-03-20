@@ -17,6 +17,12 @@ public class SellerDAOMybatis implements SellerDAO {
 	@Override
 	public int write(SellerDTO sellerDTO) { 
 		return sqlSession.insert("sellerSQL.write", sellerDTO); 
+	}
+
+	@Override
+	public int checkID(String id) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("sellerSQL.checkId", id);
 	}  
  
 }

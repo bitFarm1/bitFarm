@@ -20,4 +20,10 @@ public class SellerServiceImpl implements SellerService {
 		return sellerDAO.write(sellerDTO);		  
 	}
 
-}
+	@Override
+	public int checkID(String id) {
+		// TODO Auto-generated method stub
+		return sellerDAO.checkID(id);
+	} 
+
+} 

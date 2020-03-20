@@ -343,6 +343,7 @@ function checkMemberWrite(){
 				document.memberWriteForm.method = 'post';
 				document.memberWriteForm.action = '/bitFarm/member/write';
 				document.memberWriteForm.submit();
+				
 	}else alert("필수 사항을 입력하세요!");
 }	
 </script>

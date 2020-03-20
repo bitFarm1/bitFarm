@@ -29,7 +29,7 @@
 			<input type="text" name="cart_item_qty" id="cart_item_qty" value="1" readOnly>
 			<input type="button" id="plusBtn" value="+" class="qtyBtn" onclick="change(1);">
 		</td>
-		<td  align="center">금액*수량</td>
+		<td  align="center">${item_price}</td>
 	</tr>
 </table>
 </form>

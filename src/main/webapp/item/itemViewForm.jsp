@@ -3,7 +3,7 @@
 <link rel="stylesheet" href= "../css/itemViewForm.css">
 
 <!-- 상품 상세페이지 메인화면 -->
-<form name="itemViewForm">
+<form name="itemViewForm" method="post">
 <div class="itemView">
 	<div class="itemMainImageDiv">
 		<img src="../image/berry.jpg" width="470">
@@ -12,8 +12,8 @@
 		&emsp;
 	</div>
 	<div class="itemCartDiv">
-		<p style="font-size: 1.7em; font-weight: bold;">[${seller_name}]&nbsp;상큼한 딸기</p>
-		<font color="gray">상큼하고 단 신선한 딸기</font>
+		<p style="font-size: 1.7em; font-weight: bold;">[${seller_name}]&nbsp;${item_name}</p>
+		<font color="gray">${item_explain}</font>
 		<br><br>
 		<p style="font-size: 1.7em;">
 			<strong><span id="itemPrice">
@@ -34,15 +34,10 @@
 				<fmt:formatNumber type="number" maxFractionDigits="3" value="${item_price}"/>
 			</span>원
 		</p>
-		<%-- <p style="float: right;">총 상품금액 : 
-			<span style="font-size: 1.7em;" id="itemAllPrice">
-				<fmt:formatNumber type="number" maxFractionDigits="3"><strong>${item_price}</strong></fmt:formatNumber>
-			</span>원
-		</p> --%>
 		<br><br><br>
 		<p style="text-align: right;">
 			<button class="goPickItemBtn">찜하기</button>&emsp;
-			<input type="button" class="goCartBtn" value="장바구니 담기">
+			<input type="button" id="mainCartBtn" class="goCartBtn" value="장바구니 담기">
 		</p>
 		<br>
 	</div>
@@ -157,6 +152,7 @@
 </div>
 <p style="clear: both; height: 10px;"></p>
 
+<!-- 스크롤 -->
 <!-- 스크롤시 하단에 뜨는 div -->
 <form name="itemViewScrollDiv">
 <div id="miniCartDivTool" class="miniCartDivTool_small_visible">
@@ -175,7 +171,7 @@
 		<br>
 		<div class="miniCartDiv_visible_itemInfo">
 			<span style="width: 39.99%; height: 30px;  float: left; background: #f8f8f8;">
-				[판매자농장] 판매상품이름
+				[${seller_name}] ${item_name}
 			</span>
 			<span style="width: 60%; height: 30px; float: right; background: #f8f8f8;">
 				<span style="width:20%; float: center;">
@@ -183,7 +179,7 @@
 					<input type="text" name="item_qty1" id="item_qty1" value="1" size="1" style="text-align: center;" readOnly>
 					<input type="button" id="plusBtn" value="+" class="botqtyBtn" onclick="botchange(1);">
 				</span>
-				<span id="itemPrice" style="width:30%; float: right;">
+				<span id="itemPrice" style="width:30%; float: right;" id="itemAllPrice">
 					<fmt:formatNumber type="number" maxFractionDigits="3" value="${item_price}"/>
 				</span>
 			</span>
@@ -200,7 +196,7 @@
 		<p style="clear: both; height: 2px;"></p>
 		<div class="miniCartDiv_visible_btnGroup">
 			<button class="goPickItemBtn">찜하기</button>&emsp;
-			<input type="button" class="goCartBtn" value="장바구니 담기">
+			<input type="button" id="scrollCartBtn" class="goCartBtn" value="장바구니 담기">
 		</div>
 	</div>
 </div>
@@ -230,16 +226,7 @@ function botchange(num){
 $('.qtyBtn').click(function(){
 	let itemPrice = ${item_price};
 	let itemQty = $('#item_qty').val();
-
-	itemQty *= 1;
-	
-	itemAllPrice = itemQty * itemPrice;
-	$('#itemAllPrice').text($.number(itemAllPrice, 0));
-});
-
-$('.botqtyBtn').click(function(){
-	let itemPrice = ${item_price};
-	let itemQty = $('#item_qty1').val();
+	$('#item_qty1').val(itemQty);
 
 	itemQty *= 1;
 	
@@ -247,9 +234,29 @@ $('.botqtyBtn').click(function(){
 	$('span[id=itemAllPrice]').text($.number(itemAllPrice, 0));
 });
 
-$('.goCartBtn').click(function(){
+$('.botqtyBtn').click(function(){
+	let itemPrice = ${item_price};
+	let itemQty = $('#item_qty1').val();
+	$('#item_qty').val(itemQty);
+
+	itemQty *= 1;
 	
-	alert('장바구니 버튼 누름');
+	itemAllPrice = itemQty * itemPrice;
+	$('span[id=itemAllPrice]').text($.number(itemAllPrice, 0));
+});
+
+$('#mainCartBtn').click(function(){
+	$.ajax({
+		type : 'POST',
+		url : '/bitFarm/cart/cartAdd',
+		data : 'item_price'+$('#item_price').val(),
+		success: function(){
+			alert('카트로 이동');
+		}
+	});
+});
+
+$('#scrollCartBtn').click(function(){
 	window.location.href = '/bitFarm/cart/cartForm';
 });
 </script>

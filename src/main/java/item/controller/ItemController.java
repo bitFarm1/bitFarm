@@ -12,8 +12,12 @@ public class ItemController {
 	public ModelAndView itemViewForm() {
 		ModelAndView mav = new ModelAndView();
 		
-		mav.addObject("seller_name", "비트네 딸기농장");
-		mav.addObject("item_price", "7900");
+		//테스트용 데이터 입력
+			mav.addObject("seller_name", "비트네 딸기농장");
+			mav.addObject("item_name", "상큼상큼 딸긔");
+			mav.addObject("item_price", "7900");
+			mav.addObject("item_explain", "상큼하고 단 신선한 딸기");
+		
 		mav.addObject("display", "/item/itemViewForm.jsp");
 		mav.setViewName("/main/main");
 		

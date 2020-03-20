@@ -6,7 +6,11 @@ import seller.bean.SellerDTO;
 
 public interface SellerDAO {
 
-	public int write(SellerDTO sellerDTO); 
+	public int write(SellerDTO sellerDTO);
+
+	public int checkID(String id); 
+
+
 	
 } 
  

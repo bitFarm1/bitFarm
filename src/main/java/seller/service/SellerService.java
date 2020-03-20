@@ -5,7 +5,10 @@ import seller.bean.SellerDTO;
 
 public interface SellerService {
 
-	public int write(SellerDTO sellerDTO); 
+	public int write(SellerDTO sellerDTO);
+
+	public int checkID(String id); 
+
 
 }
  

@@ -13,6 +13,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		,#{seller_address1} 
 		,#{seller_address2} 
 		,sysdate,0)  
-	</insert> 	  
-	 	 
-</mapper>            
+	</insert> 	   
+	 
+	<select id="checkID" parameterType="String">
+		select count(*) from seller where seller_id = #{id} 
+	</select> 	 	 
+</mapper>          
+

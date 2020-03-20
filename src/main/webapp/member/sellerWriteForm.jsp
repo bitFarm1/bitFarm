@@ -91,7 +91,7 @@
 		<tr> 
 			<th class="subject">아이디*</th>
 			<td style="vertical-align: top;"><input class="layoutT" type="text" name="seller_id" placeholder="6자 이상의 영문 혹은 영문과 숫자를 조합">&emsp;
-			<input class="layoutB" type="button" name="checkId" value="중복확인"><br id="seller_id_p" style="display: none;"><span id="seller_id_Div" ></span></br></td>					
+			<input class="layoutB" id="checkIdBtn" type="button" name="checkId" value="중복확인"><br id="seller_id_p" style="display: none;"><span id="seller_id_Div" ></span></br></td>					
 		</tr>  
 		 
 		<tr>   
@@ -197,6 +197,19 @@ $('input[name=seller_id]').focusout(function(){
 			$('#seller_id_Div').css('font-size','10pt');
 	} 	
 }); 
+
+$('#checkIdBtn').click(function(){
+
+	$.ajax({
+		type : 'post', 
+		url : '/springProject/seller/checkID',
+		data : {'id' : $('#seller_id').val()},
+		dataType : 'text', 
+		success : function(data){
+			alert(JSON.stringify(data));   
+		} 
+	});
+});
 
 $('input[name=seller_pwd]').focusout(function(){
 
@@ -329,13 +342,13 @@ function checkSellerWrite(){
 		alert("필수 사항을 입력하세요!");
 				
 	}else if($('#seller_check1').is(":checked") && $('#seller_check2').is(":checked") && $('#seller_check3').is(":checked")){
-		
+
 		document.sellerWriteForm.method = 'post';
 		document.sellerWriteForm.action = '/bitFarm/seller/write';
 		document.sellerWriteForm.submit(); 
 		
 	}else{  
-		alert("약관을 체크해주세요!");			
+		alert("약관을 체크해주세요!");			 
 	}
 }
 

@@ -326,7 +326,7 @@ function checkAll(){
 } 
 
 function checkMemberWrite(){
-	if($('#event').is(":checked")==true) $('#mea').val("yes");    
+	if($('#event').is(":checked")) $('#mea').val("yes");    
 	else $('#mea').val("no");
 	
 	if($('input[name=member_id]').val()==''||
@@ -337,7 +337,8 @@ function checkMemberWrite(){
 		$('input[name=member_license]').val()==''||
 		$('input[name=member_address1]').val()==''||
 		$('input[name=member_address2]').val()==''){
-		alert("필수 사항을 입력하세요!");
+		
+		alert("필수 사항을 입력하세요!"); 
 		
 	}else if($('#member_check1').is(":checked") && $('#member_check2').is(":checked") && $('#member_check3').is(":checked")){
 						

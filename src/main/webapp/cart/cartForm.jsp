@@ -1,68 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
-<style type="text/css">
-#cartTable td{
-	/* text-align: center; */
-}
-div.costDiv{
-	width: 22%; 
-	float: left;
-	height: 160px;
-	text-align: center;
-	border: 1px dotted gray;
-}
-div.calDiv{
-	width: 3%; 
-	float: left;
-	height: 160px;
-	text-align: center;
-	/* border: 1px dotted blue; */
-}
-.smallBtn{
-	width: 80pt;
-	height: 30pt;
-	color: #ffffff;
-	border: 0;
-	outline: 0;
-	background-color: #5f0080;
-	border-radius: 10px; 
-	font-weight: bold;
-	cursor: pointer;
-}
-.orderBtn{
-	width: 250pt;
-	height: 40pt;
-	color: #ffffff;
-	border: 0;
-	outline: 0;
-	background-color: #5f0080;
-	border-radius: 10px;
-	font-size: 13pt;
-	font-weight: bold;
-	cursor: pointer;
-}
-.qtyBtn{
-	width: 20pt;
-	color: #ffffff;
-	border: 0;
-	outline: 0;
-	background-color: #5f0080;
-	border-radius: 5px;
-	font-size: 13pt;
-	cursor: pointer;
-}
-#cart_item_qty{
-	width: 15pt;
-	border: 0;
-	text-align: center;
-}
-.cartTable{
-	border-top: 2px solid #5f0080;
-	border-bottom: 2px solid #ddd;
-	width: 80%;
-}
-</style>
-
+<link rel="stylesheet" href= "../css/cart.css">
 <br>
 <h2 align="center">장 바 구 니</h2><br>
 <form name="cartForm">
@@ -98,10 +35,10 @@ div.calDiv{
 </form>
 <br>
 <div style="width: 80%; margin:0 auto;">
-<input type="button" class="smallBtn" value="선택삭제">
-<input type="button" class="smallBtn" value="품절항목삭제">
-<br><br>
-<p style="clear: both; height: 10px;"></p>
+	<input type="button" class="smallBtn" value="선택삭제">
+	<input type="button" class="smallBtn" value="품절항목삭제">
+	<br><br>
+	<p style="clear: both; height: 10px;"></p>
 </div>
 <div align="center" style="width: 80%; margin:0 auto;">
 	<div class="costDiv">

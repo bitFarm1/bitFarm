@@ -3,7 +3,6 @@ package seller.dao;
 
 import java.util.Map;
 
-import member.bean.MemberDTO;
 import seller.bean.SellerDTO;
 
 public interface SellerDAO {
@@ -12,7 +11,9 @@ public interface SellerDAO {
 
 	public int checkID(String id);
 
-	public SellerDTO login(Map<String, String> map);  
+	public SellerDTO login(Map<String, String> map);
+
+	public String getSellerPwd(String id);   
 
 
 	

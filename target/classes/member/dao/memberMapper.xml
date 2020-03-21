@@ -6,21 +6,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="write" parameterType="memberDTO"> 
 		insert into member values(#{member_id}
 		,#{member_name}
-		,#{member_pwd}
+		,#{member_pwd} 
 		,#{member_email}
 		,#{member_phone} 
-		,#{member_address1}
+		,#{member_address1}  
 		,#{member_address2} 
-		,#{member_birth}
+		,#{member_birth} 
 		,0,0,sysdate,#{member_eventAgree},#{member_loginType}) 
 	</insert> 	  
+	
+	<select id="getMemberPwd" parameterType="String" resultType="String">
+		select member_pwd from member where member_id = #{id}  
+	</select>
 	
 	<select id="checkID" parameterType="String" resultType="int">
 		select count(*) from member where member_id = #{id}    
 	</select> 	
 	
 	<select id="login" parameterType="java.util.Map" resultType="memberDTO">
-		select * from member where member_id = #{id} and member_pwd = #{pwd}       
+		select * from member where member_id = #{id} 
 	</select> 	  	   	 
-	 	 
+	 	  
 </mapper>         

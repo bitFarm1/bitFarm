@@ -1,11 +1,17 @@
 package member.controller;
 
 import java.util.Map;
+import java.util.logging.Logger;
 
+import javax.inject.Inject;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -19,9 +25,13 @@ import member.service.MemberService;
 
 @Controller
 @RequestMapping(value="member")
-public class MemberController {	
+public class MemberController {			
 	@Autowired  
 	private MemberService memberService;
+	
+	@Autowired
+	private BCryptPasswordEncoder pwdEncoder;
+	
 	
 	@RequestMapping(value="/writeForm", method=RequestMethod.GET)
 	public ModelAndView writeForm() {
@@ -98,6 +108,10 @@ public class MemberController {
 	@RequestMapping(value="/write", method=RequestMethod.POST)
 	public ModelAndView write(@ModelAttribute MemberDTO memberDTO) {
 		ModelAndView mav = new ModelAndView();
+		String inputPwd = memberDTO.getMember_pwd();
+		String pwd = pwdEncoder.encode(inputPwd);
+		memberDTO.setMember_pwd(pwd);
+		
 		int su = memberService.write(memberDTO);
 		if(su > 0) {
 			mav.addObject("display", "/member/writeOK.jsp");
@@ -151,22 +165,27 @@ public class MemberController {
 	}  
 	
 	@RequestMapping(value="login", method=RequestMethod.POST)
-	public ModelAndView naver(@RequestParam Map<String, String> map, HttpSession session) {
+	public ModelAndView login(@RequestParam Map<String, String> map, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
-		MemberDTO memberDTO = memberService.login(map);
-		
-		if(memberDTO == null) {
-			mav.addObject("login","fail"); 
-		}else {			
+	
+		String pwd = map.get("pwd");
+		String id = map.get("id");
+		System.out.println(pwd);   
+		System.out.println(id);  
+		boolean pwdMatch = pwdEncoder.matches(pwd, memberService.getMemberPwd(id));
+		 
+		if(pwdMatch) { 
+			MemberDTO memberDTO = memberService.login(map);
 			session.setAttribute("memberName", memberDTO.getMember_name()); //session은 내장 기본 객체 default 30분  
 			session.setAttribute("memberId", map.get("id"));   
 			session.setAttribute("memberEmail", memberDTO.getMember_email());
-			mav.addObject("login","success"); 
-		}
-				
+			mav.addObject("login","success"); 			    
+		}else {			
+			mav.addObject("login","fail"); 
+		}				
 		mav.setViewName("jsonView");  
 		return mav; 
-	}
+	} 
 	
 	@RequestMapping(value="logout", method=RequestMethod.GET)
 	public ModelAndView logout(HttpSession session) { 
@@ -174,13 +193,38 @@ public class MemberController {
 		return new ModelAndView("redirect:/main/main");
 	}
 	
-//	@RequestMapping(value="checkPwd", method=RequestMethod.POST)
-//	public ModelAndView naver(@RequestParam String pwd, HttpSession session) {
-//		ModelAndView mav = new ModelAndView();
-//		MemberDTO memberDTO = memberService.checkPwd 
-//	}
-//	
+	@RequestMapping(value="checkPwd", method=RequestMethod.POST)
+	public ModelAndView checkPwd(@RequestParam Map<String, String> map, HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+		MemberDTO memberDTO = memberService.checkPwd(map);
+		
+		if(memberDTO == null) {			
+			mav.addObject("login","fail");
+		}else {
+			mav.addObject("login","success");
+			mav.addObject("memberDTO",memberDTO);
+		}
+		mav.setViewName("jsonView"); 
+		return mav; 
+	}
 	
+	@RequestMapping(value="/checkEmail", method=RequestMethod.GET)
+	public String writeForm(Model model) {		  
+		return "/member/checkEmail";
+	}
+	 
+	 
+	@RequestMapping(value = "mailSending", method=RequestMethod.GET)
+	public ModelAndView mailSending(@RequestParam String email) {
+		ModelAndView mav = new ModelAndView();
+//		String email = map.get("member_email");
+		int num = memberService.mailSending(email); 
+		mav.addObject("num", num);
+		mav.setViewName("/member/mailmail");
+	  
+		return mav; 
+	}
+	 
 	
 	
 }

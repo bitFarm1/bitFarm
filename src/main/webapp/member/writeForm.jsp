@@ -113,15 +113,16 @@
 		<tr> 
 			<th class="subject">이메일*</th>
 			<td><input class="layoutT" type="text" name="member_email" placeholder="예: bitfarm@bitfarm.com">&emsp;
-			<input class="layoutB" type="button" name="checkEmail" value="이메일 중복확인">
+			<input class="layoutB" type="button" name="checkEmail" value="이메일 인증">
 			<br id="member_email_p" style="display: none;"><span id="member_email_Div" ></span></br>
+			<input type="hidden" id="auth" name="auth" value=""> 
 			</td>			
 		</tr>
-		<tr>
+		<tr> 
 			<th class="subject">휴대폰*</th>
-			<td><input class="layoutT" type="text" name="member_phone" placeholder="숫자만 입력해주세요">
+			<td><input class="layoutT" type="text" name="member_phone" placeholder="010-1234-1234">
 			<br id="member_phone_p" style="display: none;"><span id="member_phone_Div" ></span></br>
-			</td>
+			</td> 
 		</tr>
 		<tr>
 			<th class="subject">배송 주소*</th>
@@ -266,6 +267,8 @@ $('input[name=member_repwd]').focusout(function(){
 	}   
 });
 
+
+
 $('input[name=member_name]').focusout(function(){
 	$('#member_name_p').css("display", "none"); 
 	$('#member_name_Div').empty(); 
@@ -279,32 +282,82 @@ $('input[name=member_name]').focusout(function(){
 		} 	
 });
 
-$('input[name=member_email]').focusout(function(){
-	$('#member_email_p').css("display", "none");  
-	$('#member_email_Div').empty(); 
+$('input[name=member_email]').change(function(){	
 	
-	if($('input[name=member_email]').val()==''){
-	$('#member_email_p').css("display", "block"); 
-		$('#member_email_Div').text('이메일을 입력하세요.');  
-		$('#member_email_Div').css('color','#5f0080');
+	$('#auth').val('no');   
+}); 
+
+$('input[name=member_email]').focus(function(){
+	if($('input[name=auth]').val() == 'ok'){ 
+		$('#member_email_p').css("display", "block");  
+		$('#member_email_Div').text('인증 성공');  
+		$('#member_email_Div').css('color','green');  
 		$('#member_email_Div').css('font-weight','bold');
-		$('#member_email_Div').css('font-size','10pt');
-		} 	
+		$('#member_email_Div').css('font-size','10pt');		
+	}	 
 });
 
+$('input[name=member_email]').focusout(function(){
+	$('#member_email_p').css("display", "none"); 
+	$('#member_email_Div').empty(); 	
+	
+	if($('input[name=auth]').val() != 'ok'){ 		 
+		$('#member_email_p').css("display", "block"); 
+		$('#member_email_Div').text('이메일 인증을 해주세요.');  
+		$('#member_email_Div').css('color','#5f0080');     
+		$('#member_email_Div').css('font-weight','bold');
+		$('#member_email_Div').css('font-size','10pt');   
+	}
+});
+ 
+
+$('input[name=checkEmail]').click(function(){ 
+	var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+	  // 검증에 사용할 정규식 변수 regExp에 저장
+	  		  
+	if($('input[name=member_email]').val()==''){
+		$('#member_email_p').css("display", "block"); 
+			$('#member_email_Div').text('이메일을 입력하세요.');  
+			$('#member_email_Div').css('color','#5f0080');
+			$('#member_email_Div').css('font-weight','bold');
+			$('#member_email_Div').css('font-size','10pt');
+			 	
+	}else if ($('input[name=member_email]').val().match(regExp) != null) {
+		window.open("/bitFarm/member/mailSending?email="+$('input[name=member_email]').val(),"","width=505 height=120 left=750 top=280 scrollbars=yes");
+	 
+	}else {
+		$('#member_email_p').css("display", "block"); 
+		$('#member_email_Div').text('잘못된 이메일 형식입니다.');  
+		$('#member_email_Div').css('color','red'); 
+		$('#member_email_Div').css('font-weight','bold');
+		$('#member_email_Div').css('font-size','10pt');
+	 }	
+});      
+
+
+    
 $('input[name=member_phone]').focusout(function(){
+	var regExp = /^\d{3}-\d{3,4}-\d{4}$/;
+
 	$('#member_phone_p').css("display", "none"); 
-	$('#member_phone_Div').empty(); 
+	$('#member_phone_Div').empty();  
 	
 	if($('input[name=member_phone]').val()==''){
 	$('#member_phone_p').css("display", "block"); 
 		$('#member_phone_Div').text('핸드폰 번호를 입력하세요.'); 
-		$('#member_phone_Div').css('color','#5f0080');
+		$('#member_phone_Div').css('color','red');
 		$('#member_phone_Div').css('font-weight','bold');
 		$('#member_phone_Div').css('font-size','10pt');
-		} 	
+		  
+	}else if (!regExp.test($('input[name=member_phone]').val())) {
+		$('#member_phone_p').css("display", "block"); 
+		$('#member_phone_Div').text('예시 : 010-1234-1234');  
+		$('#member_phone_Div').css('color','red');
+		$('#member_phone_Div').css('font-weight','bold'); 
+		$('#member_phone_Div').css('font-size','10pt');
+	}	
 });
-
+ 
 
 $('input[name=member_address1]').focusout(function(){
 	$('#member_address1_p').css("display", "none"); 

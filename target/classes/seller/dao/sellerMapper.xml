@@ -12,15 +12,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		,#{seller_license}	
 		,#{seller_address1} 
 		,#{seller_address2} 
-		,sysdate,0)  
+		,sysdate,0)   
 	</insert> 	   
+	
+	<select id="getSellerPwd" parameterType="String" resultType="String">
+		select seller_pwd from seller where seller_id = #{id}  
+	</select> 
+	 
 	 
 	<select id="checkID" parameterType="String" resultType="int">
 		select count(*) from seller where seller_id = #{id} 
 	</select> 	 
 	
 	<select id="login" parameterType="java.util.Map" resultType="sellerDTO">
-		select * from seller where seller_id = #{id} and seller_pwd = #{pwd} 
+		select * from seller where seller_id = #{id}
 	</select> 	 	 	 
 </mapper>          
  

@@ -10,8 +10,14 @@ public interface MemberService {
 
 	public int checkID(String id);
 
-	public MemberDTO login(Map<String, String> map); 
+	public MemberDTO login(Map<String, String> map);
+
+	public MemberDTO checkPwd(Map<String, String> map);
+ 
+	public int mailSending(String email);
+
+	public String getMemberPwd(String id);     
 
 
 }
- 
+  

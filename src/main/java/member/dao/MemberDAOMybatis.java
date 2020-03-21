@@ -30,8 +30,12 @@ public class MemberDAOMybatis implements MemberDAO {
 	public MemberDTO login(Map<String, String> map) { 
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("memberSQL.login", map);
-	}  
- 
-	
+	}
+
+	@Override
+	public String getMemberPwd(String id) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("memberSQL.getMemberPwd", id); 
+	}
  
 }

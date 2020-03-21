@@ -2,7 +2,6 @@ package seller.service;
 
 import java.util.Map;
 
-import member.bean.MemberDTO;
 import seller.bean.SellerDTO;
 
 public interface SellerService {
@@ -11,8 +10,12 @@ public interface SellerService {
 
 	public int checkID(String id);
 
-	public SellerDTO login(Map<String, String> map); 
+	public SellerDTO login(Map<String, String> map);
 
+	public int mailSending(String email);
+
+	public String getSellerPwd(String id);  
+ 
  
 }
  

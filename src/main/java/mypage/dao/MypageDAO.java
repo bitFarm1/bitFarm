@@ -7,12 +7,12 @@ import mypage.bean.MypagePointDTO;
 
 public interface MypageDAO {
 
-	public List<MypageCouponDTO> getCouponList();
+	public List<MypageCouponDTO> getCouponList(String id);
 
-	public int getCouponTotal();
+	public int getCouponTotal(String id);
 
-	public int getPointTotal();
+	public int getPointTotal(String id);
 
-	public List<MypagePointDTO> getPointList();
+	public List<MypagePointDTO> getPointList(String id);
 
 }

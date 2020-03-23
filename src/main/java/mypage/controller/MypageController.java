@@ -2,6 +2,8 @@ package mypage.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,6 +25,9 @@ public class MypageController {
 	@Autowired
 	private MypageService mypageService;
 	
+	@Autowired
+	private HttpSession session;
+	
 	//구매내역
 	@RequestMapping(value="/mypageMain", method=RequestMethod.GET)
 	public String mypageMain(Model model) {
@@ -40,14 +45,17 @@ public class MypageController {
 	}
 	
 	@RequestMapping(value="getPointList", method=RequestMethod.POST)
-//	public ModelAndView getCouponList(HttpSession session) {
-	public ModelAndView getPointList() {
+	public ModelAndView getPointList(HttpSession session) {
+	
+		String id = (String)session.getAttribute("memberId");
 		
-		List<MypagePointDTO> list = mypageService.getPointList();
+		
+		List<MypagePointDTO> list = mypageService.getPointList(id);
 		
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("list",list);
-	//	mav.addObject("memId",session.getAttribute("memId"));
+		mav.addObject("memberId",session.getAttribute("memberId"));
+		mav.addObject("memberId",id);
 		mav.setViewName("jsonView");
 		return mav;
 	}
@@ -62,14 +70,15 @@ public class MypageController {
 	}
 	
 	@RequestMapping(value="getCouponList", method=RequestMethod.POST)
-//	public ModelAndView getCouponList(HttpSession session) {
-	public ModelAndView getCouponList() {
+	public ModelAndView getCouponList(HttpSession session) {
 		
-		List<MypageCouponDTO> list = mypageService.getCouponList();
+		String id = (String)session.getAttribute("memberId");
+		
+		List<MypageCouponDTO> list = mypageService.getCouponList(id);
 		
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("list",list);
-	//	mav.addObject("memId",session.getAttribute("memId"));
+		mav.addObject("memberId",id);
 		mav.setViewName("jsonView");
 		return mav;
 	}
@@ -79,14 +88,16 @@ public class MypageController {
 	//mypageTop.jsp 적립금, 쿠폰 총 내역 보여주기
 	@RequestMapping(value="/getTopTotal", method=RequestMethod.GET)
 	@ResponseBody
-	public ModelMap getTopTotal(ModelMap modelMap) {
+	public ModelMap getTopTotal(ModelMap modelMap, HttpSession session) {
 		//model map 써보기
-		int couponTotal = mypageService.getCouponTotal();
-		int pointTotal = mypageService.getPointTotal();
-		System.out.println(couponTotal);
-		System.out.println(pointTotal);
+		
+		String id = (String)session.getAttribute("memberId");
+		
+		int couponTotal = mypageService.getCouponTotal(id);
+		int pointTotal = mypageService.getPointTotal(id);
 		
 		ModelMap mm = new ModelMap();
+		mm.addAttribute("memberId",id);
 		mm.addAttribute("couponTotal", couponTotal);
 		mm.addAttribute("pointTotal", pointTotal);
 		return mm;

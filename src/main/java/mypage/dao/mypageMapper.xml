@@ -4,21 +4,21 @@
 <mapper namespace="mypageSQL">
 	
 	<!--쿠폰  -->
-	<select id = "getCouponList" resultType = "mypageCouponDTO">
-		select * from coupon
+	<select id = "getCouponList" resultType = "mypageCouponDTO" parameterType="String">
+		select * from coupon where coupon_user_id = #{id}
 	</select>
 	
-	<select id = "getCouponTotal" resultType = "int">
-		select count(*) from coupon
+	<select id = "getCouponTotal" resultType = "int" parameterType="String">
+		select count(*) from coupon where coupon_user_id = #{id}
 	</select>
 	
 	<!--적립금  -->
-	<select id = "getPointList" resultType = "mypagePointDTO">
-		select * from point
+	<select id = "getPointList" resultType = "mypagePointDTO" parameterType="String">
+		select * from point where point_user_id = #{id}
 	</select>
 	
-	<select id = "getPointTotal" resultType = "int">
-		select sum(point_price) from point
+	<select id = "getPointTotal" resultType = "int" parameterType="String">
+		select sum(point_price) from point where point_user_id = #{id}
 	</select>
 	
 </mapper>

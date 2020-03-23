@@ -10,8 +10,9 @@ public interface MemberDAO {
 
 	public int checkID(String id);
  
-	public MemberDTO login(Map<String, String> map);  
+	public MemberDTO login(Map<String, String> map);
 
+	public String getMemberPwd(String id); 
 	
 } 
- 
+  

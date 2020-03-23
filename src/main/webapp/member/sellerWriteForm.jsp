@@ -116,13 +116,14 @@
 		<tr>
 			<th class="subject">이메일*</th>
 			<td><input class="layoutT" type="text" name="seller_email" placeholder="예: bitfarm@bitfarm.com">&emsp;
-			<input class="layoutB" type="button" name="checkEmail" value="이메일 중복확인">
+			<input class="layoutB" type="button" name="checkEmail" value="이메일 인증">
 			<br id="seller_email_p" style="display: none;"><span id="seller_email_Div" ></span></br>
+			<input type="hidden" id="auth" name="auth" value="">
 			</td>			
 		</tr>
 		
-		
-		<tr>
+		 
+		<tr> 
 			<th class="subject">휴대폰*</th>
 			<td><input class="layoutT" type="text" name="seller_phone" placeholder="숫자만 입력해주세요">
 			<br id="seller_phone_p" style="display: none;"><span id="seller_phone_Div" ></span></br>
@@ -276,30 +277,79 @@ $('input[name=seller_name]').focusout(function(){
 		} 	
 });
 
+$('input[name=seller_email]').change(function(){	
+	
+	$('#auth').val('no');   
+}); 
+
+$('input[name=seller_email]').focus(function(){
+	if($('input[name=auth]').val() == 'ok'){ 
+		$('#seller_email_p').css("display", "block");  
+		$('#seller_email_Div').text('인증 성공');  
+		$('#seller_email_Div').css('color','green');  
+		$('#seller_email_Div').css('font-weight','bold');
+		$('#seller_email_Div').css('font-size','10pt');		
+	}	 
+});
+
 $('input[name=seller_email]').focusout(function(){
 	$('#seller_email_p').css("display", "none"); 
-	$('#seller_email_Div').empty();
+	$('#seller_email_Div').empty(); 	
 	
+	if($('input[name=auth]').val() != 'ok'){ 		 
+		$('#seller_email_p').css("display", "block");  
+		$('#seller_email_Div').text('이메일 인증을 해주세요.');  
+		$('#seller_email_Div').css('color','#5f0080');     
+		$('#seller_email_Div').css('font-weight','bold');
+		$('#seller_email_Div').css('font-size','10pt');  
+	}
+});
+
+$('input[name=checkEmail]').click(function(){ 
+	var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+	  // 검증에 사용할 정규식 변수 regExp에 저장
+	  		  
 	if($('input[name=seller_email]').val()==''){
-	$('#seller_email_p').css("display", "block"); 
+		$('#seller_email_p').css("display", "block"); 
 			$('#seller_email_Div').text('이메일을 입력하세요.');  
 			$('#seller_email_Div').css('color','#5f0080');
 			$('#seller_email_Div').css('font-weight','bold');
 			$('#seller_email_Div').css('font-size','10pt');
-		} 	
-});
+			 	
+	}else if ($('input[name=seller_email]').val().match(regExp) != null) {
+		window.open("/bitFarm/seller/mailSending?email="+$('input[name=seller_email]').val(),"","width=505 height=120 left=750 top=280 scrollbars=yes");
+	 
+	}else {
+		$('#seller_email_p').css("display", "block"); 
+		$('#seller_email_Div').text('잘못된 이메일 형식입니다.');   
+		$('#seller_email_Div').css('color','red'); 
+		$('#seller_email_Div').css('font-weight','bold');
+		$('#seller_email_Div').css('font-size','10pt');
+	 }	
+});      
 
+
+    
 $('input[name=seller_phone]').focusout(function(){
+	var regExp = /^\d{3}-\d{3,4}-\d{4}$/;
+
 	$('#seller_phone_p').css("display", "none"); 
-	$('#seller_phone_Div').empty();
+	$('#seller_phone_Div').empty();  
 	
-	if($('input[name=seller_phone]').val()==''){
+	if($('input[name=seller_phone]').val()==''){ 
 	$('#seller_phone_p').css("display", "block"); 
-			$('#seller_phone_Div').text('핸드폰 번호를 입력하세요.'); 
-			$('#seller_phone_Div').css('color','#5f0080');
-			$('#seller_phone_Div').css('font-weight','bold');
-			$('#seller_phone_Div').css('font-size','10pt');
-		} 	
+		$('#seller_phone_Div').text('핸드폰 번호를 입력하세요.'); 
+		$('#seller_phone_Div').css('color','red');
+		$('#seller_phone_Div').css('font-weight','bold');
+		$('#seller_phone_Div').css('font-size','10pt');
+		  
+	}else if (!regExp.test($('input[name=seller_phone]').val())) {
+		$('#seller_phone_p').css("display", "block"); 
+		$('#seller_phone_Div').text('예시 : 010-1234-1234');  
+		$('#seller_phone_Div').css('color','red');
+		$('#seller_phone_Div').css('font-weight','bold'); 
+		$('#seller_phone_Div').css('font-size','10pt');
+	}	
 });
 
 $('input[name=seller_license]').focusout(function(){

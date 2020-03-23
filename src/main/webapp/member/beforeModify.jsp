@@ -52,7 +52,7 @@ $('#modifyBtn').click(function(){
 			dataType : 'json',
 			success : function(data){
 				alert(JSON.stringify(data));
-			}
+			} 
 		});
 	}
 		 

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mypageSQL">
+	
+	<!--쿠폰  -->
+	<select id = "getCouponList" resultType = "mypageCouponDTO">
+		select * from coupon
+	</select>
+	
+	<select id = "getCouponTotal" resultType = "int">
+		select count(*) from coupon
+	</select>
+	
+	<!--적립금  -->
+	<select id = "getPointList" resultType = "mypagePointDTO">
+		select * from point
+	</select>
+	
+	<select id = "getPointTotal" resultType = "int">
+		select sum(point_price) from point
+	</select>
+	
+</mapper>

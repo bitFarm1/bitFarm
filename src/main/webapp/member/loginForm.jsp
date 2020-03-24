@@ -181,7 +181,7 @@ a.searchA:active {color: black; text-decoration: none;}
       
       //jQuery형 문자열 추가하기
       //$('#userInfo').html("이름 : "+response.name+" 메일 : "+response.email);
-      window.location.href="http://localhost:8080/bitFarm/member/naver.do?name="+response.name+"&email="+response.email+"&type=facebook"; 
+      window.location.href="http://localhost:8080/bitFarm/member/naver?name="+response.name+"&email="+response.email+"&type=facebook"; 
        
     });
   } 
@@ -227,8 +227,7 @@ a.searchA:active {color: black; text-decoration: none;}
     					location.href="/bitFarm/main/main";
     				}
     			}
-    		}); 
-    		
+    		});     		
     	}
     });
     

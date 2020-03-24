@@ -12,7 +12,9 @@ public interface MemberDAO {
  
 	public MemberDTO login(Map<String, String> map);
 
-	public String getMemberPwd(String id); 
+	public String getMemberPwd(String id);
+
+	public MemberDTO checkAccount(Map<String, String> map);    
 	
 } 
   

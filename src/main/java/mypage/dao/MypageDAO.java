@@ -2,6 +2,7 @@ package mypage.dao;
 
 import java.util.List;
 
+import member.bean.MemberDTO;
 import mypage.bean.MypageCouponDTO;
 import mypage.bean.MypagePointDTO;
 
@@ -14,5 +15,9 @@ public interface MypageDAO {
 	public int getPointTotal(String id);
 
 	public List<MypagePointDTO> getPointList(String id);
+
+	public void writeCoupon(MemberDTO memberDTO);
+
+	public void writePoint(MemberDTO memberDTO);  
 
 }

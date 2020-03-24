@@ -89,15 +89,15 @@
 	
 		<tr>
 			<th class="subject">이름*</th>
-			<td><input class="layoutT" type="text" name="member_name" placeholder="고객님의 이름을 입력해주세요">
+			<td><input class="layoutT" type="text" name="member_name" value="${name }" readonly="readonly">
 			<br id="member_name_p" style="display: none;"><span id="member_name_Div" ></span></br>
 			</td>
 		</tr> 
 		
 		<tr> 
 			<th class="subject">이메일*</th>
-			<td><input class="layoutT" type="text" name="member_email" placeholder="예: bitfarm@bitfarm.com">&emsp;
-			<br id="member_email_p" style="display: none;"><span id="member_email_Div" ></span></br>
+			<td><input class="layoutT" type="text" name="member_email" readonly="readonly">${email } 
+			<br id="member_email_p" style="display: none;"><span id="member_email_Div" ></span></br> 
 			<input type="hidden" id="auth" name="auth" value="">  
 			</td>			
 		</tr>

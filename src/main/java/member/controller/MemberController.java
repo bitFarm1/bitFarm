@@ -23,12 +23,15 @@ import org.springframework.web.servlet.ModelAndView;
 
 import member.bean.MemberDTO;
 import member.service.MemberService;
+import mypage.service.MypageService;
 
 @Controller
 @RequestMapping(value="member")
 public class MemberController {			
 	@Autowired  
 	private MemberService memberService;
+	@Autowired
+	private MypageService mypageService;
 	
 	@Autowired
 	private BCryptPasswordEncoder pwdEncoder;
@@ -114,6 +117,9 @@ public class MemberController {
 		memberDTO.setMember_pwd(pwd);
 		
 		int su = memberService.write(memberDTO);
+		mypageService.writeCoupon(memberDTO);
+		mypageService.writePoint(memberDTO);  
+		
 		if(su > 0) {
 			mav.addObject("display", "/member/writeOK.jsp");
 		}else {

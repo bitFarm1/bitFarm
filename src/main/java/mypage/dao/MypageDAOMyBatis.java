@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import member.bean.MemberDTO;
 import mypage.bean.MypageCouponDTO;
 import mypage.bean.MypagePointDTO;
 
@@ -42,6 +43,18 @@ public class MypageDAOMyBatis implements MypageDAO {
 	public List<MypagePointDTO> getPointList(String id) {
 		
 		return sqlSession.selectList("mypageSQL.getPointList",id);
+	}
+
+	@Override
+	public void writeCoupon(MemberDTO memberDTO) {
+		sqlSession.insert("mypageSQL.writeCoupon", memberDTO); 
+		
+	}
+
+	@Override
+	public void writePoint(MemberDTO memberDTO) { 
+		sqlSession.insert("mypageSQL.writePoint", memberDTO);
+		
 	}
 
 }

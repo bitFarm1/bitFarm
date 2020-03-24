@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import mypage.bean.MypageCouponDTO;
 import mypage.bean.MypagePointDTO;
+import mypage.bean.MypageReviewDTO;
 import mypage.service.MypageService;
 
 
@@ -111,11 +112,26 @@ public class MypageController {
 		return "/main/main";
 	}
 	
+	//리뷰
 	@RequestMapping(value="/mypageMyReview", method=RequestMethod.GET)
 	public String mypageMyReview(Model model) {
 		model.addAttribute("display","/mypage/mypageMain.jsp");
 		model.addAttribute("mypage","/mypage/mypageMyReview.jsp");
 		return "/main/main";
+	}
+	
+	@RequestMapping(value="getMyReviewList", method=RequestMethod.POST)
+	public ModelAndView getMyReviewList(HttpSession session) {
+	
+		String id = (String)session.getAttribute("memberId");
+		
+		List<MypageReviewDTO> list = mypageService.getMyReviewList(id);
+		
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("list",list);
+		mav.addObject("memberId",id);
+		mav.setViewName("jsonView");
+		return mav;
 	}
 	
 	@RequestMapping(value="/mypagePickItem", method=RequestMethod.GET)

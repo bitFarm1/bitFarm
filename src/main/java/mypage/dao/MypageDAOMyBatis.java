@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import member.bean.MemberDTO;
 import mypage.bean.MypageCouponDTO;
 import mypage.bean.MypagePointDTO;
+import mypage.bean.MypageReviewDTO;
 
 @Repository
 @Transactional
@@ -46,15 +47,21 @@ public class MypageDAOMyBatis implements MypageDAO {
 	}
 
 	@Override
-	public void writeCoupon(MemberDTO memberDTO) {
-		sqlSession.insert("mypageSQL.writeCoupon", memberDTO); 
+	public void writeCoupon(String member_id) {
+		sqlSession.insert("mypageSQL.writeCoupon", member_id); 
 		
 	}
 
 	@Override
-	public void writePoint(MemberDTO memberDTO) { 
-		sqlSession.insert("mypageSQL.writePoint", memberDTO);
+	public void writePoint(String member_id) { 
+		sqlSession.insert("mypageSQL.writePoint", member_id);
 		
+	}
+
+	@Override
+	public List<MypageReviewDTO> getMyReviewList(String id) {
+		
+		return sqlSession.selectList("mypageSQL.getMyReviewList",id);
 	}
 
 }

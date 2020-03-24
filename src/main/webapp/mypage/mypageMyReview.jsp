@@ -10,7 +10,7 @@
 	</tr>
 </thead>
 <tbody>
-
+<c:forEach var="myReviewDTO"
 
 
 

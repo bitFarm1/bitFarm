@@ -28,4 +28,9 @@
 	<insert id = "writePoint" parameterType = "memberDTO">
 		insert into point values(#{member_id},sysdate,'회원가입축하적립금',ADD_MONTHS(sysdate, 1),2000,'회원가입적립금','first_sign_up_Point')
 	</insert> 
+	
+	<!-- 리뷰 -->
+	<select id="getMyReviewList" parameterType="String" resultType="mypageReviewDTO" >
+		select * from review where review_user_id = #{id} 
+	</select>
 </mapper>

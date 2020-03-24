@@ -3,6 +3,7 @@
 <style type="text/css">
 #mainImageList_image{
 	width: 300px;
+	cursor: pointer;
 }
 .bestItemSubject{
 	width: 80%;

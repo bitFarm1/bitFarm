@@ -9,9 +9,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
+@RequestMapping(value="cart")
 public class CartController {
 
-	@RequestMapping(value="/cart/cartForm", method=RequestMethod.GET)
+	@RequestMapping(value="cartForm", method=RequestMethod.GET)
 	public ModelAndView cartForm(@RequestParam Map<String, String> map) {
 		ModelAndView mav = new ModelAndView();
 		
@@ -21,7 +22,7 @@ public class CartController {
 		return mav;
 	}
 	
-	@RequestMapping(value="/cart/cartAdd", method=RequestMethod.POST)
+	@RequestMapping(value="cartAdd", method=RequestMethod.POST)
 	public ModelAndView cartAdd(@RequestParam String item_price) {
 		ModelAndView mav = new ModelAndView();
 		

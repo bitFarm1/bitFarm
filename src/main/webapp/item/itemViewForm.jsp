@@ -32,11 +32,12 @@
 		<p style="float: right;">총 상품금액 : 
 			<span style="font-size: 1.7em; font-weight: bold;" id="itemAllPrice">
 				<fmt:formatNumber type="number" maxFractionDigits="3" value="${item_price}"/>
+				<input type="hidden" value="${item_price}" id="item_price">
 			</span>원
 		</p>
 		<br><br><br>
 		<p style="text-align: right;">
-			<button class="goPickItemBtn">찜하기</button>&emsp;
+			<input type="button" class="goPickItemBtn" value="찜하기">&emsp;
 			<input type="button" id="mainCartBtn" class="goCartBtn" value="장바구니 담기">
 		</p>
 		<br>
@@ -195,7 +196,7 @@
 		</div>
 		<p style="clear: both; height: 2px;"></p>
 		<div class="miniCartDiv_visible_btnGroup">
-			<button class="goPickItemBtn">찜하기</button>&emsp;
+			<input type="button" class="goPickItemBtn" value="찜하기">&emsp;
 			<input type="button" id="scrollCartBtn" class="goCartBtn" value="장바구니 담기">
 		</div>
 	</div>
@@ -246,14 +247,17 @@ $('.botqtyBtn').click(function(){
 });
 
 $('#mainCartBtn').click(function(){
-	$.ajax({
+	let price = $('#item_price').val();
+	let qty = $('#item_qty').val();
+	alert(price*qty);
+	/* $.ajax({
 		type : 'POST',
 		url : '/bitFarm/cart/cartAdd',
 		data : 'item_price'+$('#item_price').val(),
 		success: function(){
 			alert('카트로 이동');
 		}
-	});
+	}); */
 });
 
 $('#scrollCartBtn').click(function(){

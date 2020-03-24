@@ -6,9 +6,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
+@RequestMapping(value="item")
 public class ItemController {
 	
-	@RequestMapping(value="/item/itemViewForm", method=RequestMethod.GET)
+	
+	//판매자 홈에서 판매자가 판매할 상품 등록
+	
+	
+	
+	//상품 상세 페이지 - 이거 리스트에서 클릭하면 getItemViewForm 같은걸로 바꿔야할거같따 그냥 클릭하면 불러오는거 말이 안됨 띠바!!!
+	@RequestMapping(value="itemViewForm", method=RequestMethod.GET)
 	public ModelAndView itemViewForm() {
 		ModelAndView mav = new ModelAndView();
 		
@@ -23,4 +30,6 @@ public class ItemController {
 		
 		return mav;
 	}
+	
+	
 }

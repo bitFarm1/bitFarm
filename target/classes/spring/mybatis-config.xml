@@ -5,6 +5,7 @@
 	<typeAliases>
 		<typeAlias type="member.bean.MemberDTO" alias="memberDTO" />
 		<typeAlias type="seller.bean.SellerDTO" alias="sellerDTO" />
+		<typeAlias type="information.bean.InformationQnADTO" alias="informationQnADTO" />
 		
 		<!--mypage.bean  -->
 		<typeAlias type="mypage.bean.MypageCouponDTO" alias="mypageCouponDTO" />  
@@ -15,4 +16,4 @@
 		<typeAlias type="item.bean.ItemDTO" alias="item" />  			
 	</typeAliases> 
 	
-</configuration>
+</configuration>  

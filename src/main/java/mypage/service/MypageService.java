@@ -23,4 +23,5 @@ public interface MypageService {
 
 	public List<MypageReviewDTO> getMyReviewList(String id); 
 
+
 }

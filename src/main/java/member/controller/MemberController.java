@@ -111,27 +111,28 @@ public class MemberController {
 	
 	@RequestMapping(value="/write", method=RequestMethod.POST)
 	public ModelAndView write(@ModelAttribute MemberDTO memberDTO) {
-	    ModelAndView mav = new ModelAndView();
-	    String member_id = memberDTO.getMember_id();
-	      
-	    //암호화
-	    String inputPwd = memberDTO.getMember_pwd();
-	    String pwd = pwdEncoder.encode(inputPwd);
-	       
-	    memberDTO.setMember_pwd(pwd);
-	    int su = memberService.write(memberDTO);
-	    mypageService.writeCoupon(member_id);
-	    mypageService.writePoint(member_id);   
-	      
-	    if(su > 0) {
-	       mav.addObject("display", "/member/writeOK.jsp");
-	    }else {
-	       mav.addObject("display", "/member/writeFail.jsp");
-	    }
-	    mav.setViewName("/main/main"); 
-     return mav; 
-   }
-	 
+
+		ModelAndView mav = new ModelAndView();
+		String member_id = memberDTO.getMember_id();
+		
+		//암호화
+		String inputPwd = memberDTO.getMember_pwd();
+		String pwd = pwdEncoder.encode(inputPwd);
+		 
+		memberDTO.setMember_pwd(pwd);
+		int su = memberService.write(memberDTO);
+		mypageService.writeCoupon(member_id);
+		mypageService.writePoint(member_id);   
+		
+		if(su > 0) {
+			mav.addObject("display", "/member/writeOK.jsp");
+		}else {
+			mav.addObject("display", "/member/writeFail.jsp");
+		}
+		mav.setViewName("/main/main"); 
+		return mav; 
+	}
+		 
 	@RequestMapping(value="/findID", method=RequestMethod.GET)
 	public ModelAndView findID() {
 		ModelAndView mav = new ModelAndView();

@@ -33,7 +33,7 @@
 	<div id="modifyPwdDiv"></div> 
 	</div>   
 </div>
-	<input class="layout" type="button" id="modifyBtn" value="확인"> 
+	<input class="layout" type="button" id="modifyBtn" value="확인">  
 </div>    
 </div>
 <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>

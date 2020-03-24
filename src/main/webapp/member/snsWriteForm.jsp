@@ -89,35 +89,35 @@
 	
 		<tr>
 			<th class="subject">이름*</th>
-			<td><input class="layoutT" type="text" name="member_name" value="${name }" readonly="readonly">
+			<td><input class="layoutT" type="text" name="member_name" value="${param.name }" readonly="readonly">
 			<br id="member_name_p" style="display: none;"><span id="member_name_Div" ></span></br>
 			</td>
 		</tr> 
 		
 		<tr> 
 			<th class="subject">이메일*</th>
-			<td><input class="layoutT" type="text" name="member_email" readonly="readonly">${email } 
-			<br id="member_email_p" style="display: none;"><span id="member_email_Div" ></span></br> 
-			<input type="hidden" id="auth" name="auth" value="">  
+			<td><input class="layoutT" type="text" name="member_email" readonly="readonly" value="${param.email }">  
+			<br id="member_email_p" style="display: none;"><span id="member_email_Div" ></span></br>  
+			
 			</td>			
 		</tr>
-		<tr> 
-			<th class="subject">휴대폰*</th>
+		<tr>  
+			<th class="subject">휴대폰*</th> 
 			<td><input class="layoutT" type="text" name="member_phone" placeholder="010-1234-1234">
 			<br id="member_phone_p" style="display: none;"><span id="member_phone_Div" ></span></br>
 			</td> 
 		</tr>
 		<tr>
 			<th class="subject">배송 주소*</th>
-			<td><input class="layoutT" type="text" name="member_address1">&emsp;
-			<input class="layoutB" type="button" name="checkAddress" value="주소 검색">
+			<td><input class="layoutT" type="text" id="member_address1" name="member_address1">&emsp;
+			<input class="layoutB" type="button" name="checkAddress" value="주소 검색" onclick="execDaumPostcode()">
 			<br id="member_address1_p" style="display: none;"><span id="member_address1_Div" ></span></br>
 			</td>
 		</tr> 
 		
 		<tr> 
 			<th class="subject"><br></th>
-			<td style="padding-top: 2px;"><input class="layoutT" type="text" name="member_address2">
+			<td style="padding-top: 2px;"><input class="layoutT" id="member_address2" type="text" name="member_address2">
 			<br id="member_address2_p" style="display: none;"><span id="member_address2_Div" ></span></br>
 			</td>
 		</tr> 
@@ -163,93 +163,13 @@
 	<div style="weight: 100px; height: 100px; text-align: center;"> 
 		<input class="join" name="writeFormBtn" type="button" onclick="checkMemberWrite()" value="가입하기"> 
 	</div>
-		<input type="hidden" name="member_loginType" value="bit"> 
-</form>
+		<input type="hidden" name="member_id"  value="${param.email }"> 
+		<input type="hidden" name="member_pwd" value="0">  
+		<input type="hidden" name="member_loginType" value="${param.type }">  
+</form>  
 
 <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
-
-
-$('input[name=member_id]').focusout(function(){	
-	$('#member_id_p').css("display", "none"); 
-	$('#member_id_Div').empty(); 
-	
-	if($('input[name=member_id]').val()==''){
-	$('#member_id_p').css("display", "block"); 
-		$('#member_id_Div').text('아이디를 입력하세요.');  
-		$('#member_id_Div').css('color','#5f0080');
-		$('#member_id_Div').css('font-weight','bold');
-		$('#member_id_Div').css('font-size','10pt');
-		} 	
-});
-
-$('#member_checkIdBtn').click(function(){
-	
-	$.ajax({
-		type : 'post',  
-		url : '/bitFarm/member/checkID', 
-		data : {'id' : $('input[name=member_id]').val()}, 
-		dataType : 'json', 
-		success : function(data){
-			//alert(JSON.stringify(data));  
-			if(data.exist == 'exist'){
-				$('#member_id_p').css("display", "block");  
-				$('#member_id_Div').text('이미 존재하는 아이디입니다.');  
-				$('#member_id_Div').css('color','red');
-				$('#member_id_Div').css('font-weight','bold');
-				$('#member_id_Div').css('font-size','10pt');
-			}else{
-				$('#member_id_p').css("display", "block"); 
-				$('#member_id_Div').text('사용가능합니다.');    
-				$('#member_id_Div').css('color','green');
-				$('#member_id_Div').css('font-weight','bold');
-				$('#member_id_Div').css('font-size','10pt');
-			} 			 
-		} 
-	}); 
-});
-
-$('input[name=member_pwd]').focusout(function(){
-	
-	$('#member_pwd_Div').empty();
-	$('#member_pwd_Div').empty(); 
-	
-	if($('input[name=member_pwd]').val()==''){
-	$('#member_pwd_p').css("display", "block"); 
-			$('#member_pwd_Div').text('비밀번호를 입력하세요.'); 
-			$('#member_pwd_Div').css('color','#5f0080');
-			$('#member_pwd_Div').css('font-weight','bold');
-			$('#member_pwd_Div').css('font-size','10pt');			
-	} 
-});
- 
-$('input[name=member_repwd]').focusout(function(){
-	$('#member_pwd_Div').empty();
-	$('#member_pwd_Div').empty(); 
-	 
-	if($('input[name=member_repwd]').val()==''){
-		$('#member_pwd_p').css("display", "block"); 
-		$('#member_pwd_Div').text('비밀번호 재확인을 입력하세요!'); 
-		$('#member_pwd_Div').css('color','#5f0080');
-		$('#member_pwd_Div').css('font-weight','bold');  
-		$('#member_pwd_Div').css('font-size','10pt');
-		
-	}else if($('input[name=member_pwd]').val()!=$('input[name=member_repwd]').val()){
-		$('#member_pwd_p').css("display", "block"); 
-		$('#member_pwd_Div').text('비밀번호가 일치하지 않습니다!'); 
-		$('#member_pwd_Div').css('color','#5f0080');
-		$('#member_pwd_Div').css('font-weight','bold'); 
-		$('#member_pwd_Div').css('font-size','10pt');
-		
-	}else if($('input[name=member_pwd]').val()==$('input[name=member_repwd]').val()){
-		$('#member_pwd_p').css("display", "block"); 
-		$('#member_pwd_Div').text('일치한 비밀번호 입니다!'); 
-		$('#member_pwd_Div').css('color','green');
-		$('#member_pwd_Div').css('font-weight','bold'); 
-		$('#member_pwd_Div').css('font-size','10pt'); 
-	}   
-});
-
 
 
 $('input[name=member_name]').focusout(function(){
@@ -264,60 +184,7 @@ $('input[name=member_name]').focusout(function(){
 		$('#member_name_Div').css('font-size','10pt'); 
 		} 	
 });
-
-$('input[name=member_email]').change(function(){	
-	
-	$('#auth').val('no');   
-}); 
-
-$('input[name=member_email]').focus(function(){
-	if($('input[name=auth]').val() == 'ok'){ 
-		$('#member_email_p').css("display", "block");  
-		$('#member_email_Div').text('인증 성공');  
-		$('#member_email_Div').css('color','green');  
-		$('#member_email_Div').css('font-weight','bold');
-		$('#member_email_Div').css('font-size','10pt');		
-	}	 
-});
-
-$('input[name=member_email]').focusout(function(){
-	$('#member_email_p').css("display", "none"); 
-	$('#member_email_Div').empty(); 	
-	
-	if($('input[name=auth]').val() != 'ok'){ 		 
-		$('#member_email_p').css("display", "block"); 
-		$('#member_email_Div').text('이메일 인증을 해주세요.');  
-		$('#member_email_Div').css('color','#5f0080');     
-		$('#member_email_Div').css('font-weight','bold');
-		$('#member_email_Div').css('font-size','10pt');   
-	}
-});
  
-
-$('input[name=checkEmail]').click(function(){ 
-	var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-	  // 검증에 사용할 정규식 변수 regExp에 저장
-	  		  
-	if($('input[name=member_email]').val()==''){
-		$('#member_email_p').css("display", "block"); 
-			$('#member_email_Div').text('이메일을 입력하세요.');  
-			$('#member_email_Div').css('color','#5f0080');
-			$('#member_email_Div').css('font-weight','bold');
-			$('#member_email_Div').css('font-size','10pt');
-			 	
-	}else if ($('input[name=member_email]').val().match(regExp) != null) {
-		window.open("/bitFarm/member/mailSending?email="+$('input[name=member_email]').val(),"","width=505 height=120 left=750 top=280 scrollbars=yes");
-	 
-	}else {
-		$('#member_email_p').css("display", "block"); 
-		$('#member_email_Div').text('잘못된 이메일 형식입니다.');  
-		$('#member_email_Div').css('color','red'); 
-		$('#member_email_Div').css('font-weight','bold');
-		$('#member_email_Div').css('font-size','10pt');
-	 }	
-});      
-
-
     
 $('input[name=member_phone]').focusout(function(){
 	var regExp = /^\d{3}-\d{3,4}-\d{4}$/;
@@ -388,6 +255,7 @@ function checkAll(){
 } 
 
 function checkMemberWrite(){
+	
 	if($('#event').is(":checked")) $('#mea').val("yes");    
 	else $('#mea').val("no");
 	
@@ -404,7 +272,7 @@ function checkMemberWrite(){
 		
 	}else if($('#member_check1').is(":checked") && $('#member_check2').is(":checked") && $('#member_check3').is(":checked")){
 						
-			document.memberWriteForm.method = 'post';
+			document.memberWriteForm.method = 'post'; 
 			document.memberWriteForm.action = '/bitFarm/member/write';
 			document.memberWriteForm.submit();
 				
@@ -412,4 +280,40 @@ function checkMemberWrite(){
 		alert("약관을 체크해주세요!");   
 	}
 }	
+</script>
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+    //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
+    function execDaumPostcode() {
+        new daum.Postcode({
+            oncomplete: function(data) {
+                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분. 
+
+                // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
+                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                var roadAddr = data.roadAddress; // 도로명 주소 변수
+                var extraRoadAddr = ''; // 참고 항목 변수
+
+                // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+                // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+                if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                    extraRoadAddr += data.bname;
+                }
+                // 건물명이 있고, 공동주택일 경우 추가한다.
+                if(data.buildingName !== '' && data.apartment === 'Y'){
+                   extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                }
+                // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+                if(extraRoadAddr !== ''){
+                    extraRoadAddr = ' (' + extraRoadAddr + ')';
+                }
+
+                // 우편번호와 주소 정보를 해당 필드에 넣는다. 
+                 
+                document.getElementById("member_address1").value = "("+data.zonecode+") "+roadAddr;
+                document.getElementById("member_address2").value = data.jibunAddress;
+                                               
+            }
+        }).open();
+    }
 </script>

@@ -17,6 +17,15 @@
 	<context:component-scan base-package="member.dao"/> 
 	<context:component-scan base-package="member.bean"/> 
 	
+	<context:component-scan base-package="seller.dao"/> 
+	<context:component-scan base-package="seller.bean"/>
+	<context:component-scan base-package="seller.service"/>  
+
+	<context:component-scan base-package="information.dao"/> 
+	<context:component-scan base-package="information.bean"/>
+	<context:component-scan base-package="information.service"/>
+	
+	<!-- mypage -->  
 	<context:component-scan base-package="mypage.dao"/> 
 	<context:component-scan base-package="mypage.bean"/>
 	<context:component-scan base-package="mypage.service"/>  

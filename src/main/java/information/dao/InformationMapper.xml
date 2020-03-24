@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="informationSQL" >
+	<insert id="infoQnABoardWrite" parameterType="informationQnADTO">
+		insert into QnABoard values(QnABoard_SEQ.nextval,		
+									#{infoQnA_type},
+									#{infoQnA_subject},
+									#{infoQnA_userID}, 
+									#{infoQnA_orderNum},  
+									#{infoQnA_email},
+									#{infoQnA_phone},
+									#{infoQnA_content},
+									#{infoQnA_imageName},
+									sysdate, 
+									0,
+									sysdate)	   
+	</insert> 
+	
+	<select id="getInfoList" parameterType="java.util.Map" resultType="informationQnADTO">
+		<![CDATA[ 
+		select * from (select rownum rn, tt.* from (select * from QnABoard order by infoQnA_seq desc)tt)where rn>=#{startNum} and rn<=#{endNum}
+		]]> 
+	</select> 	  
+</mapper>  

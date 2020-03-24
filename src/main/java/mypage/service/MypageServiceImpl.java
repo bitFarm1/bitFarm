@@ -57,6 +57,7 @@ public class MypageServiceImpl implements MypageService {
 
 	@Override
 	public void writePoint(String member_id) {
+
 		// TODO Auto-generated method stub
 		mypageDAO.writePoint(member_id);
 	}
@@ -67,8 +68,11 @@ public class MypageServiceImpl implements MypageService {
 		List<MypageReviewDTO> list =  mypageDAO.getMyReviewList(id);
 		
 		return list;
-	} 
 
+		mypageDAO.writePoint(member_id);
+
+	} 
+ 
 	
 
 }

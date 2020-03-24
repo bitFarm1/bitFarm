@@ -80,7 +80,7 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public String getMemberPwd(String id) {
 		// TODO Auto-generated method stub 
-		return memberDAO.getMemberPwd(id);  
+		return memberDAO.getMemberPwd(id);   
 	}
 
 	@Override
@@ -90,5 +90,5 @@ public class MemberServiceImpl implements MemberService {
 		return memberDTO; 
 		
 	}
- 
+
 }

@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <style type="text/css">
-#mainImageList_image{
+.mainImageList_image{
 	width: 300px;
 	cursor: pointer;
+	
 }
 .bestItemSubject{
 	width: 80%;
@@ -21,57 +22,63 @@
 <table align="center" width="80%" cellpadding="40">
 	<tr>
 		<td align="center">
-			<img id="mainImageList_image" src="../image/berry.jpg" onclick="location.href='/bitFarm/item/itemViewForm'"><br><br>
+			<img class="mainImageList_image" src=""><br><br>
 			<h5><strong>상콤상콤 딸기</strong></h5><br>
 		</td>
 		<td align="center">
-			<img id="mainImageList_image" src="../image/berry.jpg" onclick="location.href='/bitFarm/item/itemViewForm'"><br><br>
+			<img class="mainImageList_image" src="../image/berry.jpg" onclick="itemClick(14)"><br><br>
 			<h5><strong>상콤상콤 딸기</strong></h5><br>
 		</td>
 		<td align="center">
-			<img id="mainImageList_image" src="../image/berry.jpg" onclick="location.href='/bitFarm/item/itemViewForm'"><br><br>
+			<img class="mainImageList_image" src=""><br><br>
 			<h5><strong>상콤상콤 딸기</strong></h5><br>
 		</td>
 		<td align="center">
-			<img id="mainImageList_image" src="../image/berry.jpg" onclick="location.href='/bitFarm/item/itemViewForm'"><br><br>
+			<img class="mainImageList_image" src=""><br><br>
 			<h5><strong>상콤상콤 딸기</strong></h5><br>
 		</td>
 	</tr>
 	<tr>
 		<td align="center">
-			<img id="mainImageList_image" src="../image/berry.jpg"><br><br>
+			<img class="mainImageList_image" src="../image/berry.jpg"><br><br>
 			<h5><strong>상콤상콤 딸기</strong></h5><br>
 		</td>
 		<td align="center">
-			<img id="mainImageList_image" src="../image/berry.jpg"><br><br>
+			<img class="mainImageList_image" src="../image/berry.jpg"><br><br>
 			<h5><strong>상콤상콤 딸기</strong></h5><br>
 		</td>
 		<td align="center">
-			<img id="mainImageList_image" src="../image/berry.jpg"><br><br>
+			<img class="mainImageList_image" src="../image/berry.jpg"><br><br>
 			<h5><strong>상콤상콤 딸기</strong></h5><br>
 		</td>
 		<td align="center">
-			<img id="mainImageList_image" src="../image/berry.jpg"><br><br>
+			<img class="mainImageList_image" src="../image/berry.jpg"><br><br>
 			<h5><strong>상콤상콤 딸기</strong></h5><br>
 		</td>
 	</tr>	
 	<tr>
 		<td align="center">
-			<img id="mainImageList_image" src="../image/berry.jpg"><br><br>
+			<img class="mainImageList_image" src="../image/berry.jpg"><br><br>
 			<h5><strong>상콤상콤 딸기</strong></h5><br>
 		</td>
 		<td align="center">
-			<img id="mainImageList_image" src="../image/berry.jpg"><br><br>
+			<img class="mainImageList_image" src="../image/berry.jpg"><br><br>
 			<h5><strong>상콤상콤 딸기</strong></h5><br>
 		</td>
 		<td align="center">
-			<img id="mainImageList_image" src="../image/berry.jpg"><br><br>
+			<img class="mainImageList_image" src="../image/berry.jpg"><br><br>
 			<h5><strong>상콤상콤 딸기</strong></h5><br>
 		</td>
 		<td align="center">
-			<img id="mainImageList_image" src="../image/berry.jpg"><br><br>
+			<img class="mainImageList_image" src="../image/berry.jpg"><br><br>
 			<h5><strong>상콤상콤 딸기</strong></h5><br>
 		</td>
 	</tr>	
 </table>
 <p style="clear: both; height: 5px;"></p>
+
+<script type="text/javascript">
+function itemClick(seq){
+	location.href='/bitFarm/item/getItemView?seq='+seq;
+}
+</script>

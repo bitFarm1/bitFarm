@@ -6,18 +6,18 @@
 <form name="itemViewForm" method="post">
 <div class="itemView">
 	<div class="itemMainImageDiv">
-		<img src="../image/berry.jpg" width="470">
+		<img src="../storage/${itemDTO.item_main_image}" width="470">
 	</div>
 	<div class="itemTempDiv">
 		&emsp;
 	</div>
 	<div class="itemCartDiv">
-		<p style="font-size: 1.7em; font-weight: bold;">[${seller_name}]&nbsp;${item_name}</p>
-		<font color="gray">${item_explain}</font>
+		<p style="font-size: 1.7em; font-weight: bold;">[${itemDTO.seller_name}]&nbsp;${itemDTO.item_name}</p>
+		<font color="gray">${itemDTO.item_explain}</font>
 		<br><br>
 		<p style="font-size: 1.7em;">
 			<strong><span id="itemPrice">
-				<fmt:formatNumber type="number" maxFractionDigits="3" value="${item_price}"/>
+				<fmt:formatNumber type="number" maxFractionDigits="3" value="${itemDTO.item_price}"/>
 			</span></strong>원
 		</p>
 		<font color="#5f0080">로그인 후, 회원할인가와 적립혜택이 제공됩니다.</font>
@@ -31,8 +31,7 @@
 		<br><br>
 		<p style="float: right;">총 상품금액 : 
 			<span style="font-size: 1.7em; font-weight: bold;" id="itemAllPrice">
-				<fmt:formatNumber type="number" maxFractionDigits="3" value="${item_price}"/>
-				<input type="hidden" value="${item_price}" id="item_price">
+				<fmt:formatNumber type="number" maxFractionDigits="3">${itemDTO.item_price}</fmt:formatNumber>
 			</span>원
 		</p>
 		<br><br><br>
@@ -58,7 +57,7 @@
 	<p style="clear: both; height: 5px;"></p>
 	
 	<div class="itemDetailDiv">
-		<img src="../image/lemonDetail.JPG" class="itemViewDetailImage">
+		<img src="../storage/${itemDTO.item_detail_image}" class="itemViewDetailImage">
 	</div>
 	
 	<p style="clear: both; height: 100px;"></p>
@@ -172,7 +171,7 @@
 		<br>
 		<div class="miniCartDiv_visible_itemInfo">
 			<span style="width: 39.99%; height: 30px;  float: left; background: #f8f8f8;">
-				[${seller_name}] ${item_name}
+				[${itemDTO.seller_name}] ${itemDTO.item_name}
 			</span>
 			<span style="width: 60%; height: 30px; float: right; background: #f8f8f8;">
 				<span style="width:20%; float: center;">
@@ -181,7 +180,7 @@
 					<input type="button" id="plusBtn" value="+" class="botqtyBtn" onclick="botchange(1);">
 				</span>
 				<span id="itemPrice" style="width:30%; float: right;" id="itemAllPrice">
-					<fmt:formatNumber type="number" maxFractionDigits="3" value="${item_price}"/>
+					<fmt:formatNumber type="number" maxFractionDigits="3" value="${itemDTO.item_price}"/>
 				</span>
 			</span>
 		</div>
@@ -190,7 +189,7 @@
 			<span style="width:30%; float: right;">
 				총 상품금액 : 
 				<span id="itemAllPrice" style="font-size: 2em; font-weight: bold;">
-					<fmt:formatNumber type="number" maxFractionDigits="3" value="${item_price}"/>
+					<fmt:formatNumber type="number" maxFractionDigits="3" value="${itemDTO.item_price}"/>
 				</span>원
 			</span><br>
 		</div>
@@ -225,7 +224,7 @@ function botchange(num){
 <script type="text/javascript" src="../js/itemViewForm.js"></script>
 <script type="text/javascript">
 $('.qtyBtn').click(function(){
-	let itemPrice = ${item_price};
+	let itemPrice = ${itemDTO.item_price};
 	let itemQty = $('#item_qty').val();
 	$('#item_qty1').val(itemQty);
 
@@ -236,7 +235,7 @@ $('.qtyBtn').click(function(){
 });
 
 $('.botqtyBtn').click(function(){
-	let itemPrice = ${item_price};
+	let itemPrice = ${itemDTO.item_price};
 	let itemQty = $('#item_qty1').val();
 	$('#item_qty').val(itemQty);
 
@@ -247,17 +246,21 @@ $('.botqtyBtn').click(function(){
 });
 
 $('#mainCartBtn').click(function(){
-	let price = $('#item_price').val();
-	let qty = $('#item_qty').val();
-	alert(price*qty);
-	/* $.ajax({
+	//alert($('#item_qty').val());
+	//alert($('#itemAllPrice').text());
+	
+	let item_id = ${itemDTO.item_id};
+	let item_qty = $('#item_qty').val();
+	let itemAllPrice = $('#itemAllPrice').text();
+	
+	$.ajax({
 		type : 'POST',
 		url : '/bitFarm/cart/cartAdd',
-		data : 'item_price'+$('#item_price').val(),
+		data : 'item_id=' + item_id + '&item_qty=' + item_qty + '&itemAllPrice=' + itemAllPrice,
 		success: function(){
-			alert('카트로 이동');
+			location.href = '/bitFarm/cart/cartForm';
 		}
-	}); */
+	});
 });
 
 $('#scrollCartBtn').click(function(){

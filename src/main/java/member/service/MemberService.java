@@ -14,9 +14,11 @@ public interface MemberService {
 
 	public MemberDTO checkPwd(Map<String, String> map);
  
-	public int mailSending(String email);
+	public int mailSending(String email); 
 
-	public String getMemberPwd(String id);     
+	public String getMemberPwd(String id); 
+
+	public MemberDTO checkAccount(Map<String, String> map);       
 
 
 }

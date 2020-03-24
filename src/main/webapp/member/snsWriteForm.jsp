@@ -82,40 +82,23 @@
 	
 </style>
 <form name="memberWriteForm">  
-<h2 align="center">회원가입</h2>
+<h2 align="center">간편 회원가입</h2>
 <div style="height:20px;"></div>
 <div> 
 	<table cellpadding="10px">   
-		<tr> 
-			<th class="subject">아이디*</th>
-			<td style="vertical-align: top;"><input class="layoutT" type="text" name="member_id" placeholder="6자 이상의 영문 혹은 영문과 숫자를 조합">&emsp;
-			<input class="layoutB" type="button" id="member_checkIdBtn" name="member_checkId" value="중복확인"><br id="member_id_p" style="display: none;"><span id="member_id_Div" ></span></br></td>					
-		</tr>  
-		 
-		<tr>   
-			<th class="subject">비밀번호*</th>   
-			<td><input class="layoutT" type="password" name="member_pwd" placeholder="비밀번호를 입력해주세요"></td>
-			
-		</tr>
-		<tr>
-			<th class="subject">비밀번호확인*</th>
-			<td style="padding-top: 2px;"><input class="layoutT" type="password" name="member_repwd" placeholder="비밀번호를 한번 더 입력해주세요">
-			<br id="member_pwd_p" style="display: none;"><span id="member_pwd_Div" ></span></br></td>
-		</tr>
-		
+	
 		<tr>
 			<th class="subject">이름*</th>
-			<td><input class="layoutT" type="text" name="member_name" placeholder="고객님의 이름을 입력해주세요">
+			<td><input class="layoutT" type="text" name="member_name" value="${name }" readonly="readonly">
 			<br id="member_name_p" style="display: none;"><span id="member_name_Div" ></span></br>
 			</td>
 		</tr> 
 		
 		<tr> 
 			<th class="subject">이메일*</th>
-			<td><input class="layoutT" type="text" name="member_email" placeholder="예: bitfarm@bitfarm.com">&emsp;
-			<input class="layoutB" type="button" name="checkEmail" value="이메일 인증">
-			<br id="member_email_p" style="display: none;"><span id="member_email_Div" ></span></br>
-			<input type="hidden" id="auth" name="auth" value=""> 
+			<td><input class="layoutT" type="text" name="member_email" readonly="readonly">${email } 
+			<br id="member_email_p" style="display: none;"><span id="member_email_Div" ></span></br> 
+			<input type="hidden" id="auth" name="auth" value="">  
 			</td>			
 		</tr>
 		<tr> 
@@ -306,10 +289,10 @@ $('input[name=member_email]').focusout(function(){
 		$('#member_email_Div').text('이메일 인증을 해주세요.');  
 		$('#member_email_Div').css('color','#5f0080');     
 		$('#member_email_Div').css('font-weight','bold');
-		$('#member_email_Div').css('font-size','10pt');  
+		$('#member_email_Div').css('font-size','10pt');   
 	}
 });
-
+ 
 
 $('input[name=checkEmail]').click(function(){ 
 	var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
@@ -329,7 +312,7 @@ $('input[name=checkEmail]').click(function(){
 		$('#member_email_p').css("display", "block"); 
 		$('#member_email_Div').text('잘못된 이메일 형식입니다.');  
 		$('#member_email_Div').css('color','red'); 
-		$('#member_email_Div').css('font-weight','bold');  
+		$('#member_email_Div').css('font-weight','bold');
 		$('#member_email_Div').css('font-size','10pt');
 	 }	
 });      

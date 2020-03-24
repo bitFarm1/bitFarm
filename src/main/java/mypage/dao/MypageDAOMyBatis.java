@@ -46,14 +46,14 @@ public class MypageDAOMyBatis implements MypageDAO {
 	}
 
 	@Override
-	public void writeCoupon(MemberDTO memberDTO) {
-		sqlSession.insert("mypageSQL.writeCoupon", memberDTO); 
+	public void writeCoupon(String member_id) {
+		sqlSession.insert("mypageSQL.writeCoupon", member_id); 
 		
 	}
 
 	@Override
-	public void writePoint(MemberDTO memberDTO) { 
-		sqlSession.insert("mypageSQL.writePoint", memberDTO);
+	public void writePoint(String member_id) { 
+		sqlSession.insert("mypageSQL.writePoint", member_id);
 		
 	}
 

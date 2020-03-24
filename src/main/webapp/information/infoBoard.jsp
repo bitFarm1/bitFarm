@@ -24,35 +24,35 @@ th{
 		 
 		<tr>
 			<td>공지</td>
-			<td style="text-align: left"><a class="info" href="/bitFarm/information/infoView.do">공지사항이다.</a></td>
+			<td style="text-align: left"><a class="info" href="/bitFarm/information/infoView">공지사항이다.</a></td>
 			<td>BITFARM</td>
 			<td>2020-03-20</td>
 			<td>100</td>
 		</tr> 
 		<tr>
 			<td>공지</td>
-			<td style="text-align: left"><a class="info" href="/bitFarm/information/infoView.do">공지사항이다.</a></td>
+			<td style="text-align: left"><a class="info" href="/bitFarm/information/infoView">공지사항이다.</a></td>
 			<td>BITFARM</td>
 			<td>2020-03-20</td>
 			<td>100</td>
 		</tr>
 		<tr>
 			<td>공지</td>
-			<td style="text-align: left"><a class="info" href="/bitFarm/information/infoView.do">공지사항이다.</a></td>
+			<td style="text-align: left"><a class="info" href="/bitFarm/information/infoView">공지사항이다.</a></td>
 			<td>BITFARM</td>
 			<td>2020-03-20</td>
 			<td>100</td>
 		</tr>
 		<tr>
 			<td>공지</td>
-			<td style="text-align: left"><a class="info" href="/bitFarm/information/infoView.do">공지사항이다.</a></td>
+			<td style="text-align: left"><a class="info" href="/bitFarm/information/infoView">공지사항이다.</a></td>
 			<td>BITFARM</td>
 			<td>2020-03-20</td>
 			<td>100</td>
 		</tr>
 		<tr>
 			<td>공지</td>
-			<td style="text-align: left"><a class="info" href="/bitFarm/information/infoView.do">공지사항이다.</a></td>
+			<td style="text-align: left"><a class="info" href="/bitFarm/information/infoView">공지사항이다.</a></td>
 			<td>BITFARM</td>
 			<td>2020-03-20</td>
 			<td>100</td>
@@ -60,14 +60,14 @@ th{
 		
 		<tr>
 			<td>공지</td>
-			<td style="text-align: left"><a class="info" href="/bitFarm/information/infoView.do">공지사항이다.</a></td>
+			<td style="text-align: left"><a class="info" href="/bitFarm/information/infoView">공지사항이다.</a></td>
 			<td>BITFARM</td>
 			<td>2020-03-20</td>
 			<td>100</td>
 		</tr>
 		<tr>
 			<td>공지</td>
-			<td style="text-align: left"><a class="info" href="/bitFarm/information/infoView.do">공지사항이다.</a></td>
+			<td style="text-align: left"><a class="info" href="/bitFarm/information/infoView">공지사항이다.</a></td>
 			<td>BITFARM</td>
 			<td>2020-03-20</td>
 			<td>100</td>

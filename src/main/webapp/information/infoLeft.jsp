@@ -13,9 +13,9 @@
  
 			<a class="infoA" href="/bitFarm/information/infoBoard">공지사항</a><br><br>
 			<a class="infoA" href="#">자주하는 질문</a><br><br>
-			<a class="infoA" href="/bitFarm/information/infoQnABoard">1:1문의</a><br><br>
-			<a class="infoA" href="#">음</a><br><br>
-			<a class="infoA" href="#">음</a><br><br>		
+			<a class="infoA" href="/bitFarm/information/infoQnABoard">1:1 문의작성</a><br><br>
+			<a class="infoA" href="/bitFarm/information/infoList">1:1 문의내역</a><br><br> 
+			<a class="infoA" href="/bitFarm/information/infoWriteForm">관리자전용 공지사항 등록</a><br><br>		
 			<a class="infoA" href="#">음</a>	<br><br>
 	
 </div>

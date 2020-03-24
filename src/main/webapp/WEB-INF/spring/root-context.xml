@@ -18,7 +18,11 @@
 	<context:component-scan base-package="seller.bean"/>
 	<context:component-scan base-package="seller.service"/>  
 
-	<!-- mypage -->
+	<context:component-scan base-package="information.dao"/> 
+	<context:component-scan base-package="information.bean"/>
+	<context:component-scan base-package="information.service"/>
+	
+	<!-- mypage -->  
 	<context:component-scan base-package="mypage.dao"/> 
 	<context:component-scan base-package="mypage.bean"/>
 	<context:component-scan base-package="mypage.service"/>  

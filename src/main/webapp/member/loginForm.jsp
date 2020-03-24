@@ -172,15 +172,7 @@ a.searchA:active {color: black; text-decoration: none;}
   function testAPI() {
     console.log('Welcome!  Fetching your information.... ');
     FB.api('/me',{fields:'email,name'}, function(response) {
-    //  console.log('Successful Name: ' + response.name);
-    //  console.log('Successful Email: ' + response.email);
-      
-      //javascript형식 문자열 추가하기
-   /*    document.getElementById('status').innerHTML =
-        '페이스북 로그인되었습니다. ' + response.name + '님!'; */
-      
-      //jQuery형 문자열 추가하기
-      //$('#userInfo').html("이름 : "+response.name+" 메일 : "+response.email);
+ 
       window.location.href="http://localhost:8080/bitFarm/member/naver?name="+response.name+"&email="+response.email+"&type=facebook"; 
        
     });

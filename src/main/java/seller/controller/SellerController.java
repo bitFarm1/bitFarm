@@ -179,7 +179,7 @@ public class SellerController {
 	
 	//sellerQnAView 셀러 문의게시판 글 보기
 	@RequestMapping(value="sellerQnAView", method=RequestMethod.GET)
-	public String sellerQnAView(Model model) {
+	public String sellerQnAView(Model model) { 
 		model.addAttribute("display", "/seller/sellerQnAView.jsp");
 		return "/main/main";
 	}

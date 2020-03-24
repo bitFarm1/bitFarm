@@ -22,7 +22,7 @@
 	<context:component-scan base-package="mypage.controller"/>	   
 	<context:component-scan base-package="seller.controller"/> 
 
-
+ 
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<annotation-driven />
 
@@ -31,6 +31,7 @@
 	<resources location="/image/" mapping="/image/**" />
 	<resources location="/js/" mapping="/js/**" />
 	<resources location="/css/" mapping="/css/**" />
+	<resources location="/se2/" mapping="/se2/**" />  
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -46,6 +47,10 @@
 		<beans:property name="order" value="0" />
 	</beans:bean>
 	
-	
+	<!-- 파일 업로드	 -->
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<beans:property name="maxUploadSize" value="5000000"/>
+	</beans:bean>
+	  
 	
 </beans:beans>

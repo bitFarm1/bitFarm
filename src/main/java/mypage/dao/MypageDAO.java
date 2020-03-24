@@ -16,8 +16,8 @@ public interface MypageDAO {
 
 	public List<MypagePointDTO> getPointList(String id);
 
-	public void writeCoupon(MemberDTO memberDTO);
+	public void writeCoupon(String id);
 
-	public void writePoint(MemberDTO memberDTO);  
+	public void writePoint(String id);  
 
 }

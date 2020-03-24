@@ -50,16 +50,15 @@ public class MypageServiceImpl implements MypageService {
 	
 	//회원가입시 쿠폰 생성
 	@Override
-	public void writeCoupon(MemberDTO memberDTO) {
-		mypageDAO.writeCoupon(memberDTO);
+	public void writeCoupon(String member_id) {
+		mypageDAO.writeCoupon(member_id);
 	}
 
 	@Override
-	public void writePoint(MemberDTO memberDTO) {
-		// TODO Auto-generated method stub
-		mypageDAO.writePoint(memberDTO);
+	public void writePoint(String member_id) {
+		mypageDAO.writePoint(member_id);
 	} 
-
+ 
 	
 
 }

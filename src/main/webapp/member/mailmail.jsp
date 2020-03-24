@@ -38,10 +38,10 @@
 <script type="text/javascript">
 $('#numberCheck').click(function(){
 	
-	if($('#number').val() == '${num}'){  
+	if($('#number').val() == '${num}'){   
 		alert("성공");
 		opener.document.forms[0].auth.value = 'ok';  
-		window.close();   
+		window.close();  
 		opener.document.forms[0].member_email.focus(); 
 	 
 	}else{		

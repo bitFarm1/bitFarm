@@ -58,6 +58,7 @@ public class MemberServiceImpl implements MemberService {
 			if(num>=100000) break;
 		}
 		
+
 		try {
 			MimeMessage message = mailSender.createMimeMessage();
 			MimeMessageHelper messageHelper = new MimeMessageHelper(message,
@@ -67,8 +68,8 @@ public class MemberServiceImpl implements MemberService {
 			messageHelper.setTo(email); // 받는사람 이메일
 			messageHelper.setSubject("비트팜 이메일 인증입니다."); // 메일제목은 생략이 가능하다
 			messageHelper.setText("비트팜 이메일 인증입니다.\n\n 인증 번호 : "+num+"\n\n번호를 인증란에 입력해주세요."); // 메일 내용
- 
-			mailSender.send(message);
+  
+			mailSender.send(message);	
 		} catch (Exception e) {   
 			System.out.println(e);  
 		}
@@ -80,6 +81,14 @@ public class MemberServiceImpl implements MemberService {
 	public String getMemberPwd(String id) {
 		// TODO Auto-generated method stub 
 		return memberDAO.getMemberPwd(id);  
+	}
+
+	@Override
+	public MemberDTO checkAccount(Map<String, String> map) {		
+		MemberDTO memberDTO = memberDAO.checkAccount(map);
+		
+		return memberDTO; 
+		
 	}
  
 }

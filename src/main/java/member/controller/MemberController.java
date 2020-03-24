@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -141,13 +142,23 @@ public class MemberController {
 		return mav; 
 	}
 	
+	//email="+email+"&name="+name+"&type=naver"
 	@RequestMapping(value="/naver", method=RequestMethod.GET)
-	public ModelAndView naver(HttpServletRequest request) {
+	public ModelAndView naver(@RequestParam Map<String, String> map, HttpSession session)  {
+		MemberDTO memberDTO = memberService.checkAccount(map);
 		ModelAndView mav = new ModelAndView(); 
 		
-		mav.addObject("display", "/member/naverInfo.jsp"); 
+		if(memberDTO != null) {
+			session.setAttribute("memberName", memberDTO.getMember_name()); //session은 내장 기본 객체 default 30분  
+			session.setAttribute("memberId", memberDTO.getMember_id());   
+			session.setAttribute("memberEmail", memberDTO.getMember_email());
+			mav.addObject("display","/template/body.jsp"); 
+		}else {
+			mav.addObject("display", "/member/snsWriteForm.jsp");  
+		} 
+		
 		mav.setViewName("/main/main"); 
-		return mav;  
+		return mav;   
 	}
 	
 	@RequestMapping(value="/checkID", method=RequestMethod.POST)
@@ -209,7 +220,7 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="/checkEmail", method=RequestMethod.GET)
-	public String writeForm(Model model) {		  
+	public String checkEmail(Model model) {		  
 		return "/member/checkEmail";
 	}
 	 
@@ -221,7 +232,7 @@ public class MemberController {
 		int num = memberService.mailSending(email); 
 		mav.addObject("num", num);
 		mav.setViewName("/member/mailmail");
-	  
+	    
 		return mav; 
 	}
 	 

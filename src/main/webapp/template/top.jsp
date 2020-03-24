@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <link rel="stylesheet" href= "../css/top.css">
-<div align="right">							
-<!-- 비회원 -->		
+<div align="right">				
+<strong>${memberName }</strong>&emsp;&emsp;		 
+<!-- 비회원 -->		   
 <c:if test="${memberId==null && sellerId==null }">
 	<a class="indexA" href="/bitFarm/member/loginForm">로그인</a>&emsp;&emsp;
 	<a class="indexA" href="/bitFarm/member/signUp">회원가입</a>&emsp;&emsp;

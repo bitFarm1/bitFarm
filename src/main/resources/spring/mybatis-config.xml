@@ -8,7 +8,8 @@
 		
 		<!--mypage.bean  -->
 		<typeAlias type="mypage.bean.MypageCouponDTO" alias="mypageCouponDTO" />  
-		<typeAlias type="mypage.bean.MypagePointDTO" alias="mypagePointDTO" />  			
+		<typeAlias type="mypage.bean.MypagePointDTO" alias="mypagePointDTO" />
+		<typeAlias type="mypage.bean.MypageReviewDTO" alias="mypageReviewDTO" />  	
 	</typeAliases> 
 	
 </configuration>

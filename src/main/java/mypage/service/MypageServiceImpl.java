@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import member.bean.MemberDTO;
 import mypage.bean.MypageCouponDTO;
 import mypage.bean.MypagePointDTO;
+import mypage.bean.MypageReviewDTO;
 import mypage.dao.MypageDAO;
 
 @Service
@@ -47,17 +48,23 @@ public class MypageServiceImpl implements MypageService {
 		
 		return mypageDAO.getPointTotal(id);
 	}
-	
+
 	//회원가입시 쿠폰 생성
 	@Override
-	public void writeCoupon(MemberDTO memberDTO) {
-		mypageDAO.writeCoupon(memberDTO);
+	public void writeCoupon(String member_id) {
+	    mypageDAO.writeCoupon(member_id);
 	}
 
 	@Override
-	public void writePoint(MemberDTO memberDTO) {
-		// TODO Auto-generated method stub
-		mypageDAO.writePoint(memberDTO);
+	public void writePoint(String member_id) {
+	   mypageDAO.writePoint(member_id);
+	}
+	
+	@Override
+	public List<MypageReviewDTO> getMyReviewList(String id) {
+		
+		List<MypageReviewDTO> list = mypageDAO.getMyReviewList(id);
+		return list;
 	} 
 
 	

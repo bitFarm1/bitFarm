@@ -134,8 +134,6 @@ public class MypageController {
 		return mav;
 	}
 	
-	
-	
 	@RequestMapping(value="/mypagePickItem", method=RequestMethod.GET)
 	public String mypagePickItem(Model model) {
 		model.addAttribute("display","/mypage/mypageMain.jsp");

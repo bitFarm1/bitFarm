@@ -21,6 +21,7 @@
 		select sum(point_price) from point where point_user_id = #{id}
 	</select> 
 	
+
 	<insert id = "writeCoupon" parameterType = "String"> 
       insert into coupon values(#{member_id},'회원가입축하쿠폰','3000원 할인','할인',ADD_MONTHS(sysdate, 1),'사용가능','first_sign_up_coupon') 
    </insert>

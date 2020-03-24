@@ -52,11 +52,14 @@ public class MypageServiceImpl implements MypageService {
 	//회원가입시 쿠폰 생성
 	@Override
 	public void writeCoupon(String member_id) {
+
 	    mypageDAO.writeCoupon(member_id);
+
 	}
 
 	@Override
 	public void writePoint(String member_id) {
+
 	   mypageDAO.writePoint(member_id);
 	}
 	
@@ -64,6 +67,7 @@ public class MypageServiceImpl implements MypageService {
 	public List<MypageReviewDTO> getMyReviewList(String id) {
 		
 		List<MypageReviewDTO> list = mypageDAO.getMyReviewList(id);
+
 		return list;
 	} 
 

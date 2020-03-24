@@ -1,11 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <h3>나의 후기 모아보기</h3>
 <table class="myReviewListTable"  id = "myReviewListTable" frame="hsides" rules="rows" cellpadding="10">
+
+=======
+<thead>
+
 	<tr>
 		<th>글번호</th>
 		<th>제목</th>
 		<th>작성일</th>
 	</tr>
+</thead>
+<tbody>
+<c:forEach var="myReviewDTO"
+
+
+
+
+
+</tbody>
 	<!-- list로 돌리기 -->
 <!-- 	<tr>
 		<td align="center">1<div id = "testDiv1" style="display:none; border:solid red;"></div></td>
@@ -32,8 +46,13 @@ $(document).ready(function(){
 						  .append($('<td/>',{ align : 'center', text: items.review_date }))
 						  .appendTo($('#myReviewListTable'));
 				
+
 				$('.'+items.review_id).click(function(){
 					alert('짠');
+
+				//눌러서 내용 상세보기
+				$('.'+items.review_id).click(function(){
+
 				}); 
 			
 			 });//each

@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <link rel="stylesheet" href= "../css/cart.css">
 <br>
 <h2 align="center">장 바 구 니</h2><br>
@@ -6,31 +7,34 @@
 <table class="cartTable" id="cartTable" align="center" width="80%" border="1" cellspacing='0' cellpadding='7' frame="hsides" rules="rows">
 	<tr>
 		<th>
-			<input type="checkbox" id="checkAll">
-			전체선택
+			<input type="checkbox" id="checkAll">전체선택
 		</th>
 		<th colspan="2">상품명</th>
 		<th>수량</th>
 		<th>금액</th>
 	</tr>
 	<!-- list받아서 tr 돌리기 -->
-	<tr>
-		<td align="center">
-			<input type="checkbox" id="checkItem">
-		</td>
-		<td valign="middle" align="right">
-			<img src="../image/berry.jpg" width="200">
-		</td>
-		<td align="left">
-			상큼상큼한 딸긔		
-		</td>
-		<td class="itemQty"  align="center">
-			<input type="button" id="minusBtn" value="-" class="qtyBtn" onclick="change(-1);">
-			<input type="text" name="cart_item_qty" id="cart_item_qty" value="1" readOnly>
-			<input type="button" id="plusBtn" value="+" class="qtyBtn" onclick="change(1);">
-		</td>
-		<td  align="center">${item_price}</td>
-	</tr>
+	<c:if test="${list!=null}">
+		<c:forEach var="cartDTO" items="${list}">
+		<tr>
+			<td width="20%" align="center">
+				<input type="checkbox" id="checkItem">
+			</td>
+			<td width="20%" valign="middle" align="right">
+				<img src="../image/berry.jpg" width="200">
+			</td>
+			<td width="30%" align="center">
+				${cartDTO.item_id}
+			</td>
+			<td width="20%" class="itemQty"  align="center">
+				<input type="button" id="minusBtn" value="-" class="qtyBtn" onclick="change(-1);">
+				<input type="text" name="cart_item_qty" id="cart_item_qty" value="${cartDTO.item_qty}" readOnly>
+				<input type="button" id="plusBtn" value="+" class="qtyBtn" onclick="change(1);">
+			</td>
+			<td width="30%" align="center">${cartDTO.item_all_price}</td>
+		</tr>
+		</c:forEach>
+		</c:if>
 </table>
 </form>
 <br>

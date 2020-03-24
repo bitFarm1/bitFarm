@@ -114,9 +114,26 @@ public class MypageController {
 	
 	//리뷰
 	@RequestMapping(value="/mypageMyReview", method=RequestMethod.GET)
+	public ModelAndView mypageMyReview(HttpSession session) {
+		String id = (String)session.getAttribute("memberId");
+		System.out.println(id);
+		List<MypageReviewDTO> list = mypageService.getMyReviewList(id);
+		
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("list",list);
+		mav.addObject("memberId",id);
+		mav.addObject("display","/mypage/mypageMain.jsp");
+		mav.addObject("mypage","/mypage/mypageMyReview.jsp");
+		mav.setViewName("/main/main");
+
+		return mav;
+	}
+	/*
+	@RequestMapping(value="/mypageMyReview", method=RequestMethod.GET)
 	public String mypageMyReview(Model model) {
 		model.addAttribute("display","/mypage/mypageMain.jsp");
 		model.addAttribute("mypage","/mypage/mypageMyReview.jsp");
+		
 		return "/main/main";
 	}
 	
@@ -124,7 +141,7 @@ public class MypageController {
 	public ModelAndView getMyReviewList(HttpSession session) {
 	
 		String id = (String)session.getAttribute("memberId");
-		
+		System.out.println(id);
 		List<MypageReviewDTO> list = mypageService.getMyReviewList(id);
 		
 		ModelAndView mav = new ModelAndView();
@@ -133,7 +150,7 @@ public class MypageController {
 		mav.setViewName("jsonView");
 		return mav;
 	}
-	
+	*/
 	@RequestMapping(value="/mypagePickItem", method=RequestMethod.GET)
 	public String mypagePickItem(Model model) {
 		model.addAttribute("display","/mypage/mypageMain.jsp");

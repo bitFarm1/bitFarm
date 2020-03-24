@@ -60,8 +60,8 @@ public class MypageDAOMyBatis implements MypageDAO {
 
 	@Override
 	public List<MypageReviewDTO> getMyReviewList(String id) {
-	public void writeCoupon(String member_id) {
-		sqlSession.insert("mypageSQL.writeCoupon", member_id); 
+	
+		return sqlSession.selectList("mypageSQL.getMyReviewList",id);
 		
 	}
 

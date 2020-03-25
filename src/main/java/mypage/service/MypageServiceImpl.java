@@ -48,25 +48,30 @@ public class MypageServiceImpl implements MypageService {
 		
 		return mypageDAO.getPointTotal(id);
 	}
-	
+
 	//회원가입시 쿠폰 생성
 	@Override
 	public void writeCoupon(String member_id) {
-		mypageDAO.writeCoupon(member_id);
+
+	    mypageDAO.writeCoupon(member_id);
+
 	}
 
 	@Override
 	public void writePoint(String member_id) {
 
+
 		// TODO Auto-generated method stub
 		mypageDAO.writePoint(member_id);
-	}
+	
 
+	}
+	
 	@Override
 	public List<MypageReviewDTO> getMyReviewList(String id) {
 		
-		List<MypageReviewDTO> list =  mypageDAO.getMyReviewList(id);
-		
+		List<MypageReviewDTO> list = mypageDAO.getMyReviewList(id);
+
 		return list;
 
 		mypageDAO.writePoint(member_id);

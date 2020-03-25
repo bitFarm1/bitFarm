@@ -14,7 +14,6 @@ public class MypageReviewDTO {
 	private String review_content;
 	private String review_image;
 	private String review_user_id;
-	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "yyyy.MM.dd")
 	private Date review_date;
 	private int review_item_id;
 

@@ -112,6 +112,7 @@ public class MemberController {
 	@RequestMapping(value="/write", method=RequestMethod.POST)
 	public ModelAndView write(@ModelAttribute MemberDTO memberDTO) {
 
+
 		ModelAndView mav = new ModelAndView();
 		String member_id = memberDTO.getMember_id();
 		

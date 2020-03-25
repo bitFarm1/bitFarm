@@ -16,9 +16,9 @@ public interface MypageService {
 	public int getPointTotal(String id);
 
 	public List<MypagePointDTO> getPointList(String id);
-
-	public void writeCoupon(String member_id); 
-
+	
+	public void writeCoupon(String member_id);
+	
 	public void writePoint(String member_id);
 
 	public List<MypageReviewDTO> getMyReviewList(String id); 

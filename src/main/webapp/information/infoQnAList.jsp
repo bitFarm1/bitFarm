@@ -20,7 +20,7 @@ th{
 	<table id="infoListTable" width="80%" border="1" cellpadding="15" frame="hsides" rules="rows"> 
 		<tr> 
 			<th>글번호</th>
-			<th width="250px;">제목</th>
+			<th width="250px;">제목</th> 
 			<th>작성자</th>
 			<th>작성일</th>   
 			    

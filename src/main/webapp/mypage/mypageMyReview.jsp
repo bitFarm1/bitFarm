@@ -10,13 +10,7 @@
 	</tr>
 </thead>
 <tbody>
-<c:forEach var="myReviewDTO"
 
-
-
-
-
-</tbody>
 	<!-- list로 돌리기 -->
 <!-- 	<tr>
 		<td align="center">1<div id = "testDiv1" style="display:none; border:solid red;"></div></td>
@@ -47,7 +41,7 @@ $(document).ready(function(){
 				$('.'+items.review_id).click(function(){
 						
 				}); 
-			
+			 
 			 });//each
 		
 		}//success

@@ -1,9 +1,11 @@
 package member.controller;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
 
 import javax.inject.Inject;
+import javax.mail.Session;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -22,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import member.bean.MemberDTO;
+import member.dao.MemberDAO;
 import member.service.MemberService;
 import mypage.service.MypageService;
 
@@ -101,9 +104,14 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="/modifyForm", method=RequestMethod.GET)
-	public ModelAndView modifyForm() {
-		ModelAndView mav = new ModelAndView();
+	public ModelAndView modifyForm(HttpSession session) {
+		Map<String, String> map = new HashMap<String, String>();
 		
+		ModelAndView mav = new ModelAndView();
+		map.put("id",(String) session.getAttribute("memberId")); 
+		MemberDTO memberDTO = memberService.login(map);
+		 
+		mav.addObject("memberDTO", memberDTO);
 		mav.addObject("display", "/member/modifyForm.jsp");
 		mav.setViewName("/main/main");
 		return mav; 
@@ -118,7 +126,7 @@ public class MemberController {
 		//암호화
 		String inputPwd = memberDTO.getMember_pwd();
 		String pwd = pwdEncoder.encode(inputPwd);
-		 
+		  
 		memberDTO.setMember_pwd(pwd);
 		int su = memberService.write(memberDTO);
 		mypageService.writeCoupon(member_id);
@@ -216,11 +224,19 @@ public class MemberController {
 	
 	@RequestMapping(value="checkPwd", method=RequestMethod.POST)
 	public ModelAndView checkPwd(@RequestParam Map<String, String> map, HttpSession session) {
-		ModelAndView mav = new ModelAndView();
-		MemberDTO memberDTO = memberService.checkPwd(map);
+		ModelAndView mav = new ModelAndView(); 
+		String pwd = map.get("pwd");
+		String id = map.get("id");
+		MemberDTO memberDTO = null;
+		
+		boolean pwdMatch = pwdEncoder.matches(pwd, memberService.getMemberPwd(id));
+		 
+		if(pwdMatch) {
+			memberDTO = memberService.checkPwd(map);
+		}
 		
 		if(memberDTO == null) {			
-			mav.addObject("login","fail");
+			mav.addObject("login","fail"); 
 		}else {
 			mav.addObject("login","success");
 			mav.addObject("memberDTO",memberDTO);
@@ -245,7 +261,52 @@ public class MemberController {
 	    
 		return mav; 
 	}
-	 
 	
+	@RequestMapping(value="deleteAccount", method=RequestMethod.GET) 
+	public String deleteAccount(Model model) {
+		model.addAttribute("display", "/member/deleteAccount.jsp");
+		return "/main/main";
+	}	
+	
+	@RequestMapping(value="delete", method=RequestMethod.POST)
+	public ModelAndView delete(@RequestParam Map<String, String> map, HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+		session.invalidate();
+		memberService.delete(map);  
+		memberService.deleteInfo(map); 
+		
+		mav.addObject("display","/template/body.jsp"); 
+		mav.setViewName("/main/main"); 
+		return mav; 		 
+	} 
+	
+	@RequestMapping(value="/modify", method=RequestMethod.POST)
+	public ModelAndView modify(@ModelAttribute MemberDTO memberDTO) {
+
+		ModelAndView mav = new ModelAndView();
+		int su;
+		//노비번수정
+		if(memberDTO.getMember_pwd()=="") {
+			su = memberService.modify1(memberDTO);			
+		}else {
+		//암호화 
+			String inputPwd = memberDTO.getMember_pwd();
+			String pwd = pwdEncoder.encode(inputPwd);
+			  
+			memberDTO.setMember_pwd(pwd); 
+			su = memberService.modify2(memberDTO);
+		}
+		 
+		if(su > 0) {
+			mav.addObject("display", "/member/writeOK.jsp");
+		}else {
+			mav.addObject("display", "/member/writeFail.jsp");
+		}
+		mav.setViewName("/main/main"); 
+		return mav; 
+	}
+		
+	
+	 
 	
 }

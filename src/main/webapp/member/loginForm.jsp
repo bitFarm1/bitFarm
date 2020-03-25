@@ -208,7 +208,7 @@ a.searchA:active {color: black; text-decoration: none;}
     			data : {'id' : $('input[name=id]').val(),  
     					'pwd' : $('input[name=pwd]').val()},
     			dataType : 'json',
-    			success : function(data){
+    	 		success : function(data){
     				//alert(data.login);  
     				if(data.login == 'fail'){ 
     					$('#loginPwdDiv').text('가입하지 않은 아이디이거나, 잘못된 비밀번호입니다.'); 

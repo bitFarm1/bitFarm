@@ -46,13 +46,9 @@
 		<beans:property name="order" value="0" />
 	</beans:bean>
 	
-<<<<<<< HEAD
-=======
 	<!-- 파일 업로드	 -->
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<beans:property name="maxUploadSize" value="5000000"/>
 	</beans:bean>
-	  
-	
->>>>>>> KJH_BRANCH
+ 
 </beans:beans>

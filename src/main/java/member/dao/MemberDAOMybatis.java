@@ -44,4 +44,28 @@ public class MemberDAOMybatis implements MemberDAO {
 		return sqlSession.selectOne("memberSQL.checkAccount", map); 
 	}
 
+	@Override
+	public void delete(Map<String, String> map) {
+		sqlSession.delete("memberSQL.delete", map);
+		
+	}
+
+	@Override
+	public void deleteInfo(Map<String, String> map) {
+		sqlSession.insert("memberSQL.deleteInfo", map);
+		
+	}
+
+	@Override
+	public int modify1(MemberDTO memberDTO) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("memberSQL.modify1", memberDTO);
+	}
+	
+	@Override
+	public int modify2(MemberDTO memberDTO) {
+		// TODO Auto-generated method stub 
+		return sqlSession.update("memberSQL.modify2", memberDTO);
+	}
+
 }

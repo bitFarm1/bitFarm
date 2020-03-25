@@ -30,5 +30,40 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="checkAccount" parameterType="java.util.Map" resultType="memberDTO">
 		select * from member where member_name = #{name} and member_id = #{email}
 	</select>  
+	
+	<delete id="delete" parameterType="java.util.Map">
+		delete from member where member_id = #{id}
+	</delete>	
+	
+	<insert id="deleteInfo" parameterType="java.util.Map"> 
+		insert into deleteInfo values(#{id}
+		,#{deleteInfo_why}		
+		,nvl(#{deleteInfo_Content},0)  
+		,sysdate)		 
+	</insert> 
+	
+	<update id = "modify1" parameterType="memberDTO" >
+		update member 
+		set member_name = #{member_name}
+			, member_email = #{member_email}
+			, member_phone = #{member_phone}
+			, member_address1 = #{member_address1}
+			, member_address2 = #{member_address2}
+			, member_birth = #{member_birth}
+			where member_id = #{member_id}
+	</update>
+	
+	<update id = "modify2" parameterType="memberDTO" >
+		update member 
+		set member_name = #{member_name}
+			, member_pwd = #{member_pwd}
+			, member_email = #{member_email}
+			, member_phone = #{member_phone}
+			, member_address1 = #{member_address1}
+			, member_address2 = #{member_address2}
+			, member_birth = #{member_birth}
+			where member_id = #{member_id}
+	</update> 
 	 	 
+	 
 </mapper>           

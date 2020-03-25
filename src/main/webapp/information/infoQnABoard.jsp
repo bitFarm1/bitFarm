@@ -65,7 +65,7 @@
 <table class="QnAtable" cellpadding="5px" style="border-color: grey"> 
 	<tr> 
 		<td class="title">&emsp;제목</td> 
-		<td width="650" style="text-align: left;">&emsp;<input class="layoutT" type="text" name="infoQnA_subject">&emsp;
+		<td width="650" style="text-align: left;"><input class="layoutT" type="text" name="infoQnA_subject">&emsp;
 						<select name="infoQnA_type" id="infoQnA_type" label="질문유형" class="select">
                             <option value="">선택해주세요.</option>
                             <option value="배송지연/불만">배송지연/불만</option>
@@ -83,16 +83,16 @@
 	</tr>
 	<tr>
 		<td class="title">&emsp;주문번호</td>
-		<td style="text-align: left;">&emsp;<input class="layoutT" type="text" name="infoQnA_orderNum" id="infoQnA_orderNum">&emsp;
+		<td style="text-align: left;"><input class="layoutT" type="text" name="infoQnA_orderNum" id="infoQnA_orderNum">&emsp;
 			<input class="layoutB" type="button" value="주문조회"></td>
 	</tr>	
 	<tr>
 		<td class="title">&emsp;이메일</td>
-		<td style="text-align: left;">&emsp;<input class="layoutT" type="text" name="infoQnA_email" id="infoQnA_email"></td>
-	</tr>	
+		<td style="text-align: left;"><input class="layoutT" type="text" name="infoQnA_email" id="infoQnA_email"></td>
+	</tr>	 
 	<tr>
 		<td class="title">&emsp;핸드폰</td>
-		<td style="text-align: left;">&emsp;<input class="layoutT" type="text" name="infoQnA_phone" id="infoQnA_phone"></td>
+		<td style="text-align: left;"><input class="layoutT" type="text" name="infoQnA_phone" id="infoQnA_phone"></td>
 	</tr>  
 	<tr>
 		<td class="title">&emsp;내용</td> 
@@ -109,7 +109,7 @@
 	</tr> 
 </table>  
 <div style="height:50px;"></div>
-<div style="weight: 600px; height: 100px; text-align: center;"> 
+<div style="weight: 800px; height: 100px; text-align: center; width: 800px;"> 
 	<input class="join" type="button" id="infoQnABtn" value="등록"> 
 </div>
 </form>
@@ -130,9 +130,9 @@ $('#infoQnABtn').click(function(){
 		data : formData,  
 		success : function(){   
 			alert("등록 완료");  
-			location.href='/bitFarm/information/infoBoard'; 
+			location.href='/bitFarm/information/infoQnAList'; 
 		} 			 
-	});			 
+	});			  
 	  
 });
 </script>

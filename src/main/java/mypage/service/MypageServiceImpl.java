@@ -74,10 +74,5 @@ public class MypageServiceImpl implements MypageService {
 
 		return list;
 
-		mypageDAO.writePoint(member_id);
-
-	} 
- 
-	
-
+	}  
 }

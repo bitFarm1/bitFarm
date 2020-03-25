@@ -25,7 +25,7 @@
 
 <!-- 전체 사용자 -->
 </c:if>
-	<a class="indexA" href="/bitFarm/information/infoBoard">고객센터</a>&emsp;&emsp;&emsp;&emsp;
+	<a class="indexA" href="/bitFarm/information/infoBoardList">고객센터</a>&emsp;&emsp;&emsp;&emsp;
 
 </div><br><br>
 

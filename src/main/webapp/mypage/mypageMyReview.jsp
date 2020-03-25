@@ -13,6 +13,7 @@
 	</tr>
 </thead>
 <tbody>
+
 <c:forEach var="myReviewDTO" items="${list }">
 <c:set var = "review_id" value = "${myReviewDTO.review_id }"/>
 <c:set var = "review_subject" value = "${myReviewDTO.review_subject }"/>
@@ -28,10 +29,37 @@
 </tr>
 </c:forEach>
 </tbody>
+
 </table>
 <p style="clear: both; height: 10px;"></p>
 <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
+
+$(document).ready(function(){
+	$.ajax({
+		type: 'post',
+		url: '/bitFarm/mypage/getMyReviewList',
+		dataType:'json',
+		success : function(data){
+		//	alert(JSON.stringify(data));
+			 $.each(data.list, function(index, items){
+				$('<tr/>').append($('<td/>',{ align : 'center', text: items.review_id }))
+						  .append($('<td/>',{ align : 'center', text: items.review_subject , style : 'cursor: pointer;', class : items.review_id+""  }))
+						  .append($('<td/>',{ align : 'center', text: items.review_date }))
+						  .appendTo($('#myReviewListTable'));
+				
+				//눌러서 내용 상세보기
+				$('.'+items.review_id).click(function(){
+						
+				}); 
+			 
+			 });//each
+		
+		}//success
+		
+	});
+});
+
 
 $('#reviewBtn'}).click(function(){
 	alert('짠');

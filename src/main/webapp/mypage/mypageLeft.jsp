@@ -11,5 +11,5 @@
 	<a class="mypageL" href="/bitFarm/mypage/mypageMyReview">리뷰게시판</a><br><br>
 	<a class="mypageL" href="/bitFarm/mypage/mypageQna">문의게시판</a><br><br>
 	<a class="mypageL" href="/bitFarm/member/beforeModify">정보수정</a><br><br>
-	<a class="mypageL" href="#">회원탈퇴</a><br><br>
+	<a class="mypageL" href="/bitFarm/member/deleteAccount">회원탈퇴</a><br><br>
 </div> 

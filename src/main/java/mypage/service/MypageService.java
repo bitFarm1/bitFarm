@@ -5,6 +5,7 @@ import java.util.List;
 import member.bean.MemberDTO;
 import mypage.bean.MypageCouponDTO;
 import mypage.bean.MypagePointDTO;
+import mypage.bean.MypageReviewDTO;
 
 public interface MypageService {
 
@@ -15,9 +16,12 @@ public interface MypageService {
 	public int getPointTotal(String id);
 
 	public List<MypagePointDTO> getPointList(String id);
+	
+	public void writeCoupon(String member_id);
+	
+	public void writePoint(String member_id);
 
-	public void writeCoupon(MemberDTO memberDTO); 
+	public List<MypageReviewDTO> getMyReviewList(String id); 
 
-	public void writePoint(MemberDTO memberDTO); 
 
 }

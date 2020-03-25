@@ -43,5 +43,5 @@ public class MemberDAOMybatis implements MemberDAO {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("memberSQL.checkAccount", map); 
 	}
- 
+
 }

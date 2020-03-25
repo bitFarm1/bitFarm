@@ -1,3 +1,5 @@
 *.class
 *.properties
+.classpath
+.project
 target/

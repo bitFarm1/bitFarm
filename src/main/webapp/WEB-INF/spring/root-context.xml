@@ -6,35 +6,55 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
+	<!-- abc 순서대로 정리해놔씀다 -->
 	<context:component-scan base-package="cart.dao" />
+	<context:component-scan base-package="cart.service" />
+	
+	<context:component-scan base-package="item.dao" />
+	<context:component-scan base-package="item.service" />
 
 	<context:component-scan base-package="member.service"/>
-
 	<context:component-scan base-package="member.dao"/> 
 	<context:component-scan base-package="member.bean"/> 
-	<context:component-scan base-package="spring.conf"/> 
 	
 	<context:component-scan base-package="seller.dao"/> 
 	<context:component-scan base-package="seller.bean"/>
 	<context:component-scan base-package="seller.service"/>  
 
-	<!-- mypage -->
+	<context:component-scan base-package="information.dao"/> 
+	<context:component-scan base-package="information.bean"/>
+	<context:component-scan base-package="information.service"/>
+	
+	<!-- mypage -->  
 	<context:component-scan base-package="mypage.dao"/> 
 	<context:component-scan base-package="mypage.bean"/>
 	<context:component-scan base-package="mypage.service"/>  
+	
+	<context:component-scan base-package="order.dao" />
+	<context:component-scan base-package="order.service" />
+	
+	<context:component-scan base-package="review.dao" />
+	<context:component-scan base-package="review.service" />
+	
+	<context:component-scan base-package="seller.dao" />
+	<context:component-scan base-package="seller.service" />
 
-	 <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
-   		 <property name="host" value="smtp.gmail.com" />
-   		 <property name="port" value="587" />
-   		 <property name="username" value="bitFarmBOT@gmail.com" />
-    		<property name="password" value="bitFarm!23" /> 
-    		<property name="javaMailProperties">  
-    			<props> 
-    		  		<prop key="mail.smtp.auth">true</prop>
-     		 		<prop key="mail.smtp.starttls.enable">true</prop>
-    			</props>
-    		</property>
-  	</bean>
+	<context:component-scan base-package="spring.conf"/> 
+	
+	
+	<!-- 이메일 인증 -->
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="smtp.gmail.com" />
+		<property name="port" value="587" />
+		<property name="username" value="bitFarmBOT@gmail.com" />
+		<property name="password" value="bitFarm!23" /> 
+		<property name="javaMailProperties">  
+			<props> 
+		  		<prop key="mail.smtp.auth">true</prop>
+			 		<prop key="mail.smtp.starttls.enable">true</prop>
+			</props>
+		</property>
+	</bean>
 		
 </beans>
 

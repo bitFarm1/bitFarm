@@ -18,8 +18,7 @@ public interface MemberService {
 
 	public String getMemberPwd(String id); 
 
-	public MemberDTO checkAccount(Map<String, String> map);       
-
+	public MemberDTO checkAccount(Map<String, String> map);
 
 }
   

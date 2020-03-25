@@ -42,7 +42,7 @@
 					var profileImage = naverLogin.user.getProfileImage();
 					var birthday = naverLogin.user.getBirthday();			
 					var uniqId = naverLogin.user.getId();
-					var age = naverLogin.user.getAge();
+					var age = naverLogin.user.getAge(); 
 					
 					alert("email="+email+" name="+name+" profileImage="+profileImage+" uniqId="+uniqId+" age="+age); 
 					window.location.replace("http://" + window.location.hostname + ( (location.port==""||location.port==undefined)?"":":" + location.port) + "/bitFarm/member/naver?email="+email+"&name="+name+"&type=naver");

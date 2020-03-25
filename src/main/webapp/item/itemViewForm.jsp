@@ -36,7 +36,7 @@
 		</p>
 		<br><br><br>
 		<p style="text-align: right;">
-			<input type="button" class="goPickItemBtn" value="찜하기">&emsp;
+			<input type="button" id = "goPickItemBtn" class="goPickItemBtn" value="찜하기">&emsp;<!-- 200325 김소중 추가  id = "goPickItemBtn"-->
 			<input type="button" id="mainCartBtn" class="goCartBtn" value="장바구니 담기">
 		</p>
 		<br>
@@ -262,7 +262,30 @@ $('#mainCartBtn').click(function(){
 		}
 	});
 });
+///////////////////////////////////////////////////////////
+$('.goPickItemBtn').click(function(){
+	
+	let item_id = ${itemDTO.item_id};
 
+	$.ajax({
+		type : 'POST',
+		url : '/bitFarm/mypage/goPickItem',
+		data : 'item_id=' + item_id,
+		dataType:'json',
+		success : function(data){
+		//	alert(JSON.stringify(data));
+			if(data){
+				alert("이미 존재합니다")
+			}else{
+				alert("찜하기 성공")
+			}
+	
+		},error : function() {
+			alert("로그인 후 사용해주세요");
+		}
+	});
+});
+///////////////////////////////////////////////////////////
 $('#scrollCartBtn').click(function(){
 	window.location.href = '/bitFarm/cart/cartForm';
 });

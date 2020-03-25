@@ -29,9 +29,35 @@
 		insert into point values(#{member_id},sysdate,'회원가입축하적립금',ADD_MONTHS(sysdate, 1),2000,'회원가입적립금','first_sign_up_Point')
 	</insert> 
 
-	
 	<!-- 리뷰 -->
 	<select id = "getMyReviewList" resultType = "mypageReviewDTO" parameterType="String">
 		select * from review where review_user_id = #{id}
 	</select>
+	
+	<!-- 찜한 물건 -->
+	<!-- pickItem 수정 생각해보기 내 아이디와 물건 정보만 가져오기,,,,-->
+	<insert id = "goPickItem" parameterType = "java.util.Map">
+		begin	
+		insert into pickItem values(#{id},'0','0','0',0,0);
+
+		update pickItem set (pick_item_main_img,pick_item_seller_name,pick_item_name,pick_item_price,pick_item_id) =
+		(select item_main_image,seller_name,item_name,item_price,item_id from item where item_id = #{item_id});
+		
+		end;
+		
+	</insert>
+	
+	<select id = "getMypagePickItem" resultType = "mypagePickItemDTO" parameterType="String">
+		select * from pickItem where pick_item_user_id = #{id}
+	</select>
+	
+	<select id = "existItem" resultType = "Integer" parameterType = "Integer">
+		select count(*) from pickItem where pick_item_id = #{item_id}
+	</select>	
+	
+	<!-- 찜한 판매자 -->
+	<select id = "getMypagePickSeller" resultType = "mypagePickSellerDTO" parameterType="String">
+		select * from pickSeller where pick_seller_user_id = #{id}
+	</select>
+	
 </mapper>

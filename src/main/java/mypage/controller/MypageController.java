@@ -1,6 +1,8 @@
 package mypage.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -10,10 +12,13 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import mypage.bean.MypageCouponDTO;
+import mypage.bean.MypagePickItemDTO;
+import mypage.bean.MypagePickSellerDTO;
 import mypage.bean.MypagePointDTO;
 import mypage.bean.MypageReviewDTO;
 import mypage.service.MypageService;
@@ -50,12 +55,10 @@ public class MypageController {
 	
 		String id = (String)session.getAttribute("memberId");
 		
-		
 		List<MypagePointDTO> list = mypageService.getPointList(id);
 		
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("list",list);
-//		mav.addObject("memberId",session.getAttribute("memberId"));
 		mav.addObject("memberId",id);
 		mav.setViewName("jsonView");
 		return mav;
@@ -116,7 +119,6 @@ public class MypageController {
 	@RequestMapping(value="/mypageMyReview", method=RequestMethod.GET)
 	public ModelAndView mypageMyReview(HttpSession session) {
 		String id = (String)session.getAttribute("memberId");
-		System.out.println(id);
 		List<MypageReviewDTO> list = mypageService.getMyReviewList(id);
 		
 		ModelAndView mav = new ModelAndView();
@@ -128,41 +130,71 @@ public class MypageController {
 
 		return mav;
 	}
-	/*
-	@RequestMapping(value="/mypageMyReview", method=RequestMethod.GET)
-	public String mypageMyReview(Model model) {
-		model.addAttribute("display","/mypage/mypageMain.jsp");
-		model.addAttribute("mypage","/mypage/mypageMyReview.jsp");
+	
+	//찜한 물건
+	@RequestMapping(value="/mypagePickItem", method=RequestMethod.GET)
+	public ModelAndView mypagePickItem(HttpSession session) {
 		
+		String id = (String)session.getAttribute("memberId");
+		List<MypagePickItemDTO> list = mypageService.getMypagePickItem(id);
+		
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("list",list);
+		mav.addObject("memberId",id);
+		mav.addObject("display","/mypage/mypageMain.jsp");
+		mav.addObject("mypage","/mypage/mypagePickItem.jsp");
+		mav.setViewName("/main/main");
+
+		return mav;
+	}
+	
+	@RequestMapping(value="/goPickItem", method=RequestMethod.POST)
+	@ResponseBody
+	public String goPickItem(@RequestParam String item_id, HttpSession session) {
+		
+		String id = (String)session.getAttribute("memberId");
+		String exist = null;
+		if(id==null) {
+			System.out.println("로그인해야함");
+			return exist;
+		}
+		
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("id", id);
+		map.put("item_id", item_id);
+		
+		exist = mypageService.goPickItem(map);
+		
+		if(exist=="true") {
+			System.out.println("존재");
+		}else {
+			System.out.println(exist);
+			System.out.println("없음");
+		}
+		return exist;
+
+	}
+	
+	//찜한 판매자
+	@RequestMapping(value="/mypagePickSeller", method=RequestMethod.GET)
+	public String mypagePickSeller(Model model) {
+		model.addAttribute("display","/mypage/mypageMain.jsp");
+		model.addAttribute("mypage","/mypage/mypagePickSeller.jsp");
 		return "/main/main";
 	}
 	
-	@RequestMapping(value="getMyReviewList", method=RequestMethod.POST)
-	public ModelAndView getMyReviewList(HttpSession session) {
-	
+	@RequestMapping(value="/getMypagePickSeller", method=RequestMethod.POST)
+	public ModelAndView getMypagePickSeller(HttpSession session) {
+		
 		String id = (String)session.getAttribute("memberId");
-		System.out.println(id);
-		List<MypageReviewDTO> list = mypageService.getMyReviewList(id);
+		
+		List<MypagePickSellerDTO> list = mypageService.getMypagePickSeller(id);
 		
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("list",list);
 		mav.addObject("memberId",id);
 		mav.setViewName("jsonView");
 		return mav;
-	}
-	*/
-	@RequestMapping(value="/mypagePickItem", method=RequestMethod.GET)
-	public String mypagePickItem(Model model) {
-		model.addAttribute("display","/mypage/mypageMain.jsp");
-		model.addAttribute("mypage","/mypage/mypagePickItem.jsp");
-		return "/main/main";
-	}
-	
-	@RequestMapping(value="/mypagePickSeller", method=RequestMethod.GET)
-	public String mypagePickSeller(Model model) {
-		model.addAttribute("display","/mypage/mypageMain.jsp");
-		model.addAttribute("mypage","/mypage/mypagePickSeller.jsp");
-		return "/main/main";
 	}
 	
 	@RequestMapping(value="/mypagePurchaseDetail", method=RequestMethod.GET)

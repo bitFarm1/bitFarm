@@ -1,6 +1,7 @@
 package mypage.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import member.bean.MemberDTO;
 import mypage.bean.MypageCouponDTO;
+import mypage.bean.MypagePickItemDTO;
+import mypage.bean.MypagePickSellerDTO;
 import mypage.bean.MypagePointDTO;
 import mypage.bean.MypageReviewDTO;
 
@@ -33,17 +36,17 @@ public class MypageDAOMyBatis implements MypageDAO {
 		return sqlSession.selectOne("mypageSQL.getCouponTotal",id);
 	}
 	
+	@Override
+	public List<MypagePointDTO> getPointList(String id) {
+		
+		return sqlSession.selectList("mypageSQL.getPointList",id);
+	}
+	
 	//적립금
 	@Override
 	public int getPointTotal(String id) {
 		
 		return sqlSession.selectOne("mypageSQL.getPointTotal",id);
-	}
-
-	@Override
-	public List<MypagePointDTO> getPointList(String id) {
-		
-		return sqlSession.selectList("mypageSQL.getPointList",id);
 	}
 	
 	@Override
@@ -58,11 +61,46 @@ public class MypageDAOMyBatis implements MypageDAO {
 	      
 	}
 
+	//리뷰
 	@Override
 	public List<MypageReviewDTO> getMyReviewList(String id) {
 	
-		return sqlSession.selectList("mypageSQL.getMyReviewList",id);
-		
+		return sqlSession.selectList("mypageSQL.getMyReviewList",id);	
 	}
+
+	//찜한 물건
+	@Override
+	public List<MypagePickItemDTO> getMypagePickItem(String id) {
+		
+		return sqlSession.selectList("mypageSQL.getMypagePickItem",id);
+	}
+	
+	@Override
+	public void goPickItem(Map<String, String> map) {
+	
+		sqlSession.insert("mypageSQL.goPickItem",map);	
+	}
+	
+	@Override
+	public String existItem(String item_id) {
+		
+		String exist = "false";
+		
+		int count = sqlSession.selectOne("mypageSQL.existItem",Integer.parseInt(item_id));
+		
+		if(count!=0) exist = "true";
+		
+		return exist;
+	}
+
+
+	//찜한 판매자
+	@Override
+	public List<MypagePickSellerDTO> getMypagePickSeller(String id) {
+		
+		return sqlSession.selectList("mypageSQL.getMypagePickSeller",id);
+	}
+
+	
 
 }

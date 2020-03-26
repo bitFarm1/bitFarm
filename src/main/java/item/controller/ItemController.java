@@ -1,5 +1,7 @@
 package item.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,18 +12,22 @@ import org.springframework.web.servlet.ModelAndView;
 
 import item.bean.ItemDTO;
 import item.service.ItemService;
+import review.bean.ReviewDTO;
+import review.service.ReviewService;
 
 @Controller
 @RequestMapping(value="item")
 public class ItemController {
 	@Autowired
 	private ItemService itemService;
+	@Autowired
+	private ReviewService reviewService;
 	
 	//판매자 홈에서 판매자가 판매할 상품 등록
 	
 	
 	
-	//itemViewForm만 return하는 빈 페이지
+	//itemViewForm만 return하는 빈 페이지 - 이거 필요없어
 	@RequestMapping(value="itemViewForm", method=RequestMethod.GET)
 	public String itemViewForm(Model model) {
 		model.addAttribute("display", "/item/itemViewForm.jsp");
@@ -36,9 +42,12 @@ public class ItemController {
 		
 		ItemDTO itemDTO = itemService.getItemView(seq);
 		
+		List<ReviewDTO> reviewList = reviewService.getItemReviewList(seq);
+		
 		mav.addObject("itemDTO", itemDTO);
+		mav.addObject("reviewList", reviewList);
 		mav.addObject("display", "/item/itemViewForm.jsp");
-		mav.setViewName("/main/main");
+		mav.setViewName("/main/main"); 
 		return mav;
 	}
 	

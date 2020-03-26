@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -24,19 +25,40 @@ import information.bean.InformationDTO;
 import information.bean.InformationPaging;
 import information.bean.InformationQnADTO;
 import information.service.InformationService;
+import member.service.MemberService;
 
 @Controller
 @RequestMapping(value="information")
 public class InformationController {
 	@Autowired 
 	private InformationService informationService;
-		
+	@Autowired
+	private MemberService memberService;
+		 
 	@RequestMapping(value="/infoQnABoard", method=RequestMethod.GET)
 	public ModelAndView infoQnABoard() {
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("display", "/information/infoMain.jsp");
 		mav.addObject("info", "/information/infoQnABoard.jsp");
 		mav.setViewName("/main/main");
+		 
+		return mav; 
+	} 
+	
+	@RequestMapping(value="/dataList", method=RequestMethod.GET)
+	public ModelAndView dataList() {
+		ModelAndView mav = new ModelAndView();
+		int naver = memberService.getNaverAccount();
+		int bit = memberService.getBitAccount();
+		int kakao = memberService.getKakaoAccount();
+		System.out.println(naver);
+		
+		mav.addObject("naver", naver);
+		mav.addObject("bit", bit); 
+		mav.addObject("kakao", kakao);
+		mav.addObject("display", "/information/infoMain.jsp");
+		mav.addObject("info", "/information/dataList.jsp");
+		mav.setViewName("/main/main"); 
 		 
 		return mav; 
 	} 
@@ -148,5 +170,29 @@ public class InformationController {
 		   
 		return mav;
 	} 
+	
+	@RequestMapping(value="getInfoSearch", method=RequestMethod.GET)
+	public ModelAndView getInfoSearch(@RequestParam Map<String, String> map, HttpSession session) {
+		//Map에 pg, searchOption, keyword 있음
+		String pg = map.get("pg");
+		System.out.println("pg = "+pg); 
+		
+		List<InformationDTO> list = informationService.getInfoSearch(map);   
+		
+		//페이징 처리  
+		InformationPaging informationPaging = informationService.informationPaging(map); 
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("searchOption",map.get("searchOption"));  
+		mav.addObject("keyword",map.get("keyword"));   
+		mav.addObject("list", list);
+		mav.addObject("pg", pg);
+		mav.addObject("informationPaging", informationPaging);  
+		mav.addObject("display", "/information/infoMain.jsp");
+		mav.addObject("info", "/information/getInfoSearch.jsp");  
+		mav.setViewName("/main/main");   
+		 
+		return mav;   
+	}	 
+	
 	
 }

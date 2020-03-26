@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <style type="text/css">
-th{
+#reviewWriteTable th{
 	background-color: #F7F5F8;
 }
 .reviewDiv{
@@ -33,22 +33,33 @@ th{
 <p style="clear: both; height: 7px;"></p>
 <div style="width: 60%; margin: 0 auto;">
 <form name="reviewWriteForm" method="post" enctype="multipart/form-data" action="">
-	<table align="center" width="100%" height="600">
+	<table id="reviewWriteTable" cellspacing="0" align="center" width="100%" height="600">
 		<tr height="10%">
 			<th width="30%">제목</th>
-			<td><input type="text" class="reviewSubject" placeholder="제목을 입력하세요" size="100%"></td>
+			<td>
+				&emsp;${item_name}
+				<input type="hidden" name="review_subject" value="${item_name}">
+			</td>
 		</tr>
 		<tr height="10%">
-			<th>작성자</th>
-			<td>작성자 이름</td>
+			<th>작성자 아이디</th>
+			<td>
+				&emsp;${memberId}
+			</td>
 		</tr>
 		<tr>
 			<th>내용</th>
-			<td><textarea placeholder="내용을 입력하세요" cols="100%" rows="20" style="font-size: 15px;"></textarea></td>
+			<td>
+				&emsp;<textarea id="reviewContent" placeholder="내용을 입력하세요" cols="100%" rows="20" style="font-size: 15px;"></textarea>
+				<div id="reviewContentDiv"></div>
+			</td>
 		</tr>
 		<tr height="10%">
 			<th>파일 첨부</th>
-			<td><input id="reviewFile" type="file" name="reviewFile" size="50"></td>
+			<td>
+				&emsp;<input id="reviewFile" type="file" name="reviewFile" size="50">
+				<div id="reviewFileDiv"></div>
+			</td>
 		</tr> 
 	</table>
 </form>
@@ -58,3 +69,18 @@ th{
 	<input type="button" class="reviewBtn" value="후기 등록하기">
 </div>
 <p style="clear: both; height: 7px;"></p>
+
+<script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+$('.reviewBtn').click(function(){
+	$('#reviewContentDiv').empty();
+	$('#reviewFileDiv').empty();
+	
+	if($('#reviewContent').val()==''){
+		$('#reviewContentDiv').text('내용을 입력하세요');
+		$('#reviewContentDiv').css('color', 'red');
+		$('#reviewContentDiv').css('font-size', '8pt');
+		//$('#reviewContentDiv').css('color', 'red');
+	}
+});
+</script>

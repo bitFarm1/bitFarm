@@ -37,7 +37,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<insert id="deleteInfo" parameterType="java.util.Map"> 
 		insert into deleteInfo values(#{id}
-		,#{deleteInfo_why}		
+		,nvl(#{deleteInfo_why},0)		
 		,nvl(#{deleteInfo_Content},0)  
 		,sysdate)		 
 	</insert> 
@@ -55,7 +55,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<update id = "modify2" parameterType="memberDTO" >
 		update member 
-		set member_name = #{member_name}
+		set member_name = #{member_name} 
 			, member_pwd = #{member_pwd}
 			, member_email = #{member_email}
 			, member_phone = #{member_phone}
@@ -64,6 +64,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			, member_birth = #{member_birth}
 			where member_id = #{member_id}
 	</update> 
-	 	 
+	
+	<select id="getNaverAccount" resultType="int">
+	 	 select count(*) from member where member_logintype = 'naver'
+	 </select>
 	 
+	 <select id="getBitAccount" resultType="int">
+	 	 select count(*) from member where member_logintype = 'bit'
+	 </select>
+	 
+	 <select id="getKakaoAccount" resultType="int">
+	 	 select count(*) from member where member_logintype = 'kakao'
+	 </select>
 </mapper>           

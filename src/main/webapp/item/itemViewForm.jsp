@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <link rel="stylesheet" href= "../css/item.css">
 
@@ -80,32 +81,21 @@
 				<th>제목</th>
 				<th>작성일</th>
 			</tr>
-			<!-- list로 돌리기 -->
+		<!-- list로 돌리기 -->
+			<c:if test="${reviewList!=null}">
+			<c:forEach var="reviewDTO" items="${reviewList}">
 			<tr>
-				<td align="center">1</td>
-				<td align="center">딸기 개존맛입니다</td>
-				<td align="center">2020-03-20</td>
+				<td align="center" width="15%">${reviewDTO.review_id}</td>
+				<td align="center" width="60%">${reviewDTO.review_subject }</td>
+				<td align="center" width="25%"><fmt:formatDate pattern="yyyy년 MM월 dd일" value="${reviewDTO.review_date}"/></td>
 			</tr>
-			<tr>
-				<td align="center">1</td>
-				<td align="center">딸기 개존맛입니다</td>
-				<td align="center">2020-03-20</td>
-			</tr>
-			<tr>
-				<td align="center">1</td>
-				<td align="center">딸기 개존맛입니다</td>
-				<td align="center">2020-03-20</td>
-			</tr>
-			<tr>
-				<td align="center">1</td>
-				<td align="center">딸기 개존맛입니다</td>
-				<td align="center">2020-03-20</td>
-			</tr>
+			</c:forEach>
+			</c:if>
 		</table>
 	</div>
 	<p style="clear: both; height: 1px;"></p>
 	<div class="itemBtnDiv">
-		<input type="button" class="itemViewReviewWriteBtn" value="후기 작성하기" onclick="location.href='/bitFarm/review/reviewWriteForm'">
+		<input type="button" class="itemViewReviewWriteBtn" value="후기 작성하기">
 	</div>
 	
 	<p style="clear: both; height: 100px;"></p>
@@ -150,7 +140,7 @@
 	</div>
 	<p style="clear: both; height: 1px;"></p>
 	<div class="itemBtnDiv">
-		<input type="button" class="itemViewSellerQnaBtn" value="판매자에게 문의하기" onclick="location.href='/bitFarm/information/infoQnABoard'">
+		<input type="button" class="itemViewSellerQnaBtn" value="판매자에게 문의하기">
 	</div>
 </div>
 <p style="clear: both; height: 10px;"></p>
@@ -249,9 +239,6 @@ $('.botqtyBtn').click(function(){
 });
 
 $('#mainCartBtn').click(function(){
-	//alert($('#item_qty').val());
-	//alert($('#itemAllPrice').text());
-	
 	let item_id = ${itemDTO.item_id};
 	let item_qty = $('#item_qty').val();
 	let itemAllPrice = $('#itemAllPrice').text();
@@ -260,8 +247,15 @@ $('#mainCartBtn').click(function(){
 		type : 'POST',
 		url : '/bitFarm/cart/cartAdd',
 		data : 'item_id=' + item_id + '&item_qty=' + item_qty + '&itemAllPrice=' + itemAllPrice,
-		success: function(){
-			location.href = '/bitFarm/cart/cartForm';
+		dataType : 'text',
+		success: function(data){
+			//alert(data);
+			if(data=='true'){
+				location.href = '/bitFarm/cart/cartForm';
+			}else{
+				alert('로그인 후 사용해주세요');
+				location.href = '/bitFarm/member/loginForm';
+			}
 		}
 	});
 });
@@ -275,10 +269,39 @@ $('#scrollCartBtn').click(function(){
 		type : 'POST',
 		url : '/bitFarm/cart/cartAdd',
 		data : 'item_id=' + item_id + '&item_qty=' + item_qty + '&itemAllPrice=' + itemAllPrice,
-		success: function(){
-			location.href = '/bitFarm/cart/cartForm';
+		dataType : 'text',
+		success: function(data){
+			//alert(data);
+			if(data=='true'){
+				location.href = '/bitFarm/cart/cartForm';
+			}else{
+				alert('로그인 후 사용해주세요');
+				location.href = '/bitFarm/member/loginForm';
+			}
 		}
 	});
+});
+
+$('.itemViewReviewWriteBtn').click(function(){
+	let id = '${memberId}';
+	//alert(id);
+	
+	if(id=='' || id==null){
+		alert('회원만 후기를 작성할 수 있습니다.');
+	}else {
+		location.href="/bitFarm/review/reviewWriteForm?item_id="+${itemDTO.item_id};
+	}
+});
+
+$('.itemViewSellerQnaBtn').click(function(){
+	let id = '${memberId}';
+	//alert(id);
+	
+	if(id=='' || id==null){
+		alert('회원만 문의를 작성할 수 있습니다.');
+	}else {
+		location.href="/bitFarm/information/infoQnABoard?item_id="+${itemDTO.item_id};	//주소 변경해야함 -> 판매자홈left 왼쪽에 두고 폼 만들기
+	}
 });
 
 ///////////////////////////////////////////////////////////

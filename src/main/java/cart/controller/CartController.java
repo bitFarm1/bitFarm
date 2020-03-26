@@ -50,17 +50,31 @@ public class CartController {
 	//장바구니 추가 버튼 누르면 장바구니 db에 추가하는 메소드
 	@RequestMapping(value="cartAdd", method=RequestMethod.POST)
 	@ResponseBody
-	public void cartAdd(@RequestParam String item_id, @RequestParam String item_qty, @RequestParam String itemAllPrice, HttpSession session) {
+	public boolean cartAdd(@RequestParam String item_id, @RequestParam String item_qty, @RequestParam String itemAllPrice, HttpSession session) {
 		//System.out.print("상품 아이디 : " + item_id + ", 상풍 개수 : " + item_qty + ", 상품 총 가격 : " + itemAllPrice + "\n");
 		
-		Map<String, Object> map = new HashMap<String, Object>();	//이거 서비스로 가져가서 담아야되나 싶긴한데 흠냐뤼
-		map.put("member_id", session.getAttribute("memberId"));
-		map.put("item_id", Integer.parseInt(item_id));
-		map.put("item_qty", Integer.parseInt(item_qty));
-		itemAllPrice = itemAllPrice.replace(",", "");
-		map.put("item_all_price", Integer.parseInt(itemAllPrice));
+		String member_id = (String)session.getAttribute("memberId");
+		//System.out.println(member_id);
 		
-		cartService.cartAdd(map);
+		boolean data = false;
+		
+		if(member_id==null) {
+			System.out.println("로그인ㄴㄴ 장바구니 이용 불가");
+			
+		}else {
+			data = true;
+			
+			Map<String, Object> map = new HashMap<String, Object>();	//이거 서비스로 가져가서 담아야되나 싶긴한데 흠냐뤼
+			map.put("member_id", member_id);
+			map.put("item_id", Integer.parseInt(item_id));
+			map.put("item_qty", Integer.parseInt(item_qty));
+			itemAllPrice = itemAllPrice.replace(",", "");
+			map.put("item_all_price", Integer.parseInt(itemAllPrice));
+			
+			cartService.cartAdd(map);
+		}
+		return data;
+		
 	}
 	
 	//장바구니에서 선택삭제 누르면 처리하는 메소드

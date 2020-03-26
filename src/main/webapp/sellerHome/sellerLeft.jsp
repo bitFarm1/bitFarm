@@ -31,7 +31,8 @@ a.sellerA:active {color: black; text-decoration: none;}
 
 <div style = "padding: 5px 0px 0px 200px;">
 <div class="sellerLeftDiv" >
-	<h2><a class="sellerA" href="/bitFarm/seller/sellerAll">판매자 홈</a>&nbsp;<img src="../storage/sellerhome.png" width="30" height="30" style="cursor: pointer;"></h2>
+	<h2><a class="sellerA" href="/bitFarm/sellerHome/sellerAll">판매자 홈</a>&nbsp;
+		<img src="../storage/sellerhome.png" width="30" height="30" style="cursor: pointer;"></h2>
 	<br>
 	<img src="../image/user.png" width="90px">
 	<h3>ㅇㅇ님</h3><br>
@@ -39,22 +40,22 @@ a.sellerA:active {color: black; text-decoration: none;}
 	<br><br>
 	<table width="100%" height="300px"> 
 		<tr>
-			<td><a class="sellerA" href="/bitFarm/seller/sellerAddForm">판매상품 등록하기</a></td>
+			<td><a class="sellerA" href="/bitFarm/sellerHome/sellerAddForm">판매상품 등록하기</a></td>
 		</tr>
 		<tr>
-			<td><a class="sellerA" href="/bitFarm/seller/sellerAll">판매상품 모아보기</a></td>
+			<td><a class="sellerA" href="/bitFarm/sellerHome/sellerAll">판매상품 모아보기</a></td>
 		</tr>
 		<tr>
-			<td><a class="sellerA" href="/bitFarm/seller/sellerStore">오프라인 매장</a></td>
+			<td><a class="sellerA" href="/bitFarm/sellerHome/sellerStore">오프라인 매장</a></td>
 		</tr>
 		<tr>
-			<td><a class="sellerA" href="/bitFarm/seller/sellerQnABoard">문의게시판</a></td>
+			<td><a class="sellerA" href="/bitFarm/sellerHome/sellerQnABoard">문의게시판</a></td>
 		</tr>
 		<tr>
-			<td><a class="sellerA" href="/bitFarm/seller/sellerOrder">주문현황</a></td>
+			<td><a class="sellerA" href="/bitFarm/sellerHome/sellerOrder">주문현황</a></td>
 		</tr>
 		<tr>
-			<td><a class="sellerA" href="/bitFarm/seller/sellerSell">매출현황</a></td>
+			<td><a class="sellerA" href="/bitFarm/sellerHome/sellerSell">매출현황</a></td>
 		</tr>
 	</table>
 </div>

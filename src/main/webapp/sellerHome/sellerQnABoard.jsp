@@ -35,32 +35,32 @@ a.info {color:black; text-decoration: none; font-size: 11pt;}
 		<!-- list로 돌리기 -->
 		<tr>
 			<td align="center">1</td>
-			<td style="text-align: left"><a class="info" href="/bitFarm/seller/sellerQnAView.do">배송문의합니다.</a></td>
+			<td style="text-align: left"><a class="info" href="/bitFarm/sellerHome/sellerQnAView.do">배송문의합니다.</a></td>
 			<td align="center">2020-03-20</td>
 		</tr>		
 		<tr>
 			<td align="center">2</td>
-			<td style="text-align: left"><a class="info" href="/bitFarm/seller/sellerQnAView.do">포도즙은 안파십니까.</a></td>
+			<td style="text-align: left"><a class="info" href="/bitFarm/sellerHome/sellerQnAView.do">포도즙은 안파십니까.</a></td>
 			<td align="center">2020-03-18</td>
 		</tr>
 		<tr>
 			<td align="center">3</td>
-			<td style="text-align: left"><a class="info" href="/bitFarm/seller/sellerQnAView.do">포도 알이 너무 귀여워요.</a></td>
+			<td style="text-align: left"><a class="info" href="/bitFarm/sellerHome/sellerQnAView.do">포도 알이 너무 귀여워요.</a></td>
 			<td align="center">2020-03-13</td>
 		</tr>
 		<tr>
 			<td align="center">4</td>
-			<td style="text-align: left"><a class="info" href="/bitFarm/seller/sellerQnAView.do">포도 소량으로 판매문의</a></td>
+			<td style="text-align: left"><a class="info" href="/bitFarm/sellerHome/sellerQnAView.do">포도 소량으로 판매문의</a></td>
 			<td align="center">2020-03-10</td>
 		</tr>
 		<tr>
 			<td align="center">5</td>
-			<td style="text-align: left"><a class="info" href="/bitFarm/seller/sellerQnAView.do">포도 알이 다 터져서 옴</a></td>
+			<td style="text-align: left"><a class="info" href="/bitFarm/sellerHome/sellerQnAView.do">포도 알이 다 터져서 옴</a></td>
 			<td align="center">2020-03-05</td>
 		</tr>
 		<tr>
 			<td align="center">6</td>
-			<td style="text-align: left"><a class="info" href="/bitFarm/seller/sellerQnAView.do">딸기쨈도 만들어주세요!</a></td>
+			<td style="text-align: left"><a class="info" href="/bitFarm/sellerHome/sellerQnAView.do">딸기쨈도 만들어주세요!</a></td>
 			<td align="center">2020-02-29</td>
 		</tr>
 	</table>

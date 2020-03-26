@@ -25,7 +25,7 @@
 	}	
 </style>
 <form id="infoBoardListForm" name="infoBoardListForm">
-<input type="hidden" name="pg" value="${pg }">
+<input type="hidden" id="pg" name="pg" value="${pg }">
 <div style="width:1000px; margin: 0 auto;">
 <h3>공지사항</h3> 
 	<table width="80%" border="1" cellpadding="15" frame="hsides" rules="rows"> 
@@ -73,12 +73,12 @@
 		
 <div id="pagingDiv">${informationPaging.pagingHTML}</div>
 	</div> 
-
+ 
 	<select name="searchOption" id="searchOption" style="width: 80px;">
 				<option value="information_subject">제목
 				<option value="information_name">아이디 
 	</select>
-	<input type="text" name="keyword">  
+	<input type="text" name="keyword" value="${keyword }">  
 	<input type="button" id="searchBtn" name="searchBtn" value="검색"> 
 </form> 
 </div> 
@@ -91,16 +91,15 @@ function informationPaging(pg){
 	
 }
   
-$('#searchBtn').click(function(event){   
+$('#searchBtn').click(function(event){    
 	document.infoBoardListForm.method = 'GET';
 	document.infoBoardListForm.action = '/bitFarm/information/getInfoSearch';
 	document.infoBoardListForm.submit();  
 });   
   
-function infoSearch(pg){   
+function infoSearch(pg){    
 	$('#pg').val(pg);  
-	$('#searchBtn').trigger('click'); 
-	  
+	$('#searchBtn').trigger('click'); 	  
 } 
 
 </script>

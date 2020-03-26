@@ -68,4 +68,22 @@ public class MemberDAOMybatis implements MemberDAO {
 		return sqlSession.update("memberSQL.modify2", memberDTO);
 	}
 
+	@Override
+	public int getNaverAccount() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("memberSQL.getNaverAccount");
+	}
+
+	@Override
+	public int getBitAccount() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("memberSQL.getBitAccount");
+	}
+
+	@Override
+	public int getKakaoAccount() { 
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("memberSQL.getKakaoAccount");
+	}
+
 }

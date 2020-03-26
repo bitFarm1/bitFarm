@@ -16,6 +16,6 @@
 			<a class="infoA" href="#">자주하는 질문</a><br><br> 
 			<a class="infoA" href="/bitFarm/information/infoQnABoard">1:1 문의작성</a><br><br>
 			<a class="infoA" href="/bitFarm/information/infoQnAList">1:1 문의내역</a><br><br> 
-			<a class="infoA" href="#">음</a>	<br><br>
+			<a class="infoA" href="/bitFarm/information/dataList">회원데이터</a>	<br><br>
 	
-</div>
+</div> 

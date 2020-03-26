@@ -22,7 +22,13 @@ public interface MemberDAO {
 
 	public int modify1(MemberDTO memberDTO); 
 	
-	public int modify2(MemberDTO memberDTO); 
+	public int modify2(MemberDTO memberDTO);
+
+	public int getNaverAccount();
+	
+	public int getBitAccount();
+	 
+	public int getKakaoAccount();
 
 	
 } 

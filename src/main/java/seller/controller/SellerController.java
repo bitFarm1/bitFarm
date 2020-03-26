@@ -100,7 +100,6 @@ public class SellerController {
 		mav.setViewName("/member/mailmail"); 
 	  
 		return mav; 
-	}
-	
+	}	
 }
 

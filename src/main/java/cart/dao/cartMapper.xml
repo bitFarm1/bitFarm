@@ -5,11 +5,31 @@
 
 <mapper namespace="cartSQL">
 	<insert id="cartAdd" parameterType="java.util.Map">
-		insert into cart values(#{user_id}, #{user_id}, #{item_id}, #{item_qty}, #{item_all_price})
+		insert into cart values(#{member_id}, #{member_id}, #{item_id}, #{item_qty}, #{item_all_price})
 	</insert>
 	
-	<select id="cartAllList" parameterType="String" resultType="cart">
-		select cart_id, user_id, item_name, item_qty, item_all_price from cart 
-		join item using(item_id) where cart_id=#{memberId}
+	<select id="cartAllList" parameterType="String" resultType="cartList">
+		select cart_id, member_id, item_id, item_name, item_main_image, item_qty, item_all_price 
+		from cart 
+		join item using(item_id) 
+		where cart_id=#{member_id}
+	</select>
+	
+	<!-- service단에서 for문 돌려서 지움 -->
+	<delete id="cartChoiceDelete" parameterType="java.util.Map">
+		delete from cart where cart_id in (select cart_id from cart where cart_id=#{memberId}) and item_id in #{check}
+	</delete>
+	
+	<!-- 배열 자체를 받아와서 한번에 지우려고했으나 실패쓰; -->
+	<delete id="cartChoiceDelete1" parameterType="java.util.Map">
+	<!-- delete from cart where cart_id in (select cart_id from cart where cart_id='hong') and item_id in '14'; -->
+		delete from cart where cart_id in (select cart_id from cart where cart_id = #{memberId}) and item_id in
+		<foreach collection="check" item="seq" separator="," open="(" close=")">
+			#{check}
+		</foreach>
+	</delete>
+	
+	<select id="cartListAllPrice" parameterType="String" resultType="int">
+		select sum(item_all_price) from cart where cart_id=#{memberId}
 	</select>
 </mapper>

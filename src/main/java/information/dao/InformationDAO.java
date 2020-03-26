@@ -18,7 +18,11 @@ public interface InformationDAO {
 
 	public InformationDTO infoView(String seq);
 
-	public int informationTotalA();  
+	public int informationTotalA();
 
+	public List<InformationDTO> getInfoSearch(Map<String, String> map);
+
+	public int getInfoSearchTotalA(Map<String, String> map);  
+ 
 }
-    
+     

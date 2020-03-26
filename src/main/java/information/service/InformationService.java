@@ -1,6 +1,7 @@
 package information.service;
 
 import java.util.List;
+import java.util.Map;
 
 import information.bean.InformationDTO;
 import information.bean.InformationPaging;
@@ -18,7 +19,11 @@ public interface InformationService {
 
 	public InformationDTO infoView(String seq);
  
-	public InformationPaging informationPaging(String pg);  
+	public InformationPaging informationPaging(String pg);
+
+	public List<InformationDTO> getInfoSearch(Map<String, String> map);
+ 
+	public InformationPaging informationPaging(Map<String, String> map);   
  
 }  
     

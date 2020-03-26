@@ -51,5 +51,17 @@ public class InformationDAOMybatis implements InformationDAO{
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("informationSQL.informationTotalA");
 	}
+
+	@Override
+	public List<InformationDTO> getInfoSearch(Map<String, String> map) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("informationSQL.getInfoSearch", map);
+	}
+
+	@Override
+	public int getInfoSearchTotalA(Map<String, String> map) {  
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("informationSQL.getInfoSearchTotalA", map);
+	} 
  
 }  

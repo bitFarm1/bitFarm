@@ -13,16 +13,30 @@ a.sellerA:active {color: black; text-decoration: none;}
 	text-align: center;
 	/* border: 1px dotted red; */
 }
+.pickSellerBtn{
+	width: 150pt;
+	height: 40pt;
+	color: #000000;
+	background-color: #ffffff;
+	border-radius: 10px; 
+	line-height: 20px;  
+    border: 1px solid #ccc;
+    outline: none; 
+	font-weight: bold;
+	font-size: 17px;
+	cursor: pointer;
+}
 </style>
 
 
 <div style = "padding: 5px 0px 0px 200px;">
 <div class="sellerLeftDiv" >
-	<h2><a class="sellerA" href="/bitFarm/seller/sellerAll">판매자 홈</a></h2>
+	<h2><a class="sellerA" href="/bitFarm/seller/sellerAll">판매자 홈</a>&nbsp;<img src="../storage/sellerhome.png" width="30" height="30" style="cursor: pointer;"></h2>
 	<br>
 	<img src="../image/user.png" width="90px">
-	<h3>ㅇㅇ님</h3>
-	<br><br><br><br>
+	<h3>ㅇㅇ님</h3><br>
+	<input type="button" value="판매자 찜하기" class="pickSellerBtn">
+	<br><br>
 	<table width="100%" height="300px"> 
 		<tr>
 			<td><a class="sellerA" href="/bitFarm/seller/sellerAddForm">판매상품 등록하기</a></td>

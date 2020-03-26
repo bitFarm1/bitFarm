@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import seller.bean.SellerDTO;
+import seller.service.SellerService;
+
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -15,16 +18,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
-import seller.bean.SellerDTO;
-import seller.service.SellerService;
 
+ 
 @Controller
-@RequestMapping(value="seller")
+@RequestMapping(value="seller") 
 public class SellerController {
 	///////////////////////////////////////////////김정훈
 	@Autowired
-	private SellerService sellerService;
-	
+	private SellerService sellerService;  
+	 
 	@Autowired
 	private BCryptPasswordEncoder pwdEncoder;
 	
@@ -37,7 +39,7 @@ public class SellerController {
 		return mav; 
 	}
 	
-	@RequestMapping(value="/login", method=RequestMethod.POST) 
+	@RequestMapping(value="/login", method=RequestMethod.POST)  
 	public ModelAndView login(@RequestParam Map<String, String> map, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		
@@ -47,7 +49,7 @@ public class SellerController {
 		System.out.println(id);  
 		boolean pwdMatch = pwdEncoder.matches(pwd, sellerService.getSellerPwd(id));
 		
-		if(pwdMatch) {
+		if(pwdMatch) { 
 			SellerDTO sellerDTO = sellerService.login(map);
 			session.setAttribute("sellerName", sellerDTO.getSeller_name()); //session은 내장 기본 객체 default 30분  
 			session.setAttribute("sellerId", map.get("id"));   

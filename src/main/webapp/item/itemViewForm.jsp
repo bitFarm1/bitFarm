@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<link rel="stylesheet" href= "../css/itemViewForm.css">
+<link rel="stylesheet" href= "../css/item.css">
 
 <!-- 상품 상세페이지 메인화면 -->
 <form name="itemViewForm" method="post">
@@ -12,7 +12,10 @@
 		&emsp;
 	</div>
 	<div class="itemCartDiv">
-		<p style="font-size: 1.7em; font-weight: bold;">[${itemDTO.seller_name}]&nbsp;${itemDTO.item_name}</p>
+		<p style="font-size: 1.7em; font-weight: bold;">
+			[${itemDTO.seller_name}]&nbsp;${itemDTO.item_name}&nbsp;
+			<img src="../storage/sellerhome.png" width="30" height="30" style="cursor: pointer;">
+		</p>
 		<font color="gray">${itemDTO.item_explain}</font>
 		<br><br>
 		<p style="font-size: 1.7em;">
@@ -171,7 +174,7 @@
 		<br>
 		<div class="miniCartDiv_visible_itemInfo">
 			<span style="width: 39.99%; height: 30px;  float: left; background: #f8f8f8;">
-				[${itemDTO.seller_name}] ${itemDTO.item_name}
+				[${itemDTO.seller_name}]&nbsp;${itemDTO.item_name}
 			</span>
 			<span style="width: 60%; height: 30px; float: right; background: #f8f8f8;">
 				<span style="width:20%; float: center;">
@@ -262,6 +265,22 @@ $('#mainCartBtn').click(function(){
 		}
 	});
 });
+
+$('#scrollCartBtn').click(function(){
+	let item_id = ${itemDTO.item_id};
+	let item_qty = $('#item_qty1').val();
+	let itemAllPrice = $('#itemAllPrice').text();
+	
+	$.ajax({
+		type : 'POST',
+		url : '/bitFarm/cart/cartAdd',
+		data : 'item_id=' + item_id + '&item_qty=' + item_qty + '&itemAllPrice=' + itemAllPrice,
+		success: function(){
+			location.href = '/bitFarm/cart/cartForm';
+		}
+	});
+});
+
 ///////////////////////////////////////////////////////////
 $('.goPickItemBtn').click(function(){
 	
@@ -288,9 +307,5 @@ $('.goPickItemBtn').click(function(){
 			alert("로그인 후 사용해주세요");
 		}
 	}); 
-});
-///////////////////////////////////////////////////////////
-$('#scrollCartBtn').click(function(){
-	window.location.href = '/bitFarm/cart/cartForm';
 });
 </script>

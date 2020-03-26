@@ -2,8 +2,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <link rel="stylesheet" href= "../css/top.css">
 <div align="right">				
-<strong>${memberName }</strong>&emsp;&emsp;	
-<c:if test="${sellerId!=null }">
+<strong>${memberName}</strong>님&emsp;&emsp;	
+<c:if test="${sellerId!=null}">
 	<a class="indexA" href="/bitFarm/seller/sellerStore">판매자홈</a>&emsp;&emsp;
 </c:if>
 	 
@@ -25,7 +25,7 @@
 
 <!-- 전체 사용자 -->
 </c:if>
-	<a class="indexA" href="/bitFarm/information/infoBoard">고객센터</a>&emsp;&emsp;&emsp;&emsp;
+	<a class="indexA" href="/bitFarm/information/infoBoardList">고객센터</a>&emsp;&emsp;&emsp;&emsp;
 
 </div><br><br>
 

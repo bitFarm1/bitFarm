@@ -13,4 +13,4 @@ public class SellerDTO {
 	private String seller_address1;
 	private String seller_address2;
 	private String seller_profileImage;	
-} 
+}  

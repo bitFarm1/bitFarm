@@ -26,12 +26,12 @@
 			<h5><strong>상콤상콤 딸기</strong></h5><br>
 		</td>
 		<td align="center">
-			<img class="mainImageList_image" src="../image/berry.jpg" onclick="itemClick(14)"><br><br>
-			<h5><strong>상콤상콤 딸기</strong></h5><br>
+			<img class="mainImageList_image" src="../storage/abocadoMain.JPG" onclick="itemClick(14)"><br><br>
+			<h5><strong>아보카도</strong></h5><br>
 		</td>
 		<td align="center">
-			<img class="mainImageList_image" src=""><br><br>
-			<h5><strong>상콤상콤 딸기</strong></h5><br>
+			<img class="mainImageList_image" src="../storage/lemonMain.JPG" onclick="itemClick(15)"><br><br>
+			<h5><strong>레몬</strong></h5><br>
 		</td>
 		<td align="center">
 			<img class="mainImageList_image" src=""><br><br>

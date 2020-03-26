@@ -13,10 +13,9 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 @Configuration
 public class SpringConfiguration {
 	
-	/*
-		chapter04 applicationContext.xml 보면 DataSource를 얻어오는 클래스가 BasicDataSource임
-		BasicDataSource는 환경설정을 setter로 잡고있기때문에 여기서도 setter로 설정함
-	*/
+	//chapter04 applicationContext.xml 보면 DataSource를 얻어오는 클래스가 BasicDataSource임
+	//BasicDataSource는 환경설정을 setter로 잡고있기때문에 여기서도 setter로 설정함
+
 	@Bean
 	public BasicDataSource dataSource() {
 		BasicDataSource basicDataSource = new BasicDataSource();

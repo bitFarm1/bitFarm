@@ -1,0 +1,78 @@
+@charset "UTF-8";
+hr.orderHr{
+	width: 80%; height: 1px; background-color: #5f0080;
+}
+.defalutLeftDiv h2{
+	margin-bottom: 0;
+    padding-bottom: 17px;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 29px;
+    color: #808080;
+}
+.defalutLeftDiv{
+	width: 80%;	
+	margin:0 auto; 
+	text-align: left;
+}
+.orderH2{
+	margin-bottom: 0;
+    padding-bottom: 17px;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 29px;
+    color: #808080;
+}
+.defalutCenterDiv{
+	width: 80%;	
+	margin:0 auto; 
+	text-align: center;
+}
+.itemInfo60{
+	width: 68%; float: left; text-align: right;
+}
+.itemInfo30{
+	width: 30%; float: left; text-align: center;
+}
+.shipAddBtn{
+	width: 80pt;
+	height: 27pt;
+	color: #ffffff;
+	border: 0;
+	outline: 0;
+	background-color: #5f0080;
+	border-radius: 5px; 
+	cursor: pointer;
+}
+.orderBtn{
+	width: 400pt;
+	height: 50pt;
+	color: #ffffff;
+	border: 0;
+	outline: 0;
+	font-size: 30px;
+	background-color: #5f0080;
+	border-radius: 10px; 
+	font-weight: bold;
+	cursor: pointer;
+}
+.orderTable,
+.orderItemTable,
+.orderTable_tdLeft{
+	border-top: 2px solid #5f0080;
+	border-bottom: 2px solid #ddd;
+	width: 100%;
+}
+.orderTable,
+.orderTable_tdLeft th{
+	width: 30%;
+}
+.orderTable_tdLeft td{
+	text-align: left;
+}
+.shipInfoText{
+	height: 30px;
+	border-radius: 3px;
+	border: 1px solid #ccc;
+    outline: none; 
+}

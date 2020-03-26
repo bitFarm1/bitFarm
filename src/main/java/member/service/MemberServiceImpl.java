@@ -91,4 +91,25 @@ public class MemberServiceImpl implements MemberService {
 		
 	}
 
+	@Override
+	public void delete(Map<String, String> map) {
+		memberDAO.delete(map);
+		
+	}
+
+	@Override
+	public void deleteInfo(Map<String, String> map) {
+		memberDAO.deleteInfo(map);		
+	}
+	
+	@Override
+	public int modify1(MemberDTO memberDTO) {
+		return memberDAO.modify1(memberDTO); 
+	}
+	
+	@Override
+	public int modify2(MemberDTO memberDTO) {
+		return memberDAO.modify2(memberDTO);
+	}
+
 }

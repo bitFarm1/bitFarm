@@ -20,5 +20,13 @@ public interface MemberService {
 
 	public MemberDTO checkAccount(Map<String, String> map);
 
+	public void delete(Map<String, String> map);
+
+	public void deleteInfo(Map<String, String> map);
+
+	public int modify1(MemberDTO memberDTO);   
+	
+	public int modify2(MemberDTO memberDTO);  
+ 
 }
   

@@ -47,6 +47,14 @@
 		select count(*) from pickItem where pick_item_id = #{item_id} and pick_item_user_id = #{id} 
 	</select>	
 	
+	<delete id="deleteChoicePickItem" parameterType = "java.util.Map">
+		delete from pickItem where pick_item_user_id in (select pick_item_user_id from pickItem where pick_item_user_id = #{id}) and pick_item_id in #{check}
+	</delete>
+	
+	<delete id="deletePickItem" parameterType = "java.util.Map">
+		delete from pickItem where pick_item_user_id in (select pick_item_user_id from pickItem where pick_item_user_id = #{id}) and pick_item_id in #{deleteId}
+	</delete>
+	
 	<!-- 찜한 판매자 -->
 	<select id = "getMypagePickSeller" resultType = "mypagePickSellerDTO" parameterType="String">
 		select * from pickSeller where pick_seller_user_id = #{id}

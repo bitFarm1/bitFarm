@@ -97,12 +97,29 @@ public class MypageServiceImpl implements MypageService {
 		//찜에 있는지 확인
 		String existItem = mypageDAO.existItem(existMap);
 	
-	//	System.out.println(">>>>"+existItem);
 		if(existItem != "true") {
-	//		System.out.println("없다");
+	
 			mypageDAO.goPickItem(map);
 		}
 		return existItem;
+	}
+	
+	@Override
+	public void deleteChoicePickItem(String[] check, String id) {
+		
+		for(int i=0; i<check.length; i++) {
+			Map<String, String> map = new HashMap<String, String>();
+			map.put("id", id);
+			map.put("check", check[i]);
+			mypageDAO.deleteChoicePickItem(map);
+		}
+		
+	}
+	
+	@Override
+	public void deletePickItem(Map<String, String> map) {
+		mypageDAO.deletePickItem(map);
+		
 	}
 
 	//찜한 판매자
@@ -113,5 +130,9 @@ public class MypageServiceImpl implements MypageService {
 		
 		return list;
 	}
+
+	
+
+	
 
 }

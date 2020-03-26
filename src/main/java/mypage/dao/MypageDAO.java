@@ -32,6 +32,10 @@ public interface MypageDAO {
 
 	public void goPickItem(Map<String, Object> map);
 
-	public String existItem(Map<String, String> existMap);  
+	public String existItem(Map<String, String> existMap);
+
+	public void deleteChoicePickItem(Map<String, String> map);
+
+	public void deletePickItem(Map<String, String> map);  
 
 }

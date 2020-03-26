@@ -32,4 +32,8 @@ public interface MypageService {
 
 	public List<MypagePickSellerDTO> getMypagePickSeller(String id);
 
+	public void deleteChoicePickItem(String[] check, String id);
+
+	public void deletePickItem(Map<String, String> map);
+
 }

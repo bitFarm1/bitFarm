@@ -91,9 +91,17 @@ public class MypageDAOMyBatis implements MypageDAO {
 		
 		return exist;
 	}
-
 	
-
+	@Override
+	public void deleteChoicePickItem(Map<String, String> map) {
+		sqlSession.delete("mypageSQL.deleteChoicePickItem", map);
+	}
+	
+	@Override
+	public void deletePickItem(Map<String, String> map) {
+		sqlSession.delete("mypageSQL.deletePickItem", map);
+		
+	}
 
 	//찜한 판매자
 	@Override
@@ -101,6 +109,10 @@ public class MypageDAOMyBatis implements MypageDAO {
 		
 		return sqlSession.selectList("mypageSQL.getMypagePickSeller",id);
 	}
+
+	
+
+	
 
 
 	

@@ -9,8 +9,12 @@
 		select * from review where item_id=#{item_id}
 	</select>
 
-	<select id="getItemName" parameterType="String" resultType="String">
-		select item_name from item where item_id=#{item_id}
+	<select id="getItemDTO" parameterType="String" resultType="item">
+		select * from item where item_id=#{item_id}
 	</select>
+	
+	<insert id="reviewWrite" parameterType="review">
+		insert into review values(review_seq.nextval, #{review_subject}, #{review_content}, #{review_image}, #{review_user_id}, sysdate, #{item_id})
+	</insert>
 	
 </mapper>

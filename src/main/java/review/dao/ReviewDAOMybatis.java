@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import item.bean.ItemDTO;
 import review.bean.ReviewDTO;
 
 @Repository("reviewDAO")
@@ -21,8 +22,13 @@ public class ReviewDAOMybatis implements ReviewDAO {
 	}
 
 	@Override
-	public String getItemName(String item_id) {
-		return sqlSession.selectOne("reviewSQL.getItemName", item_id);
+	public ItemDTO getItemDTO(String item_id) {
+		return sqlSession.selectOne("reviewSQL.getItemDTO", item_id);
+	}
+
+	@Override
+	public void reviewWrite(ReviewDTO reviewDTO) {
+		sqlSession.insert("reviewSQL.reviewWrite", reviewDTO);
 	}
 
 }

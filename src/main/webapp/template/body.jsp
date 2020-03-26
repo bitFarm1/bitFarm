@@ -33,15 +33,6 @@
 
 <!-- 메인 리스트 추가하기 -->
 <jsp:include page="mainImageList.jsp"/>
-<%-- <c:forEach var="tr" begin="1" end="12" step="1">
-<div style="width: 80%; margin: 0 auto; text-align: center;">
-	<c:forEach var="td" begin="${tr}" end="9" step="1">
-	<div style="width: 33%; float: left; border: 1px dotted red;">${td}</div>
-	<div style="width: 33%; float: left; border: 1px dotted green;">${td+1}</div>
-	<div style="width: 33%; float: left; border: 1px dotted red;">${td+2}</div>
-	</c:forEach>
-</div>
-</c:forEach> --%>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>

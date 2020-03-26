@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import item.bean.ItemDTO;
 import review.bean.ReviewDTO;
 import review.dao.ReviewDAO;
 
@@ -19,8 +20,13 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
-	public String getItemName(String item_id) {
-		return reviewDAO.getItemName(item_id);
+	public ItemDTO getItemDTO(String item_id) {
+		return reviewDAO.getItemDTO(item_id);
+	}
+
+	@Override
+	public void reviewWrite(ReviewDTO reviewDTO) {
+		reviewDAO.reviewWrite(reviewDTO);
 	}
 
 }

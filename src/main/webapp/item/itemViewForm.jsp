@@ -79,6 +79,7 @@
 			<tr>
 				<th>글번호</th>
 				<th>제목</th>
+				<th>작성자</th>
 				<th>작성일</th>
 			</tr>
 		<!-- list로 돌리기 -->
@@ -86,10 +87,16 @@
 			<c:forEach var="reviewDTO" items="${reviewList}">
 			<tr>
 				<td align="center" width="15%">${reviewDTO.review_id}</td>
-				<td align="center" width="60%">${reviewDTO.review_subject }</td>
+				<td align="center" width="35%">${reviewDTO.review_subject }</td>
+				<td align="center" width="25%">${reviewDTO.review_user_id }</td>
 				<td align="center" width="25%"><fmt:formatDate pattern="yyyy년 MM월 dd일" value="${reviewDTO.review_date}"/></td>
 			</tr>
 			</c:forEach>
+			</c:if>
+			<c:if test="${reviewList==null}">	<!-- ㅇㅏ 카트도 그렇고 이거 도대체 왜 안뜨지 -->
+			<tr>
+				<td colspan="3" align="center">작성된 리뷰가 없습니다!</td>
+			</tr>
 			</c:if>
 		</table>
 	</div>
@@ -241,6 +248,7 @@ $('.botqtyBtn').click(function(){
 $('#mainCartBtn').click(function(){
 	let item_id = ${itemDTO.item_id};
 	let item_qty = $('#item_qty').val();
+	//alert(item_qty);
 	let itemAllPrice = $('#itemAllPrice').text();
 	
 	$.ajax({

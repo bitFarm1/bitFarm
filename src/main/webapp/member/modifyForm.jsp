@@ -97,26 +97,27 @@
 <div style="height:20px;"></div>
 <div> 
 	<table cellpadding="10px">  
-		<tr> 
+		<tr id="hidden0">   
 			<th class="subject">아이디*</th>
-			<td style="vertical-align: top;"><input class="layoutT" type="text" name="member_id" value="${memberDTO.member_id }">&emsp;
+			<td style="vertical-align: top;"><input class="layoutT" type="text" name="member_id" value="${memberDTO.member_id }" readonly="readonly">&emsp;
 			<br id="member_id_p" style="display: none;"><span id="member_id_Div" ></span></br></td>					
-		</tr>  
-		<tr>
+		</tr>   
+	
+		<tr id="hidden1">		
 			<th class="subject">현재비밀번호*</th> 
 			<td style="padding-top: 2px;"><input class="layoutT" type="password" name="pwd">
 			<br id="pwd_p" style="display: none;"><span id="pwdDiv" ></span></br></td> 
 		</tr>
-		<tr>   
+		<tr id="hidden2">   
 			<th class="subject">비밀번호변경*</th>   
 			<td><input class="layoutT" type="password" name="member_pwd" readonly="readonly"></td>
 		</tr>
-		<tr>
+		<tr id="hidden3">
 			<th class="subject">비밀번호변경확인*</th> 
 			<td style="padding-top: 2px;"><input class="layoutT" type="password" name="member_repwd" readonly="readonly">
 			<br id="member_pwd_p" style="display: none;"><span id="member_pwd_Div" ></span></br></td>
 		</tr>
-		
+	
 		<tr>
 			<th class="subject">이름*</th>
 			<td><input class="layoutT" type="text" name="member_name" placeholder="고객님의 이름을 입력해주세요" value="${memberDTO.member_name }">
@@ -168,6 +169,14 @@
 
 <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
+$(document).ready(function(){
+	if('${loginType}' != 'bit'){
+		$('#hidden0').css("display", "none"); 
+		$('#hidden1').css("display", "none");  
+		$('#hidden2').css("display", "none");    
+		$('#hidden3').css("display", "none");   
+	}  
+});
 
 
 $('input[name=member_id]').focusout(function(){	

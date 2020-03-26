@@ -140,7 +140,7 @@
 		<tr>
 			<th class="subject">사업장 주소*</th>
 			<td><input class="layoutT" type="text" id="seller_address1" name="seller_address1" readonly="readonly">&emsp;
-			<input class="layoutB" type="button" name="checkAddress" value="주소 검색">
+			<input class="layoutB" type="button" name="checkAddress" onclick="execDaumPostcode()" value="주소 검색">
 			</td>
 		</tr> 
 		
@@ -469,5 +469,5 @@ function checkAll(){
                                                
             }
         }).open();
-    }
+    } 
 </script>

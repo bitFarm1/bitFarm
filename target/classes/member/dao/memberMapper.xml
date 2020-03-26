@@ -37,7 +37,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<insert id="deleteInfo" parameterType="java.util.Map"> 
 		insert into deleteInfo values(#{id}
-		,#{deleteInfo_why}		
+		,nvl(#{deleteInfo_why},0)		
 		,nvl(#{deleteInfo_Content},0)  
 		,sysdate)		 
 	</insert> 

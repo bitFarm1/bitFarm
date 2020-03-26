@@ -47,8 +47,8 @@ public class InformationServiceImpl implements InformationService {
 
 	@Override
 	public List<InformationDTO> infoBoardList(String pg) {
-		int endNum = Integer.parseInt(pg)*10;
-		int startNum = endNum-9;
+		int endNum = Integer.parseInt(pg)*5;
+		int startNum = endNum-4;
 		
 		Map<String, Integer> map = new HashMap<String, Integer>();
 		map.put("startNum", startNum);
@@ -69,16 +69,37 @@ public class InformationServiceImpl implements InformationService {
 		
 		informationPaging.setCurrentPage(Integer.parseInt(pg)); 
 		informationPaging.setPageBlock(3);
-		informationPaging.setPageSize(9);
+		informationPaging.setPageSize(5);
 		informationPaging.setTotalA(totalA); 
 		informationPaging.makePagingHTML(); 
 		
 		return informationPaging;
-	} 
-	 
-	
-	
-	
+	}
+
+	@Override 
+	public List<InformationDTO> getInfoSearch(Map<String, String> map) {
+		int endNum = Integer.parseInt(map.get("pg"))*5;
+		int startNum = endNum-4; 
+		
+		map.put("startNum", startNum+""); 
+		map.put("endNum", endNum+"");  
+		
+		List<InformationDTO> list = informationDAO.getInfoSearch(map);
+		return list;
+	}
+
+	@Override
+	public InformationPaging informationPaging(Map<String, String> map) {
+		
+		int totalA = informationDAO.getInfoSearchTotalA(map);//총글수
+		
+		informationPaging.setCurrentPage(Integer.parseInt(map.get("pg"))); 
+		informationPaging.setPageBlock(3);
+		informationPaging.setPageSize(5); 
+		informationPaging.setTotalA(totalA);
+		informationPaging.makeSearchPagingHTML();   
+		return informationPaging; 
+	} 	
 
 	
 }

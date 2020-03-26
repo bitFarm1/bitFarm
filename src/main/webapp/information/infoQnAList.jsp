@@ -22,9 +22,8 @@ th{
 			<th>글번호</th>
 			<th width="250px;">제목</th> 
 			<th>작성자</th>
-			<th>작성일</th>   
-			    
-		</tr>  
+			<th>작성일</th>  			    
+		</tr>   
 		
 <c:forEach var="informationQnADTO" items="${list }">
 <c:set var="seq" value="${informationQnADTO.infoQnA_seq }"/>
@@ -32,17 +31,19 @@ th{
 <c:set var="infoQnA_subject" value="${informationQnADTO.infoQnA_subject }"/>
 <c:set var="infoQnA_userID" value="${informationQnADTO.infoQnA_userID }"/>
 <c:set var="infoQnA_askDate" value="${informationQnADTO.infoQnA_askDate }"/>
+<c:set var="infoQnA_content" value="${informationQnADTO.infoQnA_content }"/>
+<c:set var="infoQnA_imageName" value="${informationQnADTO.infoQnA_imageName }"/>
 
 	<tr> 
 		<td style="width:100px; height:10px" align="center">
 		${seq }  
 		</td> 
 		  
-		<td style="width:100px">  
-		<a class="info" href="#">[${infoQnA_type }] ${infoQnA_subject }</a>
+		<td id="${seq }" style="width:100px">    
+		<a class="info"		 style="cursor: pointer;">[${infoQnA_type }] ${infoQnA_subject }</a>
 		</td>  
 		
-		 
+		  
 		<td style="width:200px" align="center"> 
 		${infoQnA_userID }
 		</td>  
@@ -51,12 +52,35 @@ th{
 		${infoQnA_askDate } 
 		</td>			
 	</tr>	 
-</c:forEach>
-
-	</table>
-</div> 
-<input type="hidden" name="pg" value="${pg }">
+	 
+	<tr id="hidden${seq }" style="display:none;" >  
+		<td colspan="2"  align="left"> 
+			${infoQnA_content }<br>
+		</td>
+		<td colspan="2"  align="center"> 
+			<img src="../storage/${infoQnA_imageName }" width="200" height="200">
+		</td>			
+	</tr>    
+ 
 <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
-
+ 
+var ishidden = false;
+	
+$('#${seq}').click(function(){
+	ishidden = !ishidden;
+	if(ishidden){
+		$('#hidden${seq}').css("display", "table-row"); 
+	}else{  
+		$('#hidden${seq}').css("display", "none"); 
+	}
+});  
+ 
 </script>
+</c:forEach> 
+    
+</table> 
+<input type="hidden" name="pg" value="${pg }">
+<input type="hidden" id="dis" name="dis" value="">
+</div>  
+

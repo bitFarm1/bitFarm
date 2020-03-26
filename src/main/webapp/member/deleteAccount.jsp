@@ -76,7 +76,7 @@
 		</td>
 		
 	</tr> 	
-	<tr> 
+	<tr id="typeHidden"> 
 		<td class="title" style="height:50px; border-bottom: 1px solid grey;">비밀번호</td> 
 		<td style="text-align:left; border-bottom: 1px solid grey;"><input style="width:150px; height:30px;" id="pwd" type="password" name="pwd">
 		<div id="pwdDiv"></div>
@@ -113,31 +113,39 @@
 
 <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
+if('${loginType}' != 'bit'){
+	$('#typeHidden').css('display','none');
+} 
+
 $('#infoWriteBtn').click(function(){
-	if($('#pwd').val()==''){
-		$('#pwdDiv').text('패스워드를 입력해주세요.');
-		$('#pwdDiv').css('font-size','9pt'); 
-		$('#pwdDiv').css('color','red');
-		$('#pwdDiv').css('font-weight','bold');
+	if('${loginType}' == 'bit'){	 
+		if($('#pwd').val()==''){
+			$('#pwdDiv').text('패스워드를 입력해주세요.');
+			$('#pwdDiv').css('font-size','9pt'); 
+			$('#pwdDiv').css('color','red');
+			$('#pwdDiv').css('font-weight','bold');
+		}else{
+			$.ajax({ 
+				type : 'post',
+				url : '/bitFarm/member/checkPwd',
+	 			data : {'pwd' : $('input[name=pwd]').val()},
+				dataType : 'json',
+				success : function(data){ 
+					//alert(data.login);  
+					if(data.login == 'fail'){ 
+						$('#pwdDiv').text('잘못된 비밀번호입니다.'); 
+		        		$('#pwdDiv').css('color','red');
+		        		$('#pwdDiv').css('font-weight','bold');
+		        		$('#pwdDiv').css('font-size','9pt');
+					}else{ 
+						$('#deleteForm').submit();
+					} 
+				}
+			});	
+		}
 	}else{
-		$.ajax({ 
-			type : 'post',
-			url : '/bitFarm/member/checkPwd',
- 			data : {'pwd' : $('input[name=pwd]').val()},
-			dataType : 'json',
-			success : function(data){ 
-				//alert(data.login);  
-				if(data.login == 'fail'){ 
-					$('#pwdDiv').text('잘못된 비밀번호입니다.'); 
-	        		$('#pwdDiv').css('color','red');
-	        		$('#pwdDiv').css('font-weight','bold');
-	        		$('#pwdDiv').css('font-size','9pt');
-				}else{ 
-					$('#deleteForm').submit();
-				} 
-			}
-		});	
-		
-	}
+		$('#deleteForm').submit();
+	} 
+	
 });
 </script>

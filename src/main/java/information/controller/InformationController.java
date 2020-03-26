@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -30,7 +31,7 @@ import information.service.InformationService;
 public class InformationController {
 	@Autowired 
 	private InformationService informationService;
-		
+		 
 	@RequestMapping(value="/infoQnABoard", method=RequestMethod.GET)
 	public ModelAndView infoQnABoard() {
 		ModelAndView mav = new ModelAndView();
@@ -148,5 +149,29 @@ public class InformationController {
 		   
 		return mav;
 	} 
+	
+	@RequestMapping(value="getInfoSearch", method=RequestMethod.GET)
+	public ModelAndView getInfoSearch(@RequestParam Map<String, String> map, HttpSession session) {
+		//Map에 pg, searchOption, keyword 있음
+		String pg = map.get("pg");
+		System.out.println("pg = "+pg); 
+		
+		List<InformationDTO> list = informationService.getInfoSearch(map);   
+		
+		//페이징 처리  
+		InformationPaging informationPaging = informationService.informationPaging(map); 
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("searchOption",map.get("searchOption"));  
+		mav.addObject("keyword",map.get("keyword"));   
+		mav.addObject("list", list);
+		mav.addObject("pg", pg);
+		mav.addObject("informationPaging", informationPaging);  
+		mav.addObject("display", "/information/infoMain.jsp");
+		mav.addObject("info", "/information/getInfoSearch.jsp");  
+		mav.setViewName("/main/main");   
+		 
+		return mav;   
+	}	 
+	
 	
 }

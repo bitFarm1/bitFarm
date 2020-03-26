@@ -68,7 +68,7 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="/beforeModify", method=RequestMethod.GET)
-	public ModelAndView beforeModify() {
+	public ModelAndView beforeModify(HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		
 		mav.addObject("display", "/member/beforeModify.jsp");
@@ -209,6 +209,7 @@ public class MemberController {
 			session.setAttribute("memberName", memberDTO.getMember_name()); //session은 내장 기본 객체 default 30분  
 			session.setAttribute("memberId", map.get("id"));   
 			session.setAttribute("memberEmail", memberDTO.getMember_email());
+			session.setAttribute("loginType", memberDTO.getMember_loginType());
 			mav.addObject("login","success"); 			    
 		}else {			
 			mav.addObject("login","fail"); 

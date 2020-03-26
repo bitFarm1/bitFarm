@@ -150,26 +150,38 @@ public class MypageController {
 	
 	@RequestMapping(value="/goPickItem", method=RequestMethod.POST)
 	@ResponseBody
-	public String goPickItem(@RequestParam String item_id, HttpSession session) {
+	public String goPickItem(@RequestParam String item_id, @RequestParam String seller_name, 
+							@RequestParam String item_name, @RequestParam String item_main_image,
+							@RequestParam String item_price, HttpSession session) {
 		
+		
+	//	System.out.println("도착");
 		String id = (String)session.getAttribute("memberId");
 		String exist = null;
+		
+		//로그인 확인
 		if(id==null) {
-			System.out.println("로그인해야함");
+	//		System.out.println("로그인해야함");
 			return exist;
 		}
 		
-		Map<String, String> map = new HashMap<String, String>();
+		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("id", id);
+		map.put("item_image", item_main_image);
+		map.put("seller_name", seller_name);
+		map.put("item_name", item_name);
+	//	map.put("item_price", Integer.parseInt(item_price));
+	//	map.put("item_id", Integer.parseInt(item_id));
+		map.put("item_price", item_price);
 		map.put("item_id", item_id);
 		
 		exist = mypageService.goPickItem(map);
 		
 		if(exist=="true") {
-			System.out.println("존재");
+	//		System.out.println("존재");
 		}else {
-			System.out.println(exist);
-			System.out.println("없음");
+	//		System.out.println(exist);
+	//		System.out.println("없음");
 		}
 		return exist;
 

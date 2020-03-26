@@ -28,7 +28,7 @@ public interface MypageService {
 
 	public List<MypagePickItemDTO> getMypagePickItem(String id);
 	
-	public String goPickItem(Map<String, String> map);
+	public String goPickItem(Map<String, Object> map);
 
 	public List<MypagePickSellerDTO> getMypagePickSeller(String id);
 

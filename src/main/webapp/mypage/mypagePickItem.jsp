@@ -34,7 +34,7 @@
 		</dl>
 		</td>
 		<td>
-			<input class = "pickItemBasketBtn" type="button" value="장바구니" onclick="javascript:location.href='/bitFarm/cart/cartForm.do'">
+			<input class = "pickItemBasketBtn" type="button" value="장바구니" onclick="javascript:location.href='/bitFarm/cart/cartForm'">
 			<input class = "pickItemDeleteBtn" type="button" value="삭      제" >
 		
 		</td>
@@ -43,6 +43,38 @@
 </tbody>
 </table>
 <div id = "pickItemBlank"></div>
-<input class = "pickItemSelectDeleteBtn" type="button" value="선택삭제" >	
+<input class = "pickItemSelectDeleteBtn" id = "choiceDeleteBtn" type="button" value="선택삭제" >	
 <div id = "pickItemBlank2"></div>
 <input class = "pickItemAllOrderBtn" type="button" value="전체주문" >
+
+<script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+//전체 선택/해제
+$('#all').click(function(){
+	if($('#all').prop('checked'))
+		$('input[name=check]').prop('checked', true);
+	else
+		$('input[name=check]').prop('checked', false);
+});
+
+//선택 삭제
+$('#choiceDeleteBtn').click(function(){
+	let count = $('input[name=check]:checked').length;
+
+	if(count==0)
+		alert("삭제할 항목을 선택하세요");
+	else{
+		if(confirm("정말로 삭제하시겠습니까")){
+			$.ajax({
+				type: 'get',
+				url: '/bitFarm/mypage/getCouponList',
+				dataType:'json',
+				success : function(data){
+				//	alert(JSON.stringify(data));
+				}
+				
+			});
+		}
+	}
+});
+</script>

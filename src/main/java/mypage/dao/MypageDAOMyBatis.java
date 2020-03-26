@@ -76,22 +76,23 @@ public class MypageDAOMyBatis implements MypageDAO {
 	}
 	
 	@Override
-	public void goPickItem(Map<String, String> map) {
+	public void goPickItem(Map<String, Object> map) {
 	
 		sqlSession.insert("mypageSQL.goPickItem",map);	
 	}
 	
 	@Override
-	public String existItem(String item_id) {
-		
+	public String existItem(Map<String, String> existMap) {
 		String exist = "false";
 		
-		int count = sqlSession.selectOne("mypageSQL.existItem",Integer.parseInt(item_id));
+		int count = sqlSession.selectOne("mypageSQL.existItem",existMap);
 		
 		if(count!=0) exist = "true";
 		
 		return exist;
 	}
+
+	
 
 
 	//찜한 판매자
@@ -100,6 +101,7 @@ public class MypageDAOMyBatis implements MypageDAO {
 		
 		return sqlSession.selectList("mypageSQL.getMypagePickSeller",id);
 	}
+
 
 	
 

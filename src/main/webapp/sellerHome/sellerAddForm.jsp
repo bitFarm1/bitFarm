@@ -14,8 +14,6 @@
 </style>
 <jsp:include page="sellerLeft.jsp" />
 <div style="width: 68%; text-align: center; padding: 50px 0px 50px 420px;">
-
-
 	<h2 align="center">판매상품 등록하기</h2>
 	
 	<div style="text-align: center;">판매하실 상품을 등록해 주세요.</div>
@@ -40,7 +38,8 @@
 	<h3 align="left">판매상품 상세 정보 등록하기</h3>
 	<table class="sellerAddTable" cellpadding="10" frame="hsides" rules="rows">
 		<tr>
-			<th>카테고리 <select class="category1">
+			<th>카테고리 
+			<select class="category1">
   				 <option value="">상위</option>
                             <option value="01">과일/과일즙</option>
                             <option value="02">축산/유정란</option> 
@@ -60,35 +59,31 @@
                             <option value="06">알뜰상품</option>
                         </select> 
  			</th>
-		</td>
-	</tr>
-
-	<tr>
-		<td>상품명</td>
-		<td><input type="text" name="productName"></td>
-	</tr>
-
-	<tr>
-		<td>판매가격</td>
-		<td><input type="text" name="price"></td>
-	</tr>
-
-	<tr>
-		<td>판매수량재고수량</td>
-		<td><input type="text" name="number"></td>
-	</tr>
-
-	<tr>
-		<td>상품상세설명</td>
-		<td><input type="text" name="aboutProduct"></td>
-	</tr>
+		</tr>
+		<tr>
+			<td>상품명</td>
+			<td><input type="text" name="productName"></td>
+		</tr>
 	
-	<tr>
-		<td>상품상세이미지 첨부</td>
-		<td><input type="file" name="upload_file" accept="image/*" value="사진첨부"></td>
-	</tr>
+		<tr>
+			<td>판매가격</td>
+			<td><input type="text" name="price"></td>
+		</tr>
+	
+		<tr>
+			<td>판매수량재고수량</td>
+			<td><input type="text" name="number"></td>
+		</tr>
+	
+		<tr>
+			<td>상품상세설명</td>
+			<td><input type="text" name="aboutProduct"></td>
+		</tr>
+		
+		<tr>
+			<td>상품상세이미지 첨부</td>
+			<td><input type="file" name="upload_file" accept="image/*" value="사진첨부"></td>
+		</tr>
 	</table>
-	
-</div>
 </div>
 <br><br><br><br>

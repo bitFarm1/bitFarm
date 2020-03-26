@@ -2,9 +2,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <link rel="stylesheet" href= "../css/top.css">
 <div align="right">				
-<strong>${memberName}</strong>님&emsp;&emsp;	
+<strong>${memberName}</strong>&emsp;&emsp;	
 <c:if test="${sellerId!=null}">
-	<a class="indexA" href="/bitFarm/seller/sellerStore">판매자홈</a>&emsp;&emsp;
+	<a class="indexA" href="/bitFarm/sellerHome/sellerAll">판매자홈</a>&emsp;&emsp;
 </c:if>
 	 
 <!-- 비회원 -->		   

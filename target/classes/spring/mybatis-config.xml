@@ -17,7 +17,8 @@
 		<typeAlias type="mypage.bean.MypagePickSellerDTO" alias="mypagePickSellerDTO" /> 	
 
 		
-		<typeAlias type="cart.bean.CartDTO" alias="cart" />  		
+		<typeAlias type="cart.bean.CartDTO" alias="cart" />  	
+		<typeAlias type="cart.bean.CartListDTO" alias="cartList" />  	
 		<typeAlias type="item.bean.ItemDTO" alias="item" />  			
 
 	</typeAliases> 

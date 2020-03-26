@@ -17,6 +17,7 @@
 	<!-- list받아서 tr 돌리기 -->
 	<c:if test="${list!=null}">
 		<c:forEach var="cartListDTO" items="${list}">
+		<c:set var="list" value="${list }"/>
 		<tr>
 			<td width="20%" align="center">
 				<input type="checkbox" name="check" value="${cartListDTO.item_id}" class="checkItem">
@@ -46,14 +47,20 @@
 		</tr>
 	</c:if>
 </table>
+</form><br>
+<form name="cartOrderForm" method="post" action="/bitFarm/order/orderForm">
+	<input type="hidden" ref="list" name="list" id="list" size="200">
 </form>
-<br>
+
+<!-- 항목 삭제버튼 div -->
 <div style="width: 80%; margin:0 auto;">
 	<input type="button" class="smallBtn" id="choiceDeleteBtn" value="선택삭제">
 	<input type="button" class="smallBtn" value="품절 물품 삭제">
 	<br><br>
 	<p style="clear: both; height: 10px;"></p>
 </div>
+
+<!-- 하단 상품금액 합계 div -->
 <div align="center" style="width: 70%; margin:0 auto;">
 	<div class="costDiv">
 		<br><br>상품 금액<br><br>
@@ -82,11 +89,13 @@
 	</div>
 </div>
 <p style="clear: both; height: 20px;"></p>
+
+<!-- 주문하기 버튼 div -->
 <div style="width: 85%; margin: 0 auto; text-align: center;">
-		<input type="button" class="orderBtn" value="주문하기" onclick="location.href='/bitFarm/order/orderForm'">
+	<input type="button" class="orderBtn" value="주문하기">
 </div>
 
-<%-- script --%>
+<!-- script -->
 <script type="text/javascript">
 function change(num){
 	var x = Number(cart_item_qty.value) + num;
@@ -116,7 +125,7 @@ $('#choiceDeleteBtn').click(function(){
 	}
 });
 
-//수량 올라가면 상품 금액 같이 올라감
+//수량 조절에 따라 총 금액 변동 ****************** 장바구니에 상품 1개 있을때만 작동 쥐앤쟝
 $('.qtyBtn').click(function(){	
 	let itemPrice = ${item_price};
 	
@@ -127,17 +136,7 @@ $('.qtyBtn').click(function(){
 	$('#item_all_price').text(itemAllPrice);
 });
 
-//수량 내리면 상품 금액 같이 내려감
-/* $('#minusBtn').click(function(){
-	let itemPrice = ${item_price};
-	
-	let itemAllPrice = $('#item_all_price').text();	//잘가져옴
-	let itemQty = $('#cart_item_qty').val();	//잘가져옴
-	
-	if(itemQty==0) 
-		return false;
-	
-	itemAllPrice = itemPrice * itemQty;
-	$('#item_all_price').text(itemAllPrice);
-});  */
+$('.orderBtn').click(function(){
+	location.href = '/bitFarm/order/orderForm';
+});
 </script>

@@ -9,8 +9,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -29,15 +27,21 @@ public class CartController {
 	//세션에 있는 아이디를 통해 그 아이디의 장바구니 리스트를 받아와서 장바구니 목록을 출력하는 메소드
 	@RequestMapping(value="cartForm", method=RequestMethod.GET)
 	public ModelAndView cartForm(HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+
 		String memberId = (String)session.getAttribute("memberId");	
 		List<CartListDTO> list = cartService.cartAllList(memberId);		
+				
+//		if(list!=null) {
+//			int itemAllPrice = cartService.cartListAllPrice(memberId);
+//			//System.out.println(">> cartForm " + itemAllPrice);
+//			mav.addObject("itemAllPrice", itemAllPrice);
+//		}else {
+//			mav.addObject("itemAllPrice", 0);
+//		}
 		
-		//int itemAllPrice = cartService.cartListAllPrice(memberId);
-		//System.out.println(">> cartForm " + itemAllPrice);
-		
-		ModelAndView mav = new ModelAndView();
 		mav.addObject("list", list);
-		//mav.addObject("itemAllPrice", itemAllPrice);
+		session.setAttribute("cartList", list);
 		mav.addObject("display", "/cart/cartForm.jsp");
 		mav.setViewName("/main/main");
 		return mav;

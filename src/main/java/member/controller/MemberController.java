@@ -168,8 +168,8 @@ public class MemberController {
 		ModelAndView mav = new ModelAndView(); 
 		
 		if(memberDTO != null) {
-			session.setAttribute("memberName", memberDTO.getMember_name()); //session은 내장 기본 객체 default 30분  
-			session.setAttribute("memberId", memberDTO.getMember_id());   
+			session.setAttribute("memberId", memberDTO.getMember_id());	//session은 내장 기본 객체 default 30분  
+			session.setAttribute("memberName", memberDTO.getMember_name()); 
 			session.setAttribute("memberEmail", memberDTO.getMember_email());
 			mav.addObject("display","/template/body.jsp"); 
 		}else {

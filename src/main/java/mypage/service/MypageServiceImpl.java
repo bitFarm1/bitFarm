@@ -1,5 +1,6 @@
 package mypage.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -84,17 +85,41 @@ public class MypageServiceImpl implements MypageService {
 	}
 	
 	@Override
-	public String goPickItem(Map<String, String> map) {
+	public String goPickItem(Map<String, Object> map) {
 		
-		String item_id = map.get("item_id");
+		String item_id = (String) map.get("item_id");
+		String id = (String) map.get("id");
 		
-		String existItem = mypageDAO.existItem(item_id);
-		System.out.println(">>>>"+existItem);
+		Map<String, String> existMap = new HashMap<String, String>();
+		existMap.put("id", id);
+		existMap.put("item_id", item_id);
+		
+		//찜에 있는지 확인
+		String existItem = mypageDAO.existItem(existMap);
+	
 		if(existItem != "true") {
-			System.out.println("없다");
+	
 			mypageDAO.goPickItem(map);
 		}
 		return existItem;
+	}
+	
+	@Override
+	public void deleteChoicePickItem(String[] check, String id) {
+		
+		for(int i=0; i<check.length; i++) {
+			Map<String, String> map = new HashMap<String, String>();
+			map.put("id", id);
+			map.put("check", check[i]);
+			mypageDAO.deleteChoicePickItem(map);
+		}
+		
+	}
+	
+	@Override
+	public void deletePickItem(Map<String, String> map) {
+		mypageDAO.deletePickItem(map);
+		
 	}
 
 	//찜한 판매자
@@ -105,5 +130,9 @@ public class MypageServiceImpl implements MypageService {
 		
 		return list;
 	}
+
+	
+
+	
 
 }

@@ -30,8 +30,12 @@ public interface MypageDAO {
 
 	public List<MypagePickSellerDTO> getMypagePickSeller(String id);
 
-	public void goPickItem(Map<String, String> map);
+	public void goPickItem(Map<String, Object> map);
 
-	public String existItem(String item_id);  
+	public String existItem(Map<String, String> existMap);
+
+	public void deleteChoicePickItem(Map<String, String> map);
+
+	public void deletePickItem(Map<String, String> map);  
 
 }

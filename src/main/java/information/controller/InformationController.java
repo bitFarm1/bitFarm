@@ -25,12 +25,15 @@ import information.bean.InformationDTO;
 import information.bean.InformationPaging;
 import information.bean.InformationQnADTO;
 import information.service.InformationService;
+import member.service.MemberService;
 
 @Controller
 @RequestMapping(value="information")
 public class InformationController {
 	@Autowired 
 	private InformationService informationService;
+	@Autowired
+	private MemberService memberService;
 		 
 	@RequestMapping(value="/infoQnABoard", method=RequestMethod.GET)
 	public ModelAndView infoQnABoard() {
@@ -38,6 +41,24 @@ public class InformationController {
 		mav.addObject("display", "/information/infoMain.jsp");
 		mav.addObject("info", "/information/infoQnABoard.jsp");
 		mav.setViewName("/main/main");
+		 
+		return mav; 
+	} 
+	
+	@RequestMapping(value="/dataList", method=RequestMethod.GET)
+	public ModelAndView dataList() {
+		ModelAndView mav = new ModelAndView();
+		int naver = memberService.getNaverAccount();
+		int bit = memberService.getBitAccount();
+		int kakao = memberService.getKakaoAccount();
+		System.out.println(naver);
+		
+		mav.addObject("naver", naver);
+		mav.addObject("bit", bit); 
+		mav.addObject("kakao", kakao);
+		mav.addObject("display", "/information/infoMain.jsp");
+		mav.addObject("info", "/information/dataList.jsp");
+		mav.setViewName("/main/main"); 
 		 
 		return mav; 
 	} 

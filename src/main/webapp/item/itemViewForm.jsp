@@ -308,11 +308,15 @@ $('.itemViewSellerQnaBtn').click(function(){
 $('.goPickItemBtn').click(function(){
 	
 	let item_id = ${itemDTO.item_id};
-
+	let seller_name = '${itemDTO.seller_name}';
+	let item_name = '${itemDTO.item_name}';
+	let item_main_image = '${itemDTO.item_main_image}';
+	let item_price = ${itemDTO.item_price};
+	
 	$.ajax({
 		type : 'POST',
 		url : '/bitFarm/mypage/goPickItem',
-		data : 'item_id=' + item_id,
+		data : 'item_id=' + item_id + '&seller_name=' + seller_name + '&item_name=' + item_name + '&item_main_image=' + item_main_image + '&item_price=' + item_price,
 		dataType:'json',
 		success : function(data){
 		//	alert(JSON.stringify(data));
@@ -325,6 +329,6 @@ $('.goPickItemBtn').click(function(){
 		},error : function() {
 			alert("로그인 후 사용해주세요");
 		}
-	});
+	}); 
 });
 </script>

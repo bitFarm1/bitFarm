@@ -150,30 +150,59 @@ public class MypageController {
 	
 	@RequestMapping(value="/goPickItem", method=RequestMethod.POST)
 	@ResponseBody
-	public String goPickItem(@RequestParam String item_id, HttpSession session) {
+	public String goPickItem(@RequestParam String item_id, @RequestParam String seller_name, 
+							@RequestParam String item_name, @RequestParam String item_main_image,
+							@RequestParam String item_price, HttpSession session) {
 		
 		String id = (String)session.getAttribute("memberId");
 		String exist = null;
+		
+		//로그인 확인
 		if(id==null) {
-			System.out.println("로그인해야함");
 			return exist;
 		}
 		
-		Map<String, String> map = new HashMap<String, String>();
+		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("id", id);
+		map.put("item_image", item_main_image);
+		map.put("seller_name", seller_name);
+		map.put("item_name", item_name);
+		map.put("item_price", item_price);
 		map.put("item_id", item_id);
 		
 		exist = mypageService.goPickItem(map);
-		
-		if(exist=="true") {
-			System.out.println("존재");
-		}else {
-			System.out.println(exist);
-			System.out.println("없음");
-		}
-		return exist;
 
+		return exist;
 	}
+	
+	//찜한 물건 선택삭제
+	@RequestMapping(value="/deleteChoicePickItem", method=RequestMethod.POST)
+	public ModelAndView deleteChoicePickItem(@RequestParam String[] check, Model model, HttpSession session) {
+		
+		String id = (String)session.getAttribute("memberId");
+		for(int i=0; i<check.length; i++) {
+			System.out.println(check[i]);
+		}
+		mypageService.deleteChoicePickItem(check, id);
+
+		return new ModelAndView("redirect:/mypage/mypagePickItem");
+	}
+	
+	//찜한 물건 삭제
+		@RequestMapping(value="/deletePickItem", method=RequestMethod.POST)
+		public ModelAndView deletePickItem(@RequestParam String deleteId, Model model, HttpSession session) {
+			
+			String id = (String)session.getAttribute("memberId");
+			
+			Map<String, String>map = new HashMap<String, String>();
+			map.put("id",id);
+			map.put("deleteId", deleteId);
+
+			mypageService.deletePickItem(map);
+			
+			return new ModelAndView("redirect:/mypage/mypagePickItem");
+		}
+	
 	
 	//찜한 판매자
 	@RequestMapping(value="/mypagePickSeller", method=RequestMethod.GET)

@@ -112,4 +112,23 @@ public class MemberServiceImpl implements MemberService {
 		return memberDAO.modify2(memberDTO);
 	}
 
+	@Override
+	public int getNaverAccount() {
+		// TODO Auto-generated method stub
+		return memberDAO.getNaverAccount(); 
+	}
+	
+	@Override
+	public int getBitAccount() {
+		// TODO Auto-generated method stub
+		return memberDAO.getBitAccount(); 
+	}
+
+	@Override 
+	public int getKakaoAccount() { 
+		// TODO Auto-generated method stub
+		return memberDAO.getKakaoAccount(); 
+	}
+
+
 }

@@ -17,12 +17,16 @@ import org.springframework.web.servlet.ModelAndView;
 
 import cart.bean.CartListDTO;
 import cart.service.CartService;
+import item.bean.ItemDTO;
+import item.service.ItemService;
 
 @Controller
 @RequestMapping(value="cart")
 public class CartController {
 	@Autowired
 	private CartService cartService;
+	@Autowired
+	private ItemService itemService;
 
 	//세션에 있는 아이디를 통해 그 아이디의 장바구니 리스트를 받아와서 장바구니 목록을 출력하는 메소드
 	@RequestMapping(value="cartForm", method=RequestMethod.GET)
@@ -69,7 +73,13 @@ public class CartController {
 			map.put("item_id", Integer.parseInt(item_id));
 			map.put("item_qty", Integer.parseInt(item_qty));
 			itemAllPrice = itemAllPrice.replace(",", "");
-			map.put("item_all_price", Integer.parseInt(itemAllPrice));
+			try {
+				map.put("item_all_price", Integer.parseInt(itemAllPrice));
+			}catch(NumberFormatException e) {
+				ItemDTO itemDTO = itemService.getItemView(Integer.parseInt(item_id));
+				String item_all_price = itemDTO.getItem_price()+"";
+				map.put("item_all_price", item_all_price);
+			}
 			
 			cartService.cartAdd(map);
 		}

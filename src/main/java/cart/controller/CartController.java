@@ -35,15 +35,7 @@ public class CartController {
 
 		String memberId = (String)session.getAttribute("memberId");	
 		List<CartListDTO> list = cartService.cartAllList(memberId);		
-				
-//		if(list!=null) {
-//			int itemAllPrice = cartService.cartListAllPrice(memberId);
-//			//System.out.println(">> cartForm " + itemAllPrice);
-//			mav.addObject("itemAllPrice", itemAllPrice);
-//		}else {
-//			mav.addObject("itemAllPrice", 0);
-//		}
-		
+
 		mav.addObject("list", list);
 		session.setAttribute("cartList", list);
 		mav.addObject("display", "/cart/cartForm.jsp");
@@ -75,8 +67,8 @@ public class CartController {
 			itemAllPrice = itemAllPrice.replace(",", "");
 			try {
 				map.put("item_all_price", Integer.parseInt(itemAllPrice));
-			}catch(NumberFormatException e) {
-				ItemDTO itemDTO = itemService.getItemView(Integer.parseInt(item_id));
+			}catch(NumberFormatException e) {	//item을 한개만 장바구니에 담을때 파라미터에서 itemAllPrice만 가져오고 1개값 못가져오니까 실행하는 부분
+				ItemDTO itemDTO = itemService.getItemView(Integer.parseInt(item_id));	
 				String item_all_price = itemDTO.getItem_price()+"";
 				map.put("item_all_price", item_all_price);
 			}

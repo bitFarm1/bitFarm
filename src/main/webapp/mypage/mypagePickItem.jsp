@@ -24,8 +24,7 @@
 <c:set var = "item_price" value = "${myPickItemDTO.pick_item_price }"/>
 	<tr>
 		<td align = "center" width="100px"><input type = "checkbox" name = "check" value = "${item_id }"></td>
-		<td width = "80%"><img src="../storage/${item_img}" id = "pickItemImg"
-		style="cursor:pointer" onclick="location.href='#'">
+		<td width = "80%"><img src="../storage/${item_img}" id = "pickItemImg" style="cursor:pointer" onclick="location.href='#'">
 		<dl>
 			<dt style="font-size: 12pt; font-weight: bold;margin-bottom: 5px;"><a href = "#" class = "pickItemDetailA">[${item_seller}] ${item_name }</a></dt>
 			<dd style="font-size: 10pt;">
@@ -36,7 +35,7 @@
 		</dl>
 		</td>
 		<td>
-			<input class = "pickItemBasketBtn" type="button" value="장바구니" onclick="javascript:location.href='/bitFarm/cart/cartForm'">
+			<input class = "pickItemBasketBtn" type="button" value="장바구니">
 			<input class = "pickItemDeleteBtn" type="button" name = "deleteBtn" id = "${item_id }" value="삭      제" >
 		
 		</td>
@@ -85,4 +84,37 @@ $('input[name=deleteBtn]').click(function(){
 	}
 	
 });
+
+//장바구니 담기
+$('.pickItemBasketBtn').click(function(){
+	let item_id = ${item_id};
+	let item_price = ${item_price};
+	
+	if(confirm("장바구니에 상품을 담으시겠습니까?")){
+		$.ajax({
+			type : 'POST',
+			url : '/bitFarm/cart/cartAdd',
+			data : 'item_id=' + item_id + '&item_qty=' + 1 + '&itemAllPrice=' + item_price,
+			dataType : 'text',
+			success: function(data){
+				//alert(data);
+				if(data=='true'){
+					location.href = '/bitFarm/cart/cartForm';
+				}else{
+					alert('로그인 후 사용해주세요');
+					location.href = '/bitFarm/member/loginForm';
+				}
+			}
+		});
+	}
+});
+
+//전체주문
+$('.pickItemAllOrderBtn').click(function(){
+	if(confirm("상품을 모두 주문하시겠습니까?")){
+		document.pickItemListForm.action = '/bitFarm/order/pickItemOrder';
+		document.pickItemListForm.submit();
+	}
+});
+
 </script>

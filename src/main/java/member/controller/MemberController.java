@@ -309,6 +309,15 @@ public class MemberController {
 	}
 		
 	
+	@RequestMapping(value="agree", method=RequestMethod.GET)
+	public String agree(Model model) { 		
+		return "/member/agree";
+	}
+	
+	@RequestMapping(value="agree1", method=RequestMethod.GET)
+	public String agree1(Model model) {  		
+		return "/member/agree1";
+	}
 	 
 	
 }

@@ -9,10 +9,11 @@
 	a.info:hover {color: #5f0080; text-decoration: none; font-weight: bolder;} 
 	a.info:active {color: black; text-decoration: none;} 
 
-th{
-	background-color: #F7F5F8;
-}
-.contents{ 
+	th{
+		background-color: #F7F5F8;
+		}
+	
+	.contents{ 
 			white-space: pre-wrap;
 			word-break: break-all;
 			width: 500px; 
@@ -27,10 +28,10 @@ th{
 			<th>글번호</th>
 			<th width="250px;">제목</th> 
 			<th>작성자</th>
-			<th>작성일</th>  			     
+			<th>작성일</th>  			      
 		</tr>   
 		
-<c:forEach var="informationQnADTO" items="${list }">
+<c:forEach var="informationQnADTO" items="${list }"> 
 <c:set var="seq" value="${informationQnADTO.infoQnA_seq }"/>
 <c:set var="infoQnA_type" value="${informationQnADTO.infoQnA_type }"/>
 <c:set var="infoQnA_subject" value="${informationQnADTO.infoQnA_subject }"/>
@@ -58,15 +59,15 @@ th{
 		</td>			
 	</tr>	 
 	 
-	<tr id="hidden${seq }" style="display:none;" >  
+	<tr id="hidden${seq }" style="display:none;" >   
 		<td colspan="2"  align="left"> 
-		<pre class="contents">${infoQnA_content }<br></pre> 
+			<pre class="contents">${infoQnA_content }<br></pre>  
 		</td> 
-	<c:if test="${infoQnA_imageName != '0'}">
+		<c:if test="${infoQnA_imageName != '0'}">  
 		<td colspan="2"  align="center"> 
 			<img src="../storage/${infoQnA_imageName }" width="200" height="200">			 
-		</td>
-	</c:if>			  
+		</td>			  
+		</c:if>
 	</tr>      
   
 <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>

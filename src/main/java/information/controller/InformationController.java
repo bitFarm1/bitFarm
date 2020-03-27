@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -55,11 +56,12 @@ public class InformationController {
 		
 		mav.addObject("naver", naver);
 		mav.addObject("bit", bit); 
-		mav.addObject("kakao", kakao);
-		mav.addObject("display", "/information/infoMain.jsp");
-		mav.addObject("info", "/information/dataList.jsp");
-		mav.setViewName("/main/main"); 
-		 
+		mav.addObject("kakao", kakao); 
+		mav.addObject("data1", "/data/snsData1.jsp"); 
+		mav.addObject("data2", "/data/snsData2.jsp");   
+		mav.addObject("data3", "/data/snsData3.jsp");    
+		mav.setViewName("/data/dataList");  
+		  
 		return mav; 
 	} 
 	
@@ -104,8 +106,12 @@ public class InformationController {
 	
 	  
 	@RequestMapping(value="/infoQnAList", method=RequestMethod.GET)
-	public ModelAndView infoList(@RequestParam(required=false, defaultValue="1") String pg) {
-		List<InformationQnADTO> list = informationService.getInfoList(pg);
+	public ModelAndView infoList(@RequestParam(required=false, defaultValue="1") String pg, HttpSession session) {
+		
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("memberId",(String)session.getAttribute("memberId"));
+		map.put("pg",pg);
+		List<InformationQnADTO> list = informationService.getInfoList(map); 
 		 
 		ModelAndView mav = new ModelAndView();  
 		mav.addObject("pg", pg); 
@@ -113,6 +119,42 @@ public class InformationController {
 		 
 		mav.addObject("display", "/information/infoMain.jsp");
 		mav.addObject("info", "/information/infoQnAList.jsp"); 
+		mav.setViewName("/main/main");
+		   
+		return mav;
+	}
+	
+	@RequestMapping(value="/infoQnAListADMIN", method=RequestMethod.GET)
+	public ModelAndView infoQnAListADMIN(@RequestParam(required=false, defaultValue="1") String pg, HttpSession session) {
+		
+		
+		//(String)session.getAttribute("memberId"));
+	
+		List<InformationQnADTO> list = informationService.getInfoListADMIN(pg);  
+		 
+		ModelAndView mav = new ModelAndView();  
+		mav.addObject("pg", pg); 
+		mav.addObject("list", list);		 
+		mav.addObject("display", "/information/infoMain.jsp");
+		mav.addObject("info", "/information/infoQnAListADMIN.jsp"); 
+		mav.setViewName("/main/main");
+		    
+		return mav;
+	}
+	
+	@RequestMapping(value="/infoQnAListAllADMIN", method=RequestMethod.GET)
+	public ModelAndView infoQnAListAllADMIN(@RequestParam(required=false, defaultValue="1") String pg, HttpSession session) {
+		
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("pg",pg);
+		List<InformationQnADTO> list = informationService.infoQnAListAllADMIN(map); 
+		 
+		ModelAndView mav = new ModelAndView();   
+		mav.addObject("pg", pg); 
+		mav.addObject("list", list);
+		 
+		mav.addObject("display", "/information/infoMain.jsp");
+		mav.addObject("info", "/information/infoQnAListAllADMIN.jsp"); 
 		mav.setViewName("/main/main");
 		   
 		return mav;
@@ -194,5 +236,24 @@ public class InformationController {
 		return mav;   
 	}	 
 	
+	@RequestMapping(value="/writeQnAAnswer", method=RequestMethod.GET)
+	public ModelAndView writeQnAAnswer(@RequestParam(required=false, defaultValue="1") String pg, String seq, HttpSession session) {
+		
+		InformationQnADTO informationQnADTO = informationService.writeQnAAnswer(seq);		 
+		ModelAndView mav = new ModelAndView();  
+		mav.addObject("pg", pg); 
+		mav.addObject("informationQnADTO", informationQnADTO);		  
+		mav.setViewName("/information/writeQnAAnswer"); 		     
+		return mav;
+	} 
 	
+	@RequestMapping(value="/answerWrite", method=RequestMethod.POST)
+	public ModelAndView answerWrite(@RequestParam Map<String, String> map) {
+		ModelAndView mav = new ModelAndView();
+		int update = informationService.answerWrite(map); 
+		mav.addObject("update", update); 
+		
+		mav.setViewName("jsonView");		
+		return mav;  			
+	}
 }

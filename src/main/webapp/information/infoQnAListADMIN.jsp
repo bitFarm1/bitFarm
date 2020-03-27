@@ -45,9 +45,9 @@ th{
 		</td> 
 		  
 		<td id="${seq }" style="width:100px">    
-		<a class="info"		 style="cursor: pointer;">[${infoQnA_type }] ${infoQnA_subject }</a>
-		</td>  
-		
+		<a class="info"	 style="cursor: pointer;">[${infoQnA_type }] ${infoQnA_subject }</a>
+		</td> 
+		 
 		  
 		<td style="width:200px" align="center"> 
 		${infoQnA_userID }
@@ -60,14 +60,17 @@ th{
 	 
 	<tr id="hidden${seq }" style="display:none;" >  
 		<td colspan="2"  align="left"> 
-		<pre class="contents">${infoQnA_content }<br></pre> 
-		</td> 
-	<c:if test="${infoQnA_imageName != '0'}">
-		<td colspan="2"  align="center"> 
-			<img src="../storage/${infoQnA_imageName }" width="200" height="200">			 
+			<pre class="contents">${infoQnA_content }<br></pre> 
 		</td>
-	</c:if>			  
-	</tr>      
+		<c:if test="${infoQnA_imageName != '0'}">
+		<td colspan="1"  align="center"> 
+			<img src="../storage/${infoQnA_imageName }" width="200" height="200">			 
+		</td>		
+		</c:if>	  
+		<td align="right"> 
+			<input type="button" value="답글달기" onclick="goreply('${seq}')">
+		</td>  
+	</tr>    
   
 <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
@@ -90,4 +93,12 @@ $('#${seq}').click(function(){
 <input type="hidden" name="pg" value="${pg }">
 <input type="hidden" id="dis" name="dis" value="">
 </div>  
+<script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">   
+function goreply(seq){        
+	window.open("/bitFarm/information/writeQnAAnswer?seq="+seq,"","width=1030 height=775 left=500 top=0 scrollbars=yes");
+	              
+}             
+</script>
 
+ 

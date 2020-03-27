@@ -14,6 +14,9 @@ import org.springframework.web.servlet.ModelAndView;
 import cart.bean.CartListDTO;
 import member.bean.MemberDTO;
 import mypage.bean.MypagePickItemDTO;
+import mypage.bean.MypageCouponDTO;
+import mypage.bean.MypagePointDTO;
+
 import order.service.OrderService;
 
 @Controller
@@ -38,6 +41,14 @@ public class OrderController {
 		mav.addObject("totalMoney", totalMoney);
 		mav.addObject("display", "/order/orderForm.jsp");
 		mav.setViewName("/main/main");
+		
+		//200326 김소중
+		List<MypageCouponDTO> couponList = orderService.orderCouponList((String)session.getAttribute("memberId"));
+		int pointTotal = orderService.orderPointAll((String)session.getAttribute("memberId"));
+		
+		mav.addObject("couponList",couponList);
+		mav.addObject("pointTotal",pointTotal);
+		
 		return mav;
 	}
 	

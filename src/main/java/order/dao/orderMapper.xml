@@ -11,5 +11,13 @@
 	<select id="getTotalMoney" parameterType="String" resultType="int">
 		select sum(item_all_price) from cart where cart_id=#{memberId}
 	</select>
+	
+	<select id = "orderCouponList" resultType = "mypageCouponDTO" parameterType="String">
+		select * from coupon where coupon_user_id = #{memberId}
+	</select>
+	
+	<select id = "orderPointAll" resultType = "int" parameterType="String">
+		select sum(point_price) from point where point_user_id = #{memberId}
+	</select>
  
 </mapper>

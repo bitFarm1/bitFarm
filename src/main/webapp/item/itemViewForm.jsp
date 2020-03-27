@@ -329,13 +329,17 @@ $('.goPickItemBtn').click(function(){
 		success : function(data){
 		//	alert(JSON.stringify(data));
 			if(data){
-				alert("이미 존재합니다")
+				alert("이미 존재합니다");
 			}else{
-				alert("찜하기 성공")
+				alert("찜하기 성공");
+				if(confirm("찜한 물품 페이지로 이동하시겠습니까?")){
+					location.href = '/bitFarm/mypage/mypagePickItem';
+				}
 			}
 	
 		},error : function() {
 			alert("로그인 후 사용해주세요");
+			location.href = '/bitFarm/member/loginForm';
 		}
 	}); 
 });

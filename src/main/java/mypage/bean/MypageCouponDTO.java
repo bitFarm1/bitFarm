@@ -16,5 +16,6 @@ public class MypageCouponDTO {
 	private Date coupon_Ap; //쿠폰사용가능기간
 	private String coupon_use; //쿠폰사용여부
 	private String coupon_id; //쿠폰아이디
+	private String coupon_price;//쿠폰 금액
 
 }

@@ -90,13 +90,13 @@
 	<table cellpadding="10px">   
 		<tr> 
 			<th class="subject">아이디*</th>
-			<td style="vertical-align: top;"><input class="layoutT" type="text" name="seller_id" placeholder="6자 이상의 영문 혹은 영문과 숫자를 조합">&emsp;
+			<td style="vertical-align: top;"><input class="layoutT" type="text" id="id" name="seller_id" placeholder="6자 이상의 영문 혹은 영문과 숫자를 조합">&emsp;
 			<input class="layoutB" id="checkIdBtn" type="button" name="seller_checkId" value="중복확인"><br id="seller_id_p" style="display: none;"><span id="seller_id_Div" ></span></br></td>					
 		</tr>  
 		 
 		<tr>   
 			<th class="subject">비밀번호*</th>   
-			<td><input class="layoutT" type="password" name="seller_pwd" placeholder="비밀번호를 입력해주세요"></td>
+			<td><input class="layoutT" type="password" id="pwd" name="seller_pwd" placeholder="비밀번호를 입력해주세요"></td>
 			
 		</tr>
 		<tr>
@@ -108,7 +108,7 @@
 		 
 		<tr>
 			<th class="subject">이름*</th>
-			<td><input class="layoutT" type="text" name="seller_name" placeholder="고객님의 이름을 입력해주세요">
+			<td><input class="layoutT" type="text" name="seller_name" id="name" placeholder="고객님의 이름을 입력해주세요">
 			<br id="seller_name_p" style="display: none;"><span id="seller_name_Div" ></span></br>
 			</td>
 		</tr> 
@@ -185,22 +185,45 @@
 
 <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
+var sid = false;
+var sname = false;
+var semail = false;
+var sphone = false;
+var slicense = false;
+
 $('input[name=seller_id]').focusout(function(){
+	var userIdCheck = RegExp(/^[A-Za-z0-9_\-]{5,20}$/);
 	$('#seller_id_p').css("display", "none"); 
 	$('#seller_id_Div').empty();
 	
-	if($('input[name=seller_id]').val()==''){ 
-		
+	if($('input[name=seller_id]').val()==''){		
 		$('#seller_id_p').css("display", "block"); 
 			$('#seller_id_Div').text('아이디를 입력하세요.');  
 			$('#seller_id_Div').css('color','#5f0080');
 			$('#seller_id_Div').css('font-weight','bold');
 			$('#seller_id_Div').css('font-size','10pt');
-	} 	
+	}else if(!(userIdCheck.test($('#id').val()))){		 
+		$('#seller_id_p').css("display", "block") ;  
+		$('#seller_id_Div').text('영문 숫자 5~15자로 입력 가능 (특수문자 불가)');  
+		$('#seller_id_Div').css('color','red'); 
+		$('#seller_id_Div').css('font-weight','bold');
+		$('#seller_id_Div').css('font-size','10pt'); 
+		$('#seller_checkIdBtn').attr('disabled', true);
+	}else {
+		$('#seller_checkIdBtn').attr('disabled', false);
+	}
 }); 
 
 $('#seller_checkIdBtn').click(function(){
-
+	if($('input[name=seller_id]').val()==''){		
+		$('#seller_id_p').css("display", "block"); 
+			$('#seller_id_Div').text('아이디를 입력하세요.');  
+			$('#seller_id_Div').css('color','#5f0080');
+			$('#seller_id_Div').css('font-weight','bold');
+			$('#seller_id_Div').css('font-size','10pt');
+			return;
+	} 	
+	
 	$.ajax({
 		type : 'post', 
 		url : '/bitFarm/seller/checkID', 
@@ -220,14 +243,17 @@ $('#seller_checkIdBtn').click(function(){
 				$('#seller_id_Div').css('color','green');
 				$('#seller_id_Div').css('font-weight','bold');
 				$('#seller_id_Div').css('font-size','10pt');
+				
+				sid = true;
 			} 			
 		} 
 	}); 
 });
 
 $('input[name=seller_pwd]').focusout(function(){
-
+	var userIdCheck = RegExp(/^[A-Za-z0-9_\-]{5,15}$/);
 	$('#seller_pwd_Div').empty();
+	$('#seller_pwd_Div').empty(); 
 	
 	if($('input[name=seller_pwd]').val()==''){
 	$('#seller_pwd_p').css("display", "block"); 
@@ -235,7 +261,16 @@ $('input[name=seller_pwd]').focusout(function(){
 			$('#seller_pwd_Div').css('color','#5f0080');
 			$('#seller_pwd_Div').css('font-weight','bold');
 			$('#seller_pwd_Div').css('font-size','10pt');			
-	} 
+	}else if(!(userIdCheck.test($('#pwd').val()))){	 	 
+		$('#seller_pwd_p').css("display", "block") ;  
+		$('#seller_pwd_Div').text('영문 숫자 5~15자로 입력 가능 (특수문자 불가)');  
+		$('#seller_pwd_Div').css('color','red'); 
+		$('#seller_pwd_Div').css('font-weight','bold');
+		$('#seller_pwd_Div').css('font-size','10pt'); 
+		$('input[name=seller_repwd]').attr('readonly',true);
+	}else{
+		$('input[name=seller_repwd]').attr('readonly',false); 
+	}
 });
  
 $('input[name=seller_repwd]').focusout(function(){
@@ -261,10 +296,13 @@ $('input[name=seller_repwd]').focusout(function(){
 		$('#seller_pwd_Div').css('color','green');
 		$('#seller_pwd_Div').css('font-weight','bold'); 
 		$('#seller_pwd_Div').css('font-size','10pt'); 
+		
+		spwd = true;
 	}   
 }); 
 
 $('input[name=seller_name]').focusout(function(){
+	var RegexName = /^[가-힣]{2,5}$/; //이름 유효성 검사 2~4자 사이
 	$('#seller_name_p').css("display", "none"); 
 	$('#seller_name_Div').empty();
 	
@@ -274,12 +312,24 @@ $('input[name=seller_name]').focusout(function(){
 			$('#seller_name_Div').css('color','#5f0080');
 			$('#seller_name_Div').css('font-weight','bold');
 			$('#seller_name_Div').css('font-size','10pt');
-		} 	
-});
+			
+		}else if ( !RegexName.test($.trim($("#name").val())) ){
+			$('#seller_name_p').css("display", "block"); 
+			$('#seller_name_Div').text('이름을 정확히 입력하세요.'); 
+			$('#seller_name_Div').css('color','red'); 
+			$('#seller_name_Div').css('font-weight','bold');
+			$('#seller_name_Div').css('font-size','10pt');
+			return;
+			
+		}else{
+			sname = true;
+		} 	 	
+}); 
 
 $('input[name=seller_email]').change(function(){	
 	
 	$('#auth').val('no');   
+	semail = false;
 }); 
 
 $('input[name=seller_email]').focus(function(){
@@ -289,6 +339,7 @@ $('input[name=seller_email]').focus(function(){
 		$('#seller_email_Div').css('color','green');  
 		$('#seller_email_Div').css('font-weight','bold');
 		$('#seller_email_Div').css('font-size','10pt');		
+		semail = true; 
 	}	 
 });
 
@@ -302,6 +353,7 @@ $('input[name=seller_email]').focusout(function(){
 		$('#seller_email_Div').css('color','#5f0080');     
 		$('#seller_email_Div').css('font-weight','bold');
 		$('#seller_email_Div').css('font-size','10pt');  
+		semail = false;
 	}
 });
 
@@ -349,7 +401,9 @@ $('input[name=seller_phone]').focusout(function(){
 		$('#seller_phone_Div').css('color','red');
 		$('#seller_phone_Div').css('font-weight','bold'); 
 		$('#seller_phone_Div').css('font-size','10pt');
-	}	
+	}else{
+		sphone = true;
+	}		
 });
 
 $('input[name=seller_license]').focusout(function(){
@@ -362,6 +416,8 @@ $('input[name=seller_license]').focusout(function(){
 			$('#seller_license_Div').css('color','#5f0080');
 			$('#seller_license_Div').css('font-weight','bold');
 			$('#seller_license_Div').css('font-size','10pt');
+		}else{
+			slicense = true;
 		} 	
 });
 
@@ -375,7 +431,7 @@ $('input[name=seller_address1]').focusout(function(){
 			$('#seller_address1_Div').css('color','#5f0080');
 			$('#seller_address1_Div').css('font-weight','bold'); 
 			$('#seller_address1_Div').css('font-size','10pt'); 
-		} 	  
+		}  	  
 });
 
 $('input[name=seller_address2]').focusout(function(){ 
@@ -388,20 +444,41 @@ $('input[name=seller_address2]').focusout(function(){
 			$('#seller_address1_Div').css('color','#5f0080');
 			$('#seller_address1_Div').css('font-weight','bold');
 			$('#seller_address1_Div').css('font-size','10pt'); 
-		} 	 
+		}  	 
 });
 
 function checkSellerWrite(){ 
+	if(!(semail)){
+		alert("이메일을 확인해주세요");
+		return;
+	}
+	if($('input[name=seller_address1]').val()==''){
+		$('#seller_address1_p').css("display", "block"); 
+				$('#seller_address1_Div').text('주소를 검색하세요.');  
+				$('#seller_address1_Div').css('color','#5f0080'); 
+				$('#seller_address1_Div').css('font-weight','bold');
+				$('#seller_address1_Div').css('font-size','10pt'); 
+				return; 
+	}	 
+	if($('input[name=seller_address2]').val()==''){ 
+		$('#seller_address1_p').css("display", "block"); 
+				$('#seller_address1_Div').text('주소를 입력하세요.');   
+				$('#seller_address1_Div').css('color','#5f0080');
+				$('#seller_address1_Div').css('font-weight','bold');
+				$('#seller_address1_Div').css('font-size','10pt'); 
+				return; 
+	}
+}
 	 
-	if($('input[name=seller_id]').val()==''||
+/* 	if($('input[name=seller_id]').val()==''||
 		$('input[name=seller_name]').val()==''||
 		$('input[name=seller_pwd]').val()==''||
 		$('input[name=seller_email]').val()==''||
 		$('input[name=seller_phone]').val()==''||
 		$('input[name=seller_license]').val()==''||
-		$('input[name=seller_address1]').val()==''|| 
-		$('input[name=seller_address2]').val()==''){
-		
+		$('input[name=seller_address1]').val()==''||  
+		$('input[name=seller_address2]').val()==''){ */
+	if(!(sid && spwd && sname && semail && sphone && slicense)){	
 		alert("필수 사항을 입력하세요!");
 				
 	}else if($('#seller_check1').is(":checked") && $('#seller_check2').is(":checked") && $('#seller_check3').is(":checked")){
@@ -409,7 +486,7 @@ function checkSellerWrite(){
 		document.sellerWriteForm.method = 'post';
 		document.sellerWriteForm.action = '/bitFarm/seller/write';
 		document.sellerWriteForm.submit(); 
-		
+		 
 	}else{  
 		alert("약관을 체크해주세요!");			 
 	}

@@ -22,7 +22,7 @@ th{
 			<th>글번호</th>
 			<th width="250px;">제목</th> 
 			<th>작성자</th>
-			<th>작성일</th>  			    
+			<th>작성일</th>  			     
 		</tr>   
 		
 <c:forEach var="informationQnADTO" items="${list }">

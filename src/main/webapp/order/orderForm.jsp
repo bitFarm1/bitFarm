@@ -83,16 +83,19 @@
 		<tr>
 			<th>쿠폰 사용</th>
 			<td>
-				<select style="height: 30px; width: 500px;">
-					<option>사용 가능한 쿠폰이 없습니다.
-					<option>쿠폰1
+				<select id = "selectCoupon" style="height: 30px; width: 500px;">
+					<option value = "0">쿠폰을 선택하세요</option>
+				<c:forEach var="couponDTO" items="${couponList }">
+					<option  value = "${couponDTO.coupon_price }">[${couponDTO.coupon_name }] ${couponDTO.coupon_content}</option>
+				</c:forEach>
 				</select>
 			</td>
 		</tr>
 		<tr>
-			<th>사용 가능 적립금&nbsp;&nbsp;<span>${memberDTO.member_point}</span>원</th>
+			<th>사용 가능 적립금&nbsp;&nbsp;<span>${pointTotal}</span>원</th>
 			<td>
-				<input class="shipInfoText" type="text" size="10" name="usePoint" style="text-align: right;" value="0">&nbsp;&nbsp;원 사용하기
+				<input class="shipInfoText" type="text" size="10" name="usePoint" id = "userPoint" style="text-align: right;" value="0">&nbsp;&nbsp;원 사용하기
+				<div id = "pointDiv"></div>
 			</td>
 		</tr>
 	</table>
@@ -124,25 +127,25 @@
 			<th>총 상품금액</th>
 			<td><fmt:formatNumber pattern="#,###원" value="${totalMoney}"/></td>
 		</tr>
-		<tr>
+		<!-- <tr>
 			<th>할인 금액</th>
 			<td>0원</td>
-		</tr>
+		</tr> -->
 		<tr>
 			<th>배송비</th>
 			<td>3,000원</td>
 		</tr>
 		<tr>
 			<th>쿠폰 사용</th>
-			<td>0원</td>
+			<td><div id = "userCouponResult" style = "display:inline;"><fmt:formatNumber pattern="#,###">0</fmt:formatNumber></div>원</td>
 		</tr>
 		<tr>
 			<th>적립금 사용</th>
-			<td>0원</td>
+			<td><div id = "userPointResult" style = "display:inline;"><fmt:formatNumber pattern="#,###">0</fmt:formatNumber></div>원</td>
 		</tr>
 		<tr>
 			<th>최종 결제 금액</th>
-			<td><strong><fmt:formatNumber pattern="#,###원" value="${totalMoney+3000}"/></strong></td>
+			<td><div id = "totalMoneyDiv" style = "display:inline;"></div>원</td>
 		</tr>
 	</table>
 </div>
@@ -156,7 +159,65 @@
 <!-- script -->
 <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
+
+
 $('.orderBtn').click(function(){
 	
 });
+//////////////////////////////////////////////////////////
+//200326 김소중
+$('#userPoint').click(function(){
+	$('#userPoint').val('');
+});
+
+$('#userPoint').focusout(function(){
+	
+	let point = ${pointTotal};
+	let usePoint = $('#userPoint').val();
+	$('#pointDiv').empty();	
+	
+	if($('#userPoint').val() <= point){
+		$('#pointDiv').text('사용가능합니다');
+		$('#pointDiv').css('color','blue')
+		$('#pointDiv').css('font-size','8pt')
+		$('#pointDiv').css('font-weight','bold');
+	}else{
+		$('#pointDiv').text('사용불가능합니다');
+		$('#pointDiv').css('color','red')
+		$('#pointDiv').css('font-size','8pt')
+		$('#pointDiv').css('font-weight','bold');
+	}
+	
+	$('div[id=userPointResult]').text(usePoint);
+	
+	
+
+	
+});
+
+$(document).ready(function(){ 
+
+	$('#selectCoupon').click(function(){
+		let useCoupon = $('#selectCoupon option:selected').val();
+		
+		$('div[id=userCouponResult]').text(useCoupon);
+
+	});
+	
+	let usePoint = $('#userPoint').val();
+	let useCoupon = $('#selectCoupon option:selected').val();
+	
+	let totalMoney = ${totalMoney};
+	
+	let total = totalMoney + 3000 - usePoint - useCoupon;
+	
+	
+	
+	$('div[id=totalMoneyDiv]').text(total);
+});
+
+
+
+
+////////////////////////////////////////////////////////
 </script>

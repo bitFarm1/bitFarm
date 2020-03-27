@@ -48,7 +48,7 @@ var data = [
 ];
 var options = {
   title: '로그인 유형',
-  width: 400, height: 500
+  width: 400, height: 500 
 };
 google.load('visualization', '1.0', {'packages':['corechart']});
 google.setOnLoadCallback(function() {
@@ -57,18 +57,18 @@ google.setOnLoadCallback(function() {
 });
 </script>
 <div id="chart_div"></div> -->
-<canvas id="myChart" width="400" height="400"></canvas>
+<canvas id="myChart1" width="400" height="400"></canvas>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
 <script type="text/javascript">
-	var ctx = document.getElementById('myChart');
-	var myChart = new Chart(ctx, {
-		type: 'bar',
+	var ctx = document.getElementById('myChart1');
+	var myChart = new Chart(ctx, { 
+		type: 'pie',
 		data: {
 			labels: ['BIT', 'NAVER', 'KAKAO'],
 			datasets: [{
-				label: '로그인 유형',
-				data: [${bit}, ${kakao}, ${naver}], 
+				label: '로그인 유형', 
+				data: [${bit}, ${naver}, ${kakao}],   
 				backgroundColor: [
 					'rgba(255, 99, 132, 0.2)',
 					'rgba(54, 162, 235, 0.2)',
@@ -79,7 +79,7 @@ google.setOnLoadCallback(function() {
 					'rgba(54, 162, 235, 1)',
 					'rgba(255, 206, 86, 1)'					
 				],
-				borderWidth: 1
+				borderWidth: 1 
 			}]
 		},
 		options: {

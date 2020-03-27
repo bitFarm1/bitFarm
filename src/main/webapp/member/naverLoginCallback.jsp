@@ -11,8 +11,6 @@
 
 <body>
 
-	callback Page
-
 	<!-- (1) LoginWithNaverId Javscript SDK -->
 	<script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
 
@@ -31,7 +29,7 @@
 
 		/* (3) 네아로 로그인 정보를 초기화하기 위하여 init을 호출 */
 		naverLogin.init();
-
+ 
 		/* (4) Callback의 처리. 정상적으로 Callback 처리가 완료될 경우 main page로 redirect(또는 Popup close) */
 		window.addEventListener('load', function () {
 			naverLogin.getLoginStatus(function (status) {
@@ -44,7 +42,7 @@
 					var uniqId = naverLogin.user.getId();
 					var age = naverLogin.user.getAge(); 
 					
-					alert("email="+email+" name="+name+" profileImage="+profileImage+" uniqId="+uniqId+" age="+age); 
+					//alert("email="+email+" name="+name+" profileImage="+profileImage+" uniqId="+uniqId+" age="+age); 
 					window.location.replace("http://" + window.location.hostname + ( (location.port==""||location.port==undefined)?"":":" + location.port) + "/bitFarm/member/naver?email="+email+"&name="+name+"&type=naver");
 		
 				} else {

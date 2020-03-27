@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <style type="text/css">
 	.wrap{
 		width: 1000px;
@@ -73,10 +74,11 @@
 			<tr> 
 				<td height="30px" style="border-bottom: 0px"></td>
 			</tr>
-			<tr><td style="border-bottom: 0px">
-				<pre class="contents">${informationDTO.information_content }</pre><br>
+			<tr><td style="border-bottom: 0px">  
+				<pre class="contents">${informationDTO.information_content }</pre><br> 
+			<c:if test="${informationDTO.information_imageName != '0'}">
 				<img src="../storage/${informationDTO.information_imageName }">
-				 
+			</c:if>
 			</td></tr>  
 			<tr> 
 				<td height="30px"></td>

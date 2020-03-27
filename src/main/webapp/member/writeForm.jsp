@@ -53,7 +53,7 @@
  	text-align: left;
  	} 
  	
- 	.box{  
+ 	.box{   
 	width: 640px;
 	margin: 0 auto;
 	height: 250px; 	 
@@ -72,7 +72,9 @@
     line-height: 44px;  
     cursor: pointer;
 	}
-	
+	.sign {
+	cursor: pointer;
+	}
 	a.sign {color:purple; text-decoration: none; }
 	a.sign:link {color: purple; text-decoration: none;}
 	a.sign:visited {color: purple; text-decoration: none;} 
@@ -81,9 +83,6 @@
 }
 	
 </style>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 <form name="memberWriteForm">  
 <h2 align="center">회원가입</h2>
 <div style="height:20px;"></div>
@@ -161,14 +160,14 @@
 	<div style="height: 30px;">
 		<input type="checkbox" name="allCheck" id="allCheck" onclick="checkAll()" >전체동의&emsp;
 		
-	</div> 
-	<div>
-		&emsp;<input type="checkbox" id="member_check1" name="check"> 이용약관 (필수)&emsp;
-		<a class="sign" href="#">약관보기 ></a> 
+	</div>  
+	<div> 
+		&emsp;<input type="checkbox" id="check1" name="check"> 이용약관 (필수)&emsp;
+		<a class="sign" href="#" onclick="openAgree1()">약관보기 ></a> 
 	</div>
 	<div>
-		&emsp;<input type="checkbox" id="member_check2"  name="check"> 개인정보처리방침 (필수)&emsp;
-		<a class="sign" href="#">약관보기 ></a>
+		&emsp;<input type="checkbox" id="check2"  name="check"> 개인정보처리방침 (필수)&emsp;
+		<a class="sign" href="#" onclick="openAgree()">약관보기 ></a>
 	</div>
 	<div>
 		&emsp;<input type="checkbox" id="event" name="check"> 이벤트 혜택/정보 수신 (선택)
@@ -176,7 +175,7 @@
 	</div>
 	<div>
 		&emsp;<input type="checkbox" id="member_check3" name="check"> 본인은 만 14세 이상입니다. (필수)
-	</div>	
+	</div>	 
 	<div style="height: 10px;"></div>
 </div>  
   
@@ -188,9 +187,9 @@
 
 <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
-var sid = false;
+var sid = false; 
 var sname = false;
-var semail = false;
+var semail = false; 
 var sphone = false;
  
 
@@ -454,12 +453,12 @@ $('input[name=member_birth]').focusout(function(){
 			
 	}else if(!(userCheck.test($('#birth').val()))){	 	 
 		$('#member_birth_p').css("display", "block") ;  
-		$('#member_birth_Div').text('영문 숫자 5~15자로 입력 가능 (특수문자 불가)');  
+		$('#member_birth_Div').text('예시 : 19941112');   
 		$('#member_birth_Div').css('color','red'); 
 		$('#member_birth_Div').css('font-weight','bold');
 		$('#member_birth_Div').css('font-size','10pt'); 
 		$('#writeFormBtn').attr('disabled', true); 
-	}else { 
+	}else {
 		$('#writeFormBtn').attr('disabled', false); 
 	}
 });
@@ -524,24 +523,34 @@ function checkMemberWrite(){
 	
 		alert("필수 사항을 입력하세요!");  
 		
-	}else if($('#member_check1').is(":checked") && $('#member_check2').is(":checked") && $('#member_check3').is(":checked")){
+	}else if($('#check1').is(":checked") && $('#check2').is(":checked") && $('#member_check3').is(":checked")){
 						
-			document.memberWriteForm.method = 'post';
+			document.memberWriteForm.method = 'post'; 
 			document.memberWriteForm.action = '/bitFarm/member/write';
 			document.memberWriteForm.submit();
-				 
+				  
 	}else {
 		alert("약관을 체크해주세요!");   
-	}
-}	
-</script>
+	} 
+}  
+	
 
+function openAgree(){  
+	window.open("/bitFarm/member/agree","","width=840 height=500 left=500 top=300 scrollbars=yes");
+}  
+ 
+function openAgree1(){  
+	window.open("/bitFarm/member/agree1","","width=840 height=500 left=500 top=300 scrollbars=yes");
+}    
+
+</script> 
+ 
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
     //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
     function execDaumPostcode() {
         new daum.Postcode({
-            oncomplete: function(data) {
+            oncomplete: function(data) {  
                 // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분. 
 
                 // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
@@ -566,10 +575,8 @@ function checkMemberWrite(){
                 // 우편번호와 주소 정보를 해당 필드에 넣는다. 
                  
                 document.getElementById("member_address1").value = "("+data.zonecode+") "+roadAddr;
-                document.getElementById("member_address2").value = data.jibunAddress; 
-                                               
+                                                               
             }
         }).open();
     }
 </script>
-

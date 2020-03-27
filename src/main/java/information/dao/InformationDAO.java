@@ -10,11 +10,11 @@ public interface InformationDAO {
 
 	public void infoQnABoardWrite(InformationQnADTO informationQnADTO);
 
-	public List<InformationQnADTO> getInfoList(Map<String, Integer> map);
+	public List<InformationQnADTO> getInfoList(Map<String, String> map);
 
 	public void infoWrite(InformationDTO informationDTO);
 
-	public List<InformationDTO> infoBoardList(Map<String, Integer> map);
+	public List<InformationDTO> infoBoardList(Map<String, Integer> map); 
 
 	public InformationDTO infoView(String seq);
 
@@ -22,7 +22,15 @@ public interface InformationDAO {
 
 	public List<InformationDTO> getInfoSearch(Map<String, String> map);
 
-	public int getInfoSearchTotalA(Map<String, String> map);  
+	public int getInfoSearchTotalA(Map<String, String> map);
+
+	public List<InformationQnADTO> getInfoListADMIN(Map<String, Integer> map);
+
+	public InformationQnADTO writeQnAAnswer(String seq);
+
+	public int answerWrite(Map<String, String> map);
+
+	public List<InformationQnADTO> infoQnAListAllADMIN(Map<String, String> map);   
  
-}
-     
+}  
+      

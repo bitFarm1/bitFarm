@@ -24,7 +24,7 @@ public class InformationDAOMybatis implements InformationDAO{
 	}
 
 	@Override
-	public List<InformationQnADTO> getInfoList(Map<String, Integer> map) {
+	public List<InformationQnADTO> getInfoList(Map<String, String> map) { 
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("informationSQL.getInfoList", map);
 	}
@@ -62,6 +62,31 @@ public class InformationDAOMybatis implements InformationDAO{
 	public int getInfoSearchTotalA(Map<String, String> map) {  
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("informationSQL.getInfoSearchTotalA", map);
+	}
+
+	@Override
+	public List<InformationQnADTO> getInfoListADMIN(Map<String, Integer> map) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("informationSQL.getInfoListADMIN", map);
+	}
+
+	@Override
+	public InformationQnADTO writeQnAAnswer(String seq) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("informationSQL.writeQnAAnswer", seq);
+	}
+
+	@Override
+	public int answerWrite(Map<String, String> map) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("informationSQL.answerWrite", map); 
+	}
+
+	@Override
+	public List<InformationQnADTO> infoQnAListAllADMIN(Map<String, String> map) { 
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("informationSQL.infoQnAListAllADMIN", map);
 	} 
  
 }  
+ 

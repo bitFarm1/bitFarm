@@ -27,14 +27,14 @@ public class InformationServiceImpl implements InformationService {
 	}
 
 	@Override
-	public List<InformationQnADTO> getInfoList(String pg) { 
+	public List<InformationQnADTO> getInfoList(Map<String, String> map) { 
 		// TODO Auto-generated method stub 
-		int endNum = Integer.parseInt(pg)*10;
-		int startNum = endNum-9;
+		int endNum = Integer.parseInt(map.get("pg"))*10;
+		int startNum = endNum-9;   
 		
-		Map<String, Integer> map = new HashMap<String, Integer>();
-		map.put("startNum", startNum);
-		map.put("endNum", endNum);
+		
+		map.put("startNum", startNum+"");
+		map.put("endNum", endNum+"");
 		
 		return informationDAO.getInfoList(map);   
 	}
@@ -99,7 +99,47 @@ public class InformationServiceImpl implements InformationService {
 		informationPaging.setTotalA(totalA);
 		informationPaging.makeSearchPagingHTML();   
 		return informationPaging; 
-	} 	
+	}
 
+	@Override 
+	public List<InformationQnADTO> getInfoListADMIN(String pg) {
+
+		// TODO Auto-generated method stub 
+		int endNum = Integer.parseInt(pg)*10;
+		int startNum = endNum-9;   
+		
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		
+		map.put("startNum", startNum); 
+		map.put("endNum", endNum);
+		
+		return informationDAO.getInfoListADMIN(map);   
+	}
+
+	@Override 
+	public InformationQnADTO writeQnAAnswer(String seq) {
+		// TODO Auto-generated method stub
+		return informationDAO.writeQnAAnswer(seq);
+	}
+
+	@Override
+	public int answerWrite(Map<String, String> map) {
+		
+		return informationDAO.answerWrite(map); 
+	}
+
+	@Override
+	public List<InformationQnADTO> infoQnAListAllADMIN(Map<String, String> map) {
+		
+		int endNum = Integer.parseInt(map.get("pg"))*10;
+		int startNum = endNum-9;   
+		
+		
+		map.put("startNum", startNum+"");
+		map.put("endNum", endNum+"");
+		
+		return informationDAO.infoQnAListAllADMIN(map);   
+	}
+ 
 	
 }

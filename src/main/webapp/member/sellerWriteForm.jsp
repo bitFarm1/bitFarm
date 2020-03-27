@@ -74,7 +74,9 @@
     line-height: 44px;
     cursor: pointer;
 	}
-	
+	.sign {
+	cursor: pointer;
+	}
 	a.sign {color:purple; text-decoration: none; }
 	a.sign:link {color: purple; text-decoration: none;}
 	a.sign:visited {color: purple; text-decoration: none;}
@@ -103,7 +105,7 @@
 			<th class="subject">비밀번호확인*</th>
 			<td style="padding-top: 2px;"><input class="layoutT" type="password" name="seller_repwd" placeholder="비밀번호를 한번 더 입력해주세요">
 			<br id="seller_pwd_p" style="display: none;"><span id="seller_pwd_Div" ></span></br></td>
-		</tr>
+		</tr> 
 		
 		 
 		<tr>
@@ -165,12 +167,12 @@
 		 
 	</div> 
 	<div>
-		&emsp;<input type="checkbox" id="seller_check1" name="check"> 이용약관 (필수)&emsp;
-		<a class="sign" href="#">약관보기 ></a>
+		&emsp;<input type="checkbox" id="check1" name="check"> 이용약관 (필수)&emsp;
+		<a class="sign" onclick="openAgree1()" href="#">약관보기 ></a>
 	</div>
 	<div>
-		&emsp;<input type="checkbox" id="seller_check2" name="check"> 개인정보처리방침 (필수)&emsp;
-		<a class="sign" href="#">약관보기 ></a>
+		&emsp;<input type="checkbox" id="check2" name="check"> 개인정보처리방침 (필수)&emsp;
+		<a class="sign" onclick="openAgree()" href="#">약관보기 ></a>
 	</div> 
 	<div> 
 		&emsp;<input type="checkbox" id="seller_check3" name="check"> 본인은 만 14세 이상입니다. (필수) 
@@ -186,7 +188,7 @@
 <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
 var sid = false;
-var sname = false;
+var sname = false;  
 var semail = false;
 var sphone = false;
 var slicense = false;
@@ -468,7 +470,7 @@ function checkSellerWrite(){
 				$('#seller_address1_Div').css('font-size','10pt'); 
 				return; 
 	}
-}
+} 
 	 
 /* 	if($('input[name=seller_id]').val()==''||
 		$('input[name=seller_name]').val()==''||
@@ -481,7 +483,7 @@ function checkSellerWrite(){
 	if(!(sid && spwd && sname && semail && sphone && slicense)){	
 		alert("필수 사항을 입력하세요!");
 				
-	}else if($('#seller_check1').is(":checked") && $('#seller_check2').is(":checked") && $('#seller_check3').is(":checked")){
+	}else if($('#check1').is(":checked") && $('#check2').is(":checked") && $('#seller_check3').is(":checked")){
 
 		document.sellerWriteForm.method = 'post';
 		document.sellerWriteForm.action = '/bitFarm/seller/write';
@@ -489,9 +491,18 @@ function checkSellerWrite(){
 		 
 	}else{  
 		alert("약관을 체크해주세요!");			 
-	}
+	}  
 }
 
+
+	function openAgree(){  
+		window.open("/bitFarm/member/agree","","width=840 height=500 left=500 top=300 scrollbars=yes");
+	}  
+	 
+	function openAgree1(){  
+		window.open("/bitFarm/member/agree1","","width=840 height=500 left=500 top=300 scrollbars=yes");
+	}    
+ 
 function checkAll(){
 	//alert(document.getElementsByName("check").length); check 이름을 가진 것의 개수
 	//if(document.getElementById("all").checked)
@@ -542,8 +553,7 @@ function checkAll(){
                 // 우편번호와 주소 정보를 해당 필드에 넣는다. 
                  
                 document.getElementById("seller_address1").value = "("+data.zonecode+") "+roadAddr;
-                document.getElementById("seller_address2").value = data.jibunAddress; 
-                                               
+                                                              
             }
         }).open();
     } 

@@ -4,27 +4,53 @@
 <mapper namespace="informationSQL" >
 	<!-- QnABoard (informationQnA)  -->
 	<insert id="infoQnABoardWrite" parameterType="informationQnADTO">
-		insert into QnABoard values(QnABoard_SEQ.nextval,		
-									#{infoQnA_type},
+		insert into QnABoard values(#{infoQnA_type},
 									#{infoQnA_subject},
 									#{infoQnA_userID}, 
 									#{infoQnA_orderNum},  
 									#{infoQnA_email},
 									#{infoQnA_phone},
 									#{infoQnA_content},
-									#{infoQnA_imageName},
+									nvl(#{infoQnA_imageName},'0'), 
 									sysdate, 
+									0, 
 									0,
-									sysdate)	   
+									sysdate,
+									QnABoard_SEQ1.nextval)	   
 	</insert> 
 	
 	<select id="getInfoList" parameterType="java.util.Map" resultType="informationQnADTO">
 		<![CDATA[ 
-		select * from (select rownum rn, tt.* from (select * from QnABoard order by infoQnA_seq desc)tt)where rn>=#{startNum} and rn<=#{endNum}
+		select * from (select rownum rn, tt.* from (select * from QnABoard order by infoQnA_seq desc)tt)where rn>=#{startNum} and rn<=#{endNum} and infoQnA_userid = #{memberId}
 		]]> 
-	</select> 	  
+	</select> 	 
 	
-	<!-- information (공지사항) -->
+	<select id="getInfoListADMIN" parameterType="java.util.Map" resultType="informationQnADTO">
+		<![CDATA[ 
+		select * from (select rownum rn, tt.* from (select * from QnABoard order by infoQnA_seq desc)tt)where rn>=#{startNum} and rn<=#{endNum} and infoQnA_answerSubject = '0' 
+		]]> 
+	</select> 	 
+	
+	<select id="infoQnAListAllADMIN" parameterType="java.util.Map" resultType="informationQnADTO">
+		<![CDATA[ 
+		select * from (select rownum rn, tt.* from (select * from QnABoard order by infoQnA_seq desc)tt)where rn>=#{startNum} and rn<=#{endNum} 
+		]]> 
+	</select> 	     
+	 
+	<select id="writeQnAAnswer" parameterType="String" resultType="informationQnADTO">
+		select * from QnABoard where infoQnA_seq = #{seq}
+	</select>
+	
+	<update id="answerWrite" parameterType="java.util.Map">
+		update QnABoard
+		set infoQnA_answerSubject = #{infoQnA_answerSubject},
+		infoQnA_answerContent = #{infoQnA_answerContent},
+		infoQnA_answerDate = sysdate 
+		where infoQnA_seq = #{seq}   
+	</update>
+	
+	
+	<!-- information (공지사항) !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
 	<insert id="infoWrite" parameterType="informationDTO">
 		insert into information values(information_SEQ.nextval,
 								#{information_subject},

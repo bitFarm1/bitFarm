@@ -115,10 +115,10 @@ a.searchA:active {color: black; text-decoration: none;}
                 //   alert(JSON.stringify(authObj)); //<----Kakao.Auth.createLoginButton에서 불러온 결과값 json형태로 출력
                           
                 //	 alert("아이디:"+res.id+" 이메일:"+res.kakao_account.email+" 닉네임:"+res.properties['nickname']);    
-                	 window.location.href="http://localhost:8080/bitFarm/member/naver.do?name="+res.properties['nickname']+"&email="+res.kakao_account.email+"&type=kakao";  
+                	 window.location.href="http://localhost:8080/bitFarm/member/naver?name="+res.properties['nickname']+"&email="+res.kakao_account.email+"&type=kakao";  
                  },
                  fail: function(error) {
-                   alert(JSON.stringify(error));  
+                   alert(JSON.stringify(error));   
                  }
                });
         },

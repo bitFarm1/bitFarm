@@ -60,6 +60,10 @@
 	text-align: left;
 	} 
 	
+	.sign{
+	cursor: pointer;
+	}
+	
 	.join {  
     width: 340px;
     height: 54px;
@@ -124,7 +128,7 @@
 				
 		<tr>
 			<th class="subject">생년월일</th>
-			<td><input class="layoutT" type="text" name="member_birth" placeholder="YYYYMMDD">
+			<td><input class="layoutT" type="text" id="birth" name="member_birth" placeholder="YYYYMMDD">
 			<br id="member_birth_p" style="display: none;"><span id="member_birth_Div" ></span></br>
 			</td>
 			
@@ -143,20 +147,20 @@
 		
 	</div> 
 	<div>
-		&emsp;<input type="checkbox" id="member_check1" name="check"> 이용약관 (필수)&emsp;
-		<a class="sign" href="#">약관보기 ></a>
+		&emsp;<input type="checkbox" id="check1" name="check"> 이용약관 (필수)&emsp;
+		<a class="sign" href="#" onclick="openAgree()">약관보기 ></a> 
 	</div>
 	<div>
-		&emsp;<input type="checkbox" id="member_check2"  name="check"> 개인정보처리방침 (필수)&emsp;
-		<a class="sign" href="#">약관보기 ></a>
-	</div>
+		&emsp;<input type="checkbox" id="check2"  name="check"> 개인정보처리방침 (필수)&emsp;
+		<a class="sign" href="#" onclick="openAgree1()">약관보기 ></a>
+	</div> 
 	<div>
 		&emsp;<input type="checkbox" id="event" name="check"> 이벤트 혜택/정보 수신 (선택)
 		<input type="hidden" id="mea" name="member_eventAgree" value=""> 
 	</div>
 	<div>
 		&emsp;<input type="checkbox" id="member_check3" name="check"> 본인은 만 14세 이상입니다. (필수)
-	</div>	
+	</div>	 
 	<div style="height: 10px;"></div>
 </div>  
   
@@ -171,8 +175,17 @@
 <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
 
+var sname = false;
+var sphone = false;
+
+$(document).ready(function(){
+	if('${email}'=='undefined'){
+		$('input[name=member_email]').attr('readonly',false);
+	}  
+});
 
 $('input[name=member_name]').focusout(function(){
+	var RegexName = /^[가-힣]{2,5}$/; //이름 유효성 검사 2~4자 사이
 	$('#member_name_p').css("display", "none"); 
 	$('#member_name_Div').empty(); 
 	
@@ -182,7 +195,17 @@ $('input[name=member_name]').focusout(function(){
 		$('#member_name_Div').css('color','#5f0080'); 
 		$('#member_name_Div').css('font-weight','bold');
 		$('#member_name_Div').css('font-size','10pt'); 
-		} 	
+		}else if ( !RegexName.test($.trim($("#name").val())) ){
+			$('#member_name_p').css("display", "block"); 
+			$('#member_name_Div').text('이름을 정확히 입력하세요.'); 
+			$('#member_name_Div').css('color','red'); 
+			$('#member_name_Div').css('font-weight','bold');
+			$('#member_name_Div').css('font-size','10pt');
+			return;
+ 
+		}else{
+			sname = true;
+		} 	 	
 });
  
     
@@ -205,7 +228,9 @@ $('input[name=member_phone]').focusout(function(){
 		$('#member_phone_Div').css('color','red');
 		$('#member_phone_Div').css('font-weight','bold'); 
 		$('#member_phone_Div').css('font-size','10pt');
-	}	
+	}else{
+		sphone = true;
+	}		
 });
  
 
@@ -235,6 +260,30 @@ $('input[name=member_address2]').focusout(function(){
 		} 	 
 });
 
+$('input[name=member_birth]').focusout(function(){ 
+	var userCheck = RegExp(/^[0-9]{8}$/)
+	$('#member_birth_p').css("display", "none"); 
+	$('#member_birth_Div').empty(); 
+	 
+	if($('input[name=member_birth]').val()==''){ 
+	$('#member_birth_p').css("display", "block"); 
+			$('#member_birth_Div').text('생일을 입력하세요.');   
+			$('#member_birth_Div').css('color','#5f0080');
+			$('#member_birth_Div').css('font-weight','bold'); 
+			$('#member_birth_Div').css('font-size','10pt'); 
+			
+	}else if(!(userCheck.test($('#birth').val()))){	 	 
+		$('#member_birth_p').css("display", "block") ;  
+		$('#member_birth_Div').text('예시 19941112');   
+		$('#member_birth_Div').css('color','red'); 
+		$('#member_birth_Div').css('font-weight','bold');
+		$('#member_birth_Div').css('font-size','10pt'); 
+		$('#writeFormBtn').attr('disabled', true); 
+	}else {
+		$('#writeFormBtn').attr('disabled', false); 
+	}
+});
+
 function checkAll(){
 	//alert(document.getElementsByName("check").length); check 이름을 가진 것의 개수
 	//if(document.getElementById("all").checked)
@@ -258,19 +307,41 @@ function checkMemberWrite(){
 	
 	if($('#event').is(":checked")) $('#mea').val("yes");    
 	else $('#mea').val("no");
-	
-	if($('input[name=member_id]').val()==''||
+	if($('input[name=member_address1]').val()==''){
+		$('#member_address1_p').css("display", "block"); 
+				$('#member_address1_Div').text('주소를 검색하세요.');  
+				$('#member_address1_Div').css('color','#5f0080'); 
+				$('#member_address1_Div').css('font-weight','bold');
+				$('#member_address1_Div').css('font-size','10pt'); 
+				return;
+	}	 
+	if($('input[name=member_address2]').val()==''){ 
+		$('#member_address1_p').css("display", "block"); 
+				$('#member_address1_Div').text('주소를 입력하세요.');   
+				$('#member_address1_Div').css('color','#5f0080');
+				$('#member_address1_Div').css('font-weight','bold');
+				$('#member_address1_Div').css('font-size','10pt'); 
+				return; 
+	} 
+/* 	if($('input[name=member_id]').val()==''||
 		$('input[name=member_name]').val()==''||
 		$('input[name=member_pwd]').val()==''||
 		$('input[name=member_email]').val()==''||
-		$('input[name=member_phone]').val()==''||
-		$('input[name=member_license]').val()==''||
+		$('input[name=member_phone]').val()==''|| 
 		$('input[name=member_address1]').val()==''||
 		$('input[name=member_address2]').val()==''){
-		
+		 */
+	 if(!(sname && sphone)){
+			
+			console.log("sid="+sid);
+			console.log("spwd="+spwd);  
+			console.log("sname="+sname); 
+			console.log("semail="+semail);  
+			console.log("sphone="+sphone); 
+						 
 		alert("필수 사항을 입력하세요!"); 
 		
-	}else if($('#member_check1').is(":checked") && $('#member_check2').is(":checked") && $('#member_check3').is(":checked")){
+	}else if($('#check1').is(":checked") && $('#check2').is(":checked") && $('#member_check3').is(":checked")){
 						
 			document.memberWriteForm.method = 'post'; 
 			document.memberWriteForm.action = '/bitFarm/member/write';
@@ -280,6 +351,15 @@ function checkMemberWrite(){
 		alert("약관을 체크해주세요!");   
 	}
 }	
+
+function openAgree(){  
+	window.open("/bitFarm/member/agree","","width=840 height=500 left=500 top=300 scrollbars=yes");
+}  
+ 
+function openAgree1(){  
+	window.open("/bitFarm/member/agree1","","width=840 height=500 left=500 top=300 scrollbars=yes");
+}    
+
 </script>
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
@@ -311,8 +391,7 @@ function checkMemberWrite(){
                 // 우편번호와 주소 정보를 해당 필드에 넣는다. 
                  
                 document.getElementById("member_address1").value = "("+data.zonecode+") "+roadAddr;
-                document.getElementById("member_address2").value = data.jibunAddress;
-                                               
+                                                  
             }
         }).open();
     }

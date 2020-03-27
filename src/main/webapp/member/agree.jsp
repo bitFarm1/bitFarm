@@ -1,11 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<style type="text/css">
+	.layoutB{ 
+		width: 150px;
+		height: 40px;
+		background-color: #5f0080;
+		border: #5f0080;
+		color: white;
+		border-radius: 5px;
+		font-family: 'Noto Sans';
+		font-weight: bold;
+		cursor: pointer;
+		} 
+</style>
 
-<script src="//code.jquery.com/jquery-1.10.2.js"></script>
-<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 
-<div id="dialog">
-   <div id="dialog" title="개인정보보호 약관동의">
   <pre>제17조(개인정보보호)
 
   ① “몰”은 이용자의 개인정보 수집시 서비스제공을 위하여 필요한 범위에서 최소한의 개인정보를 수집합니다. 
@@ -40,19 +49,13 @@
   ⑨ “몰”은 개인정보의 수집·이용·제공에 관한 동의 란을 미리 선택한 것으로 설정해두지 않습니다. 
   	또한 개인정보의 수집·이용·제공에 관한 이용자의 동의거절시 제한되는 서비스를 구체적으로 명시하고, 
   	필수수집항목이 아닌 개인정보의 수집·이용·제공에 관한 이용자의 동의 거절을 이유로 회원가입 등 
-  	서비스 제공을 제한하거나 거절하지 않습니다.</pre>
+  	서비스 제공을 제한하거나 거절하지 않습니다.</pre> 
   	 
-  	<input class="join" type="button" value="확인"> 
-</div>
-</div>
-
-<script>
-$('#dialog').dialog({
-    title: '다이얼로그 제목을 넣자',
-    modal: true,
-    width: '300',
-    height: '300'
-});
-</script>
-
- 
+  	<input type="button" class="layoutB" value="확인">
+<script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>  
+<script type="text/javascript">
+  	$('.layoutB').click(function(){
+  		opener.document.getElementById('check2').checked = true;
+  		window.close();  
+  	}); 
+  	</script> 

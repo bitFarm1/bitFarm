@@ -86,4 +86,22 @@ public class MemberDAOMybatis implements MemberDAO {
 		return sqlSession.selectOne("memberSQL.getKakaoAccount");
 	}
 
+	@Override
+	public int checkType(MemberDTO memberDTO) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("memberSQL.checkType", memberDTO);  
+	}
+
+	@Override
+	public MemberDTO getFindId(Map<String, String> map) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("memberSQL.getFindId", map);
+	}
+
+	@Override
+	public MemberDTO getFindPwd(Map<String, String> map) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("memberSQL.getFindPwd", map);
+	}
+
 }

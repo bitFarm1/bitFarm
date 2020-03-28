@@ -4,6 +4,6 @@
 
 	<tr>
 		<td width="15%" valign="top"><jsp:include page="infoLeft.jsp"/></td>
-		<td><jsp:include page="${info}"/></td>
+		<td valign="top"><jsp:include page="${info}"/></td>
 	</tr>
 </table>

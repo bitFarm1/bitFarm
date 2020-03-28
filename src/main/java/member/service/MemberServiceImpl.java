@@ -20,11 +20,11 @@ public class MemberServiceImpl implements MemberService {
 	
 	@Autowired
 	private JavaMailSender mailSender;
-	
+	  
 	@Autowired
 	private MemberDAO memberDAO; 
 	
-	@Override 
+	@Override  
 	public int write(MemberDTO memberDTO) {
 		return memberDAO.write(memberDTO);
 		
@@ -56,9 +56,7 @@ public class MemberServiceImpl implements MemberService {
 		while(true) {			
 			num = (int)(Math.random()*999999);
 			if(num>=100000) break;
-		}
-		
-
+		}		
 		try {
 			MimeMessage message = mailSender.createMimeMessage();
 			MimeMessageHelper messageHelper = new MimeMessageHelper(message,
@@ -73,9 +71,36 @@ public class MemberServiceImpl implements MemberService {
 		} catch (Exception e) {   
 			System.out.println(e);  
 		}
-		return num;
-		
+		return num;		
 	}
+	
+	@Override
+	public Boolean getFindPwd(Map<String, String> map) {
+		MemberDTO memberDTO = memberDAO.getFindPwd(map);
+				
+		if(memberDTO == null) {			
+			return false;
+		}			
+		else {  
+			System.out.println("###");
+			try {
+				MimeMessage message = mailSender.createMimeMessage();
+				MimeMessageHelper messageHelper = new MimeMessageHelper(message,
+						true, "UTF-8");
+	 
+				messageHelper.setFrom("bitFarmBOT@gmail.com", "비트팜봇"); // 보내는사람 생략하면 정상작동을 안함
+				messageHelper.setTo(map.get("member_email")); // 받는사람 이메일
+				messageHelper.setSubject("비트팜 비밀번호"); // 메일제목은 생략이 가능하다
+				messageHelper.setText("<a href='http://localhost:8080/bitFarm/member/resetPwdForm?member_id="+memberDTO.getMember_id()+"'>일로와라</a>", true); // 메일 내용
+	   
+				mailSender.send(message);	
+			} catch (Exception e) {   
+				System.out.println(e);           
+			}
+			return true; 
+		}
+	} 
+
 
 	@Override
 	public String getMemberPwd(String id) {
@@ -130,5 +155,18 @@ public class MemberServiceImpl implements MemberService {
 		return memberDAO.getKakaoAccount(); 
 	}
 
+	@Override
+	public int checkType(MemberDTO memberDTO) {
+		// TODO Auto-generated method stub
+		return memberDAO.checkType(memberDTO); 
+	}
+
+	@Override
+	public MemberDTO getFindId(Map<String, String> map) {
+		// TODO Auto-generated method stub
+		return memberDAO.getFindId(map);
+	}
+
+	
 
 }

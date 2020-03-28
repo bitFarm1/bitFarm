@@ -76,20 +76,20 @@ public class MemberController {
 		return mav; 
 	}
 	
-	@RequestMapping(value="/findId", method=RequestMethod.GET)
+	@RequestMapping(value="/findIdForm", method=RequestMethod.GET)
 	public ModelAndView findId() {
 		ModelAndView mav = new ModelAndView();
 		
-		mav.addObject("display", "/member/findId.jsp");
+		mav.addObject("display", "/member/findIdForm.jsp");
 		mav.setViewName("/main/main");
 		return mav; 
 	}
 	
-	@RequestMapping(value="/findpwd", method=RequestMethod.GET)
+	@RequestMapping(value="/findPwdForm", method=RequestMethod.GET)
 	public ModelAndView findpwd() {
 		ModelAndView mav = new ModelAndView();
 		
-		mav.addObject("display", "/member/findpwd.jsp");
+		mav.addObject("display", "/member/findPwdForm.jsp");
 		mav.setViewName("/main/main");
 		return mav; 
 	}
@@ -164,15 +164,20 @@ public class MemberController {
 	//email="+email+"&name="+name+"&type=naver"
 	@RequestMapping(value="/naver", method=RequestMethod.GET)
 	public ModelAndView naver(@RequestParam Map<String, String> map, HttpSession session)  {
-		MemberDTO memberDTO = memberService.checkAccount(map);
+		MemberDTO memberDTO = memberService.checkAccount(map);		
 		ModelAndView mav = new ModelAndView(); 
 		
 		if(memberDTO != null) {
-			session.setAttribute("memberId", memberDTO.getMember_id());	//session은 내장 기본 객체 default 30분  
-			session.setAttribute("memberName", memberDTO.getMember_name()); 
-			session.setAttribute("memberEmail", memberDTO.getMember_email());
-			mav.addObject("display","/template/body.jsp"); 
-		}else {
+			if(map.get("type").equals(memberDTO.getMember_loginType())) {
+				session.setAttribute("memberId", memberDTO.getMember_id());	//session은 내장 기본 객체 default 30분  
+				session.setAttribute("memberName", memberDTO.getMember_name()); 
+				session.setAttribute("memberEmail", memberDTO.getMember_email());
+				mav.addObject("display","/template/body.jsp"); 
+			}else {
+				mav.addObject("display","/member/snsLoginFail.jsp");
+			}			 
+			
+		}else { 
 			mav.addObject("display", "/member/snsWriteForm.jsp");  
 		} 
 		
@@ -180,7 +185,7 @@ public class MemberController {
 		return mav;   
 	}
 	
-	@RequestMapping(value="/checkID", method=RequestMethod.POST)
+	@RequestMapping(value="/checkID", method=RequestMethod.POST) 
 	public ModelAndView checkID(@RequestParam String id) {
 		ModelAndView mav = new ModelAndView();	
 		int exist = memberService.checkID(id);
@@ -319,5 +324,42 @@ public class MemberController {
 		return "/member/agree1";
 	}
 	 
+	@RequestMapping(value="/getFindId", method=RequestMethod.POST)
+	public ModelAndView getFindId(@RequestParam Map<String, String> map) {
+		ModelAndView mav = new ModelAndView();
+		
+		MemberDTO memberDTO = memberService.getFindId(map);
+		if(memberDTO == null) {
+			mav.addObject("find","no");
+		}else {
+			mav.addObject("find","yes");
+			mav.addObject("memberDTO", memberDTO);			
+		}
+		mav.setViewName("jsonView");
+		return mav;
+	}
 	
+	@RequestMapping(value="/getFindPwd", method=RequestMethod.POST)
+	public ModelAndView getFindPwd(@RequestParam Map<String, String> map) {
+		ModelAndView mav = new ModelAndView();
+				
+		if(memberService.getFindPwd(map)) {
+			mav.addObject("find","yes");
+			
+		}else {				
+			mav.addObject("find","no"); 
+		}
+		mav.setViewName("jsonView");
+		return mav;
+	}
+	
+	@RequestMapping(value="/resetPwdForm", method=RequestMethod.GET)
+	public ModelAndView getFindPwd(@RequestParam String member_id) {
+		ModelAndView mav = new ModelAndView();
+		
+		mav.addObject("member_id", member_id);		 
+		mav.addObject("display", "/member/resetPwdForm.jsp");  
+		mav.setViewName("/main/main"); 
+		return mav;
+	}
 }

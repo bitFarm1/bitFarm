@@ -173,7 +173,7 @@
 		&emsp;<input type="checkbox" id="event" name="check"> 이벤트 혜택/정보 수신 (선택)
 		<input type="hidden" id="mea" name="member_eventAgree" value=""> 
 	</div>
-	<div>
+	<div> 
 		&emsp;<input type="checkbox" id="member_check3" name="check"> 본인은 만 14세 이상입니다. (필수)
 	</div>	 
 	<div style="height: 10px;"></div>
@@ -521,7 +521,7 @@ function checkMemberWrite(){
 		console.log("semail="+semail);  
 		console.log("sphone="+sphone); 
 	
-		alert("필수 사항을 입력하세요!");  
+		alert("필수 입력 사항을 확인하세요!");  
 		
 	}else if($('#check1').is(":checked") && $('#check2').is(":checked") && $('#member_check3').is(":checked")){
 						

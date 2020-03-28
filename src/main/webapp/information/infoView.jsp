@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <style type="text/css">
 	.wrap{
-		width: 1000px;
+		width: 1300px;
 		margin: 0 auto;
 	
 	} 
@@ -50,7 +50,7 @@
 <div class="wrap">
 	
 		<h3>공지사항<span style="font-size: 9pt; font-weight: normal;">&emsp;비트농장의 새로운 소식들과 유용한 정보들을 한곳에서 확인하세요.</span></h3> 
-		<table width="100%" > 
+		<table width="1300px" > 
 			<tr><td style="border-top: 2px solid #5f0080;" > 
 				<table align="center" style="padding: 0; width:100%;">
 					<tr>  

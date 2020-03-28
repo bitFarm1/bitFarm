@@ -175,39 +175,14 @@
 <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
 
-var sname = false;
 var sphone = false;
+var semail = false;
 
 $(document).ready(function(){
 	if('${email}'=='undefined'){
 		$('input[name=member_email]').attr('readonly',false);
 	}  
 });
-
-$('input[name=member_name]').focusout(function(){
-	var RegexName = /^[가-힣]{2,5}$/; //이름 유효성 검사 2~4자 사이
-	$('#member_name_p').css("display", "none"); 
-	$('#member_name_Div').empty(); 
-	
-	if($('input[name=member_name]').val()==''){
-	$('#member_name_p').css("display", "block"); 
-		$('#member_name_Div').text('이름을 입력하세요.'); 
-		$('#member_name_Div').css('color','#5f0080'); 
-		$('#member_name_Div').css('font-weight','bold');
-		$('#member_name_Div').css('font-size','10pt'); 
-		}else if ( !RegexName.test($.trim($("#name").val())) ){
-			$('#member_name_p').css("display", "block"); 
-			$('#member_name_Div').text('이름을 정확히 입력하세요.'); 
-			$('#member_name_Div').css('color','red'); 
-			$('#member_name_Div').css('font-weight','bold');
-			$('#member_name_Div').css('font-size','10pt');
-			return;
- 
-		}else{
-			sname = true;
-		} 	 	
-});
- 
     
 $('input[name=member_phone]').focusout(function(){
 	var regExp = /^\d{3}-\d{3,4}-\d{4}$/;
@@ -244,6 +219,7 @@ $('input[name=member_address1]').focusout(function(){
 			$('#member_address1_Div').css('color','#5f0080');
 			$('#member_address1_Div').css('font-weight','bold');
 			$('#member_address1_Div').css('font-size','10pt'); 
+			semail = false;
 		} 	  
 });
 
@@ -257,22 +233,18 @@ $('input[name=member_address2]').focusout(function(){
 			$('#member_address1_Div').css('color','#5f0080');
 			$('#member_address1_Div').css('font-weight','bold');
 			$('#member_address1_Div').css('font-size','10pt'); 
-		} 	 
-});
+			semail = false;
+		}else{
+			semail = true; 
+		}	 	 
+}); 
 
-$('input[name=member_birth]').focusout(function(){ 
+$('input[name=member_birth]').focusout(function(){  
 	var userCheck = RegExp(/^[0-9]{8}$/)
 	$('#member_birth_p').css("display", "none"); 
 	$('#member_birth_Div').empty(); 
 	 
-	if($('input[name=member_birth]').val()==''){ 
-	$('#member_birth_p').css("display", "block"); 
-			$('#member_birth_Div').text('생일을 입력하세요.');   
-			$('#member_birth_Div').css('color','#5f0080');
-			$('#member_birth_Div').css('font-weight','bold'); 
-			$('#member_birth_Div').css('font-size','10pt'); 
-			
-	}else if(!(userCheck.test($('#birth').val()))){	 	 
+	if($('input[name=member_birth]').val()!='' && !(userCheck.test($('#birth').val()))){	 	 
 		$('#member_birth_p').css("display", "block") ;  
 		$('#member_birth_Div').text('예시 19941112');   
 		$('#member_birth_Div').css('color','red'); 
@@ -283,7 +255,7 @@ $('input[name=member_birth]').focusout(function(){
 		$('#writeFormBtn').attr('disabled', false); 
 	}
 });
-
+ 
 function checkAll(){
 	//alert(document.getElementsByName("check").length); check 이름을 가진 것의 개수
 	//if(document.getElementById("all").checked)
@@ -312,8 +284,9 @@ function checkMemberWrite(){
 				$('#member_address1_Div').text('주소를 검색하세요.');  
 				$('#member_address1_Div').css('color','#5f0080'); 
 				$('#member_address1_Div').css('font-weight','bold');
-				$('#member_address1_Div').css('font-size','10pt'); 
-				return;
+				$('#member_address1_Div').css('font-size','10pt');
+				alert("필수 사항을 입력하세요!"); 
+				return; 
 	}	 
 	if($('input[name=member_address2]').val()==''){ 
 		$('#member_address1_p').css("display", "block"); 
@@ -321,6 +294,7 @@ function checkMemberWrite(){
 				$('#member_address1_Div').css('color','#5f0080');
 				$('#member_address1_Div').css('font-weight','bold');
 				$('#member_address1_Div').css('font-size','10pt'); 
+				alert("필수 사항을 입력하세요!"); 
 				return; 
 	} 
 /* 	if($('input[name=member_id]').val()==''||
@@ -331,16 +305,14 @@ function checkMemberWrite(){
 		$('input[name=member_address1]').val()==''||
 		$('input[name=member_address2]').val()==''){
 		 */
-	 if(!(sname && sphone)){
+	 if(!(sphone)){
 			
-			console.log("sid="+sid);
-			console.log("spwd="+spwd);  
-			console.log("sname="+sname); 
+			
 			console.log("semail="+semail);  
 			console.log("sphone="+sphone); 
 						 
 		alert("필수 사항을 입력하세요!"); 
-		
+		 
 	}else if($('#check1').is(":checked") && $('#check2').is(":checked") && $('#member_check3').is(":checked")){
 						
 			document.memberWriteForm.method = 'post'; 

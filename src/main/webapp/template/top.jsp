@@ -86,8 +86,8 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
-
-/* $(document).ready(function() {
+/* 
+$(document).ready(function() {
 	//상대적인 좌표 값을 반환, .offset()가 반환 하는 객체는 left와 top 속성을 제공
 	//top 속성을 이용해서 메뉴의 수직 위치를 구함
 	var menu_offset = $('.menu').offset();
@@ -103,6 +103,6 @@
 	   		$('.menu').removeClass('menu-fixed');
 	 	}
 	});
-}); */
-
+}); 
+*/
 </script>

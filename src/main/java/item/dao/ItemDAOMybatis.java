@@ -18,4 +18,9 @@ public class ItemDAOMybatis implements ItemDAO {
 		return sqlSession.selectOne("itemSQL.getItemView", seq);
 	}
 
+	@Override
+	public void itemAdd(ItemDTO itemDTO) {
+		sqlSession.insert("itemSQL.itemAdd", itemDTO);
+	}
+
 }

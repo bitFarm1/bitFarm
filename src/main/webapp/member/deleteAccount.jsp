@@ -64,7 +64,7 @@
 </style>
 <h2 align="center">회원 탈퇴</h2>  
 <div style="width:1000px; margin: 0 auto;">   
-<form name="deleteForm" id="deleteForm" method="post" action="/bitFarm/member/delete">
+<form name="deleteForm" id="deleteForm" method="post" action="/bitFarm/member/delete">   
 <table class="deleteTable" align="center" cellpadding="5px" style="border-color: grey"> 
 	<tr>  
 		<td class="title" style="height:150px; border-bottom: 1px solid grey;"> 회원탈퇴안내</td>  
@@ -86,6 +86,7 @@
 	<tr> 
 		<td class="title" style="height:50px; border-bottom: 1px solid grey;">탈퇴사유</td> 
 		<td style="text-align:left; font-size: 9pt; border-bottom: 1px solid grey;">
+		<input type="radio" name="deleteInfo_why" value="선택안함" checked="checked">선택안함&emsp;  
 		<input type="radio" name="deleteInfo_why" value="서비스 불만">서비스 불만&emsp;
 		<input type="radio" name="deleteInfo_why" value="배송불만">배송불만&emsp;
 		<input type="radio" name="deleteInfo_why" value="교환/환불/반품 불만">교환/환불/반품 불만&emsp;
@@ -98,15 +99,15 @@
 		<td class="title" style="border-bottom: 1px solid grey;">건의 사항</td> 
 		<td style="text-align:left; border-bottom: 1px solid grey;"><textarea name="deleteInfo_Content" cols="70" rows="8" class="box"></textarea>
 		</td> 		 
-	</tr> 
+	</tr>  
 </table>   
-<input type="hidden" name="id" value="${memberId }">
+<input type="hidden" name="id" value="${memberId }">    
 
  
 
 <div style="height:50px;"></div>
 <div style="weight: 600px; height: 100px; text-align: center;"> 
-	<input class="join" type="button" id="infoWriteBtn" value="탈퇴하기"> 
+	<input class="join" type="button" id="deleteBtn" value="탈퇴하기"> 
 </div> 
 </form>
 </div>
@@ -117,8 +118,9 @@ if('${loginType}' != 'bit'){
 	$('#typeHidden').css('display','none');
 } 
 
-$('#infoWriteBtn').click(function(){
-	if('${loginType}' == 'bit'){	 
+$('#deleteBtn').click(function(){
+	$('#pwdDiv').empty();
+	if('${loginType}' == 'bit'){	  
 		if($('#pwd').val()==''){
 			$('#pwdDiv').text('패스워드를 입력해주세요.');
 			$('#pwdDiv').css('font-size','9pt'); 
@@ -127,24 +129,27 @@ $('#infoWriteBtn').click(function(){
 		}else{
 			$.ajax({ 
 				type : 'post',
-				url : '/bitFarm/member/checkPwd',
-	 			data : {'pwd' : $('input[name=pwd]').val()},
+				url : '/bitFarm/member/checkPwd', 
+	 			data : {'pwd' : $('input[name=pwd]').val(),
+	 					'id' : $('input[name=id]').val()}, 
 				dataType : 'json',
 				success : function(data){ 
 					//alert(data.login);  
-					if(data.login == 'fail'){ 
+					if(data.login == 'fail'){  
 						$('#pwdDiv').text('잘못된 비밀번호입니다.'); 
 		        		$('#pwdDiv').css('color','red');
 		        		$('#pwdDiv').css('font-weight','bold');
 		        		$('#pwdDiv').css('font-size','9pt');
 					}else{ 
-						$('#deleteForm').submit();
+						alert("dd");
+						$('#deleteForm').submit();						
 					} 
 				}
 			});	
 		}
 	}else{
 		$('#deleteForm').submit();
+		alert("처리되었습니다. 감사합니다.") 
 	} 
 	
 });

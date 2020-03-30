@@ -48,14 +48,14 @@
 		<td>
 		${seq }   
 		</td> 
-		   
-		<td>  
+		    
+		<td style="width: 560px;">  
 		<a class="info" href="/bitFarm/information/infoView?seq=${seq }&pg=${pg}">${information_subject }</a>
 		</td>  
 		
 		 
 		<td> 
-		${information_name }
+		${information_name } 
 		</td>  
 		
 		<td> 

@@ -56,9 +56,9 @@ public class MemberServiceImpl implements MemberService {
 		while(true) {			
 			num = (int)(Math.random()*999999);
 			if(num>=100000) break;
-		}		
+		}		 
 		try {
-			MimeMessage message = mailSender.createMimeMessage();
+			MimeMessage message = mailSender.createMimeMessage(); 
 			MimeMessageHelper messageHelper = new MimeMessageHelper(message,
 					true, "UTF-8");
   
@@ -83,7 +83,7 @@ public class MemberServiceImpl implements MemberService {
 		}			
 		else {  
 			System.out.println("###");
-			try {
+			try { 
 				MimeMessage message = mailSender.createMimeMessage();
 				MimeMessageHelper messageHelper = new MimeMessageHelper(message,
 						true, "UTF-8");
@@ -171,6 +171,48 @@ public class MemberServiceImpl implements MemberService {
 	public int resetPwd(Map<String, String> map) {
 		return memberDAO.resetPwd(map);
 		 
+	}
+
+	@Override
+	public int getThisMonth() {
+		// TODO Auto-generated method stub
+		return memberDAO.getThisMonth(); 
+	}
+
+	@Override
+	public int getLastMonth1() {
+		// TODO Auto-generated method stub
+		return memberDAO.getLastMonth1();
+	}
+
+	@Override
+	public int getLastMonth2() {
+		// TODO Auto-generated method stub
+		return memberDAO.getLastMonth2();
+	}
+
+	@Override
+	public int getLastMonth3() {
+		// TODO Auto-generated method stub
+		return memberDAO.getLastMonth3();
+	}
+
+	@Override
+	public int weekData(int i) {
+		// TODO Auto-generated method stub
+		return memberDAO.weekData(i);
+	}
+
+	@Override
+	public int memberCount() {
+		// TODO Auto-generated method stub
+		return memberDAO.memberCount();
+	}
+
+	@Override
+	public int sellerCount() {
+		// TODO Auto-generated method stub 
+		return memberDAO.sellerCount();
 	}
 
 	

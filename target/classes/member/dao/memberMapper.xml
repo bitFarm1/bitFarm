@@ -55,10 +55,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</delete>	
 	
 	<insert id="deleteInfo" parameterType="java.util.Map"> 
-		insert into deleteInfo values(#{id}
-		,nvl(#{deleteInfo_why},0)		
-		,nvl(#{deleteInfo_Content},0)  
-		,sysdate)		 
+		insert into deleteInfo values(#{id} 
+		,nvl(#{deleteInfo_why},'0')		 
+		,nvl(#{deleteInfo_Content},'0')  
+		,sysdate)		  
 	</insert> 
 	
 	<update id = "modify1" parameterType="memberDTO" >
@@ -98,8 +98,50 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	 </select>
 	 
 	 <select id="getThisMonthCount" resultType="int">
+	 	select count(*) 
+		from member
+		where member_signupdate between to_date('20200301', 'YYYYMMDD') and to_date('20200401', 'YYYYMMDD')
+	 </select> 
+	 
+	 <select id="getThisMonth" resultType="int">
+		select count(*) 
+		from member
+		where member_signupdate between to_date(TRUNC(sysdate,'MM')) and to_date(ADD_MONTHS(TRUNC(sysdate,'MM'), 1))
+		 
+	 </select>
+	 
+	 <select id="getLastMonth1" resultType="int">
+		select count(*)
+		from member
+		where member_signupdate between to_date(ADD_MONTHS(TRUNC(sysdate,'MM'), -1)) and to_date(TRUNC(sysdate,'MM'))
+	  
+	 </select>
+	 
+	 <select id="getLastMonth2" resultType="int">
 	 	select count(*)
 		from member
-		where member_signupdate between to_date('20200301', 'YYYYMMDD') and to_date('20200401', 'YYYYMMDD');
+		where member_signupdate between to_date(ADD_MONTHS(TRUNC(sysdate,'MM'), -2)) and to_date(ADD_MONTHS(TRUNC(sysdate,'MM'), -1))
+	 
 	 </select>
+	   
+	 <select id="getLastMonth3" resultType="int">
+	 	select count(*)
+		from member
+		where member_signupdate between to_date(ADD_MONTHS(TRUNC(sysdate,'MM'), -3)) and to_date(ADD_MONTHS(TRUNC(sysdate,'MM'), -2))		 
+	 </select>
+	 
+	 <select id="weekData"  resultType="int"> 
+	 	select count(*)    
+		from member
+		where member_signupdate between to_char(sysdate-1-#{i},'yyyymmdd') and to_char(sysdate-#{i},'yyyymmdd') 	 	
+	 </select>
+	 
+	 <select id="memberCount" resultType="int">
+	 	select count(*) from member  
+	 </select> 
+	 
+	 <select id="sellerCount" resultType="int">
+	 	select count(*) from seller
+	 </select>
+	 
 </mapper>           

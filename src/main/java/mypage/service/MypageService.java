@@ -43,5 +43,9 @@ public interface MypageService {
 	public void deletePickSeller(Map<String, String> map);
 
 	public void deleteChoicePickSeller(String[] check, String id);
+ 
+	public void deletePoint(Map<String, String> map);
 
+	public void deleteCoupon(Map<String, String> map);
+ 
 }

@@ -44,6 +44,10 @@ public interface MypageDAO {
 
 	public void deletePickSeller(Map<String, String> map);
 
-	public void deleteChoicePickSeller(Map<String, String> map);  
+	public void deleteChoicePickSeller(Map<String, String> map);
+ 
+	public void deletePoint(Map<String, String> map);
+
+	public void deleteCoupon(Map<String, String> map);  
 
 }

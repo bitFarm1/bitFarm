@@ -52,14 +52,38 @@ public class InformationController {
 		int naver = memberService.getNaverAccount();
 		int bit = memberService.getBitAccount();
 		int kakao = memberService.getKakaoAccount();
-		System.out.println(naver);
+		int lastMonth3 = memberService.getLastMonth3();
+		int lastMonth2 = memberService.getLastMonth2(); 
+		int lastMonth1 = memberService.getLastMonth1(); 
+		int thisMonth = memberService.getThisMonth();
+		int memberCount = memberService.memberCount();
+		int sellerCount = memberService.sellerCount();
+		int[] weekData = new int[7];
+		 
+		for(int i=0; i<7; i++) { 
+			weekData[i] = memberService.weekData(i); 
+			mav.addObject("weekData"+i, weekData[i]);			
+		}
+				     
+		System.out.println(thisMonth);
 		
-		mav.addObject("naver", naver);
+		
+		mav.addObject("thisMonth", thisMonth);
+		mav.addObject("lastMonth3", lastMonth3);
+		mav.addObject("lastMonth2", lastMonth2);
+		mav.addObject("lastMonth1", lastMonth1);  		
+		mav.addObject("naver", naver);  
 		mav.addObject("bit", bit); 
 		mav.addObject("kakao", kakao); 
+		
+		mav.addObject("memberCount", memberCount); 
+		mav.addObject("sellerCount", sellerCount); 
+		
 		mav.addObject("data1", "/data/snsData1.jsp"); 
 		mav.addObject("data2", "/data/snsData2.jsp");   
 		mav.addObject("data3", "/data/snsData3.jsp");    
+		mav.addObject("data4", "/data/snsData4.jsp");    
+		
 		mav.setViewName("/data/dataList");  
 		  
 		return mav; 
@@ -120,7 +144,7 @@ public class InformationController {
 		mav.addObject("display", "/information/infoMain.jsp");
 		mav.addObject("info", "/information/infoQnAList.jsp"); 
 		mav.setViewName("/main/main");
-		   
+		    
 		return mav;
 	}
 	

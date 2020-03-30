@@ -242,7 +242,7 @@ public class MemberController {
 			memberDTO = memberService.checkPwd(map);
 		}
 		
-		if(memberDTO == null) {			
+		if(memberDTO == null) {			 
 			mav.addObject("login","fail"); 
 		}else {
 			mav.addObject("login","success");
@@ -259,9 +259,9 @@ public class MemberController {
 	 
 	 
 	@RequestMapping(value = "mailSending", method=RequestMethod.GET)
-	public ModelAndView mailSending(@RequestParam String email) {
+	public ModelAndView mailSending(@RequestParam String email) { 
 		ModelAndView mav = new ModelAndView();
-//		String email = map.get("member_email");
+//		String email = map.get("member_email");  
 		int num = memberService.mailSending(email); 
 		mav.addObject("num", num);
 		mav.setViewName("/member/mailmail");
@@ -277,10 +277,14 @@ public class MemberController {
 	
 	@RequestMapping(value="delete", method=RequestMethod.POST)
 	public ModelAndView delete(@RequestParam Map<String, String> map, HttpSession session) {
-		ModelAndView mav = new ModelAndView();
+		ModelAndView mav = new ModelAndView(); 
 		session.invalidate();
-		memberService.delete(map);  
-		memberService.deleteInfo(map); 
+		System.out.println("dd"); 
+		System.out.println(map.get("id"));
+		mypageService.deleteCoupon(map); 
+		mypageService.deletePoint(map); 
+		memberService.delete(map);   
+		memberService.deleteInfo(map);   
 		
 		mav.addObject("display","/template/body.jsp"); 
 		mav.setViewName("/main/main"); 
@@ -288,9 +292,10 @@ public class MemberController {
 	} 
 	
 	@RequestMapping(value="/modify", method=RequestMethod.POST)
-	public ModelAndView modify(@ModelAttribute MemberDTO memberDTO) {
+	public ModelAndView modify(@ModelAttribute MemberDTO memberDTO, HttpSession session) {
 
 		ModelAndView mav = new ModelAndView();
+				
 		int su;
 		//노비번수정
 		if(memberDTO.getMember_pwd()=="") {
@@ -309,6 +314,10 @@ public class MemberController {
 		}else {
 			mav.addObject("display", "/member/writeFail.jsp");
 		}
+		
+		session.setAttribute("memberId", memberDTO.getMember_id());	//session은 내장 기본 객체 default 30분  
+		session.setAttribute("memberName", memberDTO.getMember_name()); 
+		session.setAttribute("memberEmail", memberDTO.getMember_email());
 		mav.setViewName("/main/main"); 
 		return mav; 
 	}

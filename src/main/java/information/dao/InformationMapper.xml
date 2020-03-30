@@ -82,7 +82,7 @@
 			(select * from information where ${searchOption} like '%'||#{keyword}||'%'
 			) tt 
 			)where rn >= #{startNum} and rn<= #{endNum} 
-		]]>   
+		]]>    
 	</select>
 	 
 	<select id="getInfoSearchTotalA" parameterType="Map" resultType="int">

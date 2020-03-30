@@ -38,9 +38,23 @@ public interface MemberService {
 
 	public MemberDTO getFindId(Map<String, String> map); 
 
-	public Boolean getFindPwd(Map<String, String> map);
+	public Boolean getFindPwd(Map<String, String> map); 
 
-	public int resetPwd(Map<String, String> map);       
+	public int resetPwd(Map<String, String> map);
+
+	public int getThisMonth();
+
+	public int getLastMonth1();
+
+	public int getLastMonth2();
+
+	public int getLastMonth3();
+ 
+	public int weekData(int i);
+
+	public int memberCount(); 
+
+	public int sellerCount();       
   
 }
   

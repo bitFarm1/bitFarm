@@ -130,6 +130,18 @@ public class MypageDAOMyBatis implements MypageDAO {
 		sqlSession.delete("mypageSQL.deleteChoicePickSeller", map);
 	}
 
+	@Override
+	public void deletePoint(Map<String, String> map) {
+		sqlSession.delete("mypageSQL.deletePoint", map);
+		
+	}
+
+	@Override
+	public void deleteCoupon(Map<String, String> map) {
+		sqlSession.delete("mypageSQL.deleteCoupon", map); 
+		
+	}
+
 	
 
 	

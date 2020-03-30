@@ -36,7 +36,22 @@ public interface MemberDAO {
 
 	public MemberDTO getFindPwd(Map<String, String> map);
 
-	public int resetPwd(Map<String, String> map);    
+	public int resetPwd(Map<String, String> map);
+
+	public int getLastMonth3(); 
+
+	public int getLastMonth2();
+
+	public int getLastMonth1();
+
+	public int getThisMonth();
+
+	public int weekData(int i);
+ 
+	public int memberCount();
+
+	public int sellerCount();
+     
 
 	
 } 

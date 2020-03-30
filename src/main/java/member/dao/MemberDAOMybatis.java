@@ -104,4 +104,10 @@ public class MemberDAOMybatis implements MemberDAO {
 		return sqlSession.selectOne("memberSQL.getFindPwd", map);
 	}
 
+	@Override
+	public int resetPwd(Map<String, String> map) {
+		return sqlSession.update("memberSQL.resetPwd", map); 
+		
+	}
+
 }

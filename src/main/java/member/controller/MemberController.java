@@ -362,4 +362,23 @@ public class MemberController {
 		mav.setViewName("/main/main"); 
 		return mav;
 	}
+	
+	@RequestMapping(value="/resetPwd", method=RequestMethod.POST)
+	public ModelAndView resetPwd(@RequestParam Map<String, String> map) {
+		ModelAndView mav = new ModelAndView();
+		String inputPwd = map.get("member_pwd");
+		String pwd = pwdEncoder.encode(inputPwd);
+		  
+		map.put("pwd", pwd);		
+		
+		int reset = memberService.resetPwd(map);  
+		
+		if(reset > 0)
+			mav.addObject("change","success");
+		else
+			mav.addObject("change", "fail");
+		
+		mav.setViewName("jsonView"); 
+		return mav;  
+	}
 }

@@ -214,7 +214,8 @@ $('input[name=member_id]').focusout(function(){
 		$('#member_id_Div').css('font-size','10pt'); 
 		$('#member_checkIdBtn').attr('disabled', true);
 	}else {
-		$('#member_checkIdBtn').attr('disabled', false); }
+		$('#member_checkIdBtn').attr('disabled', false); 
+	}
 });
 
 $('#member_checkIdBtn').click(function(){
@@ -504,15 +505,7 @@ function checkMemberWrite(){
 				$('#member_address1_Div').css('font-size','10pt'); 
 				return; 
 	}
-/* 	if($('input[name=member_id]').val()==''||
-		$('input[name=member_name]').val()==''||
-		$('input[name=member_pwd]').val()==''||
-		$('input[name=member_email]').val()==''||
-		$('input[name=member_phone]').val()==''||
-		$('input[name=member_license]').val()==''||
-		$('input[name=member_address1]').val()==''|| 
-		$('input[name=member_address2]').val()==''){
-		 */
+
 	if(!(sid && spwd && sname && semail && sphone)){
 		
 		console.log("sid="+sid);
@@ -531,9 +524,9 @@ function checkMemberWrite(){
 				  
 	}else {
 		alert("약관을 체크해주세요!");   
-	} 
+	}  
 }  
-	
+	 
 
 function openAgree(){  
 	window.open("/bitFarm/member/agree","","width=840 height=500 left=500 top=300 scrollbars=yes");

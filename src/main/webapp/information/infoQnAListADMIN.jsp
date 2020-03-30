@@ -67,6 +67,10 @@ th{
 			<img src="../storage/${infoQnA_imageName }" width="200" height="200">			 
 		</td>		
 		</c:if>	  
+		<c:if test="${infoQnA_imageName == '0'}">
+		<td colspan="1"  align="center"> 
+		</td>		
+		</c:if>	 
 		<td align="right"> 
 			<input type="button" value="답글달기" onclick="goreply('${seq}')">
 		</td>  

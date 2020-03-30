@@ -26,14 +26,16 @@
 				<img src="../storage/${cartListDTO.item_main_image}" width="200" 
 						onclick="location.href='/bitFarm/item/getItemView?seq=${cartListDTO.item_id}'" style="cursor: pointer;">
 			</td>
-			<td width="30%" align="center">
-				${cartListDTO.item_name}
-			</td>
-			<td width="20%" class="itemQty"  align="center">
-				<input type="button" id="minusBtn" value="-" class="qtyBtn" onclick="change(-1);">
-				<input type="text" name="cart_item_qty" id="cart_item_qty" value="${cartListDTO.item_qty}" readOnly>
-				<input type="button" id="plusBtn" value="+" class="qtyBtn" onclick="change(1);">
-			</td>
+		
+				<td width="30%" align="center">
+					${cartListDTO.item_name}
+				</td>
+				<td width="20%" class="itemQty"  align="center">
+					<input type="button" id="minusBtn" value="-" class="qtyBtn" onclick="change(-1);">
+					<input type="text" name="cart_item_qty" id="cart_item_qty" value="${cartListDTO.item_qty}" readOnly>
+					<input type="button" id="plusBtn" value="+" class="qtyBtn" onclick="change(1);">
+				</td>
+		
 			<td width="30%" align="center">
 				<span id="item_all_price">${cartListDTO.item_all_price}</span>
 				<c:set var="item_price" value="${cartListDTO.item_all_price/cartListDTO.item_qty}" />
@@ -125,7 +127,7 @@ $('#choiceDeleteBtn').click(function(){
 	}
 });
 
-//수량 조절에 따라 총 금액 변동 ****************** 장바구니에 상품 1개 있을때만 작동 쥐앤쟝
+//수량 조절에 따라 총 금액 변동 ****************** 장바구니에 상품 1개 있을때만 작동 쥐앤쟝 
 $('.qtyBtn').click(function(){	
 	let itemPrice = ${item_price};
 	

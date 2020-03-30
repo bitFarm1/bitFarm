@@ -81,10 +81,10 @@
 	 
 	<tr id="hidden1${seq }" style="display:none;" >
 		 
-		<td colspan="3" style="width: 500px;" align="center">  
+		<td colspan="3" style="width: 500px;">   
 		<pre class="contents">${infoQnA_content }<br></pre> 
 		</td> 
-	<c:if test="${infoQnA_imageName != '0'}">
+	<c:if test="${infoQnA_imageName != '0'}"> 
 		<td colspan="3"  align="center"> 
 			<img src="../storage/${infoQnA_imageName }" width="200" height="200">			 
 		</td> 
@@ -96,16 +96,16 @@
 		<td style="width: 100px;"> </td>
 		<td style="width: 150px;"> </td>
 		<td id="${seq }reply" align="left" style="width: 425px;">     
-			<a class="info" href="#" style="cursor: pointer;">ㅡ> ${informationQnADTO.infoQnA_answerSubject }</a> 
-		</td> 
+			<img src="../image/reply1.png" width="50" height="25"><a class="info" href="#" style="cursor: pointer;">${informationQnADTO.infoQnA_answerSubject }</a> 
+		</td>  
 		<td align="center"> <img src="../image/mainImage.png" width="50" height="20"> </td>
 		<td align="center">${informationQnADTO.infoQnA_answerDate }</td>
 		<td> </td>   
 	</tr>      
-		
+		  
 	<tr id="hidden2${seq }" style="display:none;">  
 		<td> </td> 
-			<td  colspan="4" align="left" style="width: 425px;">    
+			<td  colspan="4" align="left" style="width: 425px;">     
 				<pre class="contents">${informationQnADTO.infoQnA_answerContent }<br></pre> 
 			</td> 
 		<td> </td>

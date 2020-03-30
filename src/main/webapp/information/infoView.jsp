@@ -11,7 +11,6 @@
 	.contents{ 
 		white-space: pre-wrap;
 		word-break: break-all;
-		width: 500px; 
 	}
 
 	.tdstyle{
@@ -85,8 +84,7 @@
 			</tr>
 			<tr><td align="center" style="border-bottom: 2px solid #5f0080; border-top: 2px solid #5f0080;">
 				<input class="layoutB" id="goBackBtn" type="button" value="¸ñ·Ï">
-			</td ></tr>
-						
+			</td></tr>						
 		</table>	
 </div>  
 

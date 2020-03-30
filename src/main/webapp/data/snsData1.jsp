@@ -55,13 +55,13 @@ google.setOnLoadCallback(function() {
   var chart = new google.visualization.ColumnChart(document.querySelector('#chart_div'));
   chart.draw(google.visualization.arrayToDataTable(data), options);
 });
-</script>
+</script> 
 <div id="chart_div"></div> -->
-<canvas id="myChart1" width="400" height="400"></canvas>
+<canvas id="myChart1" width="300" height="300"></canvas>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
 <script type="text/javascript">
-	var ctx = document.getElementById('myChart1');
+	var ctx = document.getElementById('myChart1');    
 	var myChart = new Chart(ctx, { 
 		type: 'pie',
 		data: {

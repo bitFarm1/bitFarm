@@ -255,5 +255,15 @@ public class InformationController {
 		
 		mav.setViewName("jsonView");		
 		return mav;  			
-	}
+	} 
+	
+	@RequestMapping(value="/simpleQnAForm", method=RequestMethod.GET)
+	public ModelAndView simpleQnAForm() {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("display", "/information/infoMain.jsp");
+		mav.addObject("info", "/information/simpleQnA.jsp");    
+		mav.setViewName("/main/main");
+		 
+		return mav; 
+	} 
 }

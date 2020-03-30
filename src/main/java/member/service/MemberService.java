@@ -36,9 +36,11 @@ public interface MemberService {
  
 	public int checkType(MemberDTO memberDTO);
 
-	public MemberDTO getFindId(Map<String, String> map);
+	public MemberDTO getFindId(Map<String, String> map); 
 
-	public Boolean getFindPwd(Map<String, String> map);       
- 
+	public Boolean getFindPwd(Map<String, String> map);
+
+	public int resetPwd(Map<String, String> map);       
+  
 }
   

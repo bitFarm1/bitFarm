@@ -32,17 +32,17 @@
 		비밀번호재확인 <input class="layout" type="password" id="resetPwd1" name="member_repwd"  style="font-size:15px;">
 		<div id="repwdCheck"></div>
 		<div style="height: 20px"></div>
-		<input class="layout" type="button" id="resetPwdBtn" value="확인" onclick="location.href='/bitFarm/member/loginForm'" style="color: white; background-color: #5f0080; border: #5f0080; border-radius: 3px;">
+		<input class="layout" type="button" id="resetPwdBtn" value="확인" style="color: white; background-color: #5f0080; border: #5f0080; border-radius: 3px;">
 </div>  
 </div> 
- 
+  
 <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
 $('#next').click(function(){
 	 $('.resetPwdForm').remove(); 
 	 $('.idshow').css('display','block');  
 });
-
+ 
 $('#resetPwdBtn').click(function(){
 	if($('#resetPwd').val() == ''){
 		$('#pwdCheck').text('비밀번호를 입력하세요.');
@@ -64,14 +64,15 @@ $('#resetPwdBtn').click(function(){
 		 $.ajax({
 			 type : 'post',
 			 url : '/bitFarm/member/resetPwd',
-			 data : {'member_name' : '${member_name}',
+			 data : {'member_id' : '${member_id}',
 				 	'member_pwd' : $('input[name=member_pwd]').val()},
 			 dataType : 'json',
 			 success : function(data){
-				 alert(JSON.stringify(data));				
+				 alert("비밀번호 변경완료!");
+				 location.href='/bitFarm/member/loginForm';				 
 			 }	  		
-		});	
-	}
+		});	 
+	} 
 	
-});
+}); 
 </script>

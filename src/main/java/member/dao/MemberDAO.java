@@ -34,7 +34,9 @@ public interface MemberDAO {
 
 	public MemberDTO getFindId(Map<String, String> map);
 
-	public MemberDTO getFindPwd(Map<String, String> map);  
+	public MemberDTO getFindPwd(Map<String, String> map);
+
+	public int resetPwd(Map<String, String> map);    
 
 	
 } 

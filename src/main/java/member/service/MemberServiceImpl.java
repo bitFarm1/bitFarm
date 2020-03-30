@@ -158,13 +158,19 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public int checkType(MemberDTO memberDTO) {
 		// TODO Auto-generated method stub
-		return memberDAO.checkType(memberDTO); 
+		return memberDAO.checkType(memberDTO);  
 	}
 
 	@Override
 	public MemberDTO getFindId(Map<String, String> map) {
 		// TODO Auto-generated method stub
 		return memberDAO.getFindId(map);
+	}
+
+	@Override
+	public int resetPwd(Map<String, String> map) {
+		return memberDAO.resetPwd(map);
+		 
 	}
 
 	

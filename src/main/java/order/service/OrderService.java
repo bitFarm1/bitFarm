@@ -16,5 +16,7 @@ public interface OrderService {
 	public List<MypageCouponDTO> orderCouponList(String memberId);
 
 	public int orderPointAll(String memberId);
+	
+	public String orderNum();
 
 }

@@ -93,10 +93,10 @@
 		<tr> 
 			<th class="subject">아이디*</th>
 			<td style="vertical-align: top;"><input class="layoutT" type="text" id="id" name="seller_id" placeholder="6자 이상의 영문 혹은 영문과 숫자를 조합">&emsp;
-			<input class="layoutB" id="checkIdBtn" type="button" name="seller_checkId" value="중복확인"><br id="seller_id_p" style="display: none;"><span id="seller_id_Div" ></span></br></td>					
+			<input class="layoutB" id="seller_checkIdBtn" type="button" name="seller_checkId" value="중복확인"><br id="seller_id_p" style="display: none;"><span id="seller_id_Div" ></span></br></td>					
 		</tr>  
 		 
-		<tr>   
+		<tr>    
 			<th class="subject">비밀번호*</th>   
 			<td><input class="layoutT" type="password" id="pwd" name="seller_pwd" placeholder="비밀번호를 입력해주세요"></td>
 			
@@ -113,11 +113,11 @@
 			<td><input class="layoutT" type="text" name="seller_name" id="name" placeholder="고객님의 이름을 입력해주세요">
 			<br id="seller_name_p" style="display: none;"><span id="seller_name_Div" ></span></br>
 			</td>
-		</tr> 
+		</tr>  
 		
 		<tr>
 			<th class="subject">이메일*</th>
-			<td><input class="layoutT" type="text" name="seller_email" placeholder="예: bitfarm@bitfarm.com">&emsp;
+			<td><input class="layoutT" type="text" name="member_email" placeholder="예: bitfarm@bitfarm.com">&emsp;
 			<input class="layoutB" type="button" name="checkEmail" value="이메일 인증">
 			<br id="seller_email_p" style="display: none;"><span id="seller_email_Div" ></span></br>
 			<input type="hidden" id="auth" name="auth" value="">
@@ -194,9 +194,9 @@ var sphone = false;
 var slicense = false;
 
 $('input[name=seller_id]').focusout(function(){
-	var userIdCheck = RegExp(/^[A-Za-z0-9_\-]{5,20}$/);
+	var userIdCheck = RegExp(/^[A-Za-z0-9_\-]{5,15}$/);
 	$('#seller_id_p').css("display", "none"); 
-	$('#seller_id_Div').empty();
+	$('#seller_id_Div').empty(); 
 	
 	if($('input[name=seller_id]').val()==''){		
 		$('#seller_id_p').css("display", "block"); 
@@ -217,6 +217,7 @@ $('input[name=seller_id]').focusout(function(){
 }); 
 
 $('#seller_checkIdBtn').click(function(){
+	alert("dd");  
 	if($('input[name=seller_id]').val()==''){		
 		$('#seller_id_p').css("display", "block"); 
 			$('#seller_id_Div').text('아이디를 입력하세요.');  
@@ -228,7 +229,7 @@ $('#seller_checkIdBtn').click(function(){
 	
 	$.ajax({
 		type : 'post', 
-		url : '/bitFarm/seller/checkID', 
+		url : '/bitFarm/seller/checkID',  
 		data : {'id' : $('input[name=seller_id]').val()}, 
 		dataType : 'json', 
 		success : function(data){
@@ -246,7 +247,7 @@ $('#seller_checkIdBtn').click(function(){
 				$('#seller_id_Div').css('font-weight','bold');
 				$('#seller_id_Div').css('font-size','10pt');
 				
-				sid = true;
+				sid = true; 
 			} 			
 		} 
 	}); 
@@ -467,19 +468,11 @@ function checkSellerWrite(){
 				$('#seller_address1_Div').text('주소를 입력하세요.');   
 				$('#seller_address1_Div').css('color','#5f0080');
 				$('#seller_address1_Div').css('font-weight','bold');
-				$('#seller_address1_Div').css('font-size','10pt'); 
+				$('#seller_address1_Div').css('font-size','10pt');  
 				return; 
 	}
-} 
-	 
-/* 	if($('input[name=seller_id]').val()==''||
-		$('input[name=seller_name]').val()==''||
-		$('input[name=seller_pwd]').val()==''||
-		$('input[name=seller_email]').val()==''||
-		$('input[name=seller_phone]').val()==''||
-		$('input[name=seller_license]').val()==''||
-		$('input[name=seller_address1]').val()==''||  
-		$('input[name=seller_address2]').val()==''){ */
+ 
+
 	if(!(sid && spwd && sname && semail && sphone && slicense)){	
 		alert("필수 사항을 입력하세요!");
 				
@@ -490,9 +483,10 @@ function checkSellerWrite(){
 		document.sellerWriteForm.submit(); 
 		 
 	}else{  
-		alert("약관을 체크해주세요!");			 
+		alert("약관을 체크해주세요!");			  
 	}  
 }
+  
 
 
 	function openAgree(){  

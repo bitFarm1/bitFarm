@@ -16,13 +16,13 @@ th{
 			white-space: pre-wrap;
 			word-break: break-all;
 			width: 500px; 
-			}
+			} 
 </style>
 
 <form name="imageboardListForm" method="post" action="/miniProject/imageboard/imageboardDelete.do">
-<div style="width:1000px; margin: 0 auto;">
+<div style="width:1200px; margin: 0 auto;">
 <h3>1:1 문의 내역</h3> 
-	<table id="infoListTable" width="80%" border="1" cellpadding="15" frame="hsides" rules="rows"> 
+	<table id="infoListTable" width="1200px" border="1" cellpadding="15" frame="hsides" rules="rows"> 
 		<tr> 
 			<th>글번호</th>
 			<th width="250px;">제목</th> 
@@ -67,6 +67,10 @@ th{
 			<img src="../storage/${infoQnA_imageName }" width="200" height="200">			 
 		</td>		
 		</c:if>	  
+		<c:if test="${infoQnA_imageName == '0'}">
+		<td colspan="1"  align="center"> 
+		</td>		
+		</c:if>	 
 		<td align="right"> 
 			<input type="button" value="답글달기" onclick="goreply('${seq}')">
 		</td>  

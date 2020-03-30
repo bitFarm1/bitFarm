@@ -1,4 +1,4 @@
-package cart.bean;
+		package cart.bean;
 
 import lombok.Data;
 
@@ -12,3 +12,4 @@ public class CartListDTO {
     private Integer item_qty;		// 상품수량 
     private Integer item_all_price;	// 상품 총 가격 
 }
+	 

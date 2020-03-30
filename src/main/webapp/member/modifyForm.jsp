@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <style type="text/css">
 	table {		
 		vertical-align: middle;
@@ -153,10 +154,15 @@
 			<br id="member_address2_p" style="display: none;"><span id="member_address2_Div" ></span></br>
 			</td>
 		</tr> 
-				
+			
 		<tr>
 			<th class="subject">생년월일</th> 
+			<c:if test="${memberDTO.member_birth != 0}"> 
 			<td><input class="layoutT" type="text" name="member_birth" placeholder="YYYYMMDD" value="${memberDTO.member_birth }">
+			</c:if>
+			<c:if test="${memberDTO.member_birth == 0}"> 
+			<td><input class="layoutT" type="text" name="member_birth" placeholder="YYYYMMDD">
+			</c:if> 
 			<br id="member_birth_p" style="display: none;"><span id="member_birth_Div" ></span></br>
 			</td>
 	</table>
@@ -169,6 +175,9 @@
 
 <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
+	var sname = false;
+	var sphone = false;
+	var semail = true;
 $(document).ready(function(){
 	if('${loginType}' != 'bit'){
 		$('#hidden0').css("display", "none"); 
@@ -178,6 +187,31 @@ $(document).ready(function(){
 	}  
 });
 
+$('input[name=member_name]').focusout(function(){
+	
+	var RegexName = /^[가-힣]{2,5}$/; //이름 유효성 검사 2~4자 사이
+	$('#member_name_p').css("display", "none"); 
+	$('#member_name_Div').empty(); 
+	
+	if($('input[name=member_name]').val()==''){ 
+	$('#member_name_p').css("display", "block"); 
+		$('#member_name_Div').text('이름을 입력하세요.'); 
+		$('#member_name_Div').css('color','red'); 
+		$('#member_name_Div').css('font-weight','bold');
+		$('#member_name_Div').css('font-size','10pt'); 
+		
+		}else if ( !RegexName.test($.trim($("#name").val())) ){
+			$('#member_name_p').css("display", "block"); 
+			$('#member_name_Div').text('이름을 정확히 입력하세요.'); 
+			$('#member_name_Div').css('color','red'); 
+			$('#member_name_Div').css('font-weight','bold');
+			$('#member_name_Div').css('font-size','10pt');
+			return;
+ 
+		}else{
+			sname = true;
+		} 	
+});
 
 $('input[name=member_id]').focusout(function(){	
 	$('#member_id_p').css("display", "none"); 
@@ -188,7 +222,7 @@ $('input[name=member_id]').focusout(function(){
 		$('#member_id_Div').text('아이디를 입력하세요.');  
 		$('#member_id_Div').css('color','#5f0080');
 		$('#member_id_Div').css('font-weight','bold');
-		$('#member_id_Div').css('font-size','10pt');
+		$('#member_id_Div').css('font-size','10pt');	
 	} 	
 });
 
@@ -317,8 +351,10 @@ $('input[name=member_name]').focusout(function(){
 });
 
 $('input[name=member_email]').change(function(){	
-	
-	$('#auth').val('no');   
+	if($('input[name=member_email]').val() != '${memberDTO.member_email }'){
+		$('#auth').val('no');    
+		semail = false;
+	} 
 }); 
 
 $('input[name=member_email]').focus(function(){
@@ -328,12 +364,17 @@ $('input[name=member_email]').focus(function(){
 		$('#member_email_Div').css('color','green');  
 		$('#member_email_Div').css('font-weight','bold');
 		$('#member_email_Div').css('font-size','10pt');		
+		semail = true;
 	}	 
 });
 
 $('input[name=member_email]').focusout(function(){
+	
 	$('#member_email_p').css("display", "none"); 
-	$('#member_email_Div').empty(); 	
+	$('#member_email_Div').empty();
+	
+	if($('input[name=member_email]').val() == '${memberDTO.member_email }')
+		return; 
 	
 	if($('input[name=auth]').val() != 'ok'){ 		 
 		$('#member_email_p').css("display", "block"); 
@@ -341,6 +382,7 @@ $('input[name=member_email]').focusout(function(){
 		$('#member_email_Div').css('color','#5f0080');     
 		$('#member_email_Div').css('font-weight','bold');
 		$('#member_email_Div').css('font-size','10pt');  
+		semail = false;
 	}
 });
 
@@ -389,7 +431,9 @@ $('input[name=member_phone]').focusout(function(){
 		$('#member_phone_Div').css('color','red');
 		$('#member_phone_Div').css('font-weight','bold'); 
 		$('#member_phone_Div').css('font-size','10pt');
-	}	
+	}else{
+		sphone = true;
+	}		
 });
  
 
@@ -419,15 +463,65 @@ $('input[name=member_address2]').focusout(function(){
 		} 	 
 });
 
+$('input[name=member_birth]').focusout(function(){  
+	var userCheck = RegExp(/^[0-9]{8}$/)
+	$('#member_birth_p').css("display", "none"); 
+	$('#member_birth_Div').empty(); 
+	 
+	if($('input[name=member_birth]').val()!='' && !(userCheck.test($('#birth').val()))){	 	 
+		$('#member_birth_p').css("display", "block") ;  
+		$('#member_birth_Div').text('예시 19941112');   
+		$('#member_birth_Div').css('color','red'); 
+		$('#member_birth_Div').css('font-weight','bold');
+		$('#member_birth_Div').css('font-size','10pt'); 
+		$('#modifyFormBtn').attr('disabled', true); 
+	}else {
+		$('#modifyFormBtn').attr('disabled', false);  
+	}
+});
+
 $('#modifyFormBtn').click(function(){
+	if($('input[name=member_email]').val() == '${memberDTO.member_email }'){
+		semail = true;
+	}
+	if($('input[name=member_name]').val() == '${memberDTO.member_name }'){
+		sname = true; 
+	}
+	if($('input[name=member_address1]').val()==''){
+		$('#member_address1_p').css("display", "block"); 
+				$('#member_address1_Div').text('주소를 검색하세요.');  
+				$('#member_address1_Div').css('color','#5f0080'); 
+				$('#member_address1_Div').css('font-weight','bold');
+				$('#member_address1_Div').css('font-size','10pt'); 
+				return;
+	}	 
+	if($('input[name=member_address2]').val()==''){ 
+		$('#member_address1_p').css("display", "block"); 
+				$('#member_address1_Div').text('주소를 입력하세요.');   
+				$('#member_address1_Div').css('color','#5f0080');
+				$('#member_address1_Div').css('font-weight','bold');
+				$('#member_address1_Div').css('font-size','10pt'); 
+				return; 
+	}
+if(!(sname && semail && sphone)){ 
+		 		
+		console.log("sname="+sname); 
+		console.log("semail="+semail);  
+	 	console.log("sphone="+sphone);  
+	
+		alert("필수 입력 사항을 확인하세요!");
+		
+}else {
+	
 	document.modifyForm.method = 'post';
 	document.modifyForm.action = '/bitFarm/member/modify'; 
 	document.modifyForm.submit();
+}
 }); 
 
 
 </script>
-
+ 
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
     //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.

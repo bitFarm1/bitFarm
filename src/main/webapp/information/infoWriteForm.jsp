@@ -20,13 +20,13 @@
 	}
  	.title{  
  		width: 100px; 
- 		text-align: left;
+ 		text-align: center;
  		font-size: 10pt;
- 		font-weight: bold;
+ 		font-weight: bold; 
  		background-color: #F7F5F8; 
  	}
  	.layoutT{
-		width: 350px;
+		width: 500px;
 	    height: 30px;
 	    padding: 0 9px;
 	    border: 1px solid #ccc;
@@ -60,11 +60,11 @@
 	}  
 	
 </style>
-<div style="width:1000px; margin: 0 auto;">  
+<div style="width:1200px; margin: 0 auto;">  
 <h3>*관리자용* 공지사항 등록</h3>  
 <form name="infoWriteForm" id="infoWriteForm" method="post" enctype="multipart/form-data" action="">
-<table class="QnAtable" cellpadding="5px" style="border-color: grey"> 
-	<tr> 
+<table class="QnAtable" cellpadding="5px" style="border-color: grey; width:1200px;">   
+	<tr>   
 		<td class="title">&emsp;제목</td> 
 		<td width="650" style="text-align: left;"><input class="layoutT" type="text" name="information_subject">&emsp;</td>
 		
@@ -76,16 +76,16 @@
 	<tr>
 		<td class="title">&emsp;내용</td> 
 		<td style="text-align:left;">
-		<textarea name="information_content" id="information_content" rows="30" cols="80"></textarea>
+		<textarea name="information_content" id="information_content" cols="30" rows="80" style="width: 800px; height: 500px;"></textarea>
 		</td> 		 
-	</tr>
+	</tr> 
 	<tr>  
 		<td class="title">&emsp;파일 선택</td> 
 		<td style="text-align: left;"><input class="layoutT" id="img" type="file" name="img" size="50"></td>
 	</tr> 
-</table>  
-<div style="height:50px;"></div>
-<div style="weight: 600px;height: 100px;text-align: center;width: 800px;"> 
+</table>         
+<div style="height:50px;"></div> 
+<div style="weight: 600px;height: 100px;text-align: center; width: 1000px;"> 
 	<input class="join" type="button" id="infoWriteBtn" value="등록"> 
 </div> 
 </form>

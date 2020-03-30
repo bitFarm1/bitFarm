@@ -11,7 +11,7 @@
 	<select id = "getCouponTotal" resultType = "int" parameterType="String">
 		select count(*) from coupon where coupon_user_id = #{id}
 	</select>
-	
+	 
 	<!--적립금  -->
 	<select id = "getPointList" resultType = "mypagePointDTO" parameterType="String">
 		select * from point where point_user_id = #{id}

@@ -173,7 +173,7 @@
 		&emsp;<input type="checkbox" id="event" name="check"> 이벤트 혜택/정보 수신 (선택)
 		<input type="hidden" id="mea" name="member_eventAgree" value=""> 
 	</div>
-	<div>
+	<div> 
 		&emsp;<input type="checkbox" id="member_check3" name="check"> 본인은 만 14세 이상입니다. (필수)
 	</div>	 
 	<div style="height: 10px;"></div>
@@ -214,7 +214,8 @@ $('input[name=member_id]').focusout(function(){
 		$('#member_id_Div').css('font-size','10pt'); 
 		$('#member_checkIdBtn').attr('disabled', true);
 	}else {
-		$('#member_checkIdBtn').attr('disabled', false); }
+		$('#member_checkIdBtn').attr('disabled', false); 
+	}
 });
 
 $('#member_checkIdBtn').click(function(){
@@ -504,15 +505,7 @@ function checkMemberWrite(){
 				$('#member_address1_Div').css('font-size','10pt'); 
 				return; 
 	}
-/* 	if($('input[name=member_id]').val()==''||
-		$('input[name=member_name]').val()==''||
-		$('input[name=member_pwd]').val()==''||
-		$('input[name=member_email]').val()==''||
-		$('input[name=member_phone]').val()==''||
-		$('input[name=member_license]').val()==''||
-		$('input[name=member_address1]').val()==''|| 
-		$('input[name=member_address2]').val()==''){
-		 */
+
 	if(!(sid && spwd && sname && semail && sphone)){
 		
 		console.log("sid="+sid);
@@ -521,7 +514,7 @@ function checkMemberWrite(){
 		console.log("semail="+semail);  
 		console.log("sphone="+sphone); 
 	
-		alert("필수 사항을 입력하세요!");  
+		alert("필수 입력 사항을 확인하세요!");  
 		
 	}else if($('#check1').is(":checked") && $('#check2').is(":checked") && $('#member_check3').is(":checked")){
 						
@@ -531,9 +524,9 @@ function checkMemberWrite(){
 				  
 	}else {
 		alert("약관을 체크해주세요!");   
-	} 
+	}  
 }  
-	
+	 
 
 function openAgree(){  
 	window.open("/bitFarm/member/agree","","width=840 height=500 left=500 top=300 scrollbars=yes");

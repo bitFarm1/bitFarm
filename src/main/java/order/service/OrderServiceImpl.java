@@ -1,5 +1,7 @@
 package order.service;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +40,22 @@ public class OrderServiceImpl implements OrderService {
 	public int orderPointAll(String memberId) {
 		
 		return orderDAO.orderPointAll(memberId);
+	}
+
+	@Override
+	public String orderNum() {
+	   	int num;
+    	while(true) {
+    		num = (int)(Math.random()*10000);
+    		if(num > 1000) break;
+    	} 
+    	
+        Date d = new Date(); 
+        String s = d.toString();
+           
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");       
+        String orderNum = sdf.format(d) + num;
+        return orderNum;
 	}
 
 	

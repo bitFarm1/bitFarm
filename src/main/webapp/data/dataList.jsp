@@ -5,13 +5,18 @@
 		<jsp:include page="../template/top.jsp"/>
 	</div>
 	<br>
-	<div style="float: left;"> 
-	<table>
+	<div style="float: center;">    
+	<table align="center"> 
 		<tr>
-			<td><jsp:include page="${data1}"/></td>
-			<td><jsp:include page="${data2}"/></td>
-			<td><jsp:include page="${data3}"/></td> 
-		</tr> 
+			<td>로그인 유형</td> 
+			<td>ㅇㅇㅇ 유형</td>
+			<td>ㅇㅇㅇ 유형</td>  
+		</tr>
+		<tr> 
+			<td style="width: 50px;"><jsp:include page="${data1}"/></td>
+			<td style="width: 50px;"><jsp:include page="${data2}"/></td>
+			<td style="width: 50px;"><jsp:include page="${data3}"/></td> 
+		</tr>   
 	</table>		
-	</div>
+	</div>   
 </body>  

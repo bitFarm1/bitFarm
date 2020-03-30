@@ -9,26 +9,32 @@
 	a.info:hover {color: #5f0080; text-decoration: none; font-weight: bolder;} 
 	a.info:active {color: black; text-decoration: none;} 
 
-th{
-	background-color: #F7F5F8;
-}
-.contents{ 
-			white-space: pre-wrap;
-			word-break: break-all;
-			width: 500px; 
-			}
+	th{
+		background-color: #F7F5F8;
+	}
+	.contents{ 
+		white-space: pre-wrap;
+		word-break: break-all;
+	}
+	
+	#infoListTable{
+		font-size: 9pt; 
+	}  
+
 </style>
 
-<form name="imageboardListForm" method="post" action="/miniProject/imageboard/imageboardDelete.do">
-<div style="width:1000px; margin: 0 auto;">
+<form name="informationQnAListForm" method="post" action="">
+<div style="width:1200px; margin: 0 auto;">   
 <h3>1:1 문의 내역</h3> 
-	<table id="infoListTable" width="80%" border="1" cellpadding="15" frame="hsides" rules="rows"> 
-		<tr> 
-			<th>글번호</th>
-			<th width="250px;">제목</th> 
-			<th>작성자</th>
-			<th>작성일</th>  			     
-		</tr>   
+	<table id="infoListTable" width="1200px" border="1" cellpadding="15" frame="hsides" rules="rows"> 
+		<tr>  
+			<th width="100px;">글번호</th>
+			<th width="150px">카테고리</th>
+			<th width="250px;">제목</th>  
+			<th width="200px">작성자</th> 
+			<th width="200px">작성일</th>  
+			<th width="200px">답변상태</th>  			     
+		</tr>    
 		
 <c:forEach var="informationQnADTO" items="${list }">
 <c:set var="seq" value="${informationQnADTO.infoQnA_seq }"/>
@@ -41,48 +47,97 @@ th{
 
 	<tr> 
 		<td style="width:100px; height:10px" align="center">
-		${seq }  
-		</td> 
-		  
+			${seq }  
+		</td>
+		
+		<td style="width:150px; height:10px" align="center">
+			[${infoQnA_type }]
+		</td>  
+		    
 		<td id="${seq }" style="width:100px">    
-		<a class="info"		 style="cursor: pointer;">[${infoQnA_type }] ${infoQnA_subject }</a>
+			<a class="info"	style="cursor: pointer;"> ${infoQnA_subject }</a>
 		</td>  
 		
 		  
 		<td style="width:200px" align="center"> 
-		${infoQnA_userID }
+			${infoQnA_userID }
 		</td>  
 		
 		<td style="width:200px" align="center"> 
-		${infoQnA_askDate } 
-		</td>			
-	</tr>	 
+			${infoQnA_askDate } 
+		</td>
+		
+		<c:if test="${informationQnADTO.infoQnA_answerSubject == '0'}">
+			<td style="width:200px" align="center"> 
+				답변 대기중
+			</td>
+		</c:if>	 
+		<c:if test="${informationQnADTO.infoQnA_answerSubject != '0'}">
+			<td style="width:200px" align="center">  
+				답변 완료
+			</td>
+		</c:if>	 			
+	</tr>	    
 	 
-	<tr id="hidden${seq }" style="display:none;" >  
-		<td colspan="2"  align="left"> 
+	<tr id="hidden1${seq }" style="display:none;" >
+		 
+		<td colspan="3" style="width: 500px;">   
 		<pre class="contents">${infoQnA_content }<br></pre> 
 		</td> 
-	<c:if test="${infoQnA_imageName != '0'}">
-		<td colspan="2"  align="center"> 
+	<c:if test="${infoQnA_imageName != '0'}"> 
+		<td colspan="3"  align="center"> 
 			<img src="../storage/${infoQnA_imageName }" width="200" height="200">			 
-		</td>
+		</td> 
 	</c:if>			  
+	</tr>     
+	
+	<c:if test="${informationQnADTO.infoQnA_answerSubject != '0'}">
+	<tr > 
+		<td style="width: 100px;"> </td>
+		<td style="width: 150px;"> </td>
+		<td id="${seq }reply" align="left" style="width: 425px;">     
+			<img src="../image/reply1.png" width="50" height="25"><a class="info" href="#" style="cursor: pointer;">${informationQnADTO.infoQnA_answerSubject }</a> 
+		</td>  
+		<td align="center"> <img src="../image/mainImage.png" width="50" height="20"> </td>
+		<td align="center">${informationQnADTO.infoQnA_answerDate }</td>
+		<td> </td>   
 	</tr>      
-  
+		  
+	<tr id="hidden2${seq }" style="display:none;">  
+		<td> </td> 
+			<td  colspan="4" align="left" style="width: 425px;">     
+				<pre class="contents">${informationQnADTO.infoQnA_answerContent }<br></pre> 
+			</td> 
+		<td> </td>
+	</tr> 
+	</c:if>	 
+
+   
 <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
- 
+   
 var ishidden = false;
 	
 $('#${seq}').click(function(){
-	ishidden = !ishidden;
+	ishidden = !ishidden;   
 	if(ishidden){
-		$('#hidden${seq}').css("display", "table-row"); 
+		$('#hidden1${seq}').css("display", "table-row");
+		 
 	}else{  
-		$('#hidden${seq}').css("display", "none"); 
+		$('#hidden1${seq}').css("display", "none"); 
+		 
 	}
 });  
- 
+
+$('#${seq}reply').click(function(){
+	ishidden = !ishidden;   
+	if(ishidden){		
+		$('#hidden2${seq}').css("display", "table-row"); 
+		
+	}else{  		 
+		$('#hidden2${seq}').css("display", "none");  
+	}
+});  
 </script>   
 </c:forEach> 
     

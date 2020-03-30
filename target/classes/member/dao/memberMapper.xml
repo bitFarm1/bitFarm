@@ -12,25 +12,44 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		,#{member_address1}  
 		,#{member_address2} 
 		,nvl(#{member_birth},0) 
-		,0,0,sysdate,#{member_eventAgree},#{member_loginType}) 
+		,1,2000,sysdate,#{member_eventAgree},#{member_loginType}) 
 	</insert> 	  
 	
 	<select id="getMemberPwd" parameterType="String" resultType="String">
-		select member_pwd from member where member_id = #{id}  
+		select member_pwd from member where member_id = #{id}   
 	</select>
 	
 	<select id="checkID" parameterType="String" resultType="int">
 		select count(*) from member where member_id = #{id}    
 	</select> 	
 	
+	<select id="getFindId" parameterType="java.util.Map" resultType="memberDTO">
+		select * from member where member_name = #{member_name} and member_email = #{member_email}
+	</select>
+	
+	<select id="getFindPwd" parameterType="java.util.Map" resultType="memberDTO">
+		select * from member where member_name = #{member_name} and member_email = #{member_email} and member_id = #{member_id}
+	</select>
+	
+	<update id="resetPwd" parameterType="java.util.Map">
+		update member 
+		set member_pwd = #{pwd}   
+		where member_id = #{member_id} 
+	</update>
+	
+	
 	<select id="login" parameterType="java.util.Map" resultType="memberDTO">
 		select * from member where member_id = #{id} 
 	</select> 	  	   	 
 	
 	<select id="checkAccount" parameterType="java.util.Map" resultType="memberDTO">
-		select * from member where member_name = #{name} and member_id = #{email}
+		select * from member where member_name = #{name} and member_id = #{email} 
 	</select>  
 	
+	<select id="checkType" parameterType="memberDTO" resultType="int">
+		select count(*) from member where member_id = ${member_id} and member_loginType = lower(${member_loginType})
+	</select>
+	  
 	<delete id="delete" parameterType="java.util.Map">
 		delete from member where member_id = #{id}
 	</delete>	
@@ -49,7 +68,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			, member_phone = #{member_phone}
 			, member_address1 = #{member_address1}
 			, member_address2 = #{member_address2}
-			, member_birth = #{member_birth}
+			, member_birth = nvl(#{member_birth},0)
 			where member_id = #{member_id}
 	</update>
 	
@@ -61,10 +80,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			, member_phone = #{member_phone}
 			, member_address1 = #{member_address1}
 			, member_address2 = #{member_address2}
-			, member_birth = #{member_birth}
+			, member_birth = nvl(#{member_birth},0)
 			where member_id = #{member_id}
 	</update> 
 	
+	<!-- dataList -->
 	<select id="getNaverAccount" resultType="int">
 	 	 select count(*) from member where member_logintype = 'naver'
 	 </select>
@@ -75,5 +95,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	 
 	 <select id="getKakaoAccount" resultType="int">
 	 	 select count(*) from member where member_logintype = 'kakao'
+	 </select>
+	 
+	 <select id="getThisMonthCount" resultType="int">
+	 	select count(*)
+		from member
+		where member_signupdate between to_date('20200301', 'YYYYMMDD') and to_date('20200401', 'YYYYMMDD');
 	 </select>
 </mapper>           

@@ -32,7 +32,15 @@ public interface MemberService {
 	
 	public int getBitAccount();   
 	
-	public int getKakaoAccount();    
+	public int getKakaoAccount();
  
+	public int checkType(MemberDTO memberDTO);
+
+	public MemberDTO getFindId(Map<String, String> map); 
+
+	public Boolean getFindPwd(Map<String, String> map);
+
+	public int resetPwd(Map<String, String> map);       
+  
 }
   

@@ -26,9 +26,9 @@
 </style>
 <form id="infoBoardListForm" name="infoBoardListForm">
 <input type="hidden" name="pg" value="${pg }">
-<div style="width:1000px; margin: 0 auto;">
+<div style="width:1200px; margin: 0 auto;">
 <h3>공지사항</h3> 
-	<table width="80%" border="1" cellpadding="15" frame="hsides" rules="rows"> 
+	<table width="1200px" border="1" cellpadding="15" frame="hsides" rules="rows"> 
 		<tr> 
 			<th>글번호</th> 
 			<th width="250px;">제목</th>

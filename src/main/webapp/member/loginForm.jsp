@@ -52,8 +52,8 @@ a.searchA:active {color: black; text-decoration: none;}
 		  
 	<div align="right">
 		<a class="searchA" href="/bitFarm/seller/sellerLoginForm">판매자 로그인</a> 
-		<a class="searchA" href="/bitFarm/member/findID">아이디 찾기</a> 
-		<a class="searchA" href="/bitFarm/member/findPWD">비밀번호 찾기</a>&nbsp;
+		<a class="searchA" href="/bitFarm/member/findIdForm">아이디 찾기</a> 
+		<a class="searchA" href="/bitFarm/member/findPwdForm">비밀번호 찾기</a>&nbsp;
 		<div style="height:5px;"></div>  
 		<input class="layout" type="button" id="loginBtn" value="로그인" style="color: white; background-color: #5f0080; border: #5f0080; border-radius: 5px; cursor: pointer;">
 	</div>   
@@ -65,7 +65,7 @@ a.searchA:active {color: black; text-decoration: none;}
 	<div style="height:60px; ">
 		<div id="naverIdLogin" style="float:left; width:65px;"></div> 
 		
-		<div> 
+		<div>  
 			<a id="custom-login-btn" href="javascript:loginWithKakao()">
 			<img src="../image/kakao.png" width="54"/>
 			</a>
@@ -118,9 +118,9 @@ a.searchA:active {color: black; text-decoration: none;}
                 	 window.location.href="http://localhost:8080/bitFarm/member/naver?name="+res.properties['nickname']+"&email="+res.kakao_account.email+"&type=kakao";  
                  },
                  fail: function(error) {
-                   alert(JSON.stringify(error));   
+                   alert(JSON.stringify(error));  
                  }
-               });
+               }); 
         },
         fail: function(err) {
           alert(JSON.stringify(err));

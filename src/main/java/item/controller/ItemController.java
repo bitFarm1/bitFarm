@@ -34,7 +34,7 @@ public class ItemController {
 	//판매자 홈에서 판매자가 판매할 상품 등록
 	@RequestMapping(value="itemAdd", method=RequestMethod.POST)
 	public String itemAdd(@ModelAttribute ItemDTO itemDTO, @RequestParam MultipartFile[] img, HttpSession session, Model model) {
-		String filePath = "D:\\spring\\workSTS\\springProject\\src\\main\\webapp\\storage";	//내가 설정한 파일 경로
+		String filePath = "D:\\spring\\workSTS\\bitFarm\\src\\main\\webapp\\storage";	//내가 설정한 파일 경로
 		String fileName;
 		File file;
 		

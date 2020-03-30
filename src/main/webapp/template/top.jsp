@@ -1,82 +1,60 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <link rel="stylesheet" href= "../css/top.css">
-<div align="right">				
-<strong>${memberName}</strong>&emsp;&emsp;	
-<c:if test="${sellerId!=null}">
-	<a class="indexA" href="/bitFarm/sellerHome/sellerAll">판매자홈</a>&emsp;&emsp;
-</c:if>
-	 
-<!-- 비회원 -->		   
-<c:if test="${memberId==null && sellerId==null }">
-	<a class="indexA" href="/bitFarm/member/loginForm">로그인</a>&emsp;&emsp;
-	<a class="indexA" href="/bitFarm/member/signUp">회원가입</a>&emsp;&emsp;
-</c:if>
-
-<!-- 회원 혹은 판매자  -->
-<c:if test="${memberId!=null || sellerId!=null}">  
-	<a class="indexA" href="/bitFarm/member/logout">로그아웃</a>&emsp;&emsp;
-</c:if>
-
-<!-- 회원만   -->
-<c:if test="${memberId!=null && sellerId==null}"> 
-	<a class="indexA" href="/bitFarm/mypage/mypageMain">마이페이지</a>&emsp;&emsp;
-	<a class="indexA" href="/bitFarm/cart/cartForm">장바구니</a>&emsp;&emsp;
-
-<!-- 전체 사용자 -->
-</c:if>
-	<a class="indexA" href="/bitFarm/information/infoBoardList">고객센터</a>&emsp;&emsp;&emsp;&emsp;
-
-</div><br><br>
-
+<br><br>
 <div align="center">
-	<img src="../image/mainImage.png" height="90px" style="cursor:pointer"
-		onclick="location.href='/bitFarm/main/main'">
-</div><br><br>
-
+	<img src="../image/mainImage.png" height="90px" style="cursor:pointer" onclick="location.href='/bitFarm/main/main'">
+</div>
+<br>
 <div class="menu">
 <hr class="topHr">
 <div class="menubar">
 	<ul>
-		<li><a href="#">과일/과일즙</a>
+		<li><a href="#">전체 상품 카테고리</a>
 			<ul>
-				<li><a href="#">과일</a></li>
-			 	<li><a href="#">과일즙</a></li>
+				<li><a href="#">과일/과일즙</a></li>
+			 	<li><a href="#">축산/유정란</a></li>
+			 	<li><a href="#">쌀/잡곡/견과류</a></li>
+			 	<li><a href="#">고구마/감자/채소/버섯</a></li>
+			 	<li><a href="#">장류/김치</a></li>
 			</ul>
 		</li>
-		<li><a href="#">축산/유정란</a>
+	<c:if test="${memberId==null && sellerId==null }">
+		<li><a href="/bitFarm/member/loginForm">로그인</a></li>
+		<li><a href="/bitFarm/member/signUp">회원가입</a></li>
+	</c:if>
+	<c:if test="${memberId!=null || sellerId!=null}">  
+		<li><a href="/bitFarm/member/logout">로그아웃</a></li>
+	</c:if>
+	<c:if test="${memberId!=null && sellerId==null}"> 
+		<li><a href="/bitFarm/mypage/mypageMain">마이페이지</a>
 			<ul>
-				<li><a href="#">닭/오리/계란/유제품</a></li>
-			 	<li><a href="#">소고기/돼지고기</a></li>
-				<li><a href="#">안심가공식품</a></li>
+				<li><a href="/bitFarm/mypage/mypagePickItem">찜한 상품</a></li>
+			 	<li><a href="/bitFarm/mypage/mypagePickSeller">찜한 판매자</a></li>
+			 	<li><a href="/bitFarm/mypage/mypageMyReview">내 리뷰 모아보기</a></li>
+			 	<li><a href="/bitFarm/mypage/mypageQna">내 문의 모아보기</a></li>
+			 	<li><a href="/bitFarm/member/beforeModify">정보수정</a></li>
 			</ul>
 		</li>
-		<li><a href="#">쌀/잡곡/견과류</a>
+		<li><a href="/bitFarm/cart/cartForm">장바구니</a></li>
+	</c:if>
+	<c:if test="${sellerId!=null}">
+		<li><a href="/bitFarm/sellerHome/sellerAll">판매자홈</a></li>
+	</c:if>
+		<li><a href="/bitFarm/information/infoBoardList">고객센터</a>
 			<ul>
-				<li><a href="#">쌀</a></li>
-			 	<li><a href="#">현미/찹쌀/잡곡/혼합곡</a></li>
-				<li><a href="#">옥수수/잣/호두/밤/대추/땅콩</a></li>
-			</ul>
-		</li>
-		<li><a href="#">고구마/감자/채소/버섯</a>
-			<ul>
-				<li><a href="#">고구마/감자</a></li>
-			 	<li><a href="#">마늘/양파/당근/고추</a></li>
-				<li><a href="#">채소/산나물/호박</a></li>
-			</ul>
-		</li>
-		<li><a href="#">장류/김치</a>
-			<ul>
-				<li><a href="#">김치</a></li>
-			 	<li><a href="#">된장/간장/청국장/고추장</a></li>
-			 	<li><a href="#">반찬/장아찌</a></li>
-				<li><a href="#">참기름/식초/소금/조미료</a></li>
-			</ul>
-		</li>
-		<li><a href="#">알뜰상품</a>
-			<ul>
-				<li><a href="#">2등급상품</a></li>
-			 	<li><a href="#">기한임박세일상품</a></li>
+				<li><a href="/bitFarm/information/infoBoardList">공지사항</a></li>
+				<li><a href="#">자주하는 질문</a></li>
+			  <c:if test="${memberId!=null || sellerId!=null}">
+				<li><a href="/bitFarm/information/infoQnABoard">1:1 문의 작성</a></li>
+				<li><a href="/bitFarm/information/infoQnAList">1:1 문의 내역</a></li>
+			  </c:if>
+			  <c:if test="${memberId=='admin'}">
+				<li><a href="/bitFarm/information/infoWriteForm">공지사항 등록</a></li>
+				<li><a href="/bitFarm/information/infoQnAListADMIN">1:1 문의내역(관리자전용)</a></li>
+			  	<li><a href="/bitFarm/information/infoQnAListAllADMIN">1:1 전체 문의내역(관리자전용)</a></li>
+			  	<li><a href="/bitFarm/information/dataList">회원데이터</a></li>
+			  </c:if>
 			</ul>
 		</li>
 	</ul>

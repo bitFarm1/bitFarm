@@ -25,7 +25,7 @@ body {
 	top: 0px;
 }
 .menubar{
-	width: 80%;
+	width: 100%;
 	margin: 0 auto;
 	padding: 0px;
 	text-align: center;
@@ -38,7 +38,7 @@ body {
 	width: 80%;
 	margin: 0;
 	padding: 0;
-	height: 50px;
+	height: 40px;
 	list-style-type: none;
 	text-align: center;
 	display: inline-block;

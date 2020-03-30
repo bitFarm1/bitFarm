@@ -7,13 +7,13 @@
 		insert into QnABoard values(#{infoQnA_type},
 									#{infoQnA_subject},
 									#{infoQnA_userID}, 
-									#{infoQnA_orderNum},  
-									#{infoQnA_email},
-									#{infoQnA_phone},
+									nvl(#{infoQnA_orderNum}, '0'),   
+									nvl(#{infoQnA_email}, '0'),
+									nvl(#{infoQnA_phone}, '0'),
 									#{infoQnA_content},
 									nvl(#{infoQnA_imageName},'0'), 
 									sysdate, 
-									0, 
+									0,  
 									0,
 									sysdate,
 									QnABoard_SEQ1.nextval)	   
@@ -88,5 +88,9 @@
 	<select id="getInfoSearchTotalA" parameterType="Map" resultType="int">
 		select count(*) from information where ${searchOption} like '%'||#{keyword}||'%'  
 	</select> 
+	
+	<select id="orderForm" parameterType="java.util.Map" resultType="String">
+		select distinct(order_id) from purchase where order_user_id = #{id}  
+	</select>
 	
 </mapper>  

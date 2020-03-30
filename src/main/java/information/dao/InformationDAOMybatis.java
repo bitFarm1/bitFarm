@@ -86,6 +86,12 @@ public class InformationDAOMybatis implements InformationDAO{
 	public List<InformationQnADTO> infoQnAListAllADMIN(Map<String, String> map) { 
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("informationSQL.infoQnAListAllADMIN", map);
+	}
+
+	@Override
+	public List<String> orderForm(String id) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("informationSQL.orderForm", id); 
 	} 
  
 }  

@@ -17,6 +17,18 @@ th{
 			word-break: break-all;
 			width: 500px; 
 			} 
+			
+.layoutB{ 
+	width: 150px;
+	height: 40px;
+	background-color: #5f0080;
+	border: #5f0080;
+	color: white;
+	border-radius: 5px;
+	font-family: 'Noto Sans';
+	font-weight: bold;
+	cursor: pointer;
+	} 			
 </style>
 
 <form name="imageboardListForm" method="post" action="/miniProject/imageboard/imageboardDelete.do">
@@ -70,9 +82,9 @@ th{
 		<c:if test="${infoQnA_imageName == '0'}">
 		<td colspan="1"  align="center"> 
 		</td>		
-		</c:if>	 
-		<td align="right"> 
-			<input type="button" value="답글달기" onclick="goreply('${seq}')">
+		</c:if>	    
+		<td align="right">  
+			<input type="button" class="layoutB" value="답글달기" onclick="goreply('${seq}')">
 		</td>  
 	</tr>    
   

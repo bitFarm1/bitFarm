@@ -94,6 +94,7 @@
 
 					<option id = "couponOption"  name = "${couponDTO.coupon_id }" value = "${couponDTO.coupon_price }">[${couponDTO.coupon_name }] ${couponDTO.coupon_content}</option>	 
 
+					<option name = "${couponDTO.coupon_id }" value = "${couponDTO.coupon_price }">[${couponDTO.coupon_name }] ${couponDTO.coupon_content}</option>	 
 				</c:forEach>
 					 	
 				</select>

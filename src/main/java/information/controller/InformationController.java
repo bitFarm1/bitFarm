@@ -125,7 +125,7 @@ public class InformationController {
 		
 //		mav.addObject("display", "/information/infoMain.jsp");
 //		mav.addObject("info", "/information/infoView.jsp");
-//		mav.setViewName("/main/main");  		
+//		mav.setViewName("/main/main");  	 	
 	}
 	
 	  
@@ -288,6 +288,18 @@ public class InformationController {
 		mav.addObject("info", "/information/simpleQnA.jsp");    
 		mav.setViewName("/main/main");
 		 
+		return mav; 
+	} 
+	
+	@RequestMapping(value="/orderSearch", method=RequestMethod.GET)
+	public ModelAndView orderForm(HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+		String id = (String) session.getAttribute("memberId"); 
+		List<String> list = informationService.orderForm(id); 
+		 
+		mav.addObject("list", list);		        
+		mav.setViewName("/information/orderSearch");
+		  
 		return mav; 
 	} 
 }

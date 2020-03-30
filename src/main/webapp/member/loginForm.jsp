@@ -171,7 +171,7 @@ window.fbAsyncInit = function() {
 //add event listener to login button
 document.getElementById('facebookBtn').addEventListener('click', function() {
     //do the login
-    alert("dd"); 
+
     FB.login(function(response) {
         if (response.authResponse) {
             access_token = response.authResponse.accessToken; //get access token

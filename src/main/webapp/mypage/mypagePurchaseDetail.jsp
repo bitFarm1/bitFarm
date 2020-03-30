@@ -29,26 +29,26 @@
 		</div>
 		</td>
 		<td style="color:#5f0080; font-weight: bold; ">배송완료</td>
-		<td>
+		<!-- <td>
 			<input class = "purchaseDetailBasketBtn" type="button" value="장바구니" onclick="javascript:location.href='/bitFarm/cart/cartForm.do'" >
-			<!-- <div id = "purchaseDetailBasketBtnDiv">
+			<div id = "purchaseDetailBasketBtnDiv">
 				<a class = "purchaseDetailBasketA" href="#">장바구니</a>
-			</div> -->
-		</td>
+			</div>
+		</td> -->
 	</tr>
 </table>
 
-<div style="width: 35%; height: 10px; float:left;"></div><!-- width: 300px; -> 35%-->
+<div style="width: 35%; height: 10px; float:left;"></div>
 <!-- <div id = "purchaseDetailAllOrderBtnDiv">
 	<a class = "purchaseDetailAllOrderA" href="#">전체 상품 다시 담기</a>
-</div> -->
+</div>
 <input class = "purchaseDetailAllOrderBtn" type="button" value="전체 상품 다시 담기">
 <div style="width: 40px; height: 10px; float:left;"></div>
-<!-- <div id = "purchaseDetailAllDeleteBtnDiv">
+<div id = "purchaseDetailAllDeleteBtnDiv">
 	<a class = "purchaseDetailAllDeleteA" href="#">전체 상품 주문 취소</a>
-</div> -->
+</div>
 <input class = "purchaseDetailAllDeleteBtn" type="button" value="전체 상품 주문 취소">
-<!-- <div style=" border : solid red; width: 230px; height: 10px; float:left;"></div> -->
+<div style=" border : solid red; width: 230px; height: 10px; float:left;"></div> -->
 
 <div id = "purchaseDetailPayDiv">결제 정보</div>
 
@@ -57,10 +57,10 @@
 		<td width = "200">총주문금액</td>
 		<td>26,900원</td>
 	</tr>
-	<tr>
+<!-- 	<tr>
 		<td>상품할인</td>
 		<td>-830원</td>
-	</tr>
+	</tr> -->
 	<tr>
 		<td>쿠폰할인</td>
 		<td>-7,000원</td>
@@ -71,16 +71,16 @@
 	</tr>
 	<tr>
 		<td>배송비</td>
-		<td>0원</td>
+		<td>3000원</td>
 	</tr>
 	<tr>
 		<td>결제금액</td>
 		<td>19,000원</td>
 	</tr>
-	<tr>
+<!-- 	<tr>
 		<td>결제방법</td>
 		<td>네이버페이</td>
-	</tr>
+	</tr> -->
 </table>
 
 <div id = "purchaseDetailOrderDiv">주문 정보</div>

@@ -19,5 +19,40 @@
 	<select id = "orderPointAll" resultType = "int" parameterType="String">
 		select sum(point_price) from point where point_user_id = #{memberId}
 	</select>
+	
+	<insert id = " writeOrder" parameterType="java.util.Map">
+		insert into purchase values(#{order_id},
+									#{seller_name},
+									#{item_name},
+									#{item_main_image},
+									#{item_price},
+									#{item_qty},
+									'결제완료',
+									#{before_price},
+									#{coupon_id},
+									#{coupon_price},
+									#{point},
+									#{total},
+									#{payment},
+									#{id},
+									#{user_phone},
+									#{email},
+									sysdate,
+									#{name},
+									#{phone},
+									#{addr1},
+									#{addr2},
+									#{ps}
+									)
+	</insert>
+	
+	<select id = "getItemSeller" parameterType = "int" resultType = "String">
+		select seller_name from item where item_id = #{item_id}
+	</select>
+	
+	<select id = "getItemPrice" parameterType = "int" resultType = "String">
+		select item_price from item where item_id = #{item_id}
+	</select>
  
+
 </mapper>

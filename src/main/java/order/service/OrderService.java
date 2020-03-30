@@ -1,10 +1,12 @@
 package order.service;
 
 import java.util.List;
+import java.util.Map;
 
 import member.bean.MemberDTO;
 import mypage.bean.MypageCouponDTO;
-import mypage.bean.MypagePointDTO;
+
+import order.bean.OrderDTO;
 
 public interface OrderService {
 
@@ -16,5 +18,10 @@ public interface OrderService {
 	public List<MypageCouponDTO> orderCouponList(String memberId);
 
 	public int orderPointAll(String memberId);
+
+	//200330 김소중
+	public void writeOrder(Map<String, Object> map);
+
+	public String orderNum();
 
 }

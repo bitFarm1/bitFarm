@@ -65,9 +65,9 @@
 <table class="QnAtable" cellpadding="5px" style="border-color: grey"> 
 	<tr> 
 		<td class="title">&emsp;제목</td> 
-		<td width="650" style="text-align: left;"><input class="layoutT" type="text" name="infoQnA_subject">&emsp;
+		<td width="650" style="text-align: left;"><input class="layoutT" type="text" id="infoQnA_subject" name="infoQnA_subject">&emsp;
 						<select name="infoQnA_type" id="infoQnA_type" label="질문유형" class="select">
-                            <option value="">선택해주세요.</option>
+                            <option value="">문의사항</option>
                             <option value="배송지연/불만">배송지연/불만</option>
                             <option value="반품문의">반품문의</option> 
                             <option value="A/S문의">A/S문의</option>
@@ -83,8 +83,8 @@
 	</tr>
 	<tr>
 		<td class="title">&emsp;주문번호</td>
-		<td style="text-align: left;"><input class="layoutT" type="text" name="infoQnA_orderNum" id="infoQnA_orderNum">&emsp;
-			<input class="layoutB" type="button" value="주문조회"></td>
+		<td style="text-align: left;"><input class="layoutT" type="text" name="infoQnA_orderNum" id="infoQnA_orderNum" readonly="readonly">&emsp;
+			<input class="layoutB" type="button" value="주문조회" onclick="openOrderForm()"></td>
 	</tr>	
 	<tr>
 		<td class="title">&emsp;이메일</td>
@@ -118,7 +118,20 @@
 <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
 $('#infoQnABtn').click(function(){
+	if($('#infoQnA_subject').val()=='') {
+		alert("제목을 입력해주세요!");
+		return;
+	}
 	
+	if($('#infoQnA_type').val()=='') {
+		alert("문의 사항을 선택해주세요!"); 
+		return;
+	}
+	
+	if($('#infoQnA_content').val()=='') {
+		alert("내용을 입력해주세요!");
+		return;
+	} 
 	let formData = new FormData($('#infoQnABoardForm')[0]);
 	
 	$.ajax({  
@@ -135,4 +148,8 @@ $('#infoQnABtn').click(function(){
 	});			  
 	  
 });
+     
+function openOrderForm(){        
+	window.open("/bitFarm/information/orderSearch","","width=350 height=35 left=500 top=300 scrollbars=yes");
+}             
 </script>

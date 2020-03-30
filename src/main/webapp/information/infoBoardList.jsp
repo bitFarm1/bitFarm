@@ -69,21 +69,26 @@
 </c:forEach> 
 </table> 
 	<div style="height:10px;"> </div>		
-	<div style="width: 80%; text-align: center;">
+	<div style="width: 100%; text-align: center;"> 	
 		
 <div id="pagingDiv">${informationPaging.pagingHTML}</div>
-	</div> 
-
-	<select name="searchOption" id="searchOption" style="width: 80px;">
+	</div>  
+	<div><table>
+	<tr><td valign="middle"> 
+	<select name="searchOption" id="searchOption" style="width: 80px; height:30px;">  
 				<option value="information_subject">제목
 				<option value="information_name">아이디 
-	</select>
-	<input type="text" name="keyword">  
-	<input type="button" id="searchBtn" name="searchBtn" value="검색"> 
-</form> 
+	</select>       
+	<input type="text" valign="center" name="keyword" style="height:30px; ">   
+	<img align="top" src="../image/search.png" id="searchBtn" name="searchBtn" style="height:35px;">  
+	<!-- <input type="button" id="searchBtn" name="searchBtn" value="검색">  -->
+	</td></tr>
+	</table>
+	</div> 
+</form>   
 </div> 
 	
-<p style="clear: both; height: 30px;"></p>
+<p style="clear: both; height: 30px;"></p> 
 <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
 <script type="text/javascript"> 
 function informationPaging(pg){ 

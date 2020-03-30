@@ -140,6 +140,12 @@ public class InformationServiceImpl implements InformationService {
 		
 		return informationDAO.infoQnAListAllADMIN(map);   
 	}
+
+	@Override
+	public List<String> orderForm(String id) { 
+		return informationDAO.orderForm(id);  
+		 
+	}
  
 	
 }

@@ -90,7 +90,6 @@
 				<select id = "selectCoupon" style="height: 30px; width: 500px;">
 					<option value = "0">쿠폰을 선택하세요</option>
 				<c:forEach var="couponDTO" items="${couponList }">
-
 					<option name = "${couponDTO.coupon_id }" value = "${couponDTO.coupon_price }">[${couponDTO.coupon_name }] ${couponDTO.coupon_content}</option>	 
 				</c:forEach>
 					 	

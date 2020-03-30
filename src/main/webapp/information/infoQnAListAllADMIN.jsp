@@ -14,13 +14,15 @@
 	}
 	.contents{ 
 		white-space: pre-wrap;
-		word-break: break-all;
+		word-break: break-all; 
 	}
 	
 	#infoListTable{
 		font-size: 9pt; 
 	}  
-
+	td{
+	 white-space: nowrap;
+	}
 </style>
 
 <form name="informationQnAListForm" method="post" action="">
@@ -79,33 +81,30 @@
 		</c:if>	 			
 	</tr>	    
 	 
-	<tr id="hidden1${seq }" style="display:none;" >
+	<tr id="hidden1${seq }" style="display:none;" > 
 		 
-		<td colspan="3" style="width: 500px;" align="center">  
+		<td colspan="3" style="width: 500px;" align="left">  
 		<pre class="contents">${infoQnA_content }<br></pre> 
 		</td> 
 	<c:if test="${infoQnA_imageName != '0'}">
 		<td colspan="3"  align="center"> 
 			<img src="../storage/${infoQnA_imageName }" width="200" height="200">			 
-		</td> 
+		</td>   
 	</c:if>			  
 	</tr>     
 	
 	<c:if test="${informationQnADTO.infoQnA_answerSubject != '0'}">
 	<tr > 
-		<td style="width: 100px;"> </td>
-		<td style="width: 150px;"> </td>
-		<td id="${seq }reply" align="left" style="width: 425px;">     
-			<img src="../image/reply1.png" width="50" height="25"><a class="info" href="#" style="cursor: pointer;">${informationQnADTO.infoQnA_answerSubject }</a> 
+		<td style="width: 100px;"></td>
+		<td style="width: 150px;"> <img src="../image/mainImage.png" width="50" height="20"></td>
+		<td id="${seq }reply" colspan="4" align="left" style="width: 425px;">     
+			<a class="info" href="#" style="cursor: pointer;"> ${informationQnADTO.infoQnA_answerSubject }</a> 
 		</td>  
-		<td align="center"> <img src="../image/mainImage.png" width="50" height="20"> </td>
-		<td align="center">${informationQnADTO.infoQnA_answerDate }</td>
-		<td> </td>   
-	</tr>      
-		  
-	<tr id="hidden2${seq }" style="display:none;">  
+	</tr>     
+		
+	<tr id="hidden2${seq }" style="display:none;">   
 		<td> </td> 
-			<td  colspan="4" align="left" style="width: 425px;">     
+			<td  colspan="4" align="left" style="width: 425px;">    
 				<pre class="contents">${informationQnADTO.infoQnA_answerContent }<br></pre> 
 			</td> 
 		<td> </td>

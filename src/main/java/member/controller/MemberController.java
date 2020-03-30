@@ -265,7 +265,7 @@ public class MemberController {
 		int num = memberService.mailSending(email); 
 		mav.addObject("num", num);
 		mav.setViewName("/member/mailmail");
-	    
+	      
 		return mav; 
 	}
 	

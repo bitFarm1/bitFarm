@@ -49,6 +49,10 @@
 		where infoQnA_seq = #{seq}   
 	</update>
 	
+	<select id="infoQnAListAllADMINPagingTotalA" resultType="int"><!-- 값 ? 에 넣는 타입  --><!--user.bean.UserDTO => user로 사용 mybatis-config.xml  -->
+		select count(*) from QnABoard 
+	</select>  
+	
 	
 	<!-- information (공지사항) !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
 	<insert id="infoWrite" parameterType="informationDTO">

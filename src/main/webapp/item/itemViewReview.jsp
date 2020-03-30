@@ -4,17 +4,17 @@
 <link rel="stylesheet" href= "../css/item.css">
 
 <div class="itemReviewDiv">
-	<c:if test="${reviewList!=null}">
-	<c:forEach var="reviewDTO" items="${reviewList}">
-	<c:set var="seq" value="${reviewDTO.review_id}"/>
 	
 		<table class="itemQnaListTable1" frame="hsides" rules="rows" cellpadding="10">
 			<tr>
 				<th>글번호</th>
 				<th>제목</th>
 				<th>작성자</th>
-				<th>작성일</th>
+				<th>작성일</th> 
 			</tr>
+	<c:if test="${reviewList!=null}">
+	<c:forEach var="reviewDTO" items="${reviewList}">
+	<c:set var="seq" value="${reviewDTO.review_id}"/>
 			<!-- list -->
 			<tr>
 				<td align="center" width="15%">${reviewDTO.review_id}</td>
@@ -34,9 +34,6 @@
 				<td colspan="4">${reviewDTO.review_content}</td>
 			  </c:if>
 			</tr>
-		</table>
-	
-	
 	<!-- script -->
 	<script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
 	<script type="text/javascript">
@@ -53,4 +50,7 @@
 	</script>
 	</c:forEach>
 	</c:if>
+		</table>
+	
+	
 </div>

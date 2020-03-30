@@ -96,12 +96,12 @@
 	</tr>  
 	<tr>
 		<td class="title">&emsp;내용</td> 
-		<td style="text-align:left;"><p><strong>1:1 문의 작성 전 확인해 주세요!</strong><p><p>
-		<strong>반품 / 환불</strong><p><p>	 반품 / 환불반품 / 환불반품 / 환불반품 / 환불반품 / 환불	<p>
-		<strong>주문취소</strong> <p><p>	주문취소주문취소주문취소주문취소주문취소주문취소주문취소 	<p>
-		<strong>배송 </strong><p><p> 배송안내내용배송안내내용배송안내내용배송안내내용배송안내내용<p>
+		<td style="text-align:left; font-size: 10pt;"><p><strong>1:1 문의 작성 전 확인해 주세요!</strong><p><p>
+		<strong>반품 / 환불</strong><p><p>- 제품 하자 혹은 이상으로 반품(환불)이 필요한 경우 사진과 함께 구체적인 내용을 남겨주세요.<p>
+		<strong>주문취소</strong> <p><p>- 배송 단계별로 주문취소 방법이 상이합니다.<br>- 자세한 내용은 전화 문의로 상담하세요.<p>
+		<strong>배송 </strong><p><p>- 주문 완료 후 배송 방법 및 결제는 변경이 불가능 합니다.<p><strong>※ 전화번호, 이메일, 주소, 계좌번호 등의 상세 개인정보가 문의 내용에 저장되지 않도록 <br>&emsp; 주의해 주시길 바랍니다.</strong><p> 
 		<textarea rows="30" cols="80" name="infoQnA_content" id="infoQnA_content"></textarea> 
-		</td> 		
+		</td> 		       
 	</tr>
 	<tr> 
 		<td class="title">&emsp;파일 선택</td> 

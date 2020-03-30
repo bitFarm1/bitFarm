@@ -18,11 +18,12 @@
 		cursor: pointer;
 	} 
 	
-	#currentpaging {
-		color: red;
-		text-decoration: underline;
+	#currentpaging { 
+		color: #5f0080;
+		text-decoration: none;
 		cursor: pointer; 
 	}	
+	
 </style>
 <form id="infoBoardListForm" name="infoBoardListForm">
 <input type="hidden" id="pg" name="pg" value="${pg }">
@@ -59,7 +60,7 @@
 		</td>  
 		
 		<td> 
-		${information_date } 
+		<fmt:formatDate pattern="yyyy년 MM월 dd일" value="${information_date}"/>
 		</td>	
 		
 		<td> 
@@ -69,19 +70,25 @@
 </c:forEach> 
 </table> 
 	<div style="height:10px;"> </div>		
-	<div style="width: 80%; text-align: center;">
-		
+	<div style="width: 100%; text-align: center;">
+		 
 <div id="pagingDiv">${informationPaging.pagingHTML}</div>
 	</div> 
  
-	<select name="searchOption" id="searchOption" style="width: 80px;">
+		<div><table>
+	<tr><td valign="middle"> 
+	<select name="searchOption" id="searchOption" style="width: 80px; height:30px;">  
 				<option value="information_subject">제목
 				<option value="information_name">아이디 
-	</select>
-	<input type="text" name="keyword" value="${keyword }">  
-	<input type="button" id="searchBtn" name="searchBtn" value="검색"> 
-</form> 
+	</select>       
+	<input type="text" valign="center" name="keyword" value="${keyword }" style="height:30px; ">   
+	<img align="top" src="../image/search.png" id="searchBtn" name="searchBtn" style="height:35px;">  
+	<!-- <input type="button" id="searchBtn" name="searchBtn" value="검색">  -->
+	</td></tr>
+	</table> 
+	</div> 
 </div> 
+</form> 
 	
 <p style="clear: both; height: 30px;"></p>
 <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>

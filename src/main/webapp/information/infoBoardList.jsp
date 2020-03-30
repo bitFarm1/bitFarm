@@ -5,39 +5,43 @@
 	a.info {color:black; text-decoration: none; font-size: 11pt;}  
 	a.info:link {color: black; text-decoration: none;}
 	a.info:visited {color: black; text-decoration: none;}
-	a.info:hover {color: #5f0080; text-decoration: none; font-weight: bolder;} 
+	a.info:hover {color: #5f0080; text-decoration: none;} 
 	a.info:active {color: black; text-decoration: none;} 
 
 	th{
 		background-color: #F7F5F8;
-	}  
+	}   
 	
 	#paging {
 		color: black;
-		text-decoration: none;
+		text-decoration: none; 
 		cursor: pointer;
 	} 
 	
 	#currentpaging {
-		color: red;
-		text-decoration: underline;
+		color: #5f0080;   
+		text-decoration: none;  
 		cursor: pointer; 
 	}	
+	
+	td{
+		border-bottom: 1px solid #e5e5e5; 
+	}
 </style>
 <form id="infoBoardListForm" name="infoBoardListForm">
 <input type="hidden" name="pg" value="${pg }">
-<div style="width:1200px; margin: 0 auto;">
+<div style="width:1200px; margin: 0 auto;">  
 <h3>공지사항</h3> 
-	<table width="1200px" border="1" cellpadding="15" frame="hsides" rules="rows"> 
+	<table width="1200px" cellpadding="15" style="border-top: 2px solid #5f0080; font-size: 12px; border-collapse: collapse;"> 
 		<tr> 
-			<th>글번호</th> 
+			<th>글번호</th>    
 			<th width="250px;">제목</th>
-			<th>작성자</th>
+			<th>작성자</th> 
 			<th>작성일</th> 
 			<th>조회</th> 
 		</tr>
-		 
-<c:forEach var="informationDTO" items="${list }">
+		  
+<c:forEach var="informationDTO" items="${list }"> 
 <c:set var="seq" value="${informationDTO.information_number }"/>
 <c:set var="information_subject" value="${informationDTO.information_subject }"/>
 <c:set var="information_name" value="${informationDTO.information_name }"/>
@@ -53,13 +57,14 @@
 		<a class="info" href="/bitFarm/information/infoView?seq=${seq }&pg=${pg}">${information_subject }</a>
 		</td>  
 		
-		 
+		  
 		<td> 
 		${information_name } 
 		</td>  
 		
-		<td> 
-		${information_date } 
+		<td>   
+
+		<fmt:formatDate pattern="yyyy년 MM월 dd일" value="${information_date}"/> 		   		 
 		</td>	
 		
 		<td> 
@@ -67,7 +72,7 @@
 		</td>				
 	</tr>	 
 </c:forEach> 
-</table> 
+</table>  
 	<div style="height:10px;"> </div>		
 	<div style="width: 100%; text-align: center;"> 	
 		
@@ -85,8 +90,8 @@
 	</td></tr>
 	</table>
 	</div> 
-</form>   
 </div> 
+</form>   
 	
 <p style="clear: both; height: 30px;"></p> 
 <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>

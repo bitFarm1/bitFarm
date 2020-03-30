@@ -9,6 +9,18 @@
 	a.info:hover {color: #5f0080; text-decoration: none; font-weight: bolder;} 
 	a.info:active {color: black; text-decoration: none;} 
 
+	#paging {
+		color: black;
+		text-decoration: none;
+		cursor: pointer; 
+	}   
+	
+	#currentpaging {
+		color: #5f0080;
+		text-decoration: none;
+		cursor: pointer; 
+	}	
+	
 	th{
 		background-color: #F7F5F8;
 	}
@@ -26,9 +38,9 @@
 </style>
 
 <form name="informationQnAListForm" method="post" action="">
-<div style="width:1200px; margin: 0 auto;">   
+<div style="width:1200px; margin: 0 auto;">    
 <h3>1:1 문의 내역</h3> 
-	<table id="infoListTable" width="1200px" border="1" cellpadding="15" frame="hsides" rules="rows"> 
+	<table id="infoListTable" width="1200px" border="1" cellpadding="15" frame="hsides" rules="rows" style="border-top:2px solid #5f0080; font-weight: 12px;"> 
 		<tr>  
 			<th width="100px;">글번호</th>
 			<th width="150px">카테고리</th>
@@ -66,8 +78,8 @@
 		</td>  
 		
 		<td style="width:200px" align="center"> 
-			${infoQnA_askDate } 
-		</td>
+			<fmt:formatDate pattern="yyyy년 MM월 dd일" value="${infoQnA_askDate}"/> 
+		</td> 
 		
 		<c:if test="${informationQnADTO.infoQnA_answerSubject == '0'}">
 			<td style="width:200px" align="center"> 
@@ -82,8 +94,8 @@
 	</tr>	    
 	 
 	<tr id="hidden1${seq }" style="display:none;" > 
-		 
-		<td colspan="3" style="width: 500px;" align="left">  
+		<td></td> 
+		<td colspan="2" style="width: 500px;" align="left">  
 		<pre class="contents">${infoQnA_content }<br></pre> 
 		</td> 
 	<c:if test="${infoQnA_imageName != '0'}">
@@ -138,10 +150,18 @@ $('#${seq}reply').click(function(){
 	}
 });  
 </script>   
-</c:forEach> 
-    
-</table> 
+</c:forEach>  
+</table>  
+	<div style="height:20px;"></div>   
+    <div align="center" id="pagingDiv">${informationPaging.pagingHTML}</div> 
 <input type="hidden" name="pg" value="${pg }">
 <input type="hidden" id="dis" name="dis" value="">
 </div>  
+ 
+<script type="text/javascript"> 
+function informationPaging(pg){   
+	location.href='infoQnAListAllADMIN?pg='+pg;    
+	
+}
+</script>
 

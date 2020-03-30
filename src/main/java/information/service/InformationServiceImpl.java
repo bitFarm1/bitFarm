@@ -36,7 +36,7 @@ public class InformationServiceImpl implements InformationService {
 		map.put("startNum", startNum+"");
 		map.put("endNum", endNum+"");
 		
-		return informationDAO.getInfoList(map);   
+		return informationDAO.getInfoList(map);    
 	}
 
 	@Override
@@ -47,8 +47,8 @@ public class InformationServiceImpl implements InformationService {
 
 	@Override
 	public List<InformationDTO> infoBoardList(String pg) {
-		int endNum = Integer.parseInt(pg)*5;
-		int startNum = endNum-4;
+		int endNum = Integer.parseInt(pg)*8;
+		int startNum = endNum-7;
 		
 		Map<String, Integer> map = new HashMap<String, Integer>();
 		map.put("startNum", startNum);
@@ -68,18 +68,30 @@ public class InformationServiceImpl implements InformationService {
 		int totalA = informationDAO.informationTotalA();
 		
 		informationPaging.setCurrentPage(Integer.parseInt(pg)); 
-		informationPaging.setPageBlock(3);
-		informationPaging.setPageSize(5);
-		informationPaging.setTotalA(totalA); 
+		informationPaging.setPageBlock(5);
+		informationPaging.setPageSize(8); 
+		informationPaging.setTotalA(totalA);  
 		informationPaging.makePagingHTML(); 
+		
+		return informationPaging;
+	}
+	 
+	public InformationPaging infoQnAListAllADMINPaging(String pg) { 
+		int totalA = informationDAO.infoQnAListAllADMINPagingTotalA(); 
+		
+		informationPaging.setCurrentPage(Integer.parseInt(pg)); 
+		informationPaging.setPageBlock(5);
+		informationPaging.setPageSize(8);
+		informationPaging.setTotalA(totalA); 
+		informationPaging.makePagingHTML();   
 		
 		return informationPaging;
 	}
 
 	@Override 
 	public List<InformationDTO> getInfoSearch(Map<String, String> map) {
-		int endNum = Integer.parseInt(map.get("pg"))*5;
-		int startNum = endNum-4; 
+		int endNum = Integer.parseInt(map.get("pg"))*8;
+		int startNum = endNum-7; 
 		
 		map.put("startNum", startNum+""); 
 		map.put("endNum", endNum+"");  
@@ -94,8 +106,8 @@ public class InformationServiceImpl implements InformationService {
 		int totalA = informationDAO.getInfoSearchTotalA(map);//총글수
 		
 		informationPaging.setCurrentPage(Integer.parseInt(map.get("pg"))); 
-		informationPaging.setPageBlock(3);
-		informationPaging.setPageSize(5); 
+		informationPaging.setPageBlock(5);
+		informationPaging.setPageSize(8); 
 		informationPaging.setTotalA(totalA);
 		informationPaging.makeSearchPagingHTML();   
 		return informationPaging; 
@@ -105,12 +117,12 @@ public class InformationServiceImpl implements InformationService {
 	public List<InformationQnADTO> getInfoListADMIN(String pg) {
 
 		// TODO Auto-generated method stub 
-		int endNum = Integer.parseInt(pg)*10;
-		int startNum = endNum-9;   
+		int endNum = Integer.parseInt(pg)*8;
+		int startNum = endNum-7;   
 		
 		Map<String, Integer> map = new HashMap<String, Integer>();
 		
-		map.put("startNum", startNum); 
+		map.put("startNum", startNum);  
 		map.put("endNum", endNum);
 		
 		return informationDAO.getInfoListADMIN(map);   
@@ -131,11 +143,11 @@ public class InformationServiceImpl implements InformationService {
 	@Override
 	public List<InformationQnADTO> infoQnAListAllADMIN(Map<String, String> map) {
 		
-		int endNum = Integer.parseInt(map.get("pg"))*10;
-		int startNum = endNum-9;   
+		int endNum = Integer.parseInt(map.get("pg"))*8;
+		int startNum = endNum-7;   
 		
-		
-		map.put("startNum", startNum+"");
+		 
+		map.put("startNum", startNum+""); 
 		map.put("endNum", endNum+"");
 		
 		return informationDAO.infoQnAListAllADMIN(map);   

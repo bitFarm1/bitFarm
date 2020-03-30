@@ -51,4 +51,5 @@
 		</c:forEach>
 		</c:if>
 	</table>
+
 </div>

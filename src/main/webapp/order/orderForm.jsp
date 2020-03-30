@@ -158,9 +158,7 @@
 			
 		<!-- 	<td><div id = "totalMoneyDiv" style = "display:inline;"></div>	원</td> -->
 
-			<td><input type = "hidden" name = "" value = ""><div id = "totalMoneyDiv" style = "display:inline;"></div>원</td>
-
-		</tr>
+			</tr>
 	</table>
 </div>
 <input type="hidden" name="total" value="0">
@@ -264,15 +262,16 @@ $('#userPoint').focusout(function(){
 		$('#pointDiv').css('color','blue')
 		$('#pointDiv').css('font-size','8pt')
 		$('#pointDiv').css('font-weight','bold');
+	$('div[id=userPointResult]').text(usePoint.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));  
+	
 	}else{
 		$('#pointDiv').text('사용불가능합니다');
 		$('#pointDiv').css('color','red')
 		$('#pointDiv').css('font-size','8pt')
-		$('#pointDiv').css('font-weight','bold');
+		$('#pointDiv').css('font-weight','bold');   
+		$('#userPoint').val(0);    
 	}
-	
-	$('div[id=userPointResult]').text(usePoint.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));  
-	
+	 	
 });
 
 $(document).ready(function(){ 
@@ -287,8 +286,8 @@ $(document).ready(function(){
 	
 	let total = totalMoney + 3000 - usePoint - useCoupon;	
 	    
-	$('input[name=total]').val(total);
-	$('div[id=totalMoneyDiv]').text(total); 
+	$('input[name=total]').val(total); 
+	$('div[id=totalMoneyDiv]').text(total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")); 
 });
 
  
@@ -311,11 +310,7 @@ $('#selectCoupon').change(function(){
 	   $('input[name=total]').val(total);
 	   $('#userCouponResult').text(useCoupon.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")); 
 	   $('#totalMoneyDiv').text(total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));        
-	   
-	   
-	   
-	
-	   
+	      
 });      
 
 $('#userPoint').focusout(function(){

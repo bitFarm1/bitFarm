@@ -92,6 +92,13 @@ public class InformationDAOMybatis implements InformationDAO{
 	public List<String> orderForm(String id) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("informationSQL.orderForm", id); 
+	}
+ 
+
+	@Override
+	public int infoQnAListAllADMINPagingTotalA() { 
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("informationSQL.infoQnAListAllADMINPagingTotalA");  
 	} 
  
 }  

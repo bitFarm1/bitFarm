@@ -169,14 +169,16 @@ public class InformationController {
 	@RequestMapping(value="/infoQnAListAllADMIN", method=RequestMethod.GET)
 	public ModelAndView infoQnAListAllADMIN(@RequestParam(required=false, defaultValue="1") String pg, HttpSession session) {
 		
+		InformationPaging informationPaging = informationService.infoQnAListAllADMINPaging(pg);
 		Map<String, String> map = new HashMap<String, String>();
-		map.put("pg",pg);
+		map.put("pg",pg); 
 		List<InformationQnADTO> list = informationService.infoQnAListAllADMIN(map); 
+		
 		 
 		ModelAndView mav = new ModelAndView();   
 		mav.addObject("pg", pg); 
 		mav.addObject("list", list);
-		 
+		mav.addObject("informationPaging", informationPaging);  
 		mav.addObject("display", "/information/infoMain.jsp");
 		mav.addObject("info", "/information/infoQnAListAllADMIN.jsp"); 
 		mav.setViewName("/main/main");
@@ -222,10 +224,7 @@ public class InformationController {
 	public ModelAndView infoBoardList(@RequestParam(required=false, defaultValue="1") String pg) {
 		List<InformationDTO> list = informationService.infoBoardList(pg);
 		InformationPaging informationPaging = informationService.informationPaging(pg);
-		if(informationPaging == null) {
-			System.out.println("널인데?");
-		}else System.out.println("아닌데?"); 
-		
+				
 		ModelAndView mav = new ModelAndView();    
 		mav.addObject("pg", pg); 
 		mav.addObject("list", list);

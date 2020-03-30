@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <style type="text/css">
-	a.info {color:black; text-decoration: none; font-size: 11pt;}  
+	a.info {color:black; text-decoration: none; font-size: 12pt;}  
 	a.info:link {color: black; text-decoration: none;}
 	a.info:visited {color: black; text-decoration: none;}
 	a.info:hover {color: #5f0080; text-decoration: none; font-weight: bolder;} 
@@ -17,17 +17,17 @@
 	#infoListTable{
 		font-size: 9pt; 
 	}  
-</style>
+</style> 
 
 <form name="informationQnAListForm" method="post" action="">
 <div style="width:1200px; margin: 0 auto;">   
 <h3>1:1 문의 내역</h3> 
-	<table id="infoListTable" width="1200px" border="1" cellpadding="15" frame="hsides" rules="rows"> 
+	<table id="infoListTable" width="1200px" border="1" cellpadding="15" frame="hsides" rules="rows" style="border-top:2px solid #5f0080; font-weight: 12px;"> 
 		<tr>  
 			<th width="100px;">글번호</th>
 			<th width="150px">카테고리</th>
 			<th width="250px;">제목</th>  
-			<th width="200px">작성자</th> 
+			<th width="200px">작성자</th>  
 			<th width="200px">작성일</th>  
 			<th width="200px">답변상태</th>  			     
 		</tr>    
@@ -60,7 +60,7 @@
 		</td>  
 		
 		<td style="width:200px" align="center"> 
-			${infoQnA_askDate } 
+			<fmt:formatDate pattern="yyyy년 MM월 dd일" value="${infoQnA_askDate}"/> 
 		</td>
 		
 		<c:if test="${informationQnADTO.infoQnA_answerSubject == '0'}">
@@ -76,7 +76,8 @@
 	</tr>	    
 	 
 	<tr id="hidden1${seq }" style="display:none;" >
-		<td colspan="3" style="width: 500px;">   
+		<td></td>  
+		<td colspan="2" style="width: 500px;">   
 			<pre class="contents">${infoQnA_content }<br></pre> 
 		</td> 
 	  <c:if test="${infoQnA_imageName != '0'}"> 
@@ -106,7 +107,7 @@
 		<td> </td>
 	</tr> 
 	</c:if>	 
-
+</form>
    
 <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
@@ -131,7 +132,7 @@ $('#${seq}reply').click(function(){
 		
 	}else{  		 
 		$('#hidden2${seq}').css("display", "none");  
-	}
+	} 	
 });  
 </script>   
 </c:forEach> 

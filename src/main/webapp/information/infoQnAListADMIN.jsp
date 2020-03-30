@@ -31,10 +31,10 @@ th{
 	} 			
 </style>
 
-<form name="imageboardListForm" method="post" action="/miniProject/imageboard/imageboardDelete.do">
+<form name="infoQnAlistADMIN"> 
 <div style="width:1200px; margin: 0 auto;">
 <h3>1:1 문의 내역</h3> 
-	<table id="infoListTable" width="1200px" border="1" cellpadding="15" frame="hsides" rules="rows"> 
+	<table id="infoListTable" width="1200px" border="1" cellpadding="15" frame="hsides" rules="rows" style="border-top:2px solid #5f0080; font-weight: 12px;"> 
 		<tr> 
 			<th>글번호</th>
 			<th width="250px;">제목</th> 
@@ -66,9 +66,9 @@ th{
 		</td>  
 		
 		<td style="width:200px" align="center"> 
-		${infoQnA_askDate } 
+			<fmt:formatDate pattern="yyyy년 MM월 dd일" value="${infoQnA_askDate}"/> 
 		</td>			
-	</tr>	 
+	</tr>	  
 	 
 	<tr id="hidden${seq }" style="display:none;" >  
 		<td colspan="2"  align="left"> 

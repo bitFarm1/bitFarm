@@ -7,8 +7,10 @@
 		<jsp:include page="../template/top.jsp"/>
 	</div>
 	<br> 	
-	<div style="height: 70px;"></div> 
 	<div style="width: 80%; margin: 0 auto;">
+	<h2>비트 농장 고객 데이터</h2> 	
+	<div style="height: 70px;"></div> 
+	
 		<table align="center">  
 			<tr>			
 				<td style="width: 350px;"><h3>로그인 유형</h3><jsp:include page="${data1}"/></td>

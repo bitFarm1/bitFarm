@@ -32,7 +32,9 @@ public interface InformationDAO {
 
 	public List<InformationQnADTO> infoQnAListAllADMIN(Map<String, String> map);
  
-	public List<String> orderForm(String id);     
+	public List<String> orderForm(String id);
+
+	public int infoQnAListAllADMINPagingTotalA();          
  
 }  
       

@@ -23,24 +23,24 @@ public class InformationPaging {
 		int endPage = startPage + pageBlock -1;
 		
 		if(endPage > totalP)
-			endPage = totalP;
+			endPage = totalP; 
 		
 		if(startPage > pageBlock) 
 			//pagingHTML.append("[<a id='paging' href='imageboardList.do?pg="+(startPage-1)+"'>이전</a>]");
-			pagingHTML.append("[<span id='paging' onclick='informationPaging("+(startPage-1)+")'>이전</span>]");
-		
+			pagingHTML.append("<span id='paging' onclick='informationPaging("+(startPage-1)+")'> 이전 </span>");
+		 
 		for(int i=startPage; i<=endPage; i++) {
 			if(i == currentPage)
 				//pagingHTML.append("[<a id='currentpaging' href='imageboardList.do?pg="+i+"'>"+i+"</a>]");
-				pagingHTML.append("[<span id='currentpaging' onclick='informationPaging("+i+")'>"+i+"</span>]");
+				pagingHTML.append("<span id='currentpaging' onclick='informationPaging("+i+")'> "+i+" </span>");
 			else
 				//pagingHTML.append("[<a id='paging' href='imageboardList.do?pg="+i+"'>"+i+"</a>]");
-				pagingHTML.append("[<span id='paging' onclick='informationPaging("+i+")'>"+i+"</span>]");
+				pagingHTML.append("<span id='paging' onclick='informationPaging("+i+")'> "+i+" </span>");
 		}
 		 
 		if(endPage < totalP)
 			//pagingHTML.append("[<a id='paging' href='imageboardList.do?pg="+(endPage+1)+"'>다음</a>]");
-			pagingHTML.append("[<span id='paging' onclick='informationPaging("+(endPage+1)+")'>다음</span>]");
+			pagingHTML.append("<span id='paging' onclick='informationPaging("+(endPage+1)+")'> 다음 </span>");
 	}	
 	
 	public void makeSearchPagingHTML() {
@@ -57,20 +57,20 @@ public class InformationPaging {
 		
 		if(startPage > pageBlock) 
 			//pagingHTML.append("[<a id='paging' href='imageboardList.do?pg="+(startPage-1)+"'>이전</a>]");
-			pagingHTML.append("[<span id='paging' onclick='infoSearch("+(startPage-1)+")'>이전</span>]");
+			pagingHTML.append("[<span id='paging' onclick='infoSearch("+(startPage-1)+")'> 이전 </span>");
 		
-		for(int i=startPage; i<=endPage; i++) {
+		for(int i=startPage; i<=endPage; i++) { 
 			if(i == currentPage)
 				//pagingHTML.append("[<a id='currentpaging' href='imageboardList.do?pg="+i+"'>"+i+"</a>]");
-				pagingHTML.append("[<span id='currentpaging' onclick='infoSearch("+i+")'>"+i+"</span>]");
+				pagingHTML.append("<span id='currentpaging' onclick='infoSearch("+i+")'> "+i+" </span>");
 			else
 				//pagingHTML.append("[<a id='paging' href='imageboardList.do?pg="+i+"'>"+i+"</a>]");
-				pagingHTML.append("[<span id='paging' onclick='infoSearch("+i+")'>"+i+"</span>]");
+				pagingHTML.append("<span id='paging' onclick='infoSearch("+i+")'> "+i+" </span>");
 		}
-		 
-		if(endPage < totalP)
+		   
+		if(endPage < totalP) 
 			//pagingHTML.append("[<a id='paging' href='imageboardList.do?pg="+(endPage+1)+"'>다음</a>]");
-			pagingHTML.append("[<span id='paging' onclick='infoSearch("+(endPage+1)+")'>다음</span>]");
+			pagingHTML.append("<span id='paging' onclick='infoSearch("+(endPage+1)+")'> 다음 </span>");
 		
 	}
-} 
+}  

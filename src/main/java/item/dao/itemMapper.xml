@@ -7,4 +7,20 @@
 	<select id="getItemView" parameterType="int" resultType="item">
 		select * from item where item_id=#{seq}
 	</select>
+	
+	<insert id="itemAdd" parameterType="item">
+		insert into item values(
+			item_seq.nextval, 
+			#{item_name}, 
+			#{seller_name}, 
+			#{item_price}, 
+			#{item_main_image}, 
+			#{item_detail_image},
+			#{item_explain}, 
+			sysdate, 
+			#{item_category_name}, 
+			#{item_amount}, 
+			1)
+	</insert>
+
 </mapper>

@@ -22,15 +22,15 @@
 <table align="center" width="80%" cellpadding="40">
 	<tr>
 		<td align="center">
-			<img class="mainImageList_image" src="../storage/abocadoMain.JPG" onclick="itemClick(14)"><br><br>
+			<img class="mainImageList_image" src="../storage/abocadoMain.JPG" onclick="itemClick(4)"><br><br>
 			<h5><strong>아보카도</strong></h5><br>
 		</td>
 		<td align="center">
-			<img class="mainImageList_image" src="../storage/lemonMain.JPG" onclick="itemClick(15)"><br><br>
+			<img class="mainImageList_image" src="../storage/lemonMain.JPG" onclick="itemClick(1)"><br><br>
 			<h5><strong>레몬</strong></h5><br>
 		</td>
 		<td align="center">
-			<img class="mainImageList_image" src="../storage/didvkwmqMain.JPG" onclick="itemClick(21)"><br><br>
+			<img class="mainImageList_image" src="../storage/didvkwmqMain.JPG" onclick="itemClick(5)"><br><br>
 			<h5><strong>양파즙</strong></h5><br>
 		</td>
 	</tr>

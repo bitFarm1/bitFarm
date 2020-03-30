@@ -1,13 +1,21 @@
 package item.controller;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import item.bean.ItemDTO;
@@ -24,8 +32,55 @@ public class ItemController {
 	private ReviewService reviewService;
 	
 	//판매자 홈에서 판매자가 판매할 상품 등록
-	
-	
+	@RequestMapping(value="itemAdd", method=RequestMethod.POST)
+	public String itemAdd(@ModelAttribute ItemDTO itemDTO, @RequestParam MultipartFile[] img, HttpSession session, Model model) {
+		String filePath = "D:\\spring\\workSTS\\springProject\\src\\main\\webapp\\storage";	//내가 설정한 파일 경로
+		String fileName;
+		File file;
+		
+		//파일 복사 1번째거 메인이미지
+		if(img[0] != null) {
+			fileName = img[0].getOriginalFilename();
+			file = new File(filePath, fileName);
+			try {
+				FileCopyUtils.copy(img[0].getInputStream(), new FileOutputStream(file));	//copy(input, output) 자동으로 in>out처리해줌
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
+			//System.out.println("1. " + fileName);
+			
+			//복사한 파일을 DTO에 넣음
+			itemDTO.setItem_main_image(fileName);
+		}else {
+			itemDTO.setItem_main_image("");
+		}
+		
+		//=======================================================
+		
+		//파일 복사 2번째거 상세이미지
+		if(img[1] != null) {
+			fileName = img[1].getOriginalFilename();
+			file = new File(filePath, fileName);
+			try {
+				FileCopyUtils.copy(img[1].getInputStream(), new FileOutputStream(file));	//copy(input, output) 자동으로 in>out처리해줌
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
+			//System.out.println("2. " + fileName);
+			
+			//복사한 파일을 DTO에 넣음
+			itemDTO.setItem_detail_image(fileName);
+		}else {
+			itemDTO.setItem_detail_image("");
+		}
+		itemDTO.setSeller_name((String)session.getAttribute("sellerName"));
+		
+		itemService.itemAdd(itemDTO);
+		model.addAttribute("display", "/sellerHome/itemAddSuccess.jsp");
+		return "/main/main";
+	}
 	
 	//itemViewForm만 return하는 빈 페이지 - 이거 필요없어
 	@RequestMapping(value="itemViewForm", method=RequestMethod.GET)

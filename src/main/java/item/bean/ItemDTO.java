@@ -12,11 +12,8 @@ public class ItemDTO {
 	private int item_price;
 	private String item_main_image;
 	private String item_detail_image;
-	private String item_packing_type;
-	private String item_delivery_type;
 	private String item_explain;
 	private Date item_add_date;
-	private String item_category_step;
 	private String item_category_name;
 	private int item_amount;
 	private int item_order_able;

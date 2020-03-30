@@ -16,4 +16,9 @@ public class ItemServiceImpl implements ItemService {
 		return itemDAO.getItemView(seq);
 	}
 
+	@Override
+	public void itemAdd(ItemDTO itemDTO) {
+		itemDAO.itemAdd(itemDTO);
+	}
+
 }

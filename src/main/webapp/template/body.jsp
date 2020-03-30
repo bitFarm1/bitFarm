@@ -29,7 +29,6 @@
     <span class="sr-only">Next</span>
   </a>
 </div>
-<p style="clear: both; height: 2px;"></p>
 
 <!-- 메인 리스트 추가하기 -->
 <jsp:include page="mainImageList.jsp"/>

@@ -13,12 +13,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import item.bean.ItemDTO;
 import item.service.ItemService;
+import seller.bean.SellerDTO;
+import seller.service.SellerService;
 
 @Controller
 @RequestMapping(value="sellerHome")
 public class SellerHomeController {
 	@Autowired
 	private ItemService itemService;
+	@Autowired
+	private SellerService sellerService;
 	
 	//판매자가 판매 할 상품 등록하는 Form 띄워주는 메소드
 	@RequestMapping(value="sellerAddForm", method=RequestMethod.GET)
@@ -27,19 +31,24 @@ public class SellerHomeController {
 		return "/main/main";
 	}	
 	
+	//판매자 홈의 홈 역할
 	//판매자가 파는 모든 상품의 리스트를 띄워줌
 	@RequestMapping(value="sellerAll", method=RequestMethod.GET)
 	public String sellerAll(Model model, HttpSession session, @RequestParam(required=false) String sellerName) {
 		
 		String name;
-		if(sellerName!=null) {
+		if(sellerName!=null) {	//사용자가 원하는 판매자의 홈으로 이동할때
 			name = sellerName;
-		}else {
+			
+		}else {	//판매자 홈을 누른게 판매자 본인일때
 			name = (String)session.getAttribute("sellerName");
+			
 		}
 		
 		List<ItemDTO> list = itemService.getSellerItemList(name);
+		SellerDTO sellerDTO = sellerService.getSellerDTO(name);
 		
+		model.addAttribute("sellerDTO", sellerDTO);
 		model.addAttribute("sellerName", name);
 		model.addAttribute("sellerList", list);
 		model.addAttribute("display", "/sellerHome/sellerAll.jsp");

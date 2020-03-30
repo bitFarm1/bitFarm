@@ -14,4 +14,6 @@ public interface ItemDAO {
 
 	public List<ItemDTO> getSellerItemList(String sellerName);
 
+	public List<ItemDTO> getCategoryList(String item_category_name);
+
 }

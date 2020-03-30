@@ -31,4 +31,9 @@
 		select * from item where seller_name=#{sellerName}
 	</select> 
  
+	<select id="getCategoryList" parameterType="String" resultType="item">
+		select * from item where item_category_name=#{item_category_name}
+	</select>
+ 
+ 
 </mapper>

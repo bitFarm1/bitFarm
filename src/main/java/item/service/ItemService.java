@@ -14,4 +14,6 @@ public interface ItemService {
 
 	public List<ItemDTO> getSellerItemList(String sellerName);
 
+	public List<ItemDTO> getCategoryList(String item_category_name);
+
 }

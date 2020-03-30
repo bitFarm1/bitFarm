@@ -35,4 +35,9 @@ public class ItemDAOMybatis implements ItemDAO {
 		return sqlSession.selectList("itemSQL.getSellerItemList", sellerName);
 	}
 
+	@Override
+	public List<ItemDTO> getCategoryList(String item_category_name) {
+		return sqlSession.selectList("itemSQL.getCategoryList", item_category_name);
+	}
+
 }

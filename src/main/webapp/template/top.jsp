@@ -12,11 +12,11 @@
 	<ul>
 		<li><a href="#">전체 상품 카테고리</a>
 			<ul>
-				<li><a href="#">과일/과일즙</a></li>
-			 	<li><a href="#">축산/유정란</a></li>
-			 	<li><a href="#">쌀/잡곡/견과류</a></li>
-			 	<li><a href="#">고구마/감자/채소/버섯</a></li>
-			 	<li><a href="#">장류/김치</a></li>
+				<li><a href="/bitFarm/category/categoryList?category=1">과일/과일즙</a></li>
+			 	<li><a href="/bitFarm/category/categoryList?category=2">축산/유정란</a></li>
+			 	<li><a href="/bitFarm/category/categoryList?category=3">쌀/잡곡/견과류</a></li>
+			 	<li><a href="/bitFarm/category/categoryList?category=4">고구마/감자/채소/버섯</a></li>
+			 	<li><a href="/bitFarm/category/categoryList?category=5">장류/김치</a></li>
 			</ul>
 		</li>
 	<c:if test="${memberId==null && sellerId==null }">
@@ -57,6 +57,14 @@
 			  </c:if>
 			</ul>
 		</li>
+		<c:if test="${memberId!=null}">  
+		<li>
+			<a href="#" style="cursor: default;">
+			&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+			&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+			<strong>${memberName}</strong>&nbsp;님 환영합니다</a>
+		</li>
+		</c:if>
 	</ul>
 </div>
 <hr class="topHr">

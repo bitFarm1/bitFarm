@@ -58,13 +58,13 @@
 			</ul>
 		</li>
 		<c:if test="${memberId!=null}">  
-		<li>
-			<a href="#" style="cursor: default;">
-			&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-			&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-			<strong>${memberName}</strong>&nbsp;님 환영합니다</a>
+		<li> 
+			<a href="#" style="cursor: default;"> 
+			&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+			&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;     
+			<strong>${memberName}</strong>&nbsp;님 환영합니다</a> 
 		</li>
-		</c:if>
+		</c:if> 
 	</ul>
 </div>
 <hr class="topHr">

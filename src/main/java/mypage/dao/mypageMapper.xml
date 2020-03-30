@@ -74,5 +74,13 @@
 		(select pick_seller_user_id from pickseller where pick_seller_user_id = #{id}) and pick_seller_id in #{check}
 	</delete>
 	
+	<delete id="deleteCoupon" parameterType="java.util.Map">
+		delete from coupon where coupon_user_id = #{id}
+	</delete>
+	
+	<delete id="deletePoint" parameterType="java.util.Map">
+		delete from Point where point_user_id = #{id}   
+	</delete>
+	
 
 </mapper>

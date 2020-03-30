@@ -8,27 +8,25 @@
 	var myChart = new Chart(ctx, { 
 		type: 'line',  
 		data: { 
-			labels: ['BIT', 'NAVER', 'KAKAO'], 
+			labels: ['6일전', '5일전', '4일전', '3일전', '2일전', '1일전', '오늘'],
 			datasets: [{
-				label: '로그인 유형', 
-				data: [${bit}, ${naver}, ${kakao}],   
-				backgroundColor: [
-					'rgba(255, 99, 132, 0.2)',   
-					'rgba(54, 162, 235, 0.2)', 
-					'rgba(255, 206, 86, 0.2)'					
-				],
-				borderColor: [
-					'rgba(255, 99, 132, 1)',
-					'rgba(54, 162, 235, 1)',
-					'rgba(255, 206, 86, 1)'					
-				],
-				borderWidth: 1 
-			}]
+				label: '한 주간 이용자 추세', 
+				data: [ ${weekData6},  
+	                ${weekData5},
+	                ${weekData4},  
+	                ${weekData3},
+	                ${weekData2}, 
+	                ${weekData1}, 
+	                ${weekData0}],   
+	                borderColor: "rgba(255, 201, 14, 1)",
+	                backgroundColor: "rgba(255, 201, 14, 0.5)",
+				borderWidth: 1  
+			}] 
 		},
 		options: {
 			responsive: false,
 			scales: {
-				yAxes: [{
+				yAxes: [{ 
 					ticks: {
 						beginAtZero: true
 					}

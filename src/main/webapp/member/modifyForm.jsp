@@ -175,9 +175,7 @@
 
 <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
-	var sname = false;
-	var sphone = false;
-	var semail = true;
+	
 $(document).ready(function(){
 	if('${loginType}' != 'bit'){
 		$('#hidden0').css("display", "none"); 
@@ -481,12 +479,7 @@ $('input[name=member_birth]').focusout(function(){
 });
 
 $('#modifyFormBtn').click(function(){
-	if($('input[name=member_email]').val() == '${memberDTO.member_email }'){
-		semail = true;
-	}
-	if($('input[name=member_name]').val() == '${memberDTO.member_name }'){
-		sname = true; 
-	}
+	
 	if($('input[name=member_address1]').val()==''){
 		$('#member_address1_p').css("display", "block"); 
 				$('#member_address1_Div').text('주소를 검색하세요.');  
@@ -503,20 +496,11 @@ $('#modifyFormBtn').click(function(){
 				$('#member_address1_Div').css('font-size','10pt'); 
 				return; 
 	}
-if(!(sname && semail && sphone)){ 
-		 		
-		console.log("sname="+sname); 
-		console.log("semail="+semail);  
-	 	console.log("sphone="+sphone);  
-	
-		alert("필수 입력 사항을 확인하세요!");
-		
-}else {
 	
 	document.modifyForm.method = 'post';
 	document.modifyForm.action = '/bitFarm/member/modify'; 
 	document.modifyForm.submit();
-}
+
 }); 
 
 

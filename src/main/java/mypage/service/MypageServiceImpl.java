@@ -155,6 +155,18 @@ public class MypageServiceImpl implements MypageService {
 		}
 	}
 
+	@Override
+	public void deletePoint(Map<String, String> map) {
+		mypageDAO.deletePoint(map);
+		
+	}
+ 
+	@Override
+	public void deleteCoupon(Map<String, String> map) {
+		mypageDAO.deleteCoupon(map);
+		
+	}
+
 	
 
 	

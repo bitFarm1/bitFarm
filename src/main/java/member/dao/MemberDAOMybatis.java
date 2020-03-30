@@ -110,4 +110,46 @@ public class MemberDAOMybatis implements MemberDAO {
 		
 	}
 
+	@Override
+	public int getLastMonth3() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("memberSQL.getLastMonth3");
+	}
+
+	@Override
+	public int getLastMonth2() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("memberSQL.getLastMonth2");
+	}
+
+	@Override
+	public int getLastMonth1() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("memberSQL.getLastMonth1");
+	}
+
+	@Override
+	public int getThisMonth() { 
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("memberSQL.getThisMonth");
+	}
+
+	@Override
+	public int weekData(int i) {
+		// TODO Auto-generated method stub 
+		return sqlSession.selectOne("memberSQL.weekData", i);
+	}
+
+	@Override
+	public int memberCount() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("memberSQL.memberCount"); 
+	}
+
+	@Override
+	public int sellerCount() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("memberSQL.sellerCount"); 
+	}
+
 }

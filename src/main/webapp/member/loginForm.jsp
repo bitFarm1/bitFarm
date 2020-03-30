@@ -43,8 +43,7 @@ a.searchA:active {color: black; text-decoration: none;}
 		<div style="height:5px;"></div>
 	<div>
 		<input class="layout" type="password" name="pwd" placeholder=" 비밀번호를 입력해주세요" style="font-size:15px; width:308px;">
-		<div id="loginPwdDiv" align= "left"></div>  
-		
+		<div id="loginPwdDiv" align= "left"></div>		
 	</div>
 	<div style="width:340px; height:20px;" >
 	 
@@ -62,27 +61,23 @@ a.searchA:active {color: black; text-decoration: none;}
 		<input class="layout" type="button" value="회원가입" onclick="location.href='signUp'" style="border-radius: 5px; cursor: pointer;"> 
 	</div>	 
 		<div style="height:5px;"></div>   
-	<div style="height:60px; ">
+	<div style="height:60px;"> 
 		<div id="naverIdLogin" style="float:left; width:65px;"></div> 
 		
-		<div>  
+		<div style="float:left; width:65px;">    
 			<a id="custom-login-btn" href="javascript:loginWithKakao()">
-			<img src="../image/kakao.png" width="54"/>
+				<img src="../image/kakao.png" width="54"/>
 			</a>
 		</div>
-		
-				
-			<fb:login-button size="icon" scope="public_profile,email" onlogin="checkLoginState();">
-			</fb:login-button>				
-				<!-- <div id="userInfo"></div> -->
-
-	</div> 
+		 
+		<div>  
+		<img class="button facebook" id="facebookBtn" src="../image/facebook.jpg" width="54" style="cursor: pointer;"/>
+		</div>	    
+			   
+  
+	</div>  
 
 </div>   
-
-
-
- 
 </form>
 
 <script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
@@ -95,7 +90,7 @@ a.searchA:active {color: black; text-decoration: none;}
 			callbackUrl: "http://localhost:8080/bitFarm/member/naverLoginCallback.jsp",
 			isPopup: false, /* 팝업을 통한 연동처리 여부 */
 			loginButton: {color: "white", type: 1, height: 54} /* 로그인 버튼의 타입을 지정 */
-		}  
+		}   
 	); 
 	
 	/* 설정정보를 초기화하고 연동을 준비 */ 
@@ -129,63 +124,71 @@ a.searchA:active {color: black; text-decoration: none;}
     };
     
 //////////////////////////////////////////////////////////////////////////////////////////////
-    
-     function statusChangeCallback(response) {
-    console.log('statusChangeCallback');
-    console.log(response);
-    if (response.status === 'connected') {
-        alert("로그인 되었습니다.");
-        
-      testAPI();
-    } 
-  }
- 
-  function checkLoginState() {
-    FB.getLoginStatus(function(response) {
-      statusChangeCallback(response);
-    });
-  }
- 
-  window.fbAsyncInit = function() {
-  FB.init({
-    appId      : '1034845380233908',
-    cookie     : true,  // enable cookies to allow the server to access 
-                        // the session
-    xfbml      : true,  // parse social plugins on this page
-    version    : 'v6.0' // use graph api version 2.8
-  });
- 
-  FB.getLoginStatus(function(response) {
-    statusChangeCallback(response);
-  });
- 
-  };
- 
-  (function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src = "https://connect.facebook.net/en_US/sdk.js";
-    fjs.parentNode.insertBefore(js, fjs);
-  }(document, 'script', 'facebook-jssdk'));
- 
-  function testAPI() {
-    console.log('Welcome!  Fetching your information.... ');
-    FB.api('/me',{fields:'email,name'}, function(response) {
- 
-      window.location.href="http://localhost:8080/bitFarm/member/naver?name="+response.name+"&email="+response.email+"&type=facebook"; 
-       
-    });
-  } 
   
-    $(document).on("click","#logout",function(){  
-        FB.logout(function(response) {
-           // Person is now logged out
-               alert("로그아웃 되었습니다.");
-               location.reload();
-        });
-      });
-    
+function getUserData() {
+    /* FB.api('/me', function(response) {
+        document.getElementById('response').innerHTML = 'Hello ' + response.name;
+        console.log(response);
+    }); */
+    FB.api('/me', {fields: 'name,email'}, function(response) {
+        console.log(JSON.stringify(response));
+               
+        window.location.href="http://localhost:8080/bitFarm/member/naver?name="+response.name+"&email="+response.email+"&type=facebook"; 
+    });
+}
+  
+window.fbAsyncInit = function() {
+    //SDK loaded, initialize it
+    FB.init({
+        appId      : '1034845380233908',
+        cookie     : true,  // enable cookies to allow the server to access 
+                // the session
+        xfbml      : true,  // parse social plugins on this page
+        version    : 'v6.0' // use graph api version 2.8
+    });
+  
+    //check user session and refresh it
+    FB.getLoginStatus(function(response) {
+        if (response.status === 'connected') {
+            //user is authorized
+            //document.getElementById('loginBtn').style.display = 'none';
+            getUserData();
+        } else {
+            //user is not authorized
+        }
+    });
+};
+  
+//load the JavaScript SDK
+(function(d, s, id){
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) {return;}
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.com/ko_KR/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+  
+//add event listener to login button
+document.getElementById('facebookBtn').addEventListener('click', function() {
+    //do the login
+    alert("dd"); 
+    FB.login(function(response) {
+        if (response.authResponse) {
+            access_token = response.authResponse.accessToken; //get access token
+            user_id = response.authResponse.userID; //get FB UID
+            console.log('access_token = '+access_token);
+            console.log('user_id = '+user_id);
+            //$("#access_token").text("접근 토큰 : "+access_token);
+            //$("#user_id").text("FB UID : "+user_id);
+            //user just authorized your app
+            //document.getElementById('loginBtn').style.display = 'none';
+            getUserData();
+        }
+    }, {scope: 'email,public_profile',  
+        return_scopes: true});
+}, false);
+   
+   
     /////////////////////////////////////////////////// 
     $('#loginBtn').click(function(){
     	$('#loginIdDiv').empty();

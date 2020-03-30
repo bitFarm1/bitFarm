@@ -63,23 +63,23 @@ google.setOnLoadCallback(function() {
 <script type="text/javascript">
 	var ctx = document.getElementById('myChart1');    
 	var myChart = new Chart(ctx, { 
-		type: 'pie',
+		type: 'bar',
 		data: {
 			labels: ['BIT', 'NAVER', 'KAKAO'],
 			datasets: [{
 				label: '로그인 유형', 
 				data: [${bit}, ${naver}, ${kakao}],   
 				backgroundColor: [
-					'rgba(255, 99, 132, 0.2)',
-					'rgba(54, 162, 235, 0.2)',
-					'rgba(255, 206, 86, 0.2)'					
+					'rgba(135, 31, 150, 0.2)',
+					'rgba(54, 250, 50, 0.2)', 
+					'rgba(255, 206, 86, 0.2)'			 		
 				],
-				borderColor: [
-					'rgba(255, 99, 132, 1)',
-					'rgba(54, 162, 235, 1)',
+				borderColor: [ 
+					'rgba(135, 31, 150, 1)',  
+					'rgba(54, 250, 50, 1)',
 					'rgba(255, 206, 86, 1)'					
 				],
-				borderWidth: 1 
+				borderWidth: 1  
 			}]
 		},
 		options: {

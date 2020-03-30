@@ -1,5 +1,7 @@
 package item.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -21,6 +23,16 @@ public class ItemDAOMybatis implements ItemDAO {
 	@Override
 	public void itemAdd(ItemDTO itemDTO) {
 		sqlSession.insert("itemSQL.itemAdd", itemDTO);
+	}
+
+	@Override
+	public List<ItemDTO> getAllItemList() {
+		return sqlSession.selectList("itemSQL.getAllItemList");
+	}
+
+	@Override
+	public List<ItemDTO> getSellerItemList(String sellerName) {
+		return sqlSession.selectList("itemSQL.getSellerItemList", sellerName);
 	}
 
 }

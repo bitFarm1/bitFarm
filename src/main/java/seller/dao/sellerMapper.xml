@@ -26,6 +26,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="login" parameterType="java.util.Map" resultType="sellerDTO">
 		select * from seller where seller_id = #{id}
-	</select> 	 	 	 
+	</select> 	 
+	
+	<select id="getSellerDTO" parameterType="String" resultType="sellerDTO">
+		select * from seller where seller_name = #{sellerName}
+	</select>
+		 	 
 </mapper>          
  

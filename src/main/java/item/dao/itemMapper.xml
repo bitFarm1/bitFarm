@@ -22,5 +22,13 @@
 			#{item_amount}, 
 			1)
 	</insert>
-
+	
+	<select id="getAllItemList" resultType="item">
+		select * from item
+	</select>
+	
+	<select id="getSellerItemList" parameterType="String" resultType="item">
+		select * from item where seller_name=#{sellerName}
+	</select> 
+ 
 </mapper>

@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <style type="text/css">
 a.sellerA {color:blak; text-decoration: none;}
 a.sellerA:link {color: black; text-decoration: none;}
 a.sellerA:visited {color: black; text-decoration: none;}
 a.sellerA:hover {color: #5f0080; text-decoration: none; font-weight: bolder;}
 a.sellerA:active {color: black; text-decoration: none;}
-
 .sellerLeftDiv{	
 	margin
 	width: 20%; 
@@ -28,17 +29,16 @@ a.sellerA:active {color: black; text-decoration: none;}
 }
 </style>
 
-
 <div style = "padding: 5px 0px 0px 200px;">
 <div class="sellerLeftDiv" >
-	<h2><a class="sellerA" href="/bitFarm/sellerHome/sellerAll">판매자 홈</a>&nbsp;
-		<img src="../storage/sellerhome.png" width="30" height="30" style="cursor: pointer;" onclick="location.href='/bitFarm/sellerHome/sellerAll'"></h2>
+	<c:set value="${sellerName}" var="seller" />
+	<h2><a class="sellerA" href="/bitFarm/sellerHome/sellerAll?sellerName=${sellerName}">판매자 홈</a></h2>&nbsp;
 	<br>
 	<img src="../image/user.png" width="90px" >
-	<h3>ㅇㅇ님</h3><br>
+	<h3>${seller}</h3><br>
 	<input type="button" value="판매자 찜하기" class="pickSellerBtn">
 	<br><br>
-	<table width="100%" height="300px"> 
+	<table width="100%" height="300px">
 		<tr>
 			<td><a class="sellerA" href="/bitFarm/sellerHome/sellerAddForm">판매상품 등록하기</a></td>
 		</tr>
@@ -48,8 +48,10 @@ a.sellerA:active {color: black; text-decoration: none;}
 		<tr>
 			<td><a class="sellerA" href="/bitFarm/sellerHome/sellerStore">오프라인 매장</a></td>
 		</tr>
+		
+		
 		<tr>
-			<td><a class="sellerA" href="/bitFarm/sellerHome/sellerQnABoard">문의게시판</a></td>
+			<td><a class="sellerA" href="/bitFarm/sellerHome/sellerQnABoard">(보류)문의게시판</a></td>
 		</tr>
 		<tr>
 			<td><a class="sellerA" href="/bitFarm/sellerHome/sellerOrder">(보류)주문현황</a></td>
@@ -60,3 +62,19 @@ a.sellerA:active {color: black; text-decoration: none;}
 	</table>
 </div>
 </div>
+
+<!-- script -->
+<script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+$('.pickSellerBtn').click(function(){
+	$.ajax({
+		type : 'post',
+		url : '/bitFarm/mypage/mypagePickSellerAdd',
+		data : 'sellerName=${sellerName}',
+		success: function(){
+			alert('판매자 찜하기가 완료되었습니다. 마이페이지로 이동합니다.');
+			location.href = '/bitFarm/mypage/mypagePickSeller';
+		}
+	});
+});
+</script>

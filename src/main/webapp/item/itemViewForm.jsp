@@ -15,7 +15,8 @@
 	<div class="itemCartDiv">
 		<p style="font-size: 1.7em; font-weight: bold;">
 			[${itemDTO.seller_name}]&nbsp;${itemDTO.item_name}&nbsp;
-			<img src="../storage/sellerhome.png" width="30" height="30" style="cursor: pointer;">
+			<img src="../storage/sellerhome.png" width="30" height="30" style="cursor: pointer;" 
+					onclick="location.href='/bitFarm/sellerHome/sellerAll?sellerName=${itemDTO.seller_name}'">
 		</p>
 		<font color="gray">${itemDTO.item_explain}</font>
 		<br><br>

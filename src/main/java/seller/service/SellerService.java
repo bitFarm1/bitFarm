@@ -14,7 +14,9 @@ public interface SellerService {
 
 	public int mailSending(String email);
 
-	public String getSellerPwd(String id);  
+	public String getSellerPwd(String id);
+
+	public SellerDTO getSellerDTO(String sellerName);  
  
  
 }

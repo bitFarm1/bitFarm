@@ -110,6 +110,26 @@ public class MypageDAOMyBatis implements MypageDAO {
 		return sqlSession.selectList("mypageSQL.getMypagePickSeller",id);
 	}
 
+	@Override
+	public void mypagePickSellerAdd(Map<String, String> map) {
+		sqlSession.insert("mypageSQL.mypagePickSellerAdd", map);
+	}
+
+	@Override
+	public List<MypagePickSellerDTO> getMypagePickSellerList(String memberId) {
+		return sqlSession.selectList("mypageSQL.getMypagePickSellerList", memberId);
+	}
+
+	@Override
+	public void deletePickSeller(Map<String, String> map) {
+		sqlSession.delete("mypageSQL.deletePickSeller", map);
+	}
+
+	@Override
+	public void deleteChoicePickSeller(Map<String, String> map) {
+		sqlSession.delete("mypageSQL.deleteChoicePickSeller", map);
+	}
+
 	
 
 	

@@ -22,6 +22,8 @@ import mypage.bean.MypagePickSellerDTO;
 import mypage.bean.MypagePointDTO;
 import mypage.bean.MypageReviewDTO;
 import mypage.service.MypageService;
+import seller.bean.SellerDTO;
+import seller.service.SellerService;
 
 
 @Controller
@@ -30,6 +32,8 @@ public class MypageController {
 	
 	@Autowired
 	private MypageService mypageService;
+	@Autowired
+	private SellerService sellerService;
 	
 	@Autowired
 	private HttpSession session;
@@ -189,24 +193,47 @@ public class MypageController {
 	}
 	
 	//찜한 물건 삭제
-		@RequestMapping(value="/deletePickItem", method=RequestMethod.POST)
-		public ModelAndView deletePickItem(@RequestParam String deleteId, Model model, HttpSession session) {
-			
-			String id = (String)session.getAttribute("memberId");
-			
-			Map<String, String>map = new HashMap<String, String>();
-			map.put("id",id);
-			map.put("deleteId", deleteId);
+	@RequestMapping(value="/deletePickItem", method=RequestMethod.POST)
+	public ModelAndView deletePickItem(@RequestParam String deleteId, Model model, HttpSession session) {
+		
+		String id = (String)session.getAttribute("memberId");
+		
+		Map<String, String>map = new HashMap<String, String>();
+		map.put("id",id);
+		map.put("deleteId", deleteId);
 
-			mypageService.deletePickItem(map);
-			
-			return new ModelAndView("redirect:/mypage/mypagePickItem");
-		}
+		mypageService.deletePickItem(map);
+		
+		return new ModelAndView("redirect:/mypage/mypagePickItem");
+	}
 	
-	
-	//찜한 판매자
+
+/* 찜한 판매자 */
+	//찜한 판매자 페이지 리턴
 	@RequestMapping(value="/mypagePickSeller", method=RequestMethod.GET)
-	public String mypagePickSeller(Model model) {
+	public String mypagePickSeller(Model model, HttpSession session) {
+		List<MypagePickSellerDTO> list = mypageService.getMypagePickSellerList((String)session.getAttribute("memberId"));
+		
+		model.addAttribute("list",list);
+		model.addAttribute("display","/mypage/mypageMain.jsp");
+		model.addAttribute("mypage","/mypage/mypagePickSeller.jsp");
+		return "/main/main";
+	}
+	
+	@RequestMapping(value="/mypagePickSellerAdd", method=RequestMethod.POST)
+	public String mypagePickSellerAdd(Model model, HttpSession session, @RequestParam String sellerName) {
+		//System.out.println(sellerName);
+		String id = (String)session.getAttribute("memberId");
+		SellerDTO sellerDTO = sellerService.getSellerDTO(sellerName);
+		
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("pick_seller_user_id", id);
+		map.put("pick_seller_main_img", sellerDTO.getSeller_profileImage());
+		map.put("pick_seller_name", sellerDTO.getSeller_name());
+		map.put("pick_seller_id", sellerDTO.getSeller_id());
+		
+		mypageService.mypagePickSellerAdd(map);
+		
 		model.addAttribute("display","/mypage/mypageMain.jsp");
 		model.addAttribute("mypage","/mypage/mypagePickSeller.jsp");
 		return "/main/main";
@@ -226,6 +253,36 @@ public class MypageController {
 		return mav;
 	}
 	
+	//찜한 판매자 삭제 - 한개
+	@RequestMapping(value="/deletePickSeller", method=RequestMethod.POST)
+	public ModelAndView deletePickSeller(@RequestParam String deleteId, Model model, HttpSession session) {
+		
+		String id = (String)session.getAttribute("memberId");
+		
+		Map<String, String>map = new HashMap<String, String>();
+		map.put("id",id);
+		map.put("deleteId", deleteId);
+		
+		mypageService.deletePickSeller(map);
+		
+		return new ModelAndView("redirect:/mypage/mypagePickSeller");
+	}
+
+	//찜한 판매자 선택삭제 - 여러개
+	@RequestMapping(value="/deleteChoicePickSeller", method=RequestMethod.POST)
+	public ModelAndView deleteChoicePickSeller(@RequestParam String[] check, Model model, HttpSession session) {
+		
+		String id = (String)session.getAttribute("memberId");
+		for(int i=0; i<check.length; i++) {
+			System.out.println(check[i]);
+		}
+		mypageService.deleteChoicePickSeller(check, id);
+
+		return new ModelAndView("redirect:/mypage/mypagePickSeller");
+	}
+	
+	
+/* 구매내역 */	
 	@RequestMapping(value="/mypagePurchaseDetail", method=RequestMethod.GET)
 	public String mypagePurchaseDetail(Model model) {
 		model.addAttribute("display","/mypage/mypageMain.jsp");

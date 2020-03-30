@@ -82,7 +82,7 @@ public class ItemController {
 		return "/main/main";
 	}
 	
-	//itemViewForm만 return하는 빈 페이지 - 이거 필요없어
+	//itemViewForm만 return하는 빈 페이지
 	@RequestMapping(value="itemViewForm", method=RequestMethod.GET)
 	public String itemViewForm(Model model) {
 		model.addAttribute("display", "/item/itemViewForm.jsp");
@@ -105,5 +105,7 @@ public class ItemController {
 		mav.setViewName("/main/main"); 
 		return mav;
 	}
+	
+	
 	
 }

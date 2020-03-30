@@ -119,7 +119,6 @@ public class MypageServiceImpl implements MypageService {
 	@Override
 	public void deletePickItem(Map<String, String> map) {
 		mypageDAO.deletePickItem(map);
-		
 	}
 
 	//찜한 판매자
@@ -129,6 +128,31 @@ public class MypageServiceImpl implements MypageService {
 		List<MypagePickSellerDTO> list = mypageDAO.getMypagePickSeller(id);
 		
 		return list;
+	}
+
+	@Override
+	public void mypagePickSellerAdd(Map<String, String> map) {
+		mypageDAO.mypagePickSellerAdd(map);
+	}
+
+	@Override
+	public List<MypagePickSellerDTO> getMypagePickSellerList(String memberId) {
+		return mypageDAO.getMypagePickSellerList(memberId);
+	}
+
+	@Override
+	public void deletePickSeller(Map<String, String> map) {
+		mypageDAO.deletePickSeller(map);
+	}
+
+	@Override
+	public void deleteChoicePickSeller(String[] check, String id) {
+		for(int i=0; i<check.length; i++) {
+			Map<String, String> map = new HashMap<String, String>();
+			map.put("id", id);
+			map.put("check", check[i]);
+			mypageDAO.deleteChoicePickSeller(map);
+		}
 	}
 
 	

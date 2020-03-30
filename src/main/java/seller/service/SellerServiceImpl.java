@@ -67,8 +67,12 @@ public class SellerServiceImpl implements SellerService {
 
 	@Override
 	public String getSellerPwd(String id) {
-		// TODO Auto-generated method stub
 		return sellerDAO.getSellerPwd(id);
+	}
+
+	@Override
+	public SellerDTO getSellerDTO(String sellerName) {
+		return sellerDAO.getSellerDTO(sellerName);
 	} 
 
 } 

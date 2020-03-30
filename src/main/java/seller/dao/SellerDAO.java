@@ -13,7 +13,9 @@ public interface SellerDAO {
 
 	public SellerDTO login(Map<String, String> map);
 
-	public String getSellerPwd(String id);   
+	public String getSellerPwd(String id);
+
+	public SellerDTO getSellerDTO(String sellerName);   
 
 
 	

@@ -1,24 +1,67 @@
 package sellerHome.controller;
 
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import item.bean.ItemDTO;
+import item.service.ItemService;
 
 @Controller
 @RequestMapping(value="sellerHome")
 public class SellerHomeController {
+	@Autowired
+	private ItemService itemService;
 	
-	
+	//판매자가 판매 할 상품 등록하는 Form 띄워주는 메소드
 	@RequestMapping(value="sellerAddForm", method=RequestMethod.GET)
 	public String sellerAddForm(Model model) {
 		model.addAttribute("display", "/sellerHome/sellerAddForm.jsp");
 		return "/main/main";
 	}	
 	
+	//판매자가 파는 모든 상품의 리스트를 띄워줌
 	@RequestMapping(value="sellerAll", method=RequestMethod.GET)
-	public String sellerAll(Model model) {
+	public String sellerAll(Model model, HttpSession session, @RequestParam(required=false) String sellerName) {
+		
+		String name;
+		if(sellerName!=null) {
+			name = sellerName;
+		}else {
+			name = (String)session.getAttribute("sellerName");
+		}
+		
+		List<ItemDTO> list = itemService.getSellerItemList(name);
+		
+		model.addAttribute("sellerName", name);
+		model.addAttribute("sellerList", list);
 		model.addAttribute("display", "/sellerHome/sellerAll.jsp");
+		return "/main/main";
+	}
+	
+	
+	
+	
+	//========================================================================미구현기능
+	
+	//sellerQnAView 셀러 문의게시판 글 보기
+	@RequestMapping(value="sellerQnAView", method=RequestMethod.GET)
+	public String sellerQnAView(Model model) { 
+		model.addAttribute("display", "/sellerHome/sellerQnAView.jsp");
+		return "/main/main";
+	}
+	
+	//sellerQnAView 셀러 문의게시판 답변하기 Form
+	@RequestMapping(value="sellerQnaRe", method=RequestMethod.GET)
+	public String sellerQnaRe(Model model) {
+		model.addAttribute("display", "/sellerHome/sellerQnaRe.jsp");
 		return "/main/main";
 	}
 	
@@ -83,20 +126,7 @@ public class SellerHomeController {
 	public String sellerStore(Model model) {
 		model.addAttribute("display", "/sellerHome/sellerStore.jsp");
 		return "/main/main";
-
 	}	
 	
-	//sellerQnAView 셀러 문의게시판 글 보기
-	@RequestMapping(value="sellerQnAView", method=RequestMethod.GET)
-	public String sellerQnAView(Model model) { 
-		model.addAttribute("display", "/sellerHome/sellerQnAView.jsp");
-		return "/main/main";
-	}
 	
-	//sellerQnAView 셀러 문의게시판 답변하기 Form
-	@RequestMapping(value="sellerQnaRe", method=RequestMethod.GET)
-	public String sellerQnaRe(Model model) {
-		model.addAttribute("display", "/sellerHome/sellerQnaRe.jsp");
-		return "/main/main";
-	}
 }

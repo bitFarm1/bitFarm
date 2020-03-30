@@ -37,6 +37,12 @@ public class SellerDAOMybatis implements SellerDAO {
 	public String getSellerPwd(String id) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("sellerSQL.getSellerPwd", id);
+	}
+
+	@Override
+	public SellerDTO getSellerDTO(String sellerName) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("sellerSQL.getSellerDTO", sellerName);
 	}  
  
 } 

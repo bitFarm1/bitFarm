@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <style type="text/css">
 .mainImageList_image{
 	width: 300px;
+	height: 300px;
 	cursor: pointer;
-	
 }
 .bestItemSubject{
 	width: 80%;
@@ -19,22 +20,24 @@
 	<font style="color: grey;">&emsp;이번주의 인기상품을 한곳에서 만나보세요!</font>
 </div>
 <p style="clear: both; height: 10px;"></p>
-<table align="center" width="80%" cellpadding="40">
-	<tr>
+
+<div class="bestItemSubject">
+<c:set var="i" value="0" /> 
+<c:set var="j" value="4" /> 
+<table align="center" width="90%" cellpadding="40">
+	<c:forEach var="itemDTO" items="${mainList}">
+	<c:if test="${i%j == 0 }"><tr></c:if> 
 		<td align="center">
-			<img class="mainImageList_image" src="../storage/abocadoMain.JPG" onclick="itemClick(4)"><br><br>
-			<h5><strong>아보카도</strong></h5><br>
-		</td>
-		<td align="center">
-			<img class="mainImageList_image" src="../storage/lemonMain.JPG" onclick="itemClick(1)"><br><br>
-			<h5><strong>레몬</strong></h5><br>
-		</td>
-		<td align="center">
-			<img class="mainImageList_image" src="../storage/didvkwmqMain.JPG" onclick="itemClick(5)"><br><br>
-			<h5><strong>양파즙</strong></h5><br>
-		</td>
-	</tr>
+			<img class="mainImageList_image" src="../storage/${itemDTO.item_main_image}" onclick="itemClick(${itemDTO.item_id})"><br><br>
+			<strong>${itemDTO.item_name}</strong><br>
+			<fmt:formatNumber pattern="#,###원">${itemDTO.item_price}</fmt:formatNumber> 
+		</td> 
+	<c:if test="${i%j == j-1 }"></tr></c:if> 
+	<c:set var="i" value="${i+1 }" />
+	</c:forEach> 
 </table>
+</div>
+
 <p style="clear: both; height: 5px;"></p>
 
 <script type="text/javascript">

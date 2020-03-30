@@ -117,15 +117,15 @@
 		
 		<tr>
 			<th class="subject">이메일*</th>
-			<td><input class="layoutT" type="text" name="member_email" placeholder="예: bitfarm@bitfarm.com">&emsp;
-			<input class="layoutB" type="button" name="checkEmail" value="이메일 인증">
+			<td><input class="layoutT" type="text" name="seller_email" id="email" placeholder="예: bitfarm@bitfarm.com">&emsp;
+			<input class="layoutB" type="button" name="checkseller_email" value="이메일 인증">
 			<br id="seller_email_p" style="display: none;"><span id="seller_email_Div" ></span></br>
 			<input type="hidden" id="auth" name="auth" value="">
 			</td>			
 		</tr>
 		
 		 
-		<tr> 
+		<tr>  
 			<th class="subject">휴대폰*</th>
 			<td><input class="layoutT" type="text" name="seller_phone" placeholder="숫자만 입력해주세요">
 			<br id="seller_phone_p" style="display: none;"><span id="seller_phone_Div" ></span></br>
@@ -189,7 +189,7 @@
 <script type="text/javascript">
 var sid = false;
 var sname = false;  
-var semail = false;
+var semail = false; 
 var sphone = false;
 var slicense = false;
 
@@ -217,7 +217,7 @@ $('input[name=seller_id]').focusout(function(){
 }); 
 
 $('#seller_checkIdBtn').click(function(){
-	alert("dd");  
+
 	if($('input[name=seller_id]').val()==''){		
 		$('#seller_id_p').css("display", "block"); 
 			$('#seller_id_Div').text('아이디를 입력하세요.');  
@@ -305,9 +305,9 @@ $('input[name=seller_repwd]').focusout(function(){
 }); 
 
 $('input[name=seller_name]').focusout(function(){
-	var RegexName = /^[가-힣]{2,5}$/; //이름 유효성 검사 2~4자 사이
+	var RegexName = /^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|\*]+$/; //이름 유효성 검사 2~4자 사이
 	$('#seller_name_p').css("display", "none"); 
-	$('#seller_name_Div').empty();
+	$('#seller_name_Div').empty(); 
 	
 	if($('input[name=seller_name]').val()==''){
 	$('#seller_name_p').css("display", "block");  
@@ -332,8 +332,8 @@ $('input[name=seller_name]').focusout(function(){
 $('input[name=seller_email]').change(function(){	
 	
 	$('#auth').val('no');   
-	semail = false;
-}); 
+	semail = false; 
+});  
 
 $('input[name=seller_email]').focus(function(){
 	if($('input[name=auth]').val() == 'ok'){ 
@@ -354,13 +354,13 @@ $('input[name=seller_email]').focusout(function(){
 		$('#seller_email_p').css("display", "block");  
 		$('#seller_email_Div').text('이메일 인증을 해주세요.');  
 		$('#seller_email_Div').css('color','#5f0080');     
-		$('#seller_email_Div').css('font-weight','bold');
+		$('#seller_email_Div').css('font-weight','bold');  
 		$('#seller_email_Div').css('font-size','10pt');  
 		semail = false;
 	}
-});
+}); 
 
-$('input[name=checkEmail]').click(function(){ 
+$('input[name=checkseller_email]').click(function(){ 
 	var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
 	  // 검증에 사용할 정규식 변수 regExp에 저장
 	  		  
@@ -373,11 +373,11 @@ $('input[name=checkEmail]').click(function(){
 			 	
 	}else if ($('input[name=seller_email]').val().match(regExp) != null) {
 		window.open("/bitFarm/seller/mailSending?email="+$('input[name=seller_email]').val(),"","width=505 height=120 left=750 top=280 scrollbars=yes");
-	 
+	   
 	}else {
 		$('#seller_email_p').css("display", "block"); 
 		$('#seller_email_Div').text('잘못된 이메일 형식입니다.');   
-		$('#seller_email_Div').css('color','red'); 
+		$('#seller_email_Div').css('color','red');  
 		$('#seller_email_Div').css('font-weight','bold');
 		$('#seller_email_Div').css('font-size','10pt');
 	 }	
@@ -388,7 +388,7 @@ $('input[name=checkEmail]').click(function(){
 $('input[name=seller_phone]').focusout(function(){
 	var regExp = /^\d{3}-\d{3,4}-\d{4}$/;
 
-	$('#seller_phone_p').css("display", "none"); 
+	$('#seller_phone_p').css("display", "none");  
 	$('#seller_phone_Div').empty();  
 	
 	if($('input[name=seller_phone]').val()==''){ 
@@ -473,19 +473,26 @@ function checkSellerWrite(){
 	}
  
 
-	if(!(sid && spwd && sname && semail && sphone && slicense)){	
-		alert("필수 사항을 입력하세요!");
+	if(!(sid && spwd && sname && semail && sphone && slicense)){
+		console.log("sid="+sid);
+		console.log("spwd="+spwd);  
+		console.log("sname="+sname); 
+		console.log("semail="+semail);  
+		console.log("sphone="+sphone); 
+		console.log("slicense="+slicense); 
+		
+		alert("필수 입력 사항을 확인하세요!");
 				
 	}else if($('#check1').is(":checked") && $('#check2').is(":checked") && $('#seller_check3').is(":checked")){
 
 		document.sellerWriteForm.method = 'post';
 		document.sellerWriteForm.action = '/bitFarm/seller/write';
 		document.sellerWriteForm.submit(); 
-		 
+		  
 	}else{  
-		alert("약관을 체크해주세요!");			  
+		alert("약관을 체크해주세요!");			       
 	}  
-}
+} 
   
 
 

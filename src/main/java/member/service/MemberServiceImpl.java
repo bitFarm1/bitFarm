@@ -61,8 +61,8 @@ public class MemberServiceImpl implements MemberService {
 			MimeMessage message = mailSender.createMimeMessage();
 			MimeMessageHelper messageHelper = new MimeMessageHelper(message,
 					true, "UTF-8");
- 
-			messageHelper.setFrom("bitFarmBOT@gmail.com"); // 보내는사람 생략하면 정상작동을 안함
+  
+			messageHelper.setFrom("bitFarmBOT@gmail.com", "비트팜봇"); // 보내는사람 생략하면 정상작동을 안함
 			messageHelper.setTo(email); // 받는사람 이메일
 			messageHelper.setSubject("비트팜 이메일 인증입니다."); // 메일제목은 생략이 가능하다
 			messageHelper.setText("비트팜 이메일 인증입니다.\n\n 인증 번호 : "+num+"\n\n번호를 인증란에 입력해주세요."); // 메일 내용

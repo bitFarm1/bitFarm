@@ -112,13 +112,13 @@
 			</td>
 		</tr> 
 		
-		<tr> 
+		<tr>   
 			<th class="subject">이메일*</th>
-			<td><input class="layoutT" type="text" name="member_email" placeholder="예: bitfarm@bitfarm.com">&emsp;
+			<td><input class="layoutT" type="text" id="email" name="member_email" placeholder="예: bitfarm@bitfarm.com">&emsp;
 			<input class="layoutB" type="button" name="checkEmail" value="이메일 인증">
 			<br id="member_email_p" style="display: none;"><span id="member_email_Div" ></span></br>
 			<input type="hidden" id="auth" name="auth" value=""> 
-			</td>			
+			</td>			 
 		</tr>
 		<tr> 
 			<th class="subject">휴대폰*</th>
@@ -383,19 +383,19 @@ $('input[name=checkEmail]').click(function(){
 		$('#member_email_Div').text('잘못된 이메일 형식입니다.');  
 		$('#member_email_Div').css('color','red'); 
 		$('#member_email_Div').css('font-weight','bold');  
-		$('#member_email_Div').css('font-size','10pt');
+		$('#member_email_Div').css('font-size','10pt'); 
 	 }	
 });      
 
-
-    
+ 
+     
 $('input[name=member_phone]').focusout(function(){
 	var regExp = /^\d{3}-\d{3,4}-\d{4}$/;
 
 	$('#member_phone_p').css("display", "none"); 
 	$('#member_phone_Div').empty();  
 	
-	if($('input[name=member_phone]').val()==''){
+	if($('input[name=member_phone]').val()==''){ 
 	$('#member_phone_p').css("display", "block"); 
 		$('#member_phone_Div').text('핸드폰 번호를 입력하세요.'); 
 		$('#member_phone_Div').css('color','red');

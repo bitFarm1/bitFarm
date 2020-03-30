@@ -82,10 +82,10 @@
 				<select id = "selectCoupon" style="height: 30px; width: 500px;">
 					<option value = "0">쿠폰을 선택하세요</option>
 				<c:forEach var="couponDTO" items="${couponList }">
-					<option  value = "${couponDTO.coupon_price }">[${couponDTO.coupon_name }] ${couponDTO.coupon_content}</option>
-					<input type="hidden" name="coupon" value="${couponDTO.coupon_name }">
+					<option value = "${couponDTO.coupon_price }">[${couponDTO.coupon_name }] ${couponDTO.coupon_content}</option>
 				</c:forEach>
 				</select>
+					<input type="hidden" name="coupon" value="${couponDTO.coupon_name }">
 			</td>
 		</tr>
 		<tr>
@@ -191,8 +191,8 @@ $('.orderBtn').click(function(){
 		    pay_method : 'card',
 		    merchant_uid : 'merchant_' + new Date().getTime(),
 		    name : '비트농장 결제테스트',
-		    amount : ${totalMoney},
-		    buyer_email : '${memberDTO.member_email}',
+		    amount : $('input[name=total]').val(), 
+		    buyer_email : '${memberDTO.member_email}', 
 		    buyer_name : '${memberDTO.member_name}',
 		    buyer_tel : '${memberDTO.member_phone}',
 		    buyer_addr : '서울특별시 강남구 삼성동',

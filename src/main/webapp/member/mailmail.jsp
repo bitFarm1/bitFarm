@@ -38,11 +38,11 @@
 <script type="text/javascript">
 $('#numberCheck').click(function(){
 	
-	if($('#number').val() == '${num}'){   
+	if($('#number').val() == '${num}'){  
 		alert("성공");
 		opener.document.forms[0].auth.value = 'ok';  
-		window.close();  
-		opener.document.forms[0].member_email.focus(); 
+		window.close();           
+		opener.document.forms[0].seller_email.focus(); 
 	 
 	}else{		
 		alert("다시 시도해주세요.")

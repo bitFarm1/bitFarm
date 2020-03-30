@@ -82,6 +82,7 @@ public class CartController {
 	//장바구니에서 선택삭제 누르면 처리하는 메소드
 	@RequestMapping(value="cartChoiceDelete", method=RequestMethod.POST)
 	public ModelAndView cartChoiceDelete(@RequestParam String[] check, HttpSession session, Model model) {
+		session.removeAttribute("cartList");
 		cartService.cartChoiceDelete(check, (String)session.getAttribute("memberId"));
 		return new ModelAndView("redirect:/cart/cartForm");
 	}

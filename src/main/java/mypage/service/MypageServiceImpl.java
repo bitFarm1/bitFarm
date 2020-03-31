@@ -14,6 +14,8 @@ import mypage.bean.MypagePointDTO;
 import mypage.bean.MypageReviewDTO;
 import mypage.dao.MypageDAO;
 import order.bean.OrderDTO;
+import order.bean.OrderImageDTO;
+import order.bean.OrderListDTO;
 
 @Service
 public class MypageServiceImpl implements MypageService {
@@ -170,12 +172,27 @@ public class MypageServiceImpl implements MypageService {
 
 	//구매내역 가져오기
 	@Override
-	public List<OrderDTO> getMypageOrderList(String id) {
+	public List<OrderListDTO> getMypageOrderList(String id) {
 	
-		List<OrderDTO> list = mypageDAO.getMypageOrderList(id);
+		List<OrderListDTO> list = mypageDAO.getMypageOrderList(id);
 		
 		return list;
 
+	}
+
+	@Override
+	public OrderDTO getMypageOrder(Map<String, String> map) {
+		
+		OrderDTO orderDTO = mypageDAO.getMypageOrder(map);
+		
+		return orderDTO;
+	}
+
+	@Override
+	public List<OrderImageDTO> getMypageOrderImage(Map<String, String> map) {
+		
+		List<OrderImageDTO> list = mypageDAO.getMypageOrderImage(map);
+		return null;
 	}
 
 	

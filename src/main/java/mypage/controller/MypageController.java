@@ -26,6 +26,8 @@ import mypage.service.MypageService;
 import seller.bean.SellerDTO;
 import seller.service.SellerService;
 import order.bean.OrderDTO;
+import order.bean.OrderImageDTO;
+import order.bean.OrderListDTO;
 
 
 
@@ -40,32 +42,6 @@ public class MypageController {
 	
 	@Autowired
 	private HttpSession session;
-	
-	//구매내역
-	@RequestMapping(value="/mypageMain", method=RequestMethod.GET)
-	public ModelAndView mypageMain(Model model, HttpSession session) {
-		
-		String id = (String)session.getAttribute("memberId");
-		List<OrderDTO> list = mypageService.getMypageOrderList(id);
-		
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("list",list);
-		mav.addObject("memberId",id);
-		mav.addObject("display","/mypage/mypageMain.jsp");
-		mav.addObject("mypage","/mypage/mypagePurchaseList.jsp");
-		mav.setViewName("/main/main");
-
-		return mav;
-		
-		
-		
-		
-		
-		
-	//	model.addAttribute("display","/mypage/mypageMain.jsp");
-	//	model.addAttribute("mypage","/mypage/mypagePurchaseList.jsp");
-	//	return "/main/main";
-	}
 	
 	//적립금
 	@RequestMapping(value="/mypagePoint", method=RequestMethod.GET)
@@ -302,20 +278,53 @@ public class MypageController {
 	}
 	
 	
-/* 구매내역 */	
-
-	@RequestMapping(value="/mypagePurchaseList", method=RequestMethod.GET)
-	public String mypagePurchaseList(Model model) {
-		model.addAttribute("display","/mypage/mypageMain.jsp");
-		model.addAttribute("mypage","/mypage/mypagePurchaseList.jsp");
-		return "/main/main";
+	//구매내역
+	/* @RequestMapping(value="/mypagePurchaseList", method=RequestMethod.GET) */
+	 @RequestMapping(value="/mypageMain", method=RequestMethod.GET) 
+	public ModelAndView mypagePurchaseList(HttpSession session) {
+		
+		System.out.println("구매내역");
+		
+		String id = (String)session.getAttribute("memberId");
+		List<OrderListDTO> list = mypageService.getMypageOrderList(id);
+		
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("list",list);
+		mav.addObject("memberId",id);
+		mav.addObject("display","/mypage/mypageMain.jsp");
+		mav.addObject("mypage","/mypage/mypagePurchaseList.jsp");
+		mav.setViewName("/main/main");
+	//	model.addAttribute("display","/mypage/mypageMain.jsp");
+	//	model.addAttribute("mypage","/mypage/mypagePurchaseList.jsp");
+		
+		return mav;
 	}
 	
 	@RequestMapping(value="/mypagePurchaseDetail", method=RequestMethod.GET)
-	public String mypagePurchaseDetail(Model model) {
-		model.addAttribute("display","/mypage/mypageMain.jsp");
-		model.addAttribute("mypage","/mypage/mypagePurchaseDetail.jsp");
-		return "/main/main";
+	public ModelAndView mypagePurchaseDetail(@RequestParam String order_id, HttpSession session ) {
+		
+		String id = (String)session.getAttribute("memberId");
+		
+		Map<String, String>map = new HashMap<String,String>();
+		map.put("id",id);
+		map.put("order_id",order_id);
+		
+		OrderDTO orderDTO = mypageService.getMypageOrder(map);
+		List<OrderImageDTO> imageList = mypageService.getMypageOrderImage(map);
+		
+		ModelAndView mav = new ModelAndView();
+		
+		mav.addObject("orderDTO",orderDTO);
+		mav.addObject("list",imageList);
+		mav.addObject("memberId",id);
+		mav.addObject("display","/mypage/mypageMain.jsp");
+		mav.addObject("mypage","/mypage/mypagePurchaseDetail.jsp");
+		mav.setViewName("/main/main");
+		
+		return mav;
+	//	model.addAttribute("display","/mypage/mypageMain.jsp");
+	//	model.addAttribute("mypage","/mypage/mypagePurchaseDetail.jsp");
+	//	return "/main/main";
 	}
 	
 	

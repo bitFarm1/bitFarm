@@ -62,8 +62,23 @@
 	
 	<!-- 구매내역 -->
 
-	<!-- <select id = "getMypageOrderList" resultType = "orderDTO" parameterType="String">
-		select * from purchase where order_user_id = #{id}
-	</select> -->
+	<select id = "getMypageOrderList" resultType = "orderListDTO" parameterType="String">
+		select order_id, order_item_main_image, order_user_id, order_state, order_total_price, order_date from
+		(
+			select order_id, order_item_main_image, order_user_id, order_state, order_total_price, order_date,
+    		row_number() over (partition by order_id order by order_item_main_image desc) rn
+    		from purchase
+		)
+		where rn = 1 and order_user_id = #{id}
+	</select>
+	
+	<select id = "getMypageOrder" resultType = "orderDTO" parameterType="java.util.Map">
+		select distinct(order_id), order_state, order_before_price, order_coupon, order_point, order_total_price, order_pay, order_user_id
+		order_user_name, order_date, order_name, order_phone, order_addr1, order_addr2, order_ps from purchase where order_id = #{order_id} and order_user_id = #{id}
+	</select>
+	
+	<select id = "getMypageOrderImage" resultType = "orderImageDTO" parameterType="java.util.Map">
+		select order_id, order_seller_name, order_seller_item, order_item_main_image, order_item_price, order_item_qty, order_state from purchase where order_id = #{order_id} and order_user_id = #{id}
+	</select>
 	
 </mapper>

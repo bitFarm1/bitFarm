@@ -10,6 +10,8 @@ import mypage.bean.MypagePickSellerDTO;
 import mypage.bean.MypagePointDTO;
 import mypage.bean.MypageReviewDTO;
 import order.bean.OrderDTO;
+import order.bean.OrderImageDTO;
+import order.bean.OrderListDTO;
 
 public interface MypageDAO {
 
@@ -51,7 +53,11 @@ public interface MypageDAO {
 
 	public void deleteCoupon(Map<String, String> map);  
 
-	public List<OrderDTO> getMypageOrderList(String id);  
+	public List<OrderListDTO> getMypageOrderList(String id);
+
+	public OrderDTO getMypageOrder(Map<String, String> map);
+
+	public List<OrderImageDTO> getMypageOrderImage(Map<String, String> map);  
 
 
 }

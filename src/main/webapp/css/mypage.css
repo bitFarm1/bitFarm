@@ -86,11 +86,12 @@
 }
 
 .purchaseListTable{
-	border-top: 2px solid #5f0080;
-	border-bottom: 2px solid gray;
+	border: 1px solid #c0c0c0;
+ 	/* border-top: 2px solid #5f0080;
+	border-bottom: 0px;  */
 	width: 100%;
 	frame: void;
-	rules: rows;
+	/* rules: rows; */
 }
 
 .purchaseListDetailItemA{color:blak; text-decoration: none; }

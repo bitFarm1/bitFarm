@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <link rel="stylesheet" href= "../css/mypage.css">
 
 <div id = "mypagePurchaseDetail">
@@ -11,24 +13,25 @@
 <div style="float: left; margin-top: -3px;"><a class = "purchaseDetailQnA" href = "#">1:1 문의하기></a></div>
 
 </div>
-
+<c:if test="${list!=null}">
+<c:forEach var="orderImageDTO" items="${list}">
 <table class = "purchaseDetailTable" frame="hsides" rules = "rows" cellpadding="10" >
 	<tr>
 		<td width = "75%"><!-- width = "650" -> 75% -->
 		<div style="width: 50px; height: 10px; float:left;"></div><!-- width: 50px -> 100px -->
 		<div style="float:left;">
-		<img src = "../image/neodrinking.gif" id = "purchaseDetailImg"
+		<img src = "../storage/${orderImageDTO.order_item_main_image}" id = "purchaseDetailImg"
 		style="cursor:pointer" onclick="location.href='#'"></div>
 		<div style="width: 15px; height: 10px; float:left;"></div>
 		<div style="float: left;">
 		<dl>
-			<dt style="font-size: 12pt; font-weight: bold; margin-bottom: 5px;"><a href = "#" class = "purchaseDetailItem">[판매자] 판매물품</a></dt>
-			<dd style="font-size: 10pt; float: left; font-weight: bold; margin-left: 0px; ">11,800원</dd>
-			<dd style="font-size: 8pt; color: gray; margin-bottom: -10px; margin-top: 8px;">1개 구매</dd>
+			<dt style="font-size: 12pt; font-weight: bold; margin-bottom: 5px;"><a href = "#" class = "purchaseDetailItem">[${orderImageDTO.order_seller_name}] ${orderImageDTO.order_seller_item}</a></dt>
+			<dd style="font-size: 10pt; float: left; font-weight: bold; margin-left: 0px; "><fmt:formatNumber pattern="#,###">${orderImageDTO.order_item_price}</fmt:formatNumber>원</dd>
+			<dd style="font-size: 8pt; color: gray; margin-bottom: -10px; margin-top: 8px;">${orderImageDTO.order_item_qty}개 구매</dd>
 		</dl>
 		</div>
 		</td>
-		<td style="color:#5f0080; font-weight: bold; ">배송완료</td>
+		<td style="color:#5f0080; font-weight: bold; ">${orderImageDTO.order_state}</td>
 		<!-- <td>
 			<input class = "purchaseDetailBasketBtn" type="button" value="장바구니" onclick="javascript:location.href='/bitFarm/cart/cartForm.do'" >
 			<div id = "purchaseDetailBasketBtnDiv">
@@ -37,7 +40,8 @@
 		</td> -->
 	</tr>
 </table>
-
+</c:forEach>
+</c:if>
 <div style="width: 35%; height: 10px; float:left;"></div>
 <!-- <div id = "purchaseDetailAllOrderBtnDiv">
 	<a class = "purchaseDetailAllOrderA" href="#">전체 상품 다시 담기</a>

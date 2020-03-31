@@ -152,10 +152,10 @@
 			<th>적립금 사용</th>
 			<td><div id = "userPointResult" style = "display:inline;"><fmt:formatNumber pattern="#,###">0</fmt:formatNumber></div>원</td>
 		</tr>
-		<tr>
+	<tr>
 			<th>최종 결제 금액</th>
 			
-			<td><div id = "totalMoneyDiv" style = "display:inline;"></div>	원</td>
+		<!-- 	<td><div id = "totalMoneyDiv" style = "display:inline;"></div>	원</td> -->
 
 			<td><input type = "hidden" name = "" value = ""><div id = "totalMoneyDiv" style = "display:inline;"></div>원</td>
 
@@ -366,7 +366,7 @@ $('#userPoint').focusout(function(){
                 }
 
                 // 우편번호와 주소 정보를 해당 필드에 넣는다. 
-                 `
+                 
                 document.getElementById("addr1").value = "("+data.zonecode+") "+roadAddr;
                                                                 
             }

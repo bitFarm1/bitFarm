@@ -114,7 +114,9 @@ public class MypageDAOMyBatis implements MypageDAO {
 	@Override
 	public List<OrderDTO> getMypageOrderList(String id) {
 	
-		return  sqlSession.selectList("mypageSQL.getMypageOrderList",id);
+	//	return  sqlSession.selectList("mypageSQL.getMypageOrderList",id);
+		return null;
+		
 	}
 
 	

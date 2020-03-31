@@ -200,7 +200,7 @@ public class InformationController {
 	@ResponseBody 
 	public void infoWrite(@ModelAttribute InformationDTO informationDTO, @RequestParam MultipartFile img, HttpSession session) {
 		String filePath = "D:\\spring\\workSTS\\bitFarm\\src\\main\\webapp\\storage"; 
-		String fileName = img.getOriginalFilename();
+		String fileName = img.getOriginalFilename(); 
 		File file = new File(filePath, fileName);
 		   
 		try { 
@@ -219,7 +219,7 @@ public class InformationController {
 //		mav.addObject("info", "/information/infoView.jsp"); 
 //		mav.setViewName("/main/main");  		
 	}
-	
+	 
 	@RequestMapping(value="/infoBoardList", method=RequestMethod.GET)
 	public ModelAndView infoBoardList(@RequestParam(required=false, defaultValue="1") String pg) {
 		List<InformationDTO> list = informationService.infoBoardList(pg);
@@ -301,4 +301,14 @@ public class InformationController {
 		  
 		return mav; 
 	} 
+	
+	@RequestMapping(value="/deleteInfo", method=RequestMethod.POST)
+	public ModelAndView deleteInfo(@RequestParam String seq) {
+		ModelAndView mav = new ModelAndView();
+		  
+		informationService.deleteInfo(seq);
+		mav.setViewName("jsonView");		  
+		return mav; 
+	} 
+	
 }

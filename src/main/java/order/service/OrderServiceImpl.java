@@ -46,7 +46,6 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-
 	public String orderNum() {
 	   	int num;
     	while(true) {
@@ -62,7 +61,7 @@ public class OrderServiceImpl implements OrderService {
         return orderNum;
 	}
 
-
+	@Override
 	public void writeOrder(Map<String, Object> map) {
 		System.out.println("service 도착");
 		List<CartListDTO> list = (List<CartListDTO>) map.get("cartList");
@@ -84,3 +83,4 @@ public class OrderServiceImpl implements OrderService {
 		
 	}
 
+}

@@ -83,14 +83,15 @@
 }
 .itemViewSellerQnaBtn,
 .itemViewReviewWriteBtn{
-	width: 150pt;
-	height: 30pt;
+	width: 160pt;
+	height: 40pt;
 	color: #ffffff;
 	border: 0;
 	outline: none; 
 	background-color: #5f0080;
 	border-radius: 8px; 
 	font-size: 14px;
+	font-weight: bold;
 	cursor: pointer;
 }
 .itemMenu ul{

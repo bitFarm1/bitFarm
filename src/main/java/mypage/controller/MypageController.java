@@ -21,6 +21,7 @@ import mypage.bean.MypagePickItemDTO;
 import mypage.bean.MypagePickSellerDTO;
 import mypage.bean.MypagePointDTO;
 import mypage.bean.MypageReviewDTO;
+import mypage.bean.MypageReviewListDTO;
 import mypage.service.MypageService;
 import seller.bean.SellerDTO;
 import seller.service.SellerService;
@@ -90,7 +91,6 @@ public class MypageController {
 		mav.setViewName("jsonView");
 		return mav;
 	}
-	
 
 	
 	//mypageTop.jsp 적립금, 쿠폰 총 내역 보여주기
@@ -123,7 +123,7 @@ public class MypageController {
 	@RequestMapping(value="/mypageMyReview", method=RequestMethod.GET)
 	public ModelAndView mypageMyReview(HttpSession session) {
 		String id = (String)session.getAttribute("memberId");
-		List<MypageReviewDTO> list = mypageService.getMyReviewList(id);
+		List<MypageReviewListDTO> list = mypageService.getMyReviewList(id);
 		
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("list",list);

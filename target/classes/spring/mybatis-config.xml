@@ -12,7 +12,8 @@
 		<!--mypage.bean  -->
 		<typeAlias type="mypage.bean.MypageCouponDTO" alias="mypageCouponDTO" />  
 		<typeAlias type="mypage.bean.MypagePointDTO" alias="mypagePointDTO" />
-		<typeAlias type="mypage.bean.MypageReviewDTO" alias="mypageReviewDTO" /> 
+		<typeAlias type="mypage.bean.MypageReviewDTO" alias="mypageReviewDTO" />
+		<typeAlias type="mypage.bean.MypageReviewListDTO" alias="mypageReviewListDTO" /> 
 		<typeAlias type="mypage.bean.MypagePickItemDTO" alias="mypagePickItemDTO" />  
 		<typeAlias type="mypage.bean.MypagePickSellerDTO" alias="mypagePickSellerDTO" /> 	
 

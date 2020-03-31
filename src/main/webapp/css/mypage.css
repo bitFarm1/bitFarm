@@ -787,4 +787,8 @@
 	width: 100%;
 	frame: void;
 	rules: rows;
+	font-size: 10pt;
+}
+.myReviewListTable th{
+	background-color: #F7F5F8;
 }

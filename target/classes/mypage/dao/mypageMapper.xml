@@ -30,8 +30,10 @@
 	</insert> 
 
 	<!-- 리뷰 -->
-	<select id = "getMyReviewList" resultType = "mypageReviewDTO" parameterType="String">
-		select * from review where review_user_id = #{id}
+	<select id = "getMyReviewList" parameterType="String" resultType="mypageReviewListDTO">
+		select review_id, review_subject, review_content, review_image, review_user_id, review_date, item_id, item_name from review 
+		join item using(item_id)
+		where review_user_id=#{id}
 	</select>
 	
 	<!-- 찜한 물건 -->

@@ -9,6 +9,7 @@ import mypage.bean.MypagePickItemDTO;
 import mypage.bean.MypagePickSellerDTO;
 import mypage.bean.MypagePointDTO;
 import mypage.bean.MypageReviewDTO;
+import mypage.bean.MypageReviewListDTO;
 
 public interface MypageService {
 
@@ -24,7 +25,7 @@ public interface MypageService {
 	
 	public void writePoint(String member_id);
 
-	public List<MypageReviewDTO> getMyReviewList(String id);
+	public List<MypageReviewListDTO> getMyReviewList(String id);
 
 	public List<MypagePickItemDTO> getMypagePickItem(String id);
 	

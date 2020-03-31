@@ -99,6 +99,12 @@ public class InformationDAOMybatis implements InformationDAO{
 	public int infoQnAListAllADMINPagingTotalA() { 
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("informationSQL.infoQnAListAllADMINPagingTotalA");  
+	}
+
+	@Override
+	public List<InformationQnADTO> infoALLADMIN() {   
+		// TODO Auto-generated method stub 
+		return sqlSession.selectList("informationSQL.infoALLADMIN");  
 	} 
  
 }  

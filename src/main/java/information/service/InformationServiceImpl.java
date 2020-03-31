@@ -81,7 +81,7 @@ public class InformationServiceImpl implements InformationService {
 		
 		informationPaging.setCurrentPage(Integer.parseInt(pg)); 
 		informationPaging.setPageBlock(5);
-		informationPaging.setPageSize(8);
+		informationPaging.setPageSize(6);  
 		informationPaging.setTotalA(totalA); 
 		informationPaging.makePagingHTML();   
 		
@@ -92,7 +92,7 @@ public class InformationServiceImpl implements InformationService {
 	public List<InformationDTO> getInfoSearch(Map<String, String> map) {
 		int endNum = Integer.parseInt(map.get("pg"))*8;
 		int startNum = endNum-7; 
-		
+		 
 		map.put("startNum", startNum+""); 
 		map.put("endNum", endNum+"");  
 		
@@ -143,8 +143,8 @@ public class InformationServiceImpl implements InformationService {
 	@Override
 	public List<InformationQnADTO> infoQnAListAllADMIN(Map<String, String> map) {
 		
-		int endNum = Integer.parseInt(map.get("pg"))*8;
-		int startNum = endNum-7;   
+		int endNum = Integer.parseInt(map.get("pg"))*6;
+		int startNum = endNum-5;   
 		
 		 
 		map.put("startNum", startNum+""); 
@@ -157,6 +157,12 @@ public class InformationServiceImpl implements InformationService {
 	public List<String> orderForm(String id) { 
 		return informationDAO.orderForm(id);  
 		 
+	}
+
+	@Override  
+	public List<InformationQnADTO> infoALLADMIN() {
+		// TODO Auto-generated method stub
+		return informationDAO.infoALLADMIN();
 	}
  
 	

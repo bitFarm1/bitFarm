@@ -3,9 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <style type="text/css">
-	a.info {color:black; text-decoration: none; font-size: 11pt;}  
+	a.info {color:black; text-decoration: none; font-size: 10pt;}  
 	a.info:link {color: black; text-decoration: none;}
-	a.info:visited {color: black; text-decoration: none;}
+	a.info:visited {color: black; text-decoration: none;} 
 	a.info:hover {color: #5f0080; text-decoration: none; font-weight: bolder;} 
 	a.info:active {color: black; text-decoration: none;} 
 
@@ -28,19 +28,16 @@
 		white-space: pre-wrap;
 		word-break: break-all; 
 	}
-	
-	#infoListTable{
-		font-size: 9pt; 
-	}  
-	td{
-	 white-space: nowrap;
-	}
+		
+	td{ 
+		border-bottom: 1px solid #e5e5e5; 
+	}	 
 </style>
 
 <form name="informationQnAListForm" method="post" action="">
 <div style="width:1200px; margin: 0 auto;">    
 <h3>1:1 문의 내역</h3> 
-	<table id="infoListTable" width="1200px" border="1" cellpadding="15" frame="hsides" rules="rows" style="border-top:2px solid #5f0080; font-weight: 12px;"> 
+	<table id="infoListTable" width="1200px" cellpadding="15" style="border-top: 2px solid #5f0080; font-size: 12px; border-collapse: collapse;"> 
 		<tr>  
 			<th width="100px;">글번호</th>
 			<th width="150px">카테고리</th>
@@ -110,7 +107,7 @@
 		<td style="width: 100px;"></td>
 		<td style="width: 150px;"> <img src="../image/mainImage.png" width="50" height="20"></td>
 		<td id="${seq }reply" colspan="4" align="left" style="width: 425px;">     
-			<a class="info" href="#" style="cursor: pointer;"> ${informationQnADTO.infoQnA_answerSubject }</a> 
+			<img src="../image/reply1.png" width="50" height="25"><a class="info" href="#" style="cursor: pointer;"><a class="info" href="#" style="cursor: pointer;"> ${informationQnADTO.infoQnA_answerSubject }</a> 
 		</td>  
 	</tr>     
 		
@@ -153,7 +150,7 @@ $('#${seq}reply').click(function(){
 </c:forEach>  
 </table>  
 	<div style="height:20px;"></div>   
-    <div align="center" id="pagingDiv">${informationPaging.pagingHTML}</div> 
+    <%-- <div align="center" id="pagingDiv">${informationPaging.pagingHTML}</div> --%> 
 <input type="hidden" name="pg" value="${pg }">
 <input type="hidden" id="dis" name="dis" value="">
 </div>  
@@ -162,6 +159,7 @@ $('#${seq}reply').click(function(){
 function informationPaging(pg){   
 	location.href='infoQnAListAllADMIN?pg='+pg;    
 	
-}
+} 
+
 </script>
 

@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <style type="text/css">
-	a.info {color:black; text-decoration: none; font-size: 11pt;}  
+	a.info {color:black; text-decoration: none; font-size: 10pt;}  
 	a.info:link {color: black; text-decoration: none;}
 	a.info:visited {color: black; text-decoration: none;}
 	a.info:hover {color: #5f0080; text-decoration: none; font-weight: bolder;} 
@@ -28,17 +28,21 @@ th{
 	font-family: 'Noto Sans';
 	font-weight: bold;
 	cursor: pointer;
-	} 			
+	} 		
+	
+	td{
+		border-bottom: 1px solid #e5e5e5; 
+	}	
 </style>
 
 <form name="infoQnAlistADMIN"> 
 <div style="width:1200px; margin: 0 auto;">
 <h3>1:1 문의 내역</h3> 
-	<table id="infoListTable" width="1200px" border="1" cellpadding="15" frame="hsides" rules="rows" style="border-top:2px solid #5f0080; font-weight: 12px;"> 
+	<table id="infoListTable" width="1200px" cellpadding="15" style="border-top: 2px solid #5f0080; font-size: 12px; border-collapse: collapse;"> 
 		<tr> 
 			<th>글번호</th>
 			<th width="250px;">제목</th> 
-			<th>작성자</th>
+			<th>작성자</th>  
 			<th>작성일</th>  			     
 		</tr>   
 		

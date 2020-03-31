@@ -18,5 +18,5 @@ public class InformationQnADTO {
 	private Date infoQnA_askDate;  
 	private String infoQnA_answerSubject;
 	private String infoQnA_answerContent;
-	private String infoQnA_answerDate; 
+	private Date infoQnA_answerDate;  
 } 

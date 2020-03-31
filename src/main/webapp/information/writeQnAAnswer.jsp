@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
-<style type="text/css">
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<style type="text/css"> 
 	.wrap{
 		width: 600px;
 		margin: 0 auto;
@@ -54,7 +55,7 @@
 				<table align="center" style="padding: 0; width:100%;">
 					<tr>  
 						<td class="tdstyle">力格</td>  
-						<td colspan="3" style="border-top: 1px solid #e8e8e8;">${informationQnADTO.infoQnA_seq}</td> 
+						<td colspan="3" style="border-top: 1px solid #e8e8e8;">${informationQnADTO.infoQnA_subject}</td> 
 					</tr>
 					 
 					<tr>
@@ -62,9 +63,9 @@
 						<td colspan="3">${informationQnADTO.infoQnA_userID}</td> 
 					</tr>
 					
-					<tr>
-						<td class="tdstyle" colspan="3">累己老</td>
-						<td >${informationQnADTO.infoQnA_askDate}</td> 
+					<tr> 
+						<td class="tdstyle" colspan="3">累己老</td>						
+						<td ><fmt:formatDate pattern="yyyy斥 MM岿 dd老" value="${informationQnADTO.infoQnA_askDate}"/> </td> 
 					</tr>	
 				</table>
 			</td></tr> 
@@ -130,6 +131,7 @@ $('#answer').click(function(){
 			alert("累己肯丰");
 			if(data.update == 1){
 				window.close(); 
+				opener.location.reload();	
 			}		    
 		}
 		 

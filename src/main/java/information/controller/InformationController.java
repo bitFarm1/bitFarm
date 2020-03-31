@@ -169,20 +169,20 @@ public class InformationController {
 	@RequestMapping(value="/infoQnAListAllADMIN", method=RequestMethod.GET)
 	public ModelAndView infoQnAListAllADMIN(@RequestParam(required=false, defaultValue="1") String pg, HttpSession session) {
 		
-		InformationPaging informationPaging = informationService.infoQnAListAllADMINPaging(pg);
+		//InformationPaging informationPaging = informationService.infoQnAListAllADMINPaging(pg);
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("pg",pg); 
-		List<InformationQnADTO> list = informationService.infoQnAListAllADMIN(map); 
-		
-		 
-		ModelAndView mav = new ModelAndView();   
-		mav.addObject("pg", pg); 
+		//List<InformationQnADTO> list = informationService.infoQnAListAllADMIN(map); 
+		List<InformationQnADTO> list = informationService.infoALLADMIN();//이거지우고 주석풀어
+		  
+		ModelAndView mav = new ModelAndView();    
+		mav.addObject("pg", pg);   
 		mav.addObject("list", list);
-		mav.addObject("informationPaging", informationPaging);  
+		//mav.addObject("informationPaging", informationPaging);   
 		mav.addObject("display", "/information/infoMain.jsp");
 		mav.addObject("info", "/information/infoQnAListAllADMIN.jsp"); 
 		mav.setViewName("/main/main");
-		   
+		    
 		return mav;
 	}
 	
@@ -294,7 +294,7 @@ public class InformationController {
 	public ModelAndView orderForm(HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		String id = (String) session.getAttribute("memberId"); 
-		List<String> list = informationService.orderForm(id); 
+		List<String> list = informationService.orderForm(id);  
 		 
 		mav.addObject("list", list);		        
 		mav.setViewName("/information/orderSearch");

@@ -16,7 +16,11 @@ import mypage.bean.MypagePickSellerDTO;
 import mypage.bean.MypagePointDTO;
 import mypage.bean.MypageReviewDTO;
 import order.bean.OrderDTO;
+
 import mypage.bean.MypageReviewListDTO;
+
+import order.bean.OrderImageDTO;
+import order.bean.OrderListDTO;
 
 
 @Repository
@@ -144,9 +148,21 @@ public class MypageDAOMyBatis implements MypageDAO {
 		sqlSession.delete("mypageSQL.deleteCoupon", map); 
 	}
 
-	public List<OrderDTO> getMypageOrderList(String id) {
-	//	return  sqlSession.selectList("mypageSQL.getMypageOrderList",id);
-		return null;
+	public List<OrderListDTO> getMypageOrderList(String id) {
+		return  sqlSession.selectList("mypageSQL.getMypageOrderList",id);
+	//	return null;
+	}
+
+	@Override
+	public OrderDTO getMypageOrder(Map<String, String> map) {
+		
+		return sqlSession.selectOne("mypageSQL.getMypageOrder", map);
+	}
+
+	@Override
+	public List<OrderImageDTO> getMypageOrderImage(Map<String, String> map) {
+		
+		return sqlSession.selectList("mypageSQL.getMypageOrderImage", map);
 	}
 
 	@Override

@@ -23,4 +23,12 @@ public interface OrderDAO {
 
 	public Map<String, Object> getItemSellerNPrice(int item_id);
 
+	public int deletePoint(Map<String, Object> tempMap);
+
+	public void deleteCoupon(Map<String, String> tempMap);
+
+	public String getUseCoupon(String orderId);
+
+	public int getUsePoint(String orderId);
+
 }

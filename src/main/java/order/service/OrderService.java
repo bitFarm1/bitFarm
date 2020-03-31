@@ -25,4 +25,6 @@ public interface OrderService {
 	public void writeOrder(Map<String, Object> map);
 
 
+	public void deletePointNCoupon(Map<String, String> map);
+
 }

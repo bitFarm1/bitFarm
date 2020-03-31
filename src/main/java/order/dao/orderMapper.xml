@@ -20,8 +20,8 @@
 		select sum(point_price) from point where point_user_id = #{memberId}
 	</select>
 	
-	<insert id = " writeOrder" parameterType="java.util.Map">
-		insert into purchase values(#{order_id},
+	<insert id = "writePurchase" parameterType = "java.util.Map">
+		insert into purchase values(#{orderId},
 									#{seller_name},
 									#{item_name},
 									#{item_main_image},
@@ -29,17 +29,18 @@
 									#{item_qty},
 									'결제완료',
 									#{before_price},
-									#{coupon_id},
-									#{coupon_price},
+									#{couponId},
+									#{coupon},
 									#{point},
 									#{total},
 									#{payment},
 									#{id},
+									#{user_name},
 									#{user_phone},
 									#{email},
 									sysdate,
 									#{name},
-									#{phone},
+									#{phoneNumber},
 									#{addr1},
 									#{addr2},
 									#{ps}
@@ -53,6 +54,28 @@
 	<select id = "getItemPrice" parameterType = "int" resultType = "String">
 		select item_price from item where item_id = #{item_id}
 	</select>
+	
+	<select id = "getUseCoupon" parameterType = "String" resultType = "String">
+		select distinct(order_coupon_id) from purchase where order_id = #{orderId}
+	</select>
+	
+	<delete id = "deleteCoupon" parameterType = "java.util.Map">
+		begin
+		delete from coupon where coupon_user_id = #{id} and coupon_id = #{useCouponId};
+		update member set member_coupon = (select count(*) from coupon where coupon_user_id = #{id}) where member_id = #{id};
+		end;
+	</delete>
+	
+	<select id = "getUsePoint" parameterType = "String" resultType = "int">
+		select distinct(order_point) from purchase where order_id = #{orderId}
+	</select>
+	
+	<insert id = "deletePoint" parameterType = "java.util.Map">
+		begin
+		insert into point values(#{id},sysdate,'사용완료',sysdate,#{usePoint}*-1,'사용한적립금','usePoint');
+		update member set member_point = (select sum(point_price) from point where point_user_id = #{id}) where member_id = #{id};
+		end;
+	</insert>
  
 
 </mapper>

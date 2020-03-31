@@ -13,6 +13,7 @@ import mypage.bean.MypagePickSellerDTO;
 import mypage.bean.MypagePointDTO;
 import mypage.bean.MypageReviewDTO;
 import mypage.dao.MypageDAO;
+import order.bean.OrderDTO;
 
 @Service
 public class MypageServiceImpl implements MypageService {
@@ -130,6 +131,7 @@ public class MypageServiceImpl implements MypageService {
 		return list;
 	}
 
+
 	@Override
 	public void mypagePickSellerAdd(Map<String, String> map) {
 		mypageDAO.mypagePickSellerAdd(map);
@@ -164,7 +166,16 @@ public class MypageServiceImpl implements MypageService {
 	@Override
 	public void deleteCoupon(Map<String, String> map) {
 		mypageDAO.deleteCoupon(map);
+	}
+
+	//구매내역 가져오기
+	@Override
+	public List<OrderDTO> getMypageOrderList(String id) {
+	
+		List<OrderDTO> list = mypageDAO.getMypageOrderList(id);
 		
+		return list;
+
 	}
 
 	

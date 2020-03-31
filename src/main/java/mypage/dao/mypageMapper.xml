@@ -11,7 +11,7 @@
 	<select id = "getCouponTotal" resultType = "int" parameterType="String">
 		select count(*) from coupon where coupon_user_id = #{id}
 	</select>
-	 
+	
 	<!--적립금  -->
 	<select id = "getPointList" resultType = "mypagePointDTO" parameterType="String">
 		select * from point where point_user_id = #{id}
@@ -56,31 +56,13 @@
 	</delete>
 	
 	<!-- 찜한 판매자 -->
-	<select id = "getMypagePickSellerList" parameterType="String" resultType="mypagePickSellerDTO" >
-		select * from pickSeller where pick_seller_user_id = #{memberId}
+	<select id = "getMypagePickSeller" resultType = "mypagePickSellerDTO" parameterType="String">
+		select * from pickSeller where pick_seller_user_id = #{id}
 	</select>
 	
-	<insert id="mypagePickSellerAdd" parameterType="java.util.Map">
-		insert into pickSeller values(#{pick_seller_user_id}, #{pick_seller_main_img}, #{pick_seller_name}, #{pick_seller_id})
-	</insert>
+	<!-- 구매내역 -->
+	<select id = "getMypageOrderList" resultType = "orderDTO" parameterType="String">
+		select  from purchase where order_user_id = #{id}
+	</select>
 	
-	<delete id="deletePickSeller" parameterType = "java.util.Map">
-		delete from pickseller where pick_seller_user_id in 
-		(select pick_seller_user_id from pickseller where pick_seller_user_id = #{id}) and pick_seller_id in #{deleteId}
-	</delete>
-
-	<delete id="deleteChoicePickSeller" parameterType = "java.util.Map">
-		delete from pickseller where pick_seller_user_id in 
-		(select pick_seller_user_id from pickseller where pick_seller_user_id = #{id}) and pick_seller_id in #{check}
-	</delete>
-	
-	<delete id="deleteCoupon" parameterType="java.util.Map">
-		delete from coupon where coupon_user_id = #{id}
-	</delete>
-	
-	<delete id="deletePoint" parameterType="java.util.Map">
-		delete from Point where point_user_id = #{id}   
-	</delete>
-	
-
 </mapper>

@@ -14,6 +14,7 @@ import mypage.bean.MypagePickItemDTO;
 import mypage.bean.MypagePickSellerDTO;
 import mypage.bean.MypagePointDTO;
 import mypage.bean.MypageReviewDTO;
+import order.bean.OrderDTO;
 
 @Repository
 @Transactional
@@ -139,7 +140,11 @@ public class MypageDAOMyBatis implements MypageDAO {
 	@Override
 	public void deleteCoupon(Map<String, String> map) {
 		sqlSession.delete("mypageSQL.deleteCoupon", map); 
-		
+	}
+
+	public List<OrderDTO> getMypageOrderList(String id) {
+		return  sqlSession.selectList("mypageSQL.getMypageOrderList",id);
+
 	}
 
 	

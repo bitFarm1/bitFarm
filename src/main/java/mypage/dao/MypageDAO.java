@@ -9,6 +9,7 @@ import mypage.bean.MypagePickItemDTO;
 import mypage.bean.MypagePickSellerDTO;
 import mypage.bean.MypagePointDTO;
 import mypage.bean.MypageReviewDTO;
+import order.bean.OrderDTO;
 
 public interface MypageDAO {
 
@@ -49,5 +50,8 @@ public interface MypageDAO {
 	public void deletePoint(Map<String, String> map);
 
 	public void deleteCoupon(Map<String, String> map);  
+
+	public List<OrderDTO> getMypageOrderList(String id);  
+
 
 }

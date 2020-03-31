@@ -29,7 +29,7 @@
 		insert into point values(#{member_id},sysdate,'회원가입축하적립금',ADD_MONTHS(sysdate, 1),2000,'회원가입적립금','first_sign_up_Point')
 	</insert> 
 
-	<!-- 리뷰 -->
+	<!-- 리뷰 -->														
 	<select id = "getMyReviewList" parameterType="String" resultType="mypageReviewListDTO">
 		select review_id, review_subject, review_content, review_image, review_user_id, review_date, item_id, item_name from review 
 		join item using(item_id)
@@ -64,7 +64,6 @@
 	
 	<!-- 구매내역 -->
 
-<<<<<<< HEAD
 	<select id = "getMypageOrderList" resultType = "orderListDTO" parameterType="String">
 		select order_id, order_item_main_image, order_user_id, order_state, order_total_price, order_date from
 		(
@@ -88,10 +87,5 @@
 		select * from qnaboard where INFOQNA_USERID=#{id}
 	</select>
 	
-=======
-	<!-- <select id = "getMypageOrderList" resultType = "orderDTO" parameterType="String">
-		select * from purchase where order_user_id = #{id}
-	</select> -->
->>>>>>> KJH_BRANCH
 	
 </mapper>

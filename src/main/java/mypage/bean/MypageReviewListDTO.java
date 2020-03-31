@@ -12,4 +12,5 @@ public class MypageReviewListDTO {
 	private String review_date;
 	private String item_id;
 	private String item_name;
-}
+} 
+ 

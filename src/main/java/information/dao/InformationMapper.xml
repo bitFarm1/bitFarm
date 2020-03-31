@@ -33,9 +33,13 @@
 	
 	<select id="infoQnAListAllADMIN" parameterType="java.util.Map" resultType="informationQnADTO">
 		<![CDATA[ 
-		select * from (select rownum rn, tt.* from (select * from QnABoard order by infoQnA_seq desc)tt)where rn>=#{startNum} and rn<=#{endNum} 
+		select * from (select rownum rn, tt.* from (select * from QnABoard order by infoQnA_seq desc)tt) where rn>=#{startNum} and rn<=#{endNum} 
 		]]> 
-	</select> 	     
+	</select> 
+	
+	<select id="infoALLADMIN" resultType="informationQnADTO">
+		select * from QnABoard 
+	</select> 		      
 	 
 	<select id="writeQnAAnswer" parameterType="String" resultType="informationQnADTO">
 		select * from QnABoard where infoQnA_seq = #{seq}

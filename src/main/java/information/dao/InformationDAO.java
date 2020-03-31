@@ -34,7 +34,9 @@ public interface InformationDAO {
  
 	public List<String> orderForm(String id);
 
-	public int infoQnAListAllADMINPagingTotalA();          
+	public int infoQnAListAllADMINPagingTotalA();
+   
+	public List<InformationQnADTO> infoALLADMIN();          
  
 }  
       

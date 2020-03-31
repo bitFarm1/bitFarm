@@ -44,17 +44,21 @@ public class ReviewController {
 	@RequestMapping(value="reviewWrite", method=RequestMethod.POST)
 	@ResponseBody
 	public void reviewWrite(@ModelAttribute ReviewDTO reviewDTO, @RequestParam MultipartFile img, HttpSession session) {
-		//System.out.println(img);
 		
 		String filePath = "D:\\spring\\workSTS\\bitFarm\\src\\main\\webapp\\storage";	//내가 설정한 파일 경로
 		String fileName = img.getOriginalFilename();	//img의 이름은 임시파일 이름이라 오리지날 파일 이름을 잡아옴
-		File file = new File(filePath, fileName);
-		
-		//파일 복사
-		try {
-			FileCopyUtils.copy(img.getInputStream(), new FileOutputStream(file));	//copy(input, output) 자동으로 in>out처리해줌
-		} catch (IOException e) {
-			e.printStackTrace();
+		if(fileName.equals("")) {
+			System.out.println("리뷰에 첨부파일 없음");
+			
+		}else {
+			File file = new File(filePath, fileName);
+			
+			//파일 복사
+			try {
+				FileCopyUtils.copy(img.getInputStream(), new FileOutputStream(file));	//copy(input, output) 자동으로 in>out처리해줌
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 		
 		//복사한 파일을 DTO에 넣음

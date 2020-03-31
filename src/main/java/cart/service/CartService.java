@@ -15,4 +15,9 @@ public interface CartService {
 
 	public int cartListAllPrice(String memberId);
 
+	public int isExistInCart(String member_id, String item_id);
+
+	public void cartAddUpdate(Map<String, Object> map);
+
+
 }

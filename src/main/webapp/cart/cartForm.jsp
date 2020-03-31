@@ -37,7 +37,7 @@
 				</td>
 		
 			<td width="30%" align="center">
-				<span id="item_all_price">${cartListDTO.item_all_price}</span>
+				<span id="item_all_price"><fmt:formatNumber pattern="#,###원">${cartListDTO.item_all_price}</fmt:formatNumber></span>
 				<c:set var="item_price" value="${cartListDTO.item_all_price/cartListDTO.item_qty}" />
 			</td>
 		</tr>
@@ -63,32 +63,9 @@
 </div>
 
 <!-- 하단 상품금액 합계 div -->
-<div align="center" style="width: 70%; margin:0 auto;">
-	<div class="costDiv">
-		<br><br>상품 금액<br><br>
-		<strong><fmt:formatNumber pattern="#,###원">${itemAllPrice}</fmt:formatNumber></strong>
-	</div>
-	<div class="calDiv">
-		<br><br><br><strong>ㅡ</strong>
-	</div>
-	<div class="costDiv">
-		<br><br>할인 금액<br><br>
-		0원
-	</div>
-	<div class="calDiv">
-		<br><br><br><strong>+</strong>
-	</div>
-	<div class="costDiv">
-		<br><br>배송비<br><br>
-		3,000원
-	</div>
-	<div class="calDiv">
-		<br><br><br><strong>=</strong>
-	</div>
-	<div class="costDiv">
-		<br><br>총 금액<br>
-		<h2><fmt:formatNumber pattern="#,###원">${itemAllPrice+3000}</fmt:formatNumber></h2>
-	</div>
+<div style="width: 80%; margin:0 auto; text-align: right;">
+	상품 총액 : <font size="5"><strong><span id="totalMoney"><fmt:formatNumber pattern="#,###원">${totalMoney}</fmt:formatNumber></span></strong></font><br><br>
+	<font style="color: grey;">배송비 3,000원이 별도로 부과됩니다.</font>
 </div>
 <p style="clear: both; height: 20px;"></p>
 
@@ -138,6 +115,7 @@ $('.qtyBtn').click(function(){
 	$('#item_all_price').text(itemAllPrice);
 });
 
+//주문하기 누르면 주문폼으로 이동 cartList는 세션에 있음
 $('.orderBtn').click(function(){
 	location.href = '/bitFarm/order/orderForm';
 });

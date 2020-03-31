@@ -32,4 +32,18 @@
 	<select id="cartListAllPrice" parameterType="String" resultType="int">
 		select sum(item_all_price) from cart where cart_id=#{memberId}
 	</select>
+	
+	<select id="isExistInCart" parameterType="java.util.Map" resultType="int">
+		select count(*) from cart where cart_id=#{member_id} and item_id=#{item_id}
+	</select>
+	
+	<update id="cartAddUpdate" parameterType="java.util.Map">
+		update cart set item_qty = item_qty + #{item_qty}, item_all_price = item_all_price + #{item_all_price} 
+		where cart_id = #{member_id} and item_id = #{item_id}
+	</update>
+	
+	
+	
+	
+	
 </mapper>

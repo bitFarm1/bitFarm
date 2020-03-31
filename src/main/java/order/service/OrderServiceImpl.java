@@ -46,7 +46,7 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-<<<<<<< HEAD
+
 	public String orderNum() {
 	   	int num;
     	while(true) {
@@ -62,7 +62,7 @@ public class OrderServiceImpl implements OrderService {
         return orderNum;
 	}
 
-=======
+
 	public void writeOrder(Map<String, Object> map) {
 		System.out.println("service 도착");
 		List<CartListDTO> list = (List<CartListDTO>) map.get("cartList");
@@ -83,22 +83,4 @@ public class OrderServiceImpl implements OrderService {
 		}
 		
 	}
->>>>>>> 0330ksj
-	
-	@Override
-	   public String orderNum() {
-	         int num;
-	       while(true) {
-	          num = (int)(Math.random()*10000);
-	          if(num > 1000) break;
-	       } 
-	       
-	        Date d = new Date(); 
-	        String s = d.toString();
-	           
-	        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");       
-	        String orderNum = sdf.format(d) + num;
-	        return orderNum;
-	   }
 
-}

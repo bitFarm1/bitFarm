@@ -15,4 +15,8 @@ public interface CartDAO {
 
 	public int cartListAllPrice(String memberId);
 
+	public int isExistInCart(Map<String, String> map);
+
+	public void cartAddUpdate(Map<String, Object> map);
+
 }

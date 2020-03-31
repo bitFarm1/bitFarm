@@ -1,18 +1,4 @@
 @charset "UTF-8";
-.costDiv{
-	width: 22%; 
-	float: left;
-	height: 160px;
-	text-align: center;
-	border: 1px dotted gray;
-}
-.calDiv{
-	width: 3%; 
-	float: left;
-	height: 160px;
-	text-align: center;
-	/* border: 1px dotted blue; */
-}
 .smallBtn{
 	width: 80pt;
 	height: 30pt;

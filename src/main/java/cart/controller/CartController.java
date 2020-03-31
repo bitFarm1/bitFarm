@@ -34,9 +34,11 @@ public class CartController {
 		ModelAndView mav = new ModelAndView();
 
 		String memberId = (String)session.getAttribute("memberId");	
-		List<CartListDTO> list = cartService.cartAllList(memberId);		
+		List<CartListDTO> list = cartService.cartAllList(memberId);
+		int totalMoney = cartService.cartListAllPrice(memberId);
 
 		mav.addObject("list", list);
+		mav.addObject("totalMoney", totalMoney);
 		session.setAttribute("cartList", list);
 		mav.addObject("display", "/cart/cartForm.jsp");
 		mav.setViewName("/main/main");
@@ -65,15 +67,28 @@ public class CartController {
 			map.put("item_id", Integer.parseInt(item_id));
 			map.put("item_qty", Integer.parseInt(item_qty));
 			itemAllPrice = itemAllPrice.replace(",", "");
+			
 			try {
 				map.put("item_all_price", Integer.parseInt(itemAllPrice));
-			}catch(NumberFormatException e) {	//item을 한개만 장바구니에 담을때 파라미터에서 itemAllPrice만 가져오고 1개값 못가져오니까 실행하는 부분
+			}catch(NumberFormatException e) {	//item을 한개만 장바구니에 담을때 파라미터에서 itemAllPrice만 가져오고 1개라는걸 못가져오니까 실행하는 부분
 				ItemDTO itemDTO = itemService.getItemView(Integer.parseInt(item_id));	
 				String item_all_price = itemDTO.getItem_price()+"";
 				map.put("item_all_price", item_all_price);
 			}
 			
-			cartService.cartAdd(map);
+			//장바구니에 그 상품이 미리 있는지 확인
+			int exist = cartService.isExistInCart(member_id, item_id);
+			
+			if(exist==1) {	//이미 있음
+				if(!item_qty.equals("1")) {
+					ItemDTO itemDTO = itemService.getItemView(Integer.parseInt(item_id));
+					map.put("item_all_price", itemDTO.getItem_price());
+				}
+				cartService.cartAddUpdate(map);
+			}else {	//없음
+				cartService.cartAdd(map);
+			}
+			
 		}
 		return data;
 		

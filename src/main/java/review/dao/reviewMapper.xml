@@ -14,7 +14,13 @@
 	</select>
 	
 	<insert id="reviewWrite" parameterType="review">
-		insert into review values(review_seq.nextval, #{review_subject}, #{review_content}, #{review_image}, #{review_user_id}, sysdate, #{item_id})
+		insert into review values(review_seq.nextval, 
+								#{review_subject}, 
+								#{review_content}, 
+								nvl(#{review_image},0), 
+								#{review_user_id}, 
+								sysdate, 
+								#{item_id})
 	</insert>
 	
 </mapper>

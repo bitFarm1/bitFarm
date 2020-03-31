@@ -27,11 +27,6 @@ public class CartServiceImpl implements CartService{
 
 	@Override
 	public void cartChoiceDelete(String[] check, String memberId) {
-//		Map<String, Object> map = new HashMap<String, Object>();
-//		map.put("check", check);
-//		map.put("memberId", memberId);
-//		cartDAO.cartChoiceDelete(map);
-		
 		for(int i=0; i<check.length; i++) {
 			Map<String, String> map = new HashMap<String, String>();
 			map.put("check", check[i]);
@@ -49,5 +44,17 @@ public class CartServiceImpl implements CartService{
 			return itemAllPrice;
 		}
 	}
-	
+
+	@Override
+	public int isExistInCart(String member_id, String item_id) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("member_id", member_id);
+		map.put("item_id", item_id);
+		return cartDAO.isExistInCart(map);
+	}
+
+	@Override
+	public void cartAddUpdate(Map<String, Object> map) {
+		cartDAO.cartAddUpdate(map);
+	}
 }

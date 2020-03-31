@@ -35,5 +35,14 @@ public class CartDAOMybatis implements CartDAO {
 	public int cartListAllPrice(String memberId) {
 		return sqlSession.selectOne("cartSQL.cartListAllPrice", memberId);
 	}
-	
+
+	@Override
+	public int isExistInCart(Map<String, String> map) {
+		return sqlSession.selectOne("cartSQL.isExistInCart", map);
+	}
+
+	@Override
+	public void cartAddUpdate(Map<String, Object> map) {
+		sqlSession.update("cartSQL.cartAddUpdate", map);
+	}
 }

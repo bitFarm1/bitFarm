@@ -24,6 +24,5 @@ public interface OrderService {
 	//200330 김소중
 	public void writeOrder(Map<String, Object> map);
 
-	public String orderNum();
 
 }

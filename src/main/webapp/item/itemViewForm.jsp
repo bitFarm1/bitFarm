@@ -115,40 +115,8 @@
 		</ul>
 	</div>
 	<p style="clear: both; height: 5px;"></p>
-	
-	<div class="itemQnaDiv">
-		<table class="itemQnaListTable" frame="hsides" rules = "rows" cellpadding="10">
-			<tr>
-				<th>글번호</th>
-				<th>제목</th>
-				<th>작성일</th>
-			</tr>
-			<!-- list로 돌리기 -->
-			<tr>
-				<td align="center">1</td>
-				<td align="center">상품 질 좋은가요</td>
-				<td align="center">2020-03-20</td>
-			</tr>
-			<tr>
-				<td align="center">1</td>
-				<td align="center">상품 질 좋은가요</td>
-				<td align="center">2020-03-20</td>
-			</tr>
-			<tr>
-				<td align="center">1</td>
-				<td align="center">상품 질 좋은가요</td>
-				<td align="center">2020-03-20</td>
-			</tr>
-			<tr>
-				<td align="center">1</td>
-				<td align="center">상품 질 좋은가요</td>
-				<td align="center">2020-03-20</td>
-			</tr>
-		</table>
-	</div>
-	<p style="clear: both; height: 1px;"></p>
 	<div class="itemBtnDiv">
-		<input type="button" class="itemViewSellerQnaBtn" value="판매자에게 문의하기">
+		<input type="button" class="itemViewSellerQnaBtn" value="문의하러가기">
 	</div>
 </div>
 <p style="clear: both; height: 10px;"></p>

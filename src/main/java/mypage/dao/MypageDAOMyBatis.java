@@ -143,8 +143,8 @@ public class MypageDAOMyBatis implements MypageDAO {
 	}
 
 	public List<OrderDTO> getMypageOrderList(String id) {
-		return  sqlSession.selectList("mypageSQL.getMypageOrderList",id);
-
+	//	return  sqlSession.selectList("mypageSQL.getMypageOrderList",id);
+		return null;
 	}
 
 	

@@ -2,8 +2,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <link rel="stylesheet" href= "../css/cart.css">
-<br>
-<h2 align="center">장 바 구 니</h2><br>
+
+<br><h2 align="center">장 바 구 니</h2><br>
 <form name="cartListForm" method="post" action="/bitFarm/cart/cartChoiceDelete">
 <table class="cartTable" id="cartTable" align="center" width="80%" border="1" cellspacing='0' cellpadding='7' frame="hsides" rules="rows">
 	<tr>
@@ -17,7 +17,10 @@
 	<!-- list받아서 tr 돌리기 -->
 	<c:if test="${list!=null}">
 		<c:forEach var="cartListDTO" items="${list}">
-		<c:set var="list" value="${list }"/>
+		<c:set var="list" value="${list}"/>
+		<c:set var="seq" value="${cartListDTO.item_id}"/>
+		<c:set var="item_price" value="${cartListDTO.item_all_price/cartListDTO.item_qty}" />
+		
 		<tr>
 			<td width="20%" align="center">
 				<input type="checkbox" name="check" value="${cartListDTO.item_id}" class="checkItem">
@@ -26,32 +29,26 @@
 				<img src="../storage/${cartListDTO.item_main_image}" width="200" 
 						onclick="location.href='/bitFarm/item/getItemView?seq=${cartListDTO.item_id}'" style="cursor: pointer;">
 			</td>
-		
-				<td width="30%" align="center">
-					${cartListDTO.item_name}
-				</td>
-				<td width="20%" class="itemQty"  align="center">
-					<input type="button" id="minusBtn" value="-" class="qtyBtn" onclick="change(-1);">
-					<input type="text" name="cart_item_qty" id="cart_item_qty" value="${cartListDTO.item_qty}" readOnly>
-					<input type="button" id="plusBtn" value="+" class="qtyBtn" onclick="change(1);">
-				</td>
-		
 			<td width="30%" align="center">
-				<span id="item_all_price"><fmt:formatNumber pattern="#,###원">${cartListDTO.item_all_price}</fmt:formatNumber></span>
-				<c:set var="item_price" value="${cartListDTO.item_all_price/cartListDTO.item_qty}" />
+				${cartListDTO.item_name}
+			</td>
+			<td width="20%" class="itemQty"  align="center">
+				<input type="button" id="${seq}Btn" value="-" class="qtyBtn">
+				<input type="text" name="cart_item_qty" id="${seq}" class="cart_item_qty" value="${cartListDTO.item_qty}" readOnly>
+				<input type="button" id="${seq}" value="+" class="qtyBtn">
+			</td>
+			<td width="30%" align="center">
+				<span id="item_all_price" class="allprice${seq}">${cartListDTO.item_all_price}</span>
 			</td>
 		</tr>
 		</c:forEach>
-	</c:if>
-	<c:if test="${list==null || list=='null'}">		<!--=============================================================== 이거 왜 안뜨지 -->
-		<tr>
-			<td colspan="5" align="center"><h3>장바구니에 담긴 물건이 없습니당.</h3></td>
-		</tr>
+		<script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
+		<script type="text/javascript" src="../js/cartQty.js"></script>
 	</c:if>
 </table>
 </form><br>
 <form name="cartOrderForm" method="post" action="/bitFarm/order/orderForm">
-	<input type="hidden" ref="list" name="list" id="list" size="200">
+	<input type="hidden" value="${list}" name="list" id="listabc" size="200">
 </form>
 
 <!-- 항목 삭제버튼 div -->
@@ -75,14 +72,6 @@
 </div>
 
 <!-- script -->
-<script type="text/javascript">
-function change(num){
-	var x = Number(cart_item_qty.value) + num;
-	
-	if(x<1) x=1;
-	cartListForm.cart_item_qty.value = x;
-}
-</script>
 <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
 //전체선택/해제 jQuery
@@ -102,17 +91,6 @@ $('#choiceDeleteBtn').click(function(){
 			$('form[name=cartListForm]').submit();
 		}
 	}
-});
-
-//수량 조절에 따라 총 금액 변동 ****************** 장바구니에 상품 1개 있을때만 작동 쥐앤쟝 
-$('.qtyBtn').click(function(){	
-	let itemPrice = ${item_price};
-	
-	let itemAllPrice = $('#item_all_price').text();	//잘가져옴
-	let itemQty = $('#cart_item_qty').val();	//잘가져옴
-	
-	itemAllPrice = itemPrice * itemQty;
-	$('#item_all_price').text(itemAllPrice);
 });
 
 //주문하기 누르면 주문폼으로 이동 cartList는 세션에 있음

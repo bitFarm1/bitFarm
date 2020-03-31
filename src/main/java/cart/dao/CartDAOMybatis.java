@@ -45,4 +45,9 @@ public class CartDAOMybatis implements CartDAO {
 	public void cartAddUpdate(Map<String, Object> map) {
 		sqlSession.update("cartSQL.cartAddUpdate", map);
 	}
+
+	@Override
+	public void updateCart(Map<String, String> map) {
+		sqlSession.update("cartSQL.updateCart", map);
+	}
 }

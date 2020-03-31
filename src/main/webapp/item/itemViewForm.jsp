@@ -64,8 +64,9 @@
 	<div class="itemDetailDiv">
 		<img src="../storage/${itemDTO.item_detail_image}" class="itemViewDetailImage">
 	</div>
-	
 	<p style="clear: both; height: 100px;"></p>
+	
+	
 	<div class="itemMenu">
 		<ul>
 			<li class="itemDetailLi"><h4>상품설명</h4></li>
@@ -74,7 +75,7 @@
 		</ul>
 	</div>
 	<p style="clear: both; height: 10px;"></p>
-	
+
 	<!-- 리뷰div 따로 파일 뺌 -->
 	<jsp:include page="itemViewReview.jsp" />
 	<p style="clear: both; height: 1px;"></p>

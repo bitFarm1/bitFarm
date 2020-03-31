@@ -19,4 +19,6 @@ public interface CartDAO {
 
 	public void cartAddUpdate(Map<String, Object> map);
 
+	public void updateCart(Map<String, String> map);
+
 }

@@ -1,4 +1,13 @@
 @charset "UTF-8";
+.itemQnaListTable1{
+	font-size: 10pt;
+	width: 100%;
+	frame: void;
+	rules: rows;
+}
+.itemQnaListTable1 th{
+	background-color: #F7F5F8;
+}
 .itemView{
 	width: 80%;
 	margin: 0 auto;

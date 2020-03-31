@@ -15,6 +15,8 @@ import mypage.bean.MypagePickSellerDTO;
 import mypage.bean.MypagePointDTO;
 import mypage.bean.MypageReviewDTO;
 import order.bean.OrderDTO;
+import mypage.bean.MypageReviewListDTO;
+
 
 @Repository
 @Transactional
@@ -64,9 +66,8 @@ public class MypageDAOMyBatis implements MypageDAO {
 
 	//리뷰
 	@Override
-	public List<MypageReviewDTO> getMyReviewList(String id) {
-	
-		return sqlSession.selectList("mypageSQL.getMyReviewList",id);	
+	public List<MypageReviewListDTO> getMyReviewList(String id) {
+		return sqlSession.selectList("mypageSQL.getMyReviewList", id);	
 	}
 
 	//찜한 물건

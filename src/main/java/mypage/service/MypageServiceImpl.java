@@ -12,6 +12,7 @@ import mypage.bean.MypagePickItemDTO;
 import mypage.bean.MypagePickSellerDTO;
 import mypage.bean.MypagePointDTO;
 import mypage.bean.MypageReviewDTO;
+import mypage.bean.MypageReviewListDTO;
 import mypage.dao.MypageDAO;
 import order.bean.OrderDTO;
 
@@ -69,11 +70,8 @@ public class MypageServiceImpl implements MypageService {
 	
 	//리뷰 가져오기
 	@Override
-	public List<MypageReviewDTO> getMyReviewList(String id) {
-		
-		List<MypageReviewDTO> list = mypageDAO.getMyReviewList(id);
-
-		return list;
+	public List<MypageReviewListDTO> getMyReviewList(String id) {
+		return mypageDAO.getMyReviewList(id);
 	}
 	
 	//찜한 물건

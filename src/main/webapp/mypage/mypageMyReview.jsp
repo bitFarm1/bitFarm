@@ -1,85 +1,53 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <h3>나의 후기 모아보기</h3>
-<table class="myReviewListTable"  id = "myReviewListTable" frame="hsides" rules="rows" cellpadding="10">
-<thead>
+<table class="myReviewListTable" id="myReviewListTable" frame="hsides" rules="rows" cellpadding="10">
 	<tr>
 		<th>글번호</th>
+		<th>상품명</th>
 		<th>제목</th>
 		<th>작성일</th>
 	</tr>
-</thead>
-<tbody>
-
-<c:forEach var="myReviewDTO" items="${list }">
-<c:set var = "seq" value = "${myReviewDTO.review_id }"/>
-<c:set var = "review_subject" value = "${myReviewDTO.review_subject }"/>
-<c:set var = "review_content" value = "${myReviewDTO.review_content }"/>
-<c:set var = "review_image" value = "${myReviewDTO.review_image }"/>
-<c:set var = "review_date" value = "${myReviewDTO.review_date }"/>
-<tr>
-	<td align = "center">${seq }</td>
-	<td id = "${seq }" class = "reviewDetail" align = "center" style = "cursor: pointer;">
-	${review_subject }</td>
-	<td align = "center">
-	<fmt:formatDate value="${review_date }" pattern="yyyy/MM/dd"/>
-	</td>
-</tr>
-<tr name = "trtr"><td colspan = "3"><div id = "${seq }Div" style = "display:none;">${review_content }</div></td></tr>
-</c:forEach>
-</tbody>
-
+	<c:if test="${list!=null }">
+	<c:forEach var="myReviewListDTO" items="${list}">
+	<c:set var="seq" value="${myReviewListDTO.review_id}"/>
+	<tr>
+		<td align="center"> ${myReviewListDTO.review_id} </td>
+		<td align="center"> ${myReviewListDTO.item_name} </td>
+		<td align="center" id="${seq}" style="cursor: pointer;">${myReviewListDTO.review_subject}</td>
+		<td align="center"> ${myReviewListDTO.review_date} </td>
+	</tr>
+	<tr id="hidden_${seq}" style="display: none;">
+	  <c:if test="${myReviewListDTO.review_image!='0'}">
+		<td align="center" colspan="2">
+			<img src="../storage/${myReviewListDTO.review_image}" width="150" height="150" style="cursor: pointer;"
+				onclick="location.href='../storage/${myReviewListDTO.review_image}'">
+		</td>
+		<td align="center" colspan="2">${myReviewListDTO.review_content}</td>
+	  </c:if>
+	  <c:if test="${myReviewListDTO.review_image=='0'}">
+		<td align="center" colspan="4">${myReviewListDTO.review_content}</td>
+	  </c:if>
+	</tr>
+	<script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
+	<script type="text/javascript">
+	var ishidden = false;
+	
+	$('#${seq}').click(function(){
+		ishidden = !ishidden;   
+		if(ishidden){
+			$('#hidden_${seq}').css("display", "table-row");
+		}else{  
+			$('#hidden_${seq}').css("display", "none"); 
+		}
+	});
+	</script>
+	
+	</c:forEach>
+	</c:if>
 </table>
 <p style="clear: both; height: 10px;"></p>
-<script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
-<script type="text/javascript">
 
-$(document).ready(function(){
-	$.ajax({
-		type: 'post',
-		url: '/bitFarm/mypage/getMyReviewList',
-		dataType:'json',
-		success : function(data){
-		//	alert(JSON.stringify(data));
-			 $.each(data.list, function(index, items){
-				$('<tr/>').append($('<td/>',{ align : 'center', text: items.review_id }))
-						  .append($('<td/>',{ align : 'center', text: items.review_subject , style : 'cursor: pointer;', class : items.review_id+""  }))
-						  .append($('<td/>',{ align : 'center', text: items.review_date }))
-						  .appendTo($('#myReviewListTable'));
-				
-				//눌러서 내용 상세보기
-				$('.'+items.review_id).click(function(){
-						
-				}); 
-			 
-			 });//each
-		
-		}//success
-		
-	});
-});
-
-
-$('#reviewBtn'}).click(function(){
-	alert('짠');
-}); 
-
-$(document).ready(function(){
-	
-	$(document).on("click",".reviewDetail",function(){
-		var seq = $(this).prev().text();
-		var seqDiv = $(this).attr('id');
-		if(seq == seqDiv){
-			alert(seq+','+seqDiv);
-			if(a.style.display=='none'){
-				alert('none');
-			}else{
-				alert('block');
-			}
-		}
-	});//click
-	
-});//ready
-
-</script>
+			

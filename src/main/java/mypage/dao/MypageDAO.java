@@ -10,6 +10,7 @@ import mypage.bean.MypagePickSellerDTO;
 import mypage.bean.MypagePointDTO;
 import mypage.bean.MypageReviewDTO;
 import order.bean.OrderDTO;
+import mypage.bean.MypageReviewListDTO;
 
 public interface MypageDAO {
 
@@ -25,7 +26,7 @@ public interface MypageDAO {
 
 	public void writePoint(String member_id);
 
-	public List<MypageReviewDTO> getMyReviewList(String id);
+	public List<MypageReviewListDTO> getMyReviewList(String id);
 
 	public List<MypagePickItemDTO> getMypagePickItem(String id);
 

@@ -7,8 +7,10 @@
 <form id = "orderForm">
 <input type = "hidden" name = "user_phone" value = "${memberDTO.member_phone}">
 <input type = "hidden" name = "before_price" value = "${totalMoney}">
-<input type= "hidden" name = "total" value = "0">
-<input type= "hidden" name = "point" value = "0"> 
+<input type = "hidden" name = "total" value = "0">
+<input type = "hidden" name = "point" value = "0"> 
+<input type = "hidden" name = "coupon" value = "0">
+<input type = "hidden" name = "couponId" value = "0">
 
 <div class="defalutCenterDiv">주문하실 상품명 및 수량을 정확하게 확인해주세요</div>
 <br><br>
@@ -56,11 +58,11 @@
 <div class="defalutCenterDiv">
    <table class="orderTable_tdLeft" frame="hsides" rules="rows" cellpadding="20">
       <tr> 
-         <th rowspan="3">주소</th>
-      </tr>
-      <tr>
-         <td><input class="shipInfoText" type="text" id="addr1" name="addr1" size="70" value="${memberDTO.member_address1}" readOnly> 
-			 <input class="shipAddBtn" type="button" value="배송지 변경" onclick="execDaumPostcode()"></td>
+         <th rowspan="2">주소</th>
+         <td>
+         	<input class="shipInfoText" type="text" id="addr1" name="addr1" size="70" value="${memberDTO.member_address1}" readOnly> 
+			<input class="shipAddBtn" type="button" value="배송지 변경" onclick="execDaumPostcode()">
+		</td>
       </tr>
       <tr>
          <td><input class="shipInfoText" type="text" id="addr2" name="addr2" size="70" value="${memberDTO.member_address2}"></td>
@@ -89,7 +91,7 @@
 				<select id = "selectCoupon" style="height: 30px; width: 500px;">
 					<option value = "0">쿠폰을 선택하세요</option>
 				<c:forEach var="couponDTO" items="${couponList }">
-					<option name = "${couponDTO.coupon_id }" value = "${couponDTO.coupon_price }">[${couponDTO.coupon_name }] ${couponDTO.coupon_content}</option>	 
+					<option id = "couponOption"  name = "${couponDTO.coupon_id }" value = "${couponDTO.coupon_price }">[${couponDTO.coupon_name }] ${couponDTO.coupon_content}</option>	 
 				</c:forEach>
 					 	
 				</select>
@@ -202,23 +204,22 @@ $('.orderBtn').click(function(){
 		    buyer_tel : '${memberDTO.member_phone}',
 		//  buyer_addr : '서울특별시 강남구 삼성동',
 		//  buyer_postcode : '123-456',
-		    m_redirect_url : '/bitFarm/main/main'	//이거는 안먹는데 뭐지
+		//    m_redirect_url : '/bitFarm/main/main'	//이거는 안먹는데 뭐지
 		}, function(rsp) {
 		    if ( rsp.success ) {
-		        var msg = '결제가 완료되었습니다.';
-		        msg += '고유ID : ' + rsp.imp_uid;
-		        msg += '상점 거래ID : ' + rsp.merchant_uid;
-		        msg += '결제 금액 : ' + rsp.paid_amount;
-		        msg += '카드 승인번호 : ' + rsp.apply_num;
-		        alert(msg);
+			//        var msg = '결제가 완료되었습니다.';
+		    //    msg += '고유ID : ' + rsp.imp_uid;
+		     //   msg += '상점 거래ID : ' + rsp.merchant_uid;
+		      //  msg += '결제 금액 : ' + rsp.paid_amount;
+		       // msg += '카드 승인번호 : ' + rsp.apply_num;
+		  //      alert(msg);
 		  //      location.href = '/bitFarm/order/orderSuccess';	//주문 성공 됐다는 페이지 만들기
 		        $.ajax({
 		    		type : 'post',
 		    		url : '/bitFarm/order/writeOrder',
 		    		data : $('#orderForm').serialize(),
-		    		dataType : 'json',
-		    		success : function(data){
-		    			alert('짠');
+		    		success : function(){
+		    		//	alert('짠');
 		    			//alert(JSON.stringify(data)); 
 		    			location.href = '/bitFarm/order/orderSuccess';
 		    		}
@@ -264,7 +265,7 @@ $(document).ready(function(){
 	
 	let usePoint = $('#userPoint').val();
 	let useCoupon = $('#selectCoupon option:selected').val();
-	   
+	  
 	let totalMoney = ${totalMoney};
 	   
 	let total = totalMoney + 3000 - usePoint - useCoupon;   
@@ -282,11 +283,20 @@ $('#selectCoupon').change(function(){
 	   
 	   let total = totalMoney + 3000 - usePoint - useCoupon; 
 	 
+	   let couponId = $('#couponOption').attr('name');
+	// alert(couponId);
 	   
+	   $('input[name=couponId]').val(couponId); //
+	   $('input[name=coupon]').val(useCoupon); //
 	   $('input[name=point]').val(usePoint);   
 	   $('input[name=total]').val(total);
 	   $('#userCouponResult').text(useCoupon.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")); 
-	   $('#totalMoneyDiv').text(total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));         
+	   $('#totalMoneyDiv').text(total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));        
+	   
+	   
+	   
+	
+	   
 });      
 
 $('#userPoint').focusout(function(){
@@ -297,6 +307,7 @@ $('#userPoint').focusout(function(){
 	   let total = totalMoney + 3000 - usePoint - useCoupon;
 	   
 
+	   $('input[name=coupon]').val(useCoupon); //
 	   $('input[name=point]').val(usePoint);   
 	   $('input[name=total]').val(total);
 	   $('div[id=totalMoneyDiv]').text(total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));    

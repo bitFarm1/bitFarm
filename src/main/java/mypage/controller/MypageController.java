@@ -22,6 +22,7 @@ import mypage.bean.MypagePickSellerDTO;
 import mypage.bean.MypagePointDTO;
 import mypage.bean.MypageReviewDTO;
 import mypage.service.MypageService;
+import order.bean.OrderDTO;
 
 
 @Controller
@@ -36,10 +37,28 @@ public class MypageController {
 	
 	//구매내역
 	@RequestMapping(value="/mypageMain", method=RequestMethod.GET)
-	public String mypageMain(Model model) {
-		model.addAttribute("display","/mypage/mypageMain.jsp");
-		model.addAttribute("mypage","/mypage/mypagePurchaseList.jsp");
-		return "/main/main";
+	public ModelAndView mypageMain(Model model, HttpSession session) {
+		
+		String id = (String)session.getAttribute("memberId");
+		List<OrderDTO> list = mypageService.getMypageOrderList(id);
+		
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("list",list);
+		mav.addObject("memberId",id);
+		mav.addObject("display","/mypage/mypageMain.jsp");
+		mav.addObject("mypage","/mypage/mypagePurchaseList.jsp");
+		mav.setViewName("/main/main");
+
+		return mav;
+		
+		
+		
+		
+		
+		
+	//	model.addAttribute("display","/mypage/mypageMain.jsp");
+	//	model.addAttribute("mypage","/mypage/mypagePurchaseList.jsp");
+	//	return "/main/main";
 	}
 	
 	//적립금
@@ -189,19 +208,19 @@ public class MypageController {
 	}
 	
 	//찜한 물건 삭제
-		@RequestMapping(value="/deletePickItem", method=RequestMethod.POST)
-		public ModelAndView deletePickItem(@RequestParam String deleteId, Model model, HttpSession session) {
+	@RequestMapping(value="/deletePickItem", method=RequestMethod.POST)
+	public ModelAndView deletePickItem(@RequestParam String deleteId, Model model, HttpSession session) {
+		
+		String id = (String)session.getAttribute("memberId");
+		
+		Map<String, String>map = new HashMap<String, String>();
+		map.put("id",id);
+		map.put("deleteId", deleteId);
+		
+		mypageService.deletePickItem(map);
 			
-			String id = (String)session.getAttribute("memberId");
-			
-			Map<String, String>map = new HashMap<String, String>();
-			map.put("id",id);
-			map.put("deleteId", deleteId);
-
-			mypageService.deletePickItem(map);
-			
-			return new ModelAndView("redirect:/mypage/mypagePickItem");
-		}
+		return new ModelAndView("redirect:/mypage/mypagePickItem");
+	}
 	
 	
 	//찜한 판매자
@@ -226,6 +245,13 @@ public class MypageController {
 		return mav;
 	}
 	
+	@RequestMapping(value="/mypagePurchaseList", method=RequestMethod.GET)
+	public String mypagePurchaseList(Model model) {
+		model.addAttribute("display","/mypage/mypageMain.jsp");
+		model.addAttribute("mypage","/mypage/mypagePurchaseList.jsp");
+		return "/main/main";
+	}
+	
 	@RequestMapping(value="/mypagePurchaseDetail", method=RequestMethod.GET)
 	public String mypagePurchaseDetail(Model model) {
 		model.addAttribute("display","/mypage/mypageMain.jsp");
@@ -233,12 +259,7 @@ public class MypageController {
 		return "/main/main";
 	}
 	
-	@RequestMapping(value="/mypagePurchaseList", method=RequestMethod.GET)
-	public String mypagePurchaseList(Model model) {
-		model.addAttribute("display","/mypage/mypageMain.jsp");
-		model.addAttribute("mypage","/mypage/mypagePurchaseList.jsp");
-		return "/main/main";
-	}
+	
 	
 	@RequestMapping(value="/mypageQna", method=RequestMethod.GET)
 	public String mypageQna(Model model) {

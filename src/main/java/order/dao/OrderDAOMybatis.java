@@ -42,14 +42,14 @@ public class OrderDAOMybatis implements OrderDAO {
 
 	@Override
 	public int writeOrder(Map<String, Object> map) {
-		
-		int su = sqlSession.insert("orderSQL.writeOrder",map);
+	//	System.out.println("DAO도착");
+		int su = sqlSession.insert("orderSQL.writePurchase",map);
 		return su;
 	}
 
 	@Override
 	public Map<String, Object> getItemSellerNPrice(int item_id) {
-		System.out.println("DAO도착");
+		
 		String seller_name = sqlSession.selectOne("orderSQL.getItemSeller", item_id);
 		String item_price = sqlSession.selectOne("orderSQL.getItemPrice", item_id);
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -58,6 +58,51 @@ public class OrderDAOMybatis implements OrderDAO {
 		return map;
 		
 	}
+	
+	@Override
+	public String getUseCoupon(String orderId) {
+		String useCouponId = null;
+		useCouponId = sqlSession.selectOne("orderSQL.getUseCoupon",orderId); 
+		
+		if(useCouponId == null) {
+			System.out.println("사용한 쿠폰 없다");
+			return "none";
+		}else {
+			System.out.println(useCouponId);
+			return useCouponId;
+		}
+	}
+	
+	@Override
+	public void deleteCoupon(Map<String, String> tempMap) {
+		sqlSession.delete("orderSQL.deleteCoupon",tempMap);
+	}
+	
+	@Override
+	public int getUsePoint(String orderId) {
+		int usePointPrice = 0;
+		
+		usePointPrice = sqlSession.selectOne("orderSQL.getUsePoint",orderId);
+		
+		if(usePointPrice == 0) {
+			return 0;
+		}else {
+			return usePointPrice;
+		}
+	}
+
+	@Override
+	public int deletePoint(Map<String, Object> tempMap) {
+		//이름은 삭제지만 실제기능은 point에 사용 기록을 남기는 것
+		int su = sqlSession.insert("orderSQL.deletePoint",tempMap);
+		return su;
+	}
+
+	
+
+	
+
+	
 
 	
 

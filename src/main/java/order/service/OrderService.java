@@ -24,4 +24,6 @@ public interface OrderService {
 
 	public String orderNum();
 
+	public void deletePointNCoupon(Map<String, String> map);
+
 }

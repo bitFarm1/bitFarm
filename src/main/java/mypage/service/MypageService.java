@@ -9,6 +9,7 @@ import mypage.bean.MypagePickItemDTO;
 import mypage.bean.MypagePickSellerDTO;
 import mypage.bean.MypagePointDTO;
 import mypage.bean.MypageReviewDTO;
+import order.bean.OrderDTO;
 
 public interface MypageService {
 
@@ -35,5 +36,7 @@ public interface MypageService {
 	public void deleteChoicePickItem(String[] check, String id);
 
 	public void deletePickItem(Map<String, String> map);
+
+	public List<OrderDTO> getMypageOrderList(String id);
 
 }

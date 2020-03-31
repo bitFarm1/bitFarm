@@ -14,6 +14,7 @@ import mypage.bean.MypagePickItemDTO;
 import mypage.bean.MypagePickSellerDTO;
 import mypage.bean.MypagePointDTO;
 import mypage.bean.MypageReviewDTO;
+import order.bean.OrderDTO;
 
 @Repository
 @Transactional
@@ -108,6 +109,12 @@ public class MypageDAOMyBatis implements MypageDAO {
 	public List<MypagePickSellerDTO> getMypagePickSeller(String id) {
 		
 		return sqlSession.selectList("mypageSQL.getMypagePickSeller",id);
+	}
+
+	@Override
+	public List<OrderDTO> getMypageOrderList(String id) {
+	
+		return  sqlSession.selectList("mypageSQL.getMypageOrderList",id);
 	}
 
 	

@@ -60,4 +60,9 @@
 		select * from pickSeller where pick_seller_user_id = #{id}
 	</select>
 	
+	<!-- 구매내역 -->
+	<select id = "getMypageOrderList" resultType = "orderDTO" parameterType="String">
+		select * from purchase where order_user_id = #{id}
+	</select>
+	
 </mapper>

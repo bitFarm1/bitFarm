@@ -42,8 +42,10 @@
 		where cart_id = #{member_id} and item_id = #{item_id}
 	</update>
 	
-	
-	
+	<update id="updateCart" parameterType="java.util.Map">
+		update cart set item_qty = #{item_qty}, item_all_price = #{item_all_price}
+		where cart_id = #{member_id} and item_id = #{item_id}
+	</update>
 	
 	
 </mapper>

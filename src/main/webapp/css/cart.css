@@ -32,9 +32,9 @@
 	font-size: 13pt;
 	cursor: pointer;
 }
-#cart_item_qty{
+.cart_item_qty{
 	width: 15pt;
-	border: 0;
+	border: none;
 	text-align: center;
 }
 .cartTable{

@@ -45,6 +45,14 @@ public class CartController {
 		return mav;
 	}
 	
+	@RequestMapping(value="updateCart", method=RequestMethod.POST)
+	@ResponseBody
+	public void updateCart(@RequestParam String item_id, @RequestParam String item_qty, @RequestParam String item_all_price, HttpSession session) {
+		String member_id = (String)session.getAttribute("memberId");
+		cartService.updateCart(item_id, item_qty, item_all_price, member_id);
+		//return new ModelAndView("redirect:/cart/cartForm");
+	}
+	
 	//장바구니 추가 버튼 누르면 장바구니 db에 추가하는 메소드
 	@RequestMapping(value="cartAdd", method=RequestMethod.POST)
 	@ResponseBody

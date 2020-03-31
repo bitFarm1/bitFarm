@@ -19,5 +19,7 @@ public interface CartService {
 
 	public void cartAddUpdate(Map<String, Object> map);
 
+	public void updateCart(String item_id, String item_qty, String item_all_price, String member_id);
+
 
 }

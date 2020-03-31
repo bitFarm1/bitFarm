@@ -57,4 +57,14 @@ public class CartServiceImpl implements CartService{
 	public void cartAddUpdate(Map<String, Object> map) {
 		cartDAO.cartAddUpdate(map);
 	}
+
+	@Override
+	public void updateCart(String item_id, String item_qty, String item_all_price, String member_id) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("item_id", item_id);
+		map.put("item_qty", item_qty);
+		map.put("item_all_price", item_all_price);
+		map.put("member_id", member_id);
+		cartDAO.updateCart(map);		
+	}
 }

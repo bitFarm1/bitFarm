@@ -64,8 +64,9 @@
 	<div class="itemDetailDiv">
 		<img src="../storage/${itemDTO.item_detail_image}" class="itemViewDetailImage">
 	</div>
-	
 	<p style="clear: both; height: 100px;"></p>
+	
+	
 	<div class="itemMenu">
 		<ul>
 			<li class="itemDetailLi"><h4>상품설명</h4></li>
@@ -74,38 +75,15 @@
 		</ul>
 	</div>
 	<p style="clear: both; height: 10px;"></p>
-	
-	<div class="itemReviewDiv">
-		<table class="itemQnaListTable" frame="hsides" rules="rows" cellpadding="10">
-			<tr>
-				<th>글번호</th>
-				<th>제목</th>
-				<th>작성자</th>
-				<th>작성일</th>
-			</tr>
-		<!-- list로 돌리기 -->
-			<c:if test="${reviewList!=null}">
-			<c:forEach var="reviewDTO" items="${reviewList}">
-			<tr>
-				<td align="center" width="15%">${reviewDTO.review_id}</td>
-				<td align="center" width="35%">${reviewDTO.review_subject }</td>
-				<td align="center" width="25%">${reviewDTO.review_user_id }</td>
-				<td align="center" width="25%"><fmt:formatDate pattern="yyyy년 MM월 dd일" value="${reviewDTO.review_date}"/></td>
-			</tr>
-			</c:forEach>
-			</c:if>
-			<c:if test="${reviewList==null}">	<!-- ㅇㅏ 카트도 그렇고 이거 도대체 왜 안뜨지 -->
-			<tr>
-				<td colspan="3" align="center">작성된 리뷰가 없습니다!</td>
-			</tr>
-			</c:if>
-		</table>
-	</div>
+
+	<!-- 리뷰div 따로 파일 뺌 -->
+	<jsp:include page="itemViewReview.jsp" />
 	<p style="clear: both; height: 1px;"></p>
 	<div class="itemBtnDiv">
-		<input type="button" class="itemViewReviewWriteBtn" value="후기 작성하기">
+		<input type="button" class="itemViewReviewWriteBtn" value="후기작성하기">
 	</div>
 	
+	<!-- 문의 -->
 	<p style="clear: both; height: 100px;"></p>
 	<div class="itemMenu">
 		<ul>
@@ -192,6 +170,8 @@ function botchange(num){
 <script type="text/javascript" src="../js/jquery.number.min.js"></script>
 <script type="text/javascript" src="../js/itemViewForm.js"></script>
 <script type="text/javascript">
+
+//수량 조절에 따라 금액변동
 $('.qtyBtn').click(function(){
 	let itemPrice = ${itemDTO.item_price};
 	let itemQty = $('#item_qty').val();
@@ -203,6 +183,7 @@ $('.qtyBtn').click(function(){
 	$('span[id=itemAllPrice]').text($.number(itemAllPrice, 0));
 });
 
+//수량 조절에 따라 금액변동
 $('.botqtyBtn').click(function(){
 	let itemPrice = ${itemDTO.item_price};
 	let itemQty = $('#item_qty1').val();
@@ -214,6 +195,7 @@ $('.botqtyBtn').click(function(){
 	$('span[id=itemAllPrice]').text($.number(itemAllPrice, 0));
 });
 
+//장바구니로 가튼 버튼
 $('#mainCartBtn').click(function(){
 	let item_id = ${itemDTO.item_id};
 	let item_qty = $('#item_qty').val();
@@ -237,6 +219,7 @@ $('#mainCartBtn').click(function(){
 	});
 });
 
+//장바구니로 가튼 버튼
 $('#scrollCartBtn').click(function(){
 	let item_id = ${itemDTO.item_id};
 	let item_qty = $('#item_qty1').val();
@@ -259,6 +242,7 @@ $('#scrollCartBtn').click(function(){
 	});
 });
 
+//후기작성하는 버튼
 $('.itemViewReviewWriteBtn').click(function(){
 	let id = '${memberId}';
 	//alert(id);
@@ -270,6 +254,7 @@ $('.itemViewReviewWriteBtn').click(function(){
 	}
 });
 
+//문의작성하러 가는 버튼
 $('.itemViewSellerQnaBtn').click(function(){
 	let id = '${memberId}';
 	//alert(id);
@@ -281,7 +266,7 @@ $('.itemViewSellerQnaBtn').click(function(){
 	}
 });
 
-///////////////////////////////////////////////////////////
+//상품 찜하기 하는 버튼
 $('.goPickItemBtn').click(function(){
 	
 	let item_id = ${itemDTO.item_id};

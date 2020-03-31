@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <style type="text/css">
@@ -8,7 +7,6 @@
 	a.info:visited {color: black; text-decoration: none;}
 	a.info:hover {color: #5f0080; text-decoration: none; font-weight: bolder;} 
 	a.info:active {color: black; text-decoration: none;} 
-
 	th{
 		background-color: #F7F5F8;
 	}
@@ -16,11 +14,9 @@
 		white-space: pre-wrap;
 		word-break: break-all;
 	}
-	
 	#infoListTable{
 		font-size: 9pt; 
 	}  
-
 </style>
 
 <form name="informationQnAListForm" method="post" action="">
@@ -80,15 +76,14 @@
 	</tr>	    
 	 
 	<tr id="hidden1${seq }" style="display:none;" >
-		 
 		<td colspan="3" style="width: 500px;">   
-		<pre class="contents">${infoQnA_content }<br></pre> 
+			<pre class="contents">${infoQnA_content }<br></pre> 
 		</td> 
-	<c:if test="${infoQnA_imageName != '0'}"> 
+	  <c:if test="${infoQnA_imageName != '0'}"> 
 		<td colspan="3"  align="center"> 
 			<img src="../storage/${infoQnA_imageName }" width="200" height="200">			 
 		</td> 
-	</c:if>			  
+	  </c:if>			  
 	</tr>     
 	
 	<c:if test="${informationQnADTO.infoQnA_answerSubject != '0'}">

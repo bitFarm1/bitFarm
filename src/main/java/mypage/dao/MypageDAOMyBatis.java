@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import information.bean.InformationQnADTO;
 import member.bean.MemberDTO;
 import mypage.bean.MypageCouponDTO;
 import mypage.bean.MypagePickItemDTO;
@@ -146,6 +147,11 @@ public class MypageDAOMyBatis implements MypageDAO {
 	public List<OrderDTO> getMypageOrderList(String id) {
 	//	return  sqlSession.selectList("mypageSQL.getMypageOrderList",id);
 		return null;
+	}
+
+	@Override
+	public List<InformationQnADTO> getMyQnaList(String id) {
+		return sqlSession.selectList("mypageSQL.getMyQnaList", id);
 	}
 
 	

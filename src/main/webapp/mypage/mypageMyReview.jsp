@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <h3>나의 후기 모아보기</h3>
 <table class="myReviewListTable" id="myReviewListTable" frame="hsides" rules="rows" cellpadding="10">
@@ -14,10 +13,10 @@
 	<c:forEach var="myReviewListDTO" items="${list}">
 	<c:set var="seq" value="${myReviewListDTO.review_id}"/>
 	<tr>
-		<td align="center"> ${myReviewListDTO.review_id} </td>
-		<td align="center"> ${myReviewListDTO.item_name} </td>
+		<td align="center">${myReviewListDTO.review_id} </td>
+		<td align="center">${myReviewListDTO.item_name} </td>
 		<td align="center" id="${seq}" style="cursor: pointer;">${myReviewListDTO.review_subject}</td>
-		<td align="center"> ${myReviewListDTO.review_date} </td>
+		<td align="center">${myReviewListDTO.review_date}</td>
 	</tr>
 	<tr id="hidden_${seq}" style="display: none;">
 	  <c:if test="${myReviewListDTO.review_image!='0'}">

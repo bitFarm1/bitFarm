@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import information.bean.InformationQnADTO;
 import mypage.bean.MypageCouponDTO;
 import mypage.bean.MypagePickItemDTO;
 import mypage.bean.MypagePickSellerDTO;
@@ -321,10 +322,18 @@ public class MypageController {
 	
 	
 	@RequestMapping(value="/mypageQna", method=RequestMethod.GET)
-	public String mypageQna(Model model) {
-		model.addAttribute("display","/mypage/mypageMain.jsp");
-		model.addAttribute("mypage","/mypage/mypageQna.jsp");
-		return "/main/main";
+	public ModelAndView mypageQna(HttpSession session) {
+		String id = (String)session.getAttribute("memberId");
+		List<InformationQnADTO> list = mypageService.getMyQnaList(id);
+		
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("list",list);
+		mav.addObject("memberId",id);
+		mav.addObject("display","/mypage/mypageMain.jsp");
+		mav.addObject("mypage","/mypage/mypageQna.jsp");
+		mav.setViewName("/main/main");
+
+		return mav;
 	}
 	
 	

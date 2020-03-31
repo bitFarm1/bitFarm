@@ -91,8 +91,11 @@
 	width: 100%;
 	frame: void;
 	rules: rows;
+	font-size: 10pt;
 }
-
+.purchaseListTable th{
+	background-color: #F7F5F8;
+}
 .purchaseListDetailItemA{color:blak; text-decoration: none; }
 .purchaseListDetailItemA:link {color: black; text-decoration: none;}
 .purchaseListDetailItemA:visited {color: black; text-decoration: none;}

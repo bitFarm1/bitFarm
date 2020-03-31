@@ -22,7 +22,7 @@
 		<typeAlias type="cart.bean.CartListDTO" alias="cartList" />  	
 		<typeAlias type="item.bean.ItemDTO" alias="item" />  			
 		<typeAlias type="review.bean.ReviewDTO" alias="review" />  	
-		<!-- <typeAlias type="order.bean.OrderDTO" alias="orderDTO" /> -->  	
+		<typeAlias type="order.bean.OrderDTO" alias="orderDTO" />  	
 		
 	</typeAliases> 
 	

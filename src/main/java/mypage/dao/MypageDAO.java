@@ -3,6 +3,7 @@ package mypage.dao;
 import java.util.List;
 import java.util.Map;
 
+import information.bean.InformationQnADTO;
 import member.bean.MemberDTO;
 import mypage.bean.MypageCouponDTO;
 import mypage.bean.MypagePickItemDTO;
@@ -52,7 +53,9 @@ public interface MypageDAO {
 
 	public void deleteCoupon(Map<String, String> map);  
 
-	public List<OrderDTO> getMypageOrderList(String id);  
+	public List<OrderDTO> getMypageOrderList(String id);
+
+	public List<InformationQnADTO> getMyQnaList(String id);  
 
 
 }

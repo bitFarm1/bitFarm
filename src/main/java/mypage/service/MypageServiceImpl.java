@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import information.bean.InformationQnADTO;
 import mypage.bean.MypageCouponDTO;
 import mypage.bean.MypagePickItemDTO;
 import mypage.bean.MypagePickSellerDTO;
@@ -174,6 +175,11 @@ public class MypageServiceImpl implements MypageService {
 		
 		return list;
 
+	}
+
+	@Override
+	public List<InformationQnADTO> getMyQnaList(String id) {
+		return mypageDAO.getMyQnaList(id);
 	}
 
 	

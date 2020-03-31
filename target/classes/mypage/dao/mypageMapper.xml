@@ -63,8 +63,14 @@
 	</select>
 	
 	<!-- 구매내역 -->
+
 	<!-- <select id = "getMypageOrderList" resultType = "orderDTO" parameterType="String">
 		select * from purchase where order_user_id = #{id}
 	</select> -->
+	
+	<select id="getMyQnaList" parameterType="String" resultType="informationQnADTO">
+		select * from qnaboard where INFOQNA_USERID=#{id}
+	</select>
+	
 	
 </mapper>

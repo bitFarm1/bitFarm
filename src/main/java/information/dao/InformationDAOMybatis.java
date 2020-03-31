@@ -105,6 +105,12 @@ public class InformationDAOMybatis implements InformationDAO{
 	public List<InformationQnADTO> infoALLADMIN() {   
 		// TODO Auto-generated method stub 
 		return sqlSession.selectList("informationSQL.infoALLADMIN");  
+	}
+
+	@Override
+	public void deleteInfo(String seq) {
+		sqlSession.delete("informationSQL.deleteInfo", seq); 
+		
 	} 
  
 }  

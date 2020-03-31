@@ -21,7 +21,7 @@
 		border-bottom: 1px solid #e5e5e5; 
 	}
 </style> 
- 
+
 <form name="informationQnAListForm" method="post" action="">
 <div style="width:1200px; margin: 0 auto;">   
 <h3>1:1 문의 내역</h3> 
@@ -97,7 +97,7 @@
 		<td id="${seq }reply" align="left" style="width: 425px;">     
 			<img src="../image/reply1.png" width="50" height="25"><a class="info" href="#" style="cursor: pointer;">${informationQnADTO.infoQnA_answerSubject }</a> 
 		</td>  
-		<td align="center"> <img src="../image/mainImage.png" width="50" height="20"> </td> 
+		<td align="center"> <img src="../image/mainImage.png" width="50" height="20"> </td>
 		<td align="center"><fmt:formatDate pattern="yyyy년 MM월 dd일" value="${informationQnADTO.infoQnA_answerDate}"/></td>
 		<td> </td>     
 	</tr>      
@@ -116,7 +116,7 @@
 <script type="text/javascript">
    
 var ishidden = false;
-	
+	 
 $('#${seq}').click(function(){
 	ishidden = !ishidden;   
 	if(ishidden){

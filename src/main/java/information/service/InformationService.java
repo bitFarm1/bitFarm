@@ -37,7 +37,9 @@ public interface InformationService {
 
 	public InformationPaging infoQnAListAllADMINPaging(String pg);
   
-	public List<InformationQnADTO> infoALLADMIN();        
+	public List<InformationQnADTO> infoALLADMIN();
+
+	public void deleteInfo(String seq);         
 
 }   
     

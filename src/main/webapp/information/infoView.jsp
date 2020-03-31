@@ -55,7 +55,7 @@
 				<table align="center" style="padding: 0; width:100%;">
 					<tr>  
 						<td class="tdstyle">力格</td>  
-						<td colspan="3" style="border-top: 1px solid #e8e8e8;">${informationDTO.information_subject }</td> 
+						<td colspan="3" style="border-top: 1px solid #e8e8e8;">${informationDTO.information_subject }</td> 						
 					</tr>
 					 
 					<tr>
@@ -85,13 +85,31 @@
 			</tr>
 			<tr><td align="center" style="border-bottom: 2px solid #5f0080; border-top: 2px solid #5f0080;">
 				<input class="layoutB" id="goBackBtn" type="button" value="格废">
+				<c:if test="${memberId=='admin' }"> 
+				<input class="layoutB" id="delBtn" type="button" value="昏力">
+				</c:if>
 			</td></tr>						
 		</table>	
+		<input type="hidden" name="seq" value="${informationDTO.information_number }">
 </div>  
-
+ 
 <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
 <script type="text/javascript"> 
 $('#goBackBtn').click(function(){
 	location.href = '/bitFarm/information/infoBoardList?pg=${pg}'
+});
+
+$('#delBtn').click(function(){
+	$.ajax({
+		type : 'post',
+		url : '/bitFarm/information/deleteInfo',
+		data : {'seq' : $('input[name=seq]').val()},
+		dataType : 'json',
+		success : function(data){ 			
+			alert("昏力肯丰"); 
+			location.href='/bitFarm/information/infoBoardList';
+		}
+	});
+	
 });
 </script>

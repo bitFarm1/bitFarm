@@ -36,7 +36,9 @@ public interface InformationDAO {
 
 	public int infoQnAListAllADMINPagingTotalA();
    
-	public List<InformationQnADTO> infoALLADMIN();          
+	public List<InformationQnADTO> infoALLADMIN();
+
+	public void deleteInfo(String seq);           
  
 }  
       

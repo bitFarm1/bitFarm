@@ -4,7 +4,8 @@
 <mapper namespace="informationSQL" >
 	<!-- QnABoard (informationQnA)  -->
 	<insert id="infoQnABoardWrite" parameterType="informationQnADTO">
-		insert into QnABoard values(#{infoQnA_type},
+		insert into QnABoard values(QnABoard_SEQ.nextval,
+									#{infoQnA_type},
 									#{infoQnA_subject},
 									#{infoQnA_userID}, 
 									nvl(#{infoQnA_orderNum}, '0'),   
@@ -13,10 +14,9 @@
 									#{infoQnA_content},
 									nvl(#{infoQnA_imageName},'0'), 
 									sysdate, 
-									0,  
+									0,   
 									0,
-									sysdate,
-									QnABoard_SEQ1.nextval)	   
+									sysdate)	   
 	</insert> 
 	
 	<select id="getInfoList" parameterType="java.util.Map" resultType="informationQnADTO">
@@ -78,6 +78,10 @@
 	<select id="infoView" parameterType="String" resultType="informationDTO">
 		select * from information where information_number = #{seq}
 	</select> 	 
+	
+	<delete id="deleteInfo" parameterType="String">
+		delete information where information_number = #{seq} 
+	</delete>
 	
 	<select id="informationTotalA" resultType="int"><!-- 값 ? 에 넣는 타입  --><!--user.bean.UserDTO => user로 사용 mybatis-config.xml  -->
 		select count(*) from information 

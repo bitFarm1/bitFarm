@@ -164,6 +164,12 @@ public class InformationServiceImpl implements InformationService {
 		// TODO Auto-generated method stub
 		return informationDAO.infoALLADMIN();
 	}
+
+	@Override
+	public void deleteInfo(String seq) {
+		informationDAO.deleteInfo(seq);
+		
+	}
  
 	
 }

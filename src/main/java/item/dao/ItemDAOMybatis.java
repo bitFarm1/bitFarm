@@ -26,8 +26,13 @@ public class ItemDAOMybatis implements ItemDAO {
 	}
 
 	@Override
-	public List<ItemDTO> getAllItemList() {
-		return sqlSession.selectList("itemSQL.getAllItemList");
+	public List<ItemDTO> getBestItemList() {
+		return sqlSession.selectList("itemSQL.getBestItemList");
+	}
+
+	@Override
+	public List<ItemDTO> getNewItemList() {
+		return sqlSession.selectList("itemSQL.getNewItemList");
 	}
 
 	@Override
@@ -44,5 +49,11 @@ public class ItemDAOMybatis implements ItemDAO {
 	public List<ItemDTO> getSearchList(String searchT) {
 		return sqlSession.selectList("itemSQL.getSearchList", searchT);
 	}
+
+	@Override
+	public List<ItemDTO> getAllItemList() {
+		return sqlSession.selectList("itemSQL.getAllItemList");
+	}
+
 
 }

@@ -27,6 +27,20 @@
 		select * from item
 	</select>
 	
+	<select id="getBestItemList" resultType="item">
+		select * from 
+		(select rownum rn, tt.* from 
+		(select * from item )tt)
+		where rn >=1 and rn<![CDATA[<]]>=8
+	</select>
+
+	<select id="getNewItemList" resultType="item">
+		select * from 
+		(select rownum rn, tt.* from 
+		(select * from item order by item_add_date desc)tt)
+		where rn >=1 and rn<![CDATA[<]]>=8
+	</select>
+	
 	<select id="getSellerItemList" parameterType="String" resultType="item">
 		select * from item where seller_name=#{sellerName}
 	</select> 

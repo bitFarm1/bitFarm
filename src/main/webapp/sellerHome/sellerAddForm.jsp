@@ -9,13 +9,20 @@
 }
 .sellerAddText{
 	width: 500px;
+	height: 50px;
+	line-height: 20px;   
+    border-radius: 3px; 
+    background: #fff;
+    border: 1px solid grey;
+    outline: none; 
+    color: #5f0080; 
+    padding: 0 15px;
 }
 </style>
 <jsp:include page="sellerLeft.jsp" />
 <div style="width: 68%; text-align: center; padding: 50px 0px 50px 420px;">
 	<h2 align="center">판매상품 등록하기</h2>
 	<div style="text-align: center;">판매하실 상품을 등록해 주세요.</div>
-	<br><br><br><br>
 	
 	<h3 align="left">&emsp;&emsp;판 매 상 품  등 록 하 기</h3>
 	<form name="sellerAddForm" enctype="multipart/form-data" method="post" action="/bitFarm/item/itemAdd">
@@ -30,20 +37,20 @@
 		<tr>
 			<th>상품 가격</th>
 			<td>
-				<input type="text" name="item_price" id="item_price" placeholder="상품 가격을 입력해주세요.">
+				<input class="sellerAddText" type="text" name="item_price" id="item_price" placeholder="상품 가격을 입력해주세요.">
 				<div id="item_price_div"></div>
 			</td>
 		</tr>
 		<tr>
 			<th>상품 메인 이미지</th>
-			<td>
-				<input type="file" name="img" id="image_main_image" placeholder="상품 이미지를 등록해주세요." >
+			<td style="height:50;">
+				<input type="file" name="img" id="image_main_image" placeholder="상품 이미지를 등록해주세요.">
 				<div id="item_main_image_div"></div>
 			</td>
 		</tr>
 		<tr>
 			<th>상품 상세 이미지</th>
-			<td>
+			<td style="height:50;">
 				<input type="file" name="img" id="image_detail_image" placeholder="상품 이미지를 등록해주세요." >
 				<div id="item_detail_image_div"></div>
 			</td>
@@ -51,14 +58,14 @@
 		<tr>
 			<th>상품 설명</th>
 			<td>
-				<input type="text" name="item_explain" id="image_explain" placeholder="상품의 간단한 설명을 입력해주세요.">
+				<input class="sellerAddText" type="text" name="item_explain" id="image_explain" placeholder="상품의 간단한 설명을 입력해주세요.">
 				<div id="item_explain_div"></div>
 			</td>
 		</tr>
 		<tr>
 			<th>상품 카테고리</th>
 			<td>
-				<select name="item_category_name">
+				<select name="item_category_name" style="width: 500px; height: 50px;">
 					<option value="과일/과일즙">과일/과일즙
 					<option value="축산/유정란">축산/유정란
 					<option value="쌀/잡곡/견과류">쌀/잡곡/견과류
@@ -70,14 +77,14 @@
 		<tr>
 			<th>상품 재고 수량</th>
 			<td>
-				<input type="text" name="item_amount" id="item_amount" placeholder="상품 재고수량을 입력해주세요.">
+				<input class="sellerAddText" type="text" name="item_amount" id="item_amount" placeholder="상품 재고수량을 입력해주세요.">
 				<div id="item_amount_div"></div>
 			</td>
 		</tr>
 		<tr>
 			<th>상품 주문여부</th>
 			<td>
-				<input type="text" name="item_order_able" id="item_order_able" value="1" readOnly>
+				<input class="sellerAddText" type="text" name="item_order_able" id="item_order_able" value="1" readOnly>
 			</td>
 		</tr>
 	</table>

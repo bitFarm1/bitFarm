@@ -53,7 +53,7 @@ a.sellerA:active {color: black; text-decoration: none;}
 		</tr>
 	  </c:if>
 		<tr>
-			<td><a class="sellerA" href="/bitFarm/sellerHome/sellerAll">판매상품 모아보기</a></td>
+			<td><a class="sellerA" href="/bitFarm/sellerHome/sellerAll?sellerName=${sellerName}">판매상품 모아보기</a></td>
 		</tr>
 		<tr>
 			<td><a class="sellerA" href="/bitFarm/sellerHome/sellerStore">오프라인 매장</a></td>

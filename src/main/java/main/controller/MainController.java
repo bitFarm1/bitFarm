@@ -17,21 +17,37 @@ public class MainController {
 	@Autowired
 	private ItemService itemService;
 	
-	//메인화면 리턴
+	//메인화면 리턴 - 베스트, 신상품 리스트 2개 return
 	@RequestMapping(value="/main/main", method=RequestMethod.GET)
 	public ModelAndView main() {
 		ModelAndView mav = new ModelAndView();
 		
-		List<ItemDTO> mainList = itemService.getAllItemList();
+		List<ItemDTO> bestList = itemService.getBestItemList();
+		List<ItemDTO> newList = itemService.getNewItemList();
 		
-		mav.addObject("mainList", mainList);
+		mav.addObject("bestList", bestList);
+		mav.addObject("newList", newList);
 		mav.addObject("display", "/template/body.jsp");
 		mav.setViewName("/main/main");
 		
 		return mav;
 	} 
 	
-	@RequestMapping(value="/category/categoryList", method=RequestMethod.GET)
+	//전체카테고리 누르면 전체 아이템 목록
+	@RequestMapping(value="/main/allList", method=RequestMethod.GET)
+	public ModelAndView allList() {
+		ModelAndView mav = new ModelAndView();
+		
+		List<ItemDTO> allList = itemService.getAllItemList();
+		
+		mav.addObject("allList", allList);
+		mav.addObject("display", "/template/allList.jsp");
+		mav.setViewName("/main/main");
+		return mav;
+	} 
+	
+	//카테고리별 목록
+	@RequestMapping(value="/main/categoryList", method=RequestMethod.GET)
 	public ModelAndView categoryList(@RequestParam String category) {
 		ModelAndView mav = new ModelAndView();
 		
@@ -54,12 +70,13 @@ public class MainController {
 		
 		mav.addObject("list", list);
 		mav.addObject("item_category_name", item_category_name);
-		mav.addObject("display", "/category/categoryList.jsp");
+		mav.addObject("display", "/template/categoryList.jsp");
 		mav.setViewName("/main/main");
 		return mav;
 	} 
 	
-	@RequestMapping(value="/category/searchList", method=RequestMethod.GET)
+	//검색어에 따른 상품 목록
+	@RequestMapping(value="/main/searchList", method=RequestMethod.GET)
 	public ModelAndView searchList(@RequestParam String searchT) {
 		//System.out.println(searchT);
 		
@@ -68,7 +85,7 @@ public class MainController {
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("list", list);
 		mav.addObject("searchT", searchT);
-		mav.addObject("display", "/category/searchList.jsp");
+		mav.addObject("display", "/template/searchList.jsp");
 		mav.setViewName("/main/main");
 		return mav;
 	}

@@ -40,7 +40,7 @@
 		<li><a href="/bitFarm/cart/cartForm">장바구니</a></li>
 	</c:if>
 	<c:if test="${sellerId!=null}">
-		<li><a href="/bitFarm/sellerHome/sellerAll">판매자홈</a>
+		<li><a href="/bitFarm/sellerHome/sellerHomeMain">판매자홈</a>
 			<ul>
 				<li><a href="/bitFarm/sellerHome/sellerAddForm">상품 등록하기</a></li>
 			 	<li><a href="/bitFarm/sellerHome/sellerAll?sellerName=${sellerName}">상품 모아보기</a></li>

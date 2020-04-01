@@ -14,9 +14,7 @@
 }
 </style> 
 
-
-<jsp:include page="sellerLeft.jsp"/>
-<div style="width: 68%; text-align: center; padding: 50px 0px 50px 420px;">
+<div>
 
 	<!-- 상품등록페이지 Title -->
 	<h2 align="center">오프라인 매장</h2>

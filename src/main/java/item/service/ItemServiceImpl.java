@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import item.bean.ItemDTO;
+import item.bean.ItemMainListDTO;
 import item.dao.ItemDAO;
 
 @Service(value="itemService")
@@ -24,7 +25,7 @@ public class ItemServiceImpl implements ItemService {
 	}
 
 	@Override
-	public List<ItemDTO> getBestItemList() {
+	public List<ItemMainListDTO> getBestItemList() {
 		return itemDAO.getBestItemList();
 	}
 
@@ -51,6 +52,16 @@ public class ItemServiceImpl implements ItemService {
 	@Override
 	public List<ItemDTO> getAllItemList() {
 		return itemDAO.getAllItemList();
+	}
+
+	@Override
+	public List<ItemDTO> getSellerSoldOutList(String sellerName) {
+		return itemDAO.getSellerSoldOutList(sellerName);
+	}
+
+	@Override
+	public void itemUpdate(ItemDTO itemDTO) {
+		itemDAO.itemUpdate(itemDTO);
 	}
 
 

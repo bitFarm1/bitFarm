@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import item.bean.ItemDTO;
+import item.bean.ItemMainListDTO;
 
 @Repository("itemDAO")
 @Transactional
@@ -26,7 +27,7 @@ public class ItemDAOMybatis implements ItemDAO {
 	}
 
 	@Override
-	public List<ItemDTO> getBestItemList() {
+	public List<ItemMainListDTO> getBestItemList() {
 		return sqlSession.selectList("itemSQL.getBestItemList");
 	}
 
@@ -53,6 +54,16 @@ public class ItemDAOMybatis implements ItemDAO {
 	@Override
 	public List<ItemDTO> getAllItemList() {
 		return sqlSession.selectList("itemSQL.getAllItemList");
+	}
+
+	@Override
+	public List<ItemDTO> getSellerSoldOutList(String sellerName) {
+		return sqlSession.selectList("itemSQL.getSellerSoldOutList", sellerName);
+	}
+
+	@Override
+	public void itemUpdate(ItemDTO itemDTO) {
+		sqlSession.update("itemSQL.itemUpdate", itemDTO);
 	}
 
 

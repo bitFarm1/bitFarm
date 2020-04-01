@@ -86,6 +86,58 @@ public class ItemController {
 		return "/main/main";
 	}
 	
+	@RequestMapping(value="itemUpdate", method=RequestMethod.POST)
+	public String itemUpdate(@ModelAttribute ItemDTO itemDTO, @RequestParam MultipartFile[] img, HttpSession session, Model model) {
+		String filePath = "D:\\spring\\workSTS\\bitFarm\\src\\main\\webapp\\storage";	//내가 설정한 파일 경로
+		String fileName;
+		File file;
+		
+		System.out.println(itemDTO.getItem_name());
+		
+		//파일 복사 1번째거 메인이미지
+		if(img[0] != null) {
+			fileName = img[0].getOriginalFilename();
+			file = new File(filePath, fileName);
+			try {
+				FileCopyUtils.copy(img[0].getInputStream(), new FileOutputStream(file));	//copy(input, output) 자동으로 in>out처리해줌
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
+			//System.out.println("1. " + fileName);
+			
+			//복사한 파일을 DTO에 넣음
+			itemDTO.setItem_main_image(fileName);
+		}else {
+			itemDTO.setItem_main_image("");
+		}
+		
+		//=======================================================
+		
+		//파일 복사 2번째거 상세이미지
+		if(img[1] != null) {
+			fileName = img[1].getOriginalFilename();
+			file = new File(filePath, fileName);
+			try {
+				FileCopyUtils.copy(img[1].getInputStream(), new FileOutputStream(file));	//copy(input, output) 자동으로 in>out처리해줌
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
+			//System.out.println("2. " + fileName);
+			
+			//복사한 파일을 DTO에 넣음
+			itemDTO.setItem_detail_image(fileName);
+		}else {
+			itemDTO.setItem_detail_image("");
+		}
+		itemDTO.setSeller_name((String)session.getAttribute("sellerName"));
+		
+		itemService.itemUpdate(itemDTO);
+		model.addAttribute("display", "/sellerHome/itemAddSuccess.jsp");
+		return "/main/main";
+	}
+	
 	//itemViewForm만 return하는 빈 페이지
 	@RequestMapping(value="itemViewForm", method=RequestMethod.GET)
 	public String itemViewForm(Model model) {

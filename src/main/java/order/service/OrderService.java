@@ -8,6 +8,7 @@ import mypage.bean.MypageCouponDTO;
 
 import order.bean.OrderDTO;
 import order.bean.OrderItemDTO;
+import order.bean.OrderSellerHomeDTO;
 
 public interface OrderService {
 
@@ -28,6 +29,10 @@ public interface OrderService {
 	public void deletePointNCoupon(Map<String, String> map);
 
 	public void deleteItemQty(String orderId);
+
+	public String isOrder(String id, String item_id);
+
+	public List<OrderSellerHomeDTO> getSellItemList(String name);
 
 
 }

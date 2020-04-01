@@ -18,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import item.bean.ItemDTO;
+import order.service.OrderService;
 import review.bean.ReviewDTO;
 import review.service.ReviewService;
 
@@ -26,13 +27,16 @@ import review.service.ReviewService;
 public class ReviewController {
 	@Autowired
 	private ReviewService reviewService;
+	@Autowired
+	private HttpSession session;
+	@Autowired
+	private OrderService orderService;
 
 	@RequestMapping(value="reviewWriteForm", method=RequestMethod.GET)
 	public ModelAndView reviewWriteForm(@RequestParam String item_id) {
 		ModelAndView mav = new ModelAndView();
 		
 		ItemDTO itemDTO = reviewService.getItemDTO(item_id);
-		//System.out.println(name);
 		
 		mav.addObject("itemDTO", itemDTO);
 		mav.addObject("display", "/review/reviewWriteForm.jsp");
@@ -41,9 +45,17 @@ public class ReviewController {
 		return mav;
 	}
 	
+	@RequestMapping(value="reviewConfirm", method=RequestMethod.GET)
+	@ResponseBody
+	public String reviewConfirm(@RequestParam String item_id) {
+		String id = (String)session.getAttribute("memberId");
+		String isOrder = orderService.isOrder(id, item_id);
+		return isOrder;
+	}
+	
 	@RequestMapping(value="reviewWrite", method=RequestMethod.POST)
 	@ResponseBody
-	public void reviewWrite(@ModelAttribute ReviewDTO reviewDTO, @RequestParam MultipartFile img, HttpSession session) {
+	public void reviewWrite(@ModelAttribute ReviewDTO reviewDTO, @RequestParam MultipartFile img) {
 		
 		String filePath = "D:\\spring\\workSTS\\bitFarm\\src\\main\\webapp\\storage";	//내가 설정한 파일 경로
 		String fileName = img.getOriginalFilename();	//img의 이름은 임시파일 이름이라 오리지날 파일 이름을 잡아옴

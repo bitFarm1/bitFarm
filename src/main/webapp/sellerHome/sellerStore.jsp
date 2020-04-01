@@ -14,8 +14,7 @@
 }
 </style> 
 
-<div>
-
+<div style="width : 90%; margin: 0 auto;">
 	<!-- 상품등록페이지 Title -->
 	<h2 align="center">오프라인 매장</h2>
 	

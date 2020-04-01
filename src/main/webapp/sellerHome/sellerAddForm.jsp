@@ -32,11 +32,10 @@
 }
 </style>
 
-<div>
+<div style="width : 90%; margin: 0 auto;">
 	<h2 align="center">판매상품 등록하기</h2>
 	<div style="text-align: center;">판매하실 상품을 등록해 주세요.</div>
-	
-	<h3 align="left">&emsp;&emsp;판 매 상 품  등 록 하 기</h3>
+	<br><br>
 	<form name="sellerAddForm" enctype="multipart/form-data" method="post" action="/bitFarm/item/itemAdd">
 	<table class="sellerAddTable" cellpadding="20" cellspacing="100" frame="hsides" rules="rows">
 		<tr>

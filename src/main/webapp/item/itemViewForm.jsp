@@ -15,8 +15,7 @@
 	<div class="itemCartDiv">
 		<p style="font-size: 1.7em; font-weight: bold;">
 			[${itemDTO.seller_name}]&nbsp;${itemDTO.item_name}&nbsp;
-			<img src="../storage/sellerhome.png" width="30" height="30" style="cursor: pointer;" 
-					onclick="location.href='/bitFarm/sellerHome/sellerAll?sellerName=${itemDTO.seller_name}'">
+			<img src="../storage/sellerhome.png" width="30" height="30" style="cursor: pointer;" class="goSellerHomeBtn">
 		</p>
 		<font color="gray">${itemDTO.item_explain}</font>
 		<br><br>
@@ -212,8 +211,8 @@ $('#mainCartBtn').click(function(){
 			if(data=='true'){
 				location.href = '/bitFarm/cart/cartForm';
 			}else{
-				alert('로그인 후 사용해주세요');
-				location.href = '/bitFarm/member/loginForm';
+				alert('회원 로그인 후 사용해주세요');
+				//location.href = '/bitFarm/member/loginForm';
 			}
 		}
 	});
@@ -235,8 +234,8 @@ $('#scrollCartBtn').click(function(){
 			if(data=='true'){
 				location.href = '/bitFarm/cart/cartForm';
 			}else{
-				alert('로그인 후 사용해주세요');
-				location.href = '/bitFarm/member/loginForm';
+				alert('회원 로그인 후 사용해주세요');
+				//location.href = '/bitFarm/member/loginForm';
 			}
 		}
 	});
@@ -245,12 +244,29 @@ $('#scrollCartBtn').click(function(){
 //후기작성하는 버튼
 $('.itemViewReviewWriteBtn').click(function(){
 	let id = '${memberId}';
+	let sid = '${sellerId}';
 	//alert(id);
 	
 	if(id=='' || id==null){
 		alert('회원만 후기를 작성할 수 있습니다.');
-	}else {
-		location.href="/bitFarm/review/reviewWriteForm?item_id="+${itemDTO.item_id};
+	} else {
+		let itemId = '${itemDTO.item_id}';
+		
+		$.ajax({
+			type : 'get',
+			url : '/bitFarm/review/reviewConfirm',
+			data : 'item_id=' + itemId,
+			dataType : 'text',
+			success : function(data){
+				//alert(data);
+				if(data=='false'){
+					alert('주문하신 상품에 대해서만 리뷰 작성이 가능합니다.');
+				}else{
+					location.href="/bitFarm/review/reviewWriteForm?item_id="+itemId;
+				}
+			}
+		});
+		
 	}
 });
 
@@ -268,7 +284,6 @@ $('.itemViewSellerQnaBtn').click(function(){
 
 //상품 찜하기 하는 버튼
 $('.goPickItemBtn').click(function(){
-	
 	let item_id = ${itemDTO.item_id};
 	let seller_name = '${itemDTO.seller_name}';
 	let item_name = '${itemDTO.item_name}';
@@ -292,12 +307,25 @@ $('.goPickItemBtn').click(function(){
 			}
 	
 		},error : function() {
-			alert("로그인 후 사용해주세요");
-			location.href = '/bitFarm/member/loginForm';
+			alert("회원 로그인 후 사용해주세요");
+			//location.href = '/bitFarm/member/loginForm';
 		}
 	}); 
 });
 
-
+//판매자홈으로 가는 버튼
+$('.goSellerHomeBtn').click(function(){
+	let sName = '${itemDTO.seller_name}';
+	let sid = '${sellerId}';
+	let id = '${memberId}';
+	
+	if(sName=='${sellerName}'){
+		location.href='/bitFarm/sellerHome/sellerHomeMain?sellerName=' + sName;
+	}else if(sName!='${sellerName}'){
+		alert('판매자 계정으로 다른사람의 판매자홈에 들어 갈 수 없습니다.');
+	}else{
+		location.href='/bitFarm/sellerHome/sellerHomeMain?sellerName=' + sName;
+	}
+});		
 
 </script>

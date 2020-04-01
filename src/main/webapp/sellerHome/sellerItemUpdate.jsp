@@ -33,11 +33,10 @@
 }
 </style>
 
-<div>
+<div style="width : 90%; margin: 0 auto;">
 	<h2 align="center">상품 정보 수정하기</h2>
 	<div style="text-align: center;">수정할 정보를 정확하게 기입해주세요.</div>
-	
-	<h3 align="left">&emsp;&emsp;판 매 상 품  수 정 하 기</h3>
+	<br><br>
 	<form name="sellerUpdateForm" enctype="multipart/form-data" method="post" action="/bitFarm/item/itemUpdate">
 	<table class="sellerAddTable" cellpadding="20" cellspacing="100" frame="hsides" rules="rows">
 		<tr>

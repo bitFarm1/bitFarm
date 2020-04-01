@@ -13,6 +13,7 @@ import member.bean.MemberDTO;
 import mypage.bean.MypageCouponDTO;
 import order.bean.OrderDTO;
 import order.bean.OrderItemDTO;
+import order.bean.OrderSellerHomeDTO;
 
 @Repository("orderDAO")
 @Transactional
@@ -121,6 +122,16 @@ public class OrderDAOMybatis implements OrderDAO {
 	public void setItemState(String item_id) {
 		sqlSession.update("orderSQL.setItemState",item_id);
 		
+	}
+
+	@Override
+	public int isOrder(Map<String, String> map) {
+		return sqlSession.selectOne("orderSQL.isOrder", map);
+	}
+
+	@Override
+	public List<OrderSellerHomeDTO> getSellItemList(String name) {
+		return sqlSession.selectList("orderSQL.getSellItemList", name);
 	}
 
 

@@ -8,6 +8,7 @@ import mypage.bean.MypageCouponDTO;
 import mypage.bean.MypagePointDTO;
 import order.bean.OrderDTO;
 import order.bean.OrderItemDTO;
+import order.bean.OrderSellerHomeDTO;
 
 public interface OrderDAO {
 
@@ -39,6 +40,10 @@ public interface OrderDAO {
 	public int getItemQty(String item_id);
 
 	public void setItemState(String item_id);
+
+	public int isOrder(Map<String, String> map);
+
+	public List<OrderSellerHomeDTO> getSellItemList(String name);
 
 
 

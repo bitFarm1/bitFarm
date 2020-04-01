@@ -35,5 +35,9 @@
 		select * from item where item_category_name=#{item_category_name}
 	</select>
  
+ 	<select id="getSearchList" parameterType="String" resultType="item">
+ 		select * from item where item_name like '%'||#{searchT}||'%'
+ 	</select>
+ 
  
 </mapper>

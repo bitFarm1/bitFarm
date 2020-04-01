@@ -16,4 +16,6 @@ public interface ItemService {
 
 	public List<ItemDTO> getCategoryList(String item_category_name);
 
+	public List<ItemDTO> getSearchList(String searchT);
+
 }

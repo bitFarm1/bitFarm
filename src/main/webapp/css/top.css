@@ -15,6 +15,31 @@ body {
 	height: 2px;
 	background-color: #5f0080;
 }
+
+.searchT{
+	width: 200px;
+	height: 46px;
+	line-height: 20px;   
+    border-radius: 3px; 
+    background: #fff;
+    border: 1px solid #5f0080;
+    outline: none; 
+    color: #5f0080; 
+    padding: 0 15px;
+}
+.searchBtn{
+	width: 100pt;
+	height: 35pt;
+	color: #ffffff;
+	border: 0;
+	outline: 0;
+	background-color: #5f0080;
+	border-radius: 10px;
+	font-size: 15pt;
+	font-weight: bold;
+	cursor: pointer;
+}
+
 .menu{
 	width: 100%;
 	text-align: center;

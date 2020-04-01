@@ -40,4 +40,9 @@ public class ItemDAOMybatis implements ItemDAO {
 		return sqlSession.selectList("itemSQL.getCategoryList", item_category_name);
 	}
 
+	@Override
+	public List<ItemDTO> getSearchList(String searchT) {
+		return sqlSession.selectList("itemSQL.getSearchList", searchT);
+	}
+
 }

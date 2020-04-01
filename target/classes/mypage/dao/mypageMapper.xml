@@ -64,7 +64,6 @@
 	
 	<!-- 구매내역 -->
 
-<<<<<<< HEAD
 	<select id = "getMypageOrderList" resultType = "orderListDTO" parameterType="String">
 		select order_id, order_item_main_image, order_user_id, order_state, order_total_price, order_date from
 		(
@@ -88,10 +87,5 @@
 		select * from qnaboard where INFOQNA_USERID=#{id}
 	</select>
 	
-=======
-	<!-- <select id = "getMypageOrderList" resultType = "orderDTO" parameterType="String">
-		select * from purchase where order_user_id = #{id}
-	</select> -->
->>>>>>> KJH_BRANCH
 	
 </mapper>

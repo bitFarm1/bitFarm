@@ -8,6 +8,7 @@
 <br>
 <div class="menu">
 <hr class="topHr">
+<form name="menubarForm" method="get" action="/bitFarm/category/searchList">
 <div class="menubar">
 	<ul>
 		<li><a href="#">전체 상품 카테고리</a>
@@ -57,22 +58,38 @@
 			  </c:if>
 			</ul>
 		</li>
+		<li>&emsp;&emsp;&emsp;&emsp;&emsp;<input type="text" name="searchT" class="searchT"></li>
+		<li>&emsp;<input type="button" name="searchBtn" value="검색" class="searchBtn"></li>
 		<c:if test="${memberId!=null}">  
 		<li> 
 			<a href="#" style="cursor: default;"> 
-			&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-			&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;     
+			&emsp;&emsp;&emsp;  
 			<strong>${memberName}</strong>&nbsp;님 환영합니다</a> 
 		</li>
 		</c:if> 
 	</ul>
 </div>
+</form>
 <hr class="topHr">
 </div>
-
+<script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
+
+//검색
+$('.searchBtn').click(function(){
+	let text = $('.searchT').val();
+
+	if(text!=null){
+		$('form[name=menubarForm]').submit();
+	}else{
+		return false;
+	}
+});
+
+
 /*
+//상단바 고정
 $(document).ready(function() {
 	//상대적인 좌표 값을 반환, .offset()가 반환 하는 객체는 left와 top 속성을 제공
 	//top 속성을 이용해서 메뉴의 수직 위치를 구함

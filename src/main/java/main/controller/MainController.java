@@ -58,4 +58,22 @@ public class MainController {
 		mav.setViewName("/main/main");
 		return mav;
 	} 
+	
+	@RequestMapping(value="/category/searchList", method=RequestMethod.GET)
+	public ModelAndView searchList(@RequestParam String searchT) {
+		//System.out.println(searchT);
+		
+		List<ItemDTO> list = itemService.getSearchList(searchT);
+		
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("list", list);
+		mav.addObject("searchT", searchT);
+		mav.addObject("display", "/category/searchList.jsp");
+		mav.setViewName("/main/main");
+		return mav;
+	}
+	
+	
+	
+	
 }

@@ -38,4 +38,9 @@ public class ItemServiceImpl implements ItemService {
 		return itemDAO.getCategoryList(item_category_name);
 	}
 
+	@Override
+	public List<ItemDTO> getSearchList(String searchT) {
+		return itemDAO.getSearchList(searchT);
+	}
+
 }

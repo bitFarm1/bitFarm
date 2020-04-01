@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Service;
 
 import information.bean.InformationDTO;
@@ -170,6 +171,11 @@ public class InformationServiceImpl implements InformationService {
 		informationDAO.deleteInfo(seq);
 		
 	}
- 
+
+	@Override
+	public void upHit(String seq) {
+		// TODO Auto-generated method stub
+		informationDAO.upHit(seq);  
+	}
 	
 }

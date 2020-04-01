@@ -117,7 +117,7 @@
 			<td><input class="layoutT" type="text" id="email" name="member_email" placeholder="예: bitfarm@bitfarm.com">&emsp;
 			<input class="layoutB" type="button" name="checkEmail" value="이메일 인증">
 			<br id="member_email_p" style="display: none;"><span id="member_email_Div" ></span></br>
-			<input type="hidden" id="auth" name="auth" value=""> 
+			
 			</td>			 
 		</tr>
 		<tr> 
@@ -145,10 +145,10 @@
 			<th class="subject">생년월일</th>
 			<td><input class="layoutT" type="text" id="birth" name="member_birth" placeholder="YYYYMMDD">
 			<br id="member_birth_p" style="display: none;"><span id="member_birth_Div" ></span></br>
-			</td>
-			
+			</td>			
 		</tr>
 	</table>
+	<input type="hidden" id="auth" name="auth" value=""> 
 </div>
 
 <div class="box">
@@ -447,7 +447,7 @@ $('input[name=member_birth]').focusout(function(){
 	 
 	if($('input[name=member_birth]').val()==''){ 
 	$('#member_birth_p').css("display", "block"); 
-			$('#member_birth_Div').text('생일을 입력하세요.');   
+			$('#member_birth_Div').text('생일은 선택사항 입니다.'); 
 			$('#member_birth_Div').css('color','#5f0080');
 			$('#member_birth_Div').css('font-weight','bold');
 			$('#member_birth_Div').css('font-size','10pt'); 
@@ -514,7 +514,8 @@ function checkMemberWrite(){
 		console.log("semail="+semail);  
 		console.log("sphone="+sphone); 
 	
-		alert("필수 입력 사항을 확인하세요!");  
+		alert("필수 입력 사항을 확인하세요!"); 
+		return; 
 		
 	}else if($('#check1').is(":checked") && $('#check2').is(":checked") && $('#member_check3').is(":checked")){
 						

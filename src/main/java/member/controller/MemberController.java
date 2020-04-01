@@ -211,11 +211,16 @@ public class MemberController {
 		 
 		if(pwdMatch) { 
 			MemberDTO memberDTO = memberService.login(map);
-			session.setAttribute("memberName", memberDTO.getMember_name()); //session은 내장 기본 객체 default 30분  
-			session.setAttribute("memberId", map.get("id"));   
-			session.setAttribute("memberEmail", memberDTO.getMember_email());
-			session.setAttribute("loginType", memberDTO.getMember_loginType());
-			mav.addObject("login","success"); 			    
+			if(memberDTO.getMember_id().equals("admin")) {
+				session.setAttribute("admin", map.get("id"));    
+				
+			}else {
+				session.setAttribute("memberName", memberDTO.getMember_name()); //session은 내장 기본 객체 default 30분  
+				session.setAttribute("memberId", map.get("id"));   
+				session.setAttribute("memberEmail", memberDTO.getMember_email());
+				session.setAttribute("loginType", memberDTO.getMember_loginType());
+			}
+				mav.addObject("login","success"); 			    
 		}else {			
 			mav.addObject("login","fail"); 
 		}				

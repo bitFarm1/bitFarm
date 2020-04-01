@@ -8,7 +8,7 @@
 <br>
 <div class="menu">
 <hr class="topHr">
-<form name="menubarForm" method="get" action="/bitFarm/main/searchList">
+
 <div class="menubar">
 	<ul>
 		<li><a href="/bitFarm/main/allList">전체 상품 카테고리</a>
@@ -20,15 +20,15 @@
 			 	<li><a href="/bitFarm/main/categoryList?category=5">장류/김치</a></li>
 			</ul>
 		</li>
-	<c:if test="${memberId==null && sellerId==null }">
+	<c:if test="${memberId==null && sellerId==null && admin==null}">
 		<li><a href="/bitFarm/member/loginForm">로그인</a></li>
-		<li><a href="/bitFarm/member/signUp">회원가입</a></li>
-	</c:if>
-	<c:if test="${memberId!=null || sellerId!=null}">  
+		<li><a href="/bitFarm/member/signUp">회원가입</a></li> 
+	</c:if> 
+	<c:if test="${memberId!=null || sellerId!=null || admin!=null}">  
 		<li><a href="/bitFarm/member/logout">로그아웃</a></li>
 	</c:if>
-	<c:if test="${memberId!=null && sellerId==null}"> 
-		<li><a href="/bitFarm/mypage/mypageMain">마이페이지</a>
+	<c:if test="${memberId!=null && sellerId==null && admin==null}"> 
+		<li><a href="/bitFarm/mypage/mypageMain">마이페이지</a> 
 			<ul>
 				<li><a href="/bitFarm/mypage/mypagePickItem">찜한 상품</a></li>
 			 	<li><a href="/bitFarm/mypage/mypagePickSeller">찜한 판매자</a></li>
@@ -50,16 +50,16 @@
 		<li><a href="/bitFarm/information/infoBoardList">고객센터</a>
 			<ul>
 				<li><a href="/bitFarm/information/infoBoardList">공지사항</a></li>
-				<li><a href="#">자주하는 질문</a></li>
-			  <c:if test="${memberId!=null || sellerId!=null}">
-				<li><a href="/bitFarm/information/infoQnABoard">1:1 문의 작성</a></li>
+				
+			  <c:if test="${memberId!=null}">   
+				<li><a href="/bitFarm/information/infoQnABoard">1:1 문의 작성</a></li>   
 				<li><a href="/bitFarm/information/infoQnAList">1:1 문의 내역</a></li>
 			  </c:if>
-			  <c:if test="${memberId=='admin'}">
+			  <c:if test="${admin != null}">  
 				<li><a href="/bitFarm/information/infoWriteForm">공지사항 등록</a></li>
 				<li><a href="/bitFarm/information/infoQnAListADMIN">1:1 문의내역(관리자전용)</a></li>
 			  	<li><a href="/bitFarm/information/infoQnAListAllADMIN">1:1 전체 문의내역(관리자전용)</a></li>
-			  	<li><a href="/bitFarm/information/dataList">회원데이터</a></li>
+			  	<li><a href="/bitFarm/information/dataList">회원데이터</a></li> 
 			  </c:if>
 			</ul>
 		</li>
@@ -74,7 +74,7 @@
 		</c:if> 
 	</ul>
 </div>
-</form>
+
 <hr class="topHr">
 </div>
 <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
@@ -86,10 +86,11 @@ $('.searchBtn').click(function(){
 	let text = $('.searchT').val();
 
 	if(text!=null){
-		$('form[name=menubarForm]').submit();
+		location.href="/bitFarm/main/searchList?searchT="+$('input[name=searchT]').val();
+		
 	}else{
 		return false;
-	}
+	} 
 });
 
 

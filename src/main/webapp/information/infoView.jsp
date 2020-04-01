@@ -85,8 +85,8 @@
 			</tr>
 			<tr><td align="center" style="border-bottom: 2px solid #5f0080; border-top: 2px solid #5f0080;">
 				<input class="layoutB" id="goBackBtn" type="button" value="목록">
-				<c:if test="${memberId=='admin' }"> 
-				<input class="layoutB" id="delBtn" type="button" value="삭제">
+				<c:if test="${admin =='admin' }"> 
+				<input class="layoutB" id="delBtn" type="button" value ="삭제">
 				</c:if>
 			</td></tr>						
 		</table>	

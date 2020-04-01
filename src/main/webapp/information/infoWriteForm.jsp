@@ -20,8 +20,8 @@
 	}
  	.title{  
  		width: 100px; 
- 		text-align: center;
- 		font-size: 10pt;
+ 		text-align: left;
+ 		font-size: 10pt; 
  		font-weight: bold; 
  		background-color: #F7F5F8; 
  	}
@@ -113,6 +113,18 @@ nhn.husky.EZCreator.createInIFrame({
 
 $("#infoWriteBtn").click(function(){
     //id가 smarteditor인 textarea에 에디터에서 대입
+    if($('input[name=information_subject]').val() == ''){
+    	alert("제목을 입력하세요.");
+    	return false;
+    }
+    if($('input[name=information_name]').val() == ''){
+    	alert("이름을 입력하세요.");
+    	return false;
+    } 
+    if($('input[name=information_content]').val() == ''){
+    	alert("내용을 입력하세요."); 
+    	return false;
+    }
     oEditors.getById["information_content"].exec("UPDATE_CONTENTS_FIELD", []);
          	
 	let formData = new FormData($('#infoWriteForm')[0]);
@@ -122,7 +134,7 @@ $("#infoWriteBtn").click(function(){
 		enctype : 'multipart/form-data',
 		processData : false, //데이터를 컨텐트 타입에 맞게 변환 여부
 		contentType : false, //요청 컨텐트 타입 
-		url : '/bitFarm/information/infoWrite',     
+		url : '/bitFarm/information/infoWrite',        
 		data : formData,  
 		success : function(){   
 			alert("등록 완료");  

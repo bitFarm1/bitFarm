@@ -16,6 +16,7 @@ import mypage.bean.MypageReviewListDTO;
 
 import order.bean.OrderImageDTO;
 import order.bean.OrderListDTO;
+import order.bean.OrderListPaging;
 
 
 public interface MypageService {
@@ -63,5 +64,10 @@ public interface MypageService {
 	public List<OrderImageDTO> getMypageOrderImage(Map<String, String> map);
 
 	public List<InformationQnADTO> getMyQnaList(String id);
+
+	public List<OrderListDTO> getMypageOrderYearList(Map<String, String> map);
+
+	public OrderListPaging orderListPaging(String pg);
+
 
 }

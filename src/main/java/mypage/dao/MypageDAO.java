@@ -57,7 +57,11 @@ public interface MypageDAO {
 
 	public OrderDTO getMypageOrder(Map<String, String> map);
 
-	public List<OrderImageDTO> getMypageOrderImage(Map<String, String> map);  
+	public List<OrderImageDTO> getMypageOrderImage(Map<String, String> map);
+
+	public List<OrderListDTO> getMypageOrderYearList(Map<String, String> map);
+
+	public int getOrderListTotalA();  
 
 
 }

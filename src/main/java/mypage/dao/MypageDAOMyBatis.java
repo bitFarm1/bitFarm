@@ -151,14 +151,25 @@ public class MypageDAOMyBatis implements MypageDAO {
 
 	@Override
 	public OrderDTO getMypageOrder(Map<String, String> map) {
-		
+	//	System.out.println("getMypageOrder");
 		return sqlSession.selectOne("mypageSQL.getMypageOrder", map);
 	}
 
 	@Override
 	public List<OrderImageDTO> getMypageOrderImage(Map<String, String> map) {
-		
+	//	System.out.println("getMypageOrderImage");
 		return sqlSession.selectList("mypageSQL.getMypageOrderImage", map);
+	}
+
+	@Override
+	public List<OrderListDTO> getMypageOrderYearList(Map<String, String> map) {
+		System.out.println("yearDAO");
+		return  sqlSession.selectList("mypageSQL.getMypageOrderYearList",map);
+	}
+
+	@Override
+	public int getOrderListTotalA() {
+		return sqlSession.selectOne("mypageSQL.getOrderListTotalA");
 	}
 
 	

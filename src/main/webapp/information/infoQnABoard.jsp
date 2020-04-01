@@ -82,8 +82,8 @@
 		</td>
 	</tr>
 	<tr>
-		<td class="title">&emsp;주문번호</td>
-		<td style="text-align: left;"><input class="layoutT" type="text" name="infoQnA_orderNum" id="infoQnA_orderNum">&emsp;
+		<td class="title">&emsp;주문번호</td><!-- 200401 김소중 주문번호 value 추가 -->
+		<td style="text-align: left;"><input class="layoutT" type="text" name="infoQnA_orderNum" id="infoQnA_orderNum" value = "${order_id }" >&emsp;
 			<input class="layoutB" type="button" value="주문조회"></td>
 	</tr>	
 	<tr>

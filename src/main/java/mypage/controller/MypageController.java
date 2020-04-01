@@ -28,6 +28,7 @@ import seller.service.SellerService;
 import order.bean.OrderDTO;
 import order.bean.OrderImageDTO;
 import order.bean.OrderListDTO;
+import order.bean.OrderListPaging;
 
 
 
@@ -281,14 +282,19 @@ public class MypageController {
 	//구매내역
 	/* @RequestMapping(value="/mypagePurchaseList", method=RequestMethod.GET) */
 	 @RequestMapping(value="/mypageMain", method=RequestMethod.GET) 
-	public ModelAndView mypagePurchaseList(HttpSession session) {
-		
-		System.out.println("구매내역");
+	public ModelAndView mypagePurchaseList(@RequestParam(required=false, defaultValue="1") String pg ,HttpSession session) {
 		
 		String id = (String)session.getAttribute("memberId");
 		List<OrderListDTO> list = mypageService.getMypageOrderList(id);
 		
+		//페이징 처리
+	//	OrderListPaging orderListPaging = mypageService.orderListPaging(pg);
+		
 		ModelAndView mav = new ModelAndView();
+		
+	//	mav.addObject("pg", pg);
+	//	mav.addObject("orderListPaging", orderListPaging);
+		
 		mav.addObject("list",list);
 		mav.addObject("memberId",id);
 		mav.addObject("display","/mypage/mypageMain.jsp");
@@ -301,7 +307,7 @@ public class MypageController {
 	}
 	
 	@RequestMapping(value="/mypagePurchaseDetail", method=RequestMethod.GET)
-	public ModelAndView mypagePurchaseDetail(@RequestParam String order_id, HttpSession session ) {
+	public ModelAndView mypagePurchaseDetail(@RequestParam String order_id, HttpSession session) {
 		
 		String id = (String)session.getAttribute("memberId");
 		
@@ -311,11 +317,12 @@ public class MypageController {
 		
 		OrderDTO orderDTO = mypageService.getMypageOrder(map);
 		List<OrderImageDTO> imageList = mypageService.getMypageOrderImage(map);
+	//	System.out.println(">>>>"+imageList.size());
 		
 		ModelAndView mav = new ModelAndView();
 		
 		mav.addObject("orderDTO",orderDTO);
-		mav.addObject("list",imageList);
+		mav.addObject("imageList",imageList);
 		mav.addObject("memberId",id);
 		mav.addObject("display","/mypage/mypageMain.jsp");
 		mav.addObject("mypage","/mypage/mypagePurchaseDetail.jsp");
@@ -334,6 +341,49 @@ public class MypageController {
 		model.addAttribute("display","/mypage/mypageMain.jsp");
 		model.addAttribute("mypage","/mypage/mypageQna.jsp");
 		return "/main/main";
+	}
+	
+	@RequestMapping(value="/mypageInfoQnABoard", method=RequestMethod.GET)
+	public ModelAndView infoQnABoard(@RequestParam String order_id) {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("display", "/information/infoMain.jsp");
+		mav.addObject("info", "/information/infoQnABoard.jsp");
+		mav.addObject("order_id",order_id);
+		mav.setViewName("/main/main");
+		 
+		return mav; 
+	}
+	
+	//구매내역 선택별로 
+	@RequestMapping(value="/purchaseListYear", method=RequestMethod.GET)
+	@ResponseBody
+	public ModelAndView purchaseListYear(@RequestParam String year, HttpSession session) {
+		System.out.println("잘도착쓰");
+		String id = (String)session.getAttribute("memberId");
+		List<OrderListDTO> list = null;
+		System.out.println(">>>>"+year);
+		
+		if(year.equals("all")) {
+			System.out.println("전체");
+			list = mypageService.getMypageOrderList(id);
+		}else {
+			System.out.println("연도별");
+			Map<String, String> map = new HashMap<String, String>();
+			map.put("id",id);
+			map.put("year",year);
+
+			list = mypageService.getMypageOrderYearList(map);
+		}
+			
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("list",list);
+		mav.addObject("memberId",id);
+		mav.addObject("display","/mypage/mypageMain.jsp");
+		mav.addObject("mypage","/mypage/mypagePurchaseList.jsp");
+		mav.setViewName("/main/main");
+		System.out.println("컨트롤러에도 잘왔어");
+			
+		return mav;
 	}
 	
 	

@@ -12,6 +12,9 @@ public class OrderListDTO {
     // 판매 물품 이미지 
     private String order_item_main_image;
     
+    // 판매 물품 아이디 
+    private int order_item_id;
+    
     // 주문자 아이디
     private String order_user_id;
 

@@ -16,12 +16,16 @@ import mypage.dao.MypageDAO;
 import order.bean.OrderDTO;
 import order.bean.OrderImageDTO;
 import order.bean.OrderListDTO;
+import order.bean.OrderListPaging;
 
 @Service
 public class MypageServiceImpl implements MypageService {
 
 	@Autowired
 	private MypageDAO mypageDAO;
+	
+//	@Autowired
+//	private OrderListPaging orderListPaging;
 	
 	//쿠폰
 	@Override
@@ -192,8 +196,38 @@ public class MypageServiceImpl implements MypageService {
 	public List<OrderImageDTO> getMypageOrderImage(Map<String, String> map) {
 		
 		List<OrderImageDTO> list = mypageDAO.getMypageOrderImage(map);
+		return list;
+	}
+
+	@Override
+	public List<OrderListDTO> getMypageOrderYearList(Map<String, String> map) {
+		
+		List<OrderListDTO> list = mypageDAO.getMypageOrderYearList(map);
+		System.out.println("서비스 잘왔어!");
+		
+		for(OrderListDTO dto : list) {
+			System.out.println(dto);
+		}
+		return list;
+	}
+
+	@Override
+	public OrderListPaging orderListPaging(String pg) {
+		// TODO Auto-generated method stub
 		return null;
 	}
+
+	/*
+	 * @Override public OrderListPaging orderListPaging(String pg) {
+	 * 
+	 * int totalA = mypageDAO.getOrderListTotalA();//총글수
+	 * 
+	 * orderListPaging.setCurrentPage(Integer.parseInt(pg));
+	 * orderListPaging.setPageBlock(3); orderListPaging.setPageSize(5);
+	 * orderListPaging.setTotalA(totalA); orderListPaging.makePagingHTML();
+	 * 
+	 * return orderListPaging; }
+	 */
 
 	
 

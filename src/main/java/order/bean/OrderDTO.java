@@ -23,7 +23,7 @@ public class OrderDTO {
 
     // 판매개수 
     private int order_item_qty;
-*/
+*/  
     // 주문상태 
     private String order_state;
 

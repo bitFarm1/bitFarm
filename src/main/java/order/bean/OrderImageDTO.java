@@ -24,5 +24,8 @@ public class OrderImageDTO {
 
     // 주문상태 
     private String order_state;
+    
+    // 판매아이템 아이디
+    private int order_item_id;
 
 }

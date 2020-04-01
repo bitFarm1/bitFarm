@@ -24,13 +24,11 @@
 <c:set var = "item_price" value = "${myPickItemDTO.pick_item_price }"/>
 	<tr>
 		<td align = "center" width="100px"><input type = "checkbox" name = "check" value = "${item_id }"></td>
-		<td width = "80%"><img src="../storage/${item_img}" id = "pickItemImg" style="cursor:pointer" onclick="location.href='#'">
+		<td width = "80%"><img src="../storage/${item_img}" id = "pickItemImg" style="cursor:pointer" onclick="itemClick(${myPickItemDTO.pick_item_id})">
 		<dl>
-			<dt style="font-size: 12pt; font-weight: bold;margin-bottom: 5px;"><a href = "#" class = "pickItemDetailA">[${item_seller}] ${item_name }</a></dt>
+			<dt style="font-size: 12pt; font-weight: bold;margin-bottom: 5px;"><a style="cursor:pointer" onclick="itemClick(${myPickItemDTO.pick_item_id})" class = "pickItemDetailA">[${item_seller}] ${item_name }</a></dt>
 			<dd style="font-size: 10pt;">
-			<fmt:formatNumber pattern="#,###원">
-				${item_price}
-			</fmt:formatNumber>
+			<fmt:formatNumber pattern="#,###원">${item_price}</fmt:formatNumber>
 			</dd>
 		</dl>
 		</td>
@@ -116,5 +114,9 @@ $('.pickItemAllOrderBtn').click(function(){
 		document.pickItemListForm.submit();
 	}
 });
+
+function itemClick(seq){
+	location.href='/bitFarm/item/getItemView?seq='+seq;
+}
 
 </script>

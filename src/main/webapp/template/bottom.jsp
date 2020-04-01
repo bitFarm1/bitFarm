@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<div style="width: 80%; text-align: center; margin: 0 auto;">
-	<img src="../image/bottom.JPG" height="120">
+<p style="clear: both; height: 20px;"></p>
+<div style="width: 100%; text-align: center; margin: 0 auto;">
+	<img src="../image/bottom.JPG" height="60">
 </div>

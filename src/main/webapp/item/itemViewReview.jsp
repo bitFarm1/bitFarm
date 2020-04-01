@@ -21,7 +21,7 @@
 			<td align="center" width="25%">${reviewDTO.review_user_id }</td>
 			<td align="center" width="25%"><fmt:formatDate pattern="yyyy년 MM월 dd일" value="${reviewDTO.review_date}"/></td>
 		</tr>
-		<tr id="hidden_${seq}" style="display: none;">
+		<tr id="hidden_${seq}" style="display: none; background: #f8f8f8;">
 		  <c:if test="${reviewDTO.review_image!='0'}">
 			<td colspan="2">
 				<img src="../storage/${reviewDTO.review_image}" width="150" height="150" style="cursor: pointer;"

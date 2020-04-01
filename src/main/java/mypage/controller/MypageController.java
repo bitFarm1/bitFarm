@@ -206,7 +206,7 @@ public class MypageController {
 	}
 	
 
-/* 찜한 판매자 */
+	/* 찜한 판매자 */
 	//찜한 판매자 페이지 리턴
 	@RequestMapping(value="/mypagePickSeller", method=RequestMethod.GET)
 	public String mypagePickSeller(Model model, HttpSession session) {
@@ -222,15 +222,18 @@ public class MypageController {
 	public String mypagePickSellerAdd(Model model, HttpSession session, @RequestParam String sellerName) {
 		//System.out.println(sellerName);
 		String id = (String)session.getAttribute("memberId");
-		SellerDTO sellerDTO = sellerService.getSellerDTO(sellerName);
 		
-		Map<String, String> map = new HashMap<String, String>();
-		map.put("pick_seller_user_id", id);
-		map.put("pick_seller_main_img", sellerDTO.getSeller_profileImage());
-		map.put("pick_seller_name", sellerDTO.getSeller_name());
-		map.put("pick_seller_id", sellerDTO.getSeller_id());
-		
-		mypageService.mypagePickSellerAdd(map);
+		String exist = mypageService.isExistPickSeller(id, sellerName);
+		if(!exist.equals("true")) {
+			SellerDTO sellerDTO = sellerService.getSellerDTO(sellerName);
+			Map<String, String> map = new HashMap<String, String>();
+			map.put("pick_seller_user_id", id);
+			map.put("pick_seller_main_img", sellerDTO.getSeller_profileImage());
+			map.put("pick_seller_name", sellerDTO.getSeller_name());
+			map.put("pick_seller_id", sellerDTO.getSeller_id());
+			
+			mypageService.mypagePickSellerAdd(map);
+		}
 		
 		model.addAttribute("display","/mypage/mypageMain.jsp");
 		model.addAttribute("mypage","/mypage/mypagePickSeller.jsp");

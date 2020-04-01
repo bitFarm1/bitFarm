@@ -69,5 +69,7 @@ public interface MypageService {
 
 	public OrderListPaging orderListPaging(String pg);
 
+	public String isExistPickSeller(String id, String sellerName);
+
 
 }

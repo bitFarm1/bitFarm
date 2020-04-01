@@ -35,10 +35,10 @@ public class CartController {
 
 		String memberId = (String)session.getAttribute("memberId");	
 		List<CartListDTO> list = cartService.cartAllList(memberId);
-		int totalMoney = cartService.cartListAllPrice(memberId);
+		String totalMoney = cartService.cartListAllPrice(memberId);
 
-		mav.addObject("list", list);
 		mav.addObject("totalMoney", totalMoney);
+		mav.addObject("list", list);
 		session.setAttribute("cartList", list);
 		mav.addObject("display", "/cart/cartForm.jsp");
 		mav.setViewName("/main/main");

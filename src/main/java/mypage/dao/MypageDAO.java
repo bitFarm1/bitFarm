@@ -70,8 +70,9 @@ public interface MypageDAO {
 
 	public List<OrderListDTO> getMypageOrderYearList(Map<String, String> map);
 
-	public int getOrderListTotalA();  
+	public int getOrderListTotalA();
 
+	public int isExistPickSeller(Map<String, String> map);
 
 
 }

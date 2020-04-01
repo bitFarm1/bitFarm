@@ -19,13 +19,15 @@ import order.bean.OrderDTO;
 import order.bean.OrderImageDTO;
 import order.bean.OrderListDTO;
 import order.bean.OrderListPaging;
+import seller.bean.SellerDTO;
+import seller.dao.SellerDAO;
 
 @Service
 public class MypageServiceImpl implements MypageService {
-
 	@Autowired
 	private MypageDAO mypageDAO;
-	
+	@Autowired
+	private SellerDAO sellerDAO;
 //	@Autowired
 //	private OrderListPaging orderListPaging;
 	
@@ -221,6 +223,21 @@ public class MypageServiceImpl implements MypageService {
 
 	}
 
+	@Override
+	public String isExistPickSeller(String id, String sellerName) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("id", id);
+		map.put("sellerName", sellerName);
+		int count = mypageDAO.isExistPickSeller(map);
+		if(count != 0) {
+			return "true";
+		}else {
+			return "false";
+		}
+	}
+
+	
+	
 	/*
 	 * @Override public OrderListPaging orderListPaging(String pg) {
 	 * 

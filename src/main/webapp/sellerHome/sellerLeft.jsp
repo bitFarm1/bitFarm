@@ -70,8 +70,10 @@ $('.pickSellerBtn').click(function(){
 		url : '/bitFarm/mypage/mypagePickSellerAdd',
 		data : 'sellerName=${sellerName}',
 		success: function(){
-			alert('판매자 찜하기가 완료되었습니다. 마이페이지로 이동합니다.');
-			location.href = '/bitFarm/mypage/mypagePickSeller';
+			alert("찜하기 성공");
+			if(confirm("찜한 물품 페이지로 이동하시겠습니까?")){
+				location.href = '/bitFarm/mypage/mypagePickSeller';
+			}
 		}
 	});
 });

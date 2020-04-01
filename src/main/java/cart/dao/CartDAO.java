@@ -13,7 +13,7 @@ public interface CartDAO {
 
 	public void cartChoiceDelete(Map<String, String> map);
 
-	public int cartListAllPrice(String memberId);
+	public String cartListAllPrice(String memberId);
 
 	public int isExistInCart(Map<String, String> map);
 

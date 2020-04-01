@@ -166,10 +166,11 @@ public class MypageDAOMyBatis implements MypageDAO {
 	}
 
 	@Override
-<<<<<<< HEAD
 	public List<InformationQnADTO> getMyQnaList(String id) {
 		return sqlSession.selectList("mypageSQL.getMyQnaList", id);
-=======
+	}
+	
+	@Override
 	public List<OrderListDTO> getMypageOrderYearList(Map<String, String> map) {
 		System.out.println("yearDAO");
 		return  sqlSession.selectList("mypageSQL.getMypageOrderYearList",map);
@@ -178,7 +179,11 @@ public class MypageDAOMyBatis implements MypageDAO {
 	@Override
 	public int getOrderListTotalA() {
 		return sqlSession.selectOne("mypageSQL.getOrderListTotalA");
->>>>>>> 0330ksj
+	}
+
+	@Override
+	public int isExistPickSeller(Map<String, String> map) {
+		return sqlSession.selectOne("mypageSQL.isExistPickSeller", map);
 	}
 
 	

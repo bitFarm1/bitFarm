@@ -62,7 +62,6 @@
 		select * from pickSeller where pick_seller_user_id = #{memberId}
 	</select>
 	
-<<<<<<< HEAD
 	<insert id="mypagePickSellerAdd" parameterType="java.util.Map">
 		insert into pickSeller values(#{pick_seller_user_id}, #{pick_seller_main_img}, #{pick_seller_name}, #{pick_seller_id})
 	</insert>
@@ -77,8 +76,11 @@
 		(select pick_seller_user_id from pickseller where pick_seller_user_id = #{id}) and pick_seller_id in #{check}
 	</delete>
 	
-=======
->>>>>>> 0330ksj
+	<select id="isExistPickSeller" parameterType = "java.util.Map" resultType = "int">
+		select count(*) from pickseller where pick_seller_name=#{sellerName} and pick_seller_user_id=#{id}
+	</select>
+	
+
 	<!-- 구매내역 -->
 	<select id = "getMypageOrderList" resultType = "orderListDTO" parameterType="String">
 		select order_id, order_item_main_image, order_item_id, order_user_id, order_state, order_total_price, order_date from

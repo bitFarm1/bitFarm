@@ -13,7 +13,7 @@ public interface CartService {
 
 	public void cartChoiceDelete(String[] check, String memberId);
 
-	public int cartListAllPrice(String memberId);
+	public String cartListAllPrice(String memberId);
 
 	public int isExistInCart(String member_id, String item_id);
 

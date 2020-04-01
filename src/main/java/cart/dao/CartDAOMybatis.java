@@ -32,7 +32,7 @@ public class CartDAOMybatis implements CartDAO {
 	}
 
 	@Override
-	public int cartListAllPrice(String memberId) {
+	public String cartListAllPrice(String memberId) {
 		return sqlSession.selectOne("cartSQL.cartListAllPrice", memberId);
 	}
 

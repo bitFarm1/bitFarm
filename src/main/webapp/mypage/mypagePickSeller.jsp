@@ -14,14 +14,16 @@
 	<c:forEach var="mypagePickSellerDTO" items="${list}">
 	<tr>
 		<td align = "center" width="100px"><input type = "checkbox" name="check" value="${mypagePickSellerDTO.pick_seller_id }"></td>
-		<td width = "80%"><img src = "../image/${mypagePickSellerDTO.pick_seller_main_img}" id="pickSellerImg"
-				style="cursor:pointer" onclick="location.href='#'">
+		<td width = "80%">
+			<img src = "../storage/${mypagePickSellerDTO.pick_seller_main_img}" id="pickSellerImg" style="cursor:pointer" 
+			onclick="location.href='/bitFarm/sellerHome/sellerAll?sellerName=${mypagePickSellerDTO.pick_seller_name}'">
 			<dl>
-				<dt style="font-size: 12pt; font-weight: bold;margin-bottom: 5px;"><a href = "#" class = "pickSellerDetailA">${mypagePickSellerDTO.pick_seller_name}</a></dt>
+				<dt style="font-size: 12pt; font-weight: bold;margin-bottom: 5px;">${mypagePickSellerDTO.pick_seller_name}</dt>
 			</dl>
 		</td>
 		<td>
-			<input class = "pickSellerHomeBtn" type="button" value="판매자 홈" onclick="javascript:location.href='/bitFarm/sellerHome/sellerAll?sellerName=${mypagePickSellerDTO.pick_seller_name}'" >
+			<input class = "pickSellerHomeBtn" type="button" value="판매자 홈" 
+			onclick="javascript:location.href='/bitFarm/sellerHome/sellerAll?sellerName=${mypagePickSellerDTO.pick_seller_name}'" >
 			<input class = "pickSellerDeleteBtn" type="button" value="삭제" name="deleteBtn" id="${mypagePickSellerDTO.pick_seller_id }">
 		</td>
 	</tr>

@@ -29,7 +29,7 @@
 		</foreach>
 	</delete>
 	
-	<select id="cartListAllPrice" parameterType="String" resultType="int">
+	<select id="cartListAllPrice" parameterType="String" resultType="String">
 		select sum(item_all_price) from cart where cart_id=#{memberId}
 	</select>
 	

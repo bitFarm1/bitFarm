@@ -36,13 +36,15 @@ public class CartServiceImpl implements CartService{
 	}
 
 	@Override
-	public int cartListAllPrice(String memberId) {
-		int itemAllPrice = cartDAO.cartListAllPrice(memberId);
-		if(itemAllPrice==0) {
-			return 0;
-		}else {
-			return itemAllPrice;
-		}
+	public String cartListAllPrice(String memberId) {
+		return cartDAO.cartListAllPrice(memberId);
+//		String itemAllPrice = cartDAO.cartListAllPrice(memberId);
+//		System.out.println(itemAllPrice);
+//		if(itemAllPrice.equals("null")) {
+//			return "0";
+//		}else {
+//			return itemAllPrice;
+//		}
 	}
 
 	@Override

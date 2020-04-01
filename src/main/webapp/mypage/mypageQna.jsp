@@ -21,7 +21,7 @@
 		<td align="center">${informationQnADTO.infoQnA_seq}</td>
 		<td align="center">${informationQnADTO.infoQnA_type}</td>
 		<td align="center" id="${seq}" style="cursor: pointer;">${informationQnADTO.infoQnA_subject}</td>
-		<td align="center">${informationQnADTO.infoQnA_askDate}</td>
+		<td align="center"><fmt:formatDate pattern="yyyy년 MM월 dd일" value="${informationQnADTO.infoQnA_askDate}"/></td>
 		
 		<c:if test="${informationQnADTO.infoQnA_answerSubject == '0'}">
 		<td style="width:200px" align="center"> 
@@ -51,7 +51,7 @@
 	  <c:if test="${informationQnADTO.infoQnA_answerContent!='0'}">
 	  	<td colspan="2">${informationQnADTO.infoQnA_answerSubject}</td>
 	  	<td colspan="2">${informationQnADTO.infoQnA_answerContent}</td>
-	  	<td>${informationQnADTO.infoQnA_answerDate}</td>
+	  	<td><fmt:formatDate pattern="yyyy년 MM월 dd일" value="${informationQnADTO.infoQnA_answerDate}"/></td>
 	  </c:if>
 	  <c:if test="${informationQnADTO.infoQnA_answerContent=='0'}">
 	  	<td colspan="5">아직 답변이 달리지 않았습니다.</td>

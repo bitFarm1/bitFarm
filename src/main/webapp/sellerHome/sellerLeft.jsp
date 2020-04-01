@@ -35,18 +35,11 @@ a.sellerA:active {color: black; text-decoration: none;}
 	<input type="hidden" name="seller_id" value="${sellerDTO.seller_id}">
 	<h2><a class="sellerA" href="/bitFarm/sellerHome/sellerAll?sellerName=${sellerName}">판매자 홈</a></h2>&nbsp;
 	<br>
-	
-	<c:if test="${sellerDTO.seller_profileImage!='0'}">
 	<img src="../storage/${sellerDTO.seller_profileImage}" width="90px">
-	</c:if>
-	<c:if test="${sellerDTO.seller_profileImage=='0'}">
-	<img src="../image/user.png" width="90px">
-	</c:if>
-	
 	<h3>${seller}</h3><br>
 	<input type="button" value="판매자 찜하기" class="pickSellerBtn">
 	<br><br>
-	<table width="100%" height="150px">
+	<table width="100%" height="300px">
 	  <c:if test="${sessionScope.memberId==null && sessionScope.sellerId == sellerDTO.seller_id}">
 		<tr>
 			<td><a class="sellerA" href="/bitFarm/sellerHome/sellerAddForm">판매상품 등록하기</a></td>
@@ -58,15 +51,12 @@ a.sellerA:active {color: black; text-decoration: none;}
 		<tr>
 			<td><a class="sellerA" href="/bitFarm/sellerHome/sellerStore">오프라인 매장</a></td>
 		</tr>
-		<!-- <tr>
-			<td><a class="sellerA" href="/bitFarm/sellerHome/sellerQnABoard">(보류)문의게시판</a></td>
-		</tr>
 		<tr>
 			<td><a class="sellerA" href="/bitFarm/sellerHome/sellerOrder">(보류)주문현황</a></td>
 		</tr>
 		<tr>
 			<td><a class="sellerA" href="/bitFarm/sellerHome/sellerSell">(보류)매출현황</a></td>
-		</tr> -->
+		</tr>
 	</table>
 </div>
 </div>

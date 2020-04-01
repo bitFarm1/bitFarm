@@ -23,10 +23,15 @@ public class SellerHomeController {
 	private ItemService itemService;
 	@Autowired
 	private SellerService sellerService;
+	@Autowired
+	private HttpSession session;
 	
 	//판매자가 판매 할 상품 등록하는 Form 띄워주는 메소드
 	@RequestMapping(value="sellerAddForm", method=RequestMethod.GET)
 	public String sellerAddForm(Model model) {
+		SellerDTO sellerDTO = sellerService.getSellerDTO((String)session.getAttribute("sellerName"));
+		
+		model.addAttribute("sellerDTO", sellerDTO);
 		model.addAttribute("display", "/sellerHome/sellerAddForm.jsp");
 		return "/main/main";
 	}	
@@ -34,7 +39,7 @@ public class SellerHomeController {
 	//판매자 홈의 홈 역할
 	//판매자가 파는 모든 상품의 리스트를 띄워줌
 	@RequestMapping(value="sellerAll", method=RequestMethod.GET)
-	public String sellerAll(Model model, HttpSession session, @RequestParam(required=false) String sellerName) {
+	public String sellerAll(Model model, @RequestParam(required=false) String sellerName) {
 		
 		String name;
 		if(sellerName!=null) {	//사용자가 원하는 판매자의 홈으로 이동할때
@@ -55,7 +60,14 @@ public class SellerHomeController {
 		return "/main/main";
 	}
 	
-	
+	@RequestMapping(value="sellerStore", method=RequestMethod.GET)
+	public String sellerStore(Model model) {
+		SellerDTO sellerDTO = sellerService.getSellerDTO((String)session.getAttribute("sellerName"));
+		
+		model.addAttribute("sellerDTO", sellerDTO);
+		model.addAttribute("display", "/sellerHome/sellerStore.jsp");
+		return "/main/main";
+	}	
 	
 	
 	//========================================================================미구현기능
@@ -131,11 +143,7 @@ public class SellerHomeController {
 		return "/main/main";
 	}
 	
-	@RequestMapping(value="sellerStore", method=RequestMethod.GET)
-	public String sellerStore(Model model) {
-		model.addAttribute("display", "/sellerHome/sellerStore.jsp");
-		return "/main/main";
-	}	
+	
 	
 	
 }

@@ -18,6 +18,18 @@
     color: #5f0080; 
     padding: 0 15px;
 }
+#itemAddBtn{
+	width: 200pt;
+	height: 40pt;
+	color: #ffffff;
+	border: 0;
+	outline: none; 
+	background-color: #5f0080;
+	border-radius: 10px; 
+	font-weight: bold;
+	font-size: 17px;
+	cursor: pointer;
+}
 </style>
 <jsp:include page="sellerLeft.jsp" />
 <div style="width: 68%; text-align: center; padding: 50px 0px 50px 420px;">
@@ -26,7 +38,7 @@
 	
 	<h3 align="left">&emsp;&emsp;판 매 상 품  등 록 하 기</h3>
 	<form name="sellerAddForm" enctype="multipart/form-data" method="post" action="/bitFarm/item/itemAdd">
-	<table class="sellerAddTable" cellpadding="10" cellspacing="40" frame="hsides" rules="rows">
+	<table class="sellerAddTable" cellpadding="20" cellspacing="100" frame="hsides" rules="rows">
 		<tr>
 			<th width="30%">상품 이름</th>
 			<td>
@@ -65,7 +77,7 @@
 		<tr>
 			<th>상품 카테고리</th>
 			<td>
-				<select name="item_category_name" style="width: 500px; height: 50px;">
+				<select name="item_category_name" style="width: 500px; height: 30px;">
 					<option value="과일/과일즙">과일/과일즙
 					<option value="축산/유정란">축산/유정란
 					<option value="쌀/잡곡/견과류">쌀/잡곡/견과류
@@ -89,6 +101,7 @@
 		</tr>
 	</table>
 	</form>
+	<br><br>
 	<input type="button" value="상품 등록하기" id="itemAddBtn">
 </div>
 <p style="clear: both; height: 10px;"></p>

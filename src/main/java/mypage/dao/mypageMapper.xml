@@ -85,7 +85,7 @@
     		row_number() over (partition by order_id order by order_item_main_image desc) rn
     		from purchase
 		)
-		where rn = 1 and order_user_id = #{id}
+		where rn = 1 and order_user_id = #{id} order by order_date desc
 	</select>
 	
 	<select id = "getMypageOrder" resultType = "orderDTO" parameterType="java.util.Map">

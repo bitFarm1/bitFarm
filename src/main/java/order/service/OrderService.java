@@ -7,6 +7,7 @@ import member.bean.MemberDTO;
 import mypage.bean.MypageCouponDTO;
 
 import order.bean.OrderDTO;
+import order.bean.OrderItemDTO;
 
 public interface OrderService {
 
@@ -23,8 +24,10 @@ public interface OrderService {
 
 	//200330 김소중
 	public void writeOrder(Map<String, Object> map);
-
-
+	
 	public void deletePointNCoupon(Map<String, String> map);
+
+	public void deleteItemQty(String orderId);
+
 
 }

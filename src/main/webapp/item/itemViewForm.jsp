@@ -25,8 +25,8 @@
 				<fmt:formatNumber type="number" maxFractionDigits="3" value="${itemDTO.item_price}"/>
 			</span></strong>원
 		</p>
-		<font color="#5f0080">로그인 후, 회원할인가와 적립혜택이 제공됩니다.</font>
-		<br><br><br><br><br><br><br><br>
+		<!-- <font color="#5f0080">로그인 후, 회원할인가와 적립혜택이 제공됩니다.</font> -->
+		<br><br><br><br><br><br><br><br><br>
 		<span class="count">
 			<font color="gray">구매수량</font>&emsp;
 			<input type="button" id="minusBtn" value="-" class="qtyBtn" onclick="topchange(-1);">
@@ -297,4 +297,7 @@ $('.goPickItemBtn').click(function(){
 		}
 	}); 
 });
+
+
+
 </script>

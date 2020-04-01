@@ -29,5 +29,7 @@ public interface OrderService {
 
 	public void deleteItemQty(String orderId);
 
+	public void updatePoint(Map<String, String> map);
+
 
 }

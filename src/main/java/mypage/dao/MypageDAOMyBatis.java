@@ -147,8 +147,8 @@ public class MypageDAOMyBatis implements MypageDAO {
 		sqlSession.delete("mypageSQL.deleteCoupon", map); 
 	}
 
-	public List<OrderListDTO> getMypageOrderList(String id) {
-		return  sqlSession.selectList("mypageSQL.getMypageOrderList",id);
+	public List<OrderListDTO> getMypageOrderList(Map<String, Object> map) {
+		return  sqlSession.selectList("mypageSQL.getMypageOrderList",map);
 	//	return null;
 	}
 
@@ -170,14 +170,14 @@ public class MypageDAOMyBatis implements MypageDAO {
 	}
 	
 	@Override
-	public List<OrderListDTO> getMypageOrderYearList(Map<String, String> map) {
+	public List<OrderListDTO> getMypageOrderYearList(Map<String, Object> map) {
 		System.out.println("yearDAO");
 		return  sqlSession.selectList("mypageSQL.getMypageOrderYearList",map);
 	}
 
 	@Override
-	public int getOrderListTotalA() {
-		return sqlSession.selectOne("mypageSQL.getOrderListTotalA");
+	public int getOrderListTotalA(Map<String, Object> map) {
+		return sqlSession.selectOne("mypageSQL.getOrderListTotalA",map);
 
 	}
 
@@ -186,6 +186,8 @@ public class MypageDAOMyBatis implements MypageDAO {
 		return sqlSession.selectOne("mypageSQL.isExistPickSeller", map);
 
 	}
+
+	
 
 	
 

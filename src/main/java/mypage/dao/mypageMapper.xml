@@ -5,7 +5,7 @@
 	
 	<!--쿠폰  -->
 	<select id = "getCouponList" resultType = "mypageCouponDTO" parameterType="String">
-		select * from coupon where coupon_user_id = #{id}
+		select * from coupon where coupon_user_id = #{id} order by coupon_AP desc
 	</select>
 	
 	<select id = "getCouponTotal" resultType = "int" parameterType="String">
@@ -14,7 +14,7 @@
 	
 	<!--적립금  -->
 	<select id = "getPointList" resultType = "mypagePointDTO" parameterType="String">
-		select * from point where point_user_id = #{id}
+		select * from point where point_user_id = #{id} order by point_date desc
 	</select>
 	
 	<select id = "getPointTotal" resultType = "int" parameterType="String">
@@ -82,14 +82,26 @@
 	
 
 	<!-- 구매내역 -->
-	<select id = "getMypageOrderList" resultType = "orderListDTO" parameterType="String">
-		select order_id, order_item_main_image, order_item_id, order_user_id, order_state, order_total_price, order_date from
+	<select id = "getMypageOrderList" resultType = "orderListDTO" parameterType="java.util.Map">
+		<!-- select order_id, order_item_main_image, order_item_id, order_user_id, order_state, order_total_price, order_date from
 		(
 			select order_id, order_item_main_image, order_item_id, order_user_id, order_state, order_total_price, order_date,
     		row_number() over (partition by order_id order by order_item_main_image desc) rn
     		from purchase
 		)
-		where rn = 1 and order_user_id = #{id} order by order_date desc
+		where rn = 1 and order_user_id = #{id} order by order_date desc -->
+		<![CDATA[
+		select * from(
+		select rownum rn, ab.* from
+		(select order_id, order_item_main_image, order_item_id, order_user_id, order_state, order_total_price, order_date from
+		(
+		    select order_id, order_item_main_image, order_item_id, order_user_id, order_state, order_total_price, order_date,
+		    row_number() over (partition by order_id order by order_item_main_image desc)tt
+		    from purchase
+		)
+		where tt = 1 and order_user_id = #{id} order by order_date desc)ab)
+		where rn>=#{startNum} and rn<=#{endNum}
+		]]>
 	</select>
 	
 	<select id = "getMypageOrder" resultType = "orderDTO" parameterType="java.util.Map">
@@ -111,8 +123,8 @@
 		where rn = 1 and order_user_id = #{id} and to_char(order_date,'YYYY') = #{year}
 	</select>
 	
-	<select id = "getOrderListTotalA" resultType = "int">
-		select count(*) from purchase
+	<select id = "getOrderListTotalA" parameterType="java.util.Map" resultType = "int">
+		select count(*) from purchase where order_user_id = #{id}
 	</select>
 	
 	<select id="getMyQnaList" parameterType="String" resultType="informationQnADTO">

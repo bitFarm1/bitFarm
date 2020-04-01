@@ -62,15 +62,15 @@ public interface MypageDAO {
 
 	public List<InformationQnADTO> getMyQnaList(String id);  
 
-	public List<OrderListDTO> getMypageOrderList(String id);
+	public List<OrderListDTO> getMypageOrderList(Map<String, Object> map);
 
 	public OrderDTO getMypageOrder(Map<String, String> map);
 
 	public List<OrderImageDTO> getMypageOrderImage(Map<String, String> map);
 
-	public List<OrderListDTO> getMypageOrderYearList(Map<String, String> map);
+	public List<OrderListDTO> getMypageOrderYearList(Map<String, Object> map);
 
-	public int getOrderListTotalA();
+	public int getOrderListTotalA(Map<String, Object> map);
 
 	public int isExistPickSeller(Map<String, String> map);
 

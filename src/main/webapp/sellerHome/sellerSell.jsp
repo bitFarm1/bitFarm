@@ -15,9 +15,7 @@
 }
 </style>
 
-<jsp:include page="sellerLeft.jsp"/>
-<div style="width: 68%; text-align: center; padding: 50px 0px 50px 420px;">
-
+<div style="width : 90%; margin: 0 auto;">
 	<!-- 상품등록페이지 Title -->
 	<h2 align="center">판매상품 매출현황</h2>
 	<div style="text-align: center;">판매상품 매출현황입니다.</div>

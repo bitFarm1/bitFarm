@@ -15,6 +15,7 @@ import mypage.bean.MypageCouponDTO;
 import mypage.bean.MypagePointDTO;
 import order.bean.OrderDTO;
 import order.bean.OrderItemDTO;
+import order.bean.OrderSellerHomeDTO;
 import order.dao.OrderDAO;
 
 @Service(value="orderService")
@@ -35,15 +36,12 @@ public class OrderServiceImpl implements OrderService {
 	//200326 김소중
 	@Override
 	public List<MypageCouponDTO> orderCouponList(String memberId) {
-		
 		List<MypageCouponDTO> pointList = orderDAO.orderCouponList(memberId);
-		
 		return pointList;
 	}
 
 	@Override
 	public int orderPointAll(String memberId) {
-		
 		return orderDAO.orderPointAll(memberId);
 	}
 
@@ -176,7 +174,26 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	public void updatePoint(Map<String, String> map) {
 		orderDAO.updatePoint(map);
+	}
+
+	@Override
+	public String isOrder(String id, String item_id) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("id", id);
+		map.put("item_id", item_id);
 		
+		int isOrder = orderDAO.isOrder(map);
+		
+		if(isOrder==0) {
+			return "false";
+		}
+		
+		return "true";
+	}
+
+	@Override
+	public List<OrderSellerHomeDTO> getSellItemList(String name) {
+		return orderDAO.getSellItemList(name);
 	}
 
 

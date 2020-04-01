@@ -20,11 +20,10 @@
 }
 </style>
 
-<div>
+<div style="width : 90%; margin: 0 auto;">
 	<h2 align="center">판매상품 모아보기</h2>
 	<div style="text-align: center;">판매자의 판매중인 상품입니다</div>
-	<br><br><br><br>
-	
+	<br><br>
 	<c:set var="i" value="0" /> 
 	<c:set var="j" value="3" /> 
 	<table align="center" width="100%" cellpadding="40">

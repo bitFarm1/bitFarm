@@ -21,10 +21,10 @@
 </style>
 
 
-<div>
+<div style="width : 90%; margin: 0 auto;">
 	<h2 align="center">품절상품 관리하기</h2>
 	<div style="text-align: center;">재입고 된 상품을 등록해 주세요.</div>
-	
+	<br><br>
 	<c:set var="i" value="0" /> 
 	<c:set var="j" value="3" /> 
 	<table align="center" width="100%" cellpadding="40">

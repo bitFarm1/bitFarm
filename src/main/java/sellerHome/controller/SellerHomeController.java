@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import item.bean.ItemDTO;
 import item.service.ItemService;
+import order.bean.OrderSellerHomeDTO;
+import order.service.OrderService;
 import seller.bean.SellerDTO;
 import seller.service.SellerService;
 
@@ -20,11 +22,13 @@ import seller.service.SellerService;
 @RequestMapping(value="sellerHome")
 public class SellerHomeController {
 	@Autowired
+	private HttpSession session;
+	@Autowired
 	private ItemService itemService;
 	@Autowired
 	private SellerService sellerService;
 	@Autowired
-	private HttpSession session;
+	private OrderService orderService;
 	
 	//판매자 홈의 홈 역할
 	//판매자가 파는 모든 상품의 리스트를 띄워줌
@@ -129,6 +133,23 @@ public class SellerHomeController {
 		return "/main/main";
 	}	
 	
+	//내가 판 상품에 한해서 주문내역 뽑아오기
+	@RequestMapping(value="sellerOrder", method=RequestMethod.GET)
+	public String sellerOrder(Model model) {
+		
+		String name = (String)session.getAttribute("sellerName");
+		
+		List<OrderSellerHomeDTO> list = orderService.getSellItemList(name);
+		//System.out.println("sellerHomeController : " + list.size());
+		
+		SellerDTO sellerDTO = sellerService.getSellerDTO((String)session.getAttribute("sellerName"));
+		model.addAttribute("sellerDTO", sellerDTO);
+		
+		model.addAttribute("list", list);
+		model.addAttribute("sellerHome", "/sellerHome/sellerOrder.jsp");
+		model.addAttribute("display", "/sellerHome/sellerHomeMain.jsp");
+		return "/main/main";
+	}
 	
 	
 	
@@ -139,10 +160,17 @@ public class SellerHomeController {
 	
 	
 	
+	@RequestMapping(value="sellerSell", method=RequestMethod.GET)
+	public String sellerSell(Model model) {
+		SellerDTO sellerDTO = sellerService.getSellerDTO((String)session.getAttribute("sellerName"));
+		model.addAttribute("sellerDTO", sellerDTO);
+		model.addAttribute("sellerHome", "/sellerHome/sellerSell.jsp");
+		model.addAttribute("display", "/sellerHome/sellerHomeMain.jsp");
+		return "/main/main";
+	}
 	
 	
-	
-	//========================================================================미구현기능
+	//========================================================================sellerHome Mapping 안되어있음
 	
 	//sellerQnAView 셀러 문의게시판 글 보기
 	@RequestMapping(value="sellerQnAView", method=RequestMethod.GET)
@@ -155,12 +183,6 @@ public class SellerHomeController {
 	@RequestMapping(value="sellerQnaRe", method=RequestMethod.GET)
 	public String sellerQnaRe(Model model) {
 		model.addAttribute("display", "/sellerHome/sellerQnaRe.jsp");
-		return "/main/main";
-	}
-	
-	@RequestMapping(value="sellerOrder", method=RequestMethod.GET)
-	public String sellerOrder(Model model) {
-		model.addAttribute("display", "/sellerHome/sellerOrder.jsp");
 		return "/main/main";
 	}
 	
@@ -190,11 +212,7 @@ public class SellerHomeController {
 		return "/main/main";
 	}	
 	
-	@RequestMapping(value="sellerSell", method=RequestMethod.GET)
-	public String sellerSell(Model model) {
-		model.addAttribute("display", "/sellerHome/sellerSell.jsp");
-		return "/main/main";
-	}
+	
 	
 	@RequestMapping(value="sellerSellDetail", method=RequestMethod.GET)
 	public String sellerSellDetail(Model model) {

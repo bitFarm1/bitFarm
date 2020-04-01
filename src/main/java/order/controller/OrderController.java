@@ -75,7 +75,7 @@ public class OrderController {
 		map.put("cartList",cartList);
 
 		String orderId = orderService.orderNum();
-		System.out.println(orderId);
+//		System.out.println(orderId);
 		
 		map.put("orderId",orderId);
 		
@@ -111,6 +111,9 @@ public class OrderController {
 		//카트 비우기
 	//	session.removeAttribute("cartList");
 		session.removeAttribute("orderId");
+		
+		//포인트 적립하기
+		orderService.updatePoint(map);
 		
 		ModelAndView mav = new ModelAndView();
 		

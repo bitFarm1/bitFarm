@@ -28,8 +28,8 @@ public class MypageServiceImpl implements MypageService {
 	private MypageDAO mypageDAO;
 	@Autowired
 	private SellerDAO sellerDAO;
-//	@Autowired
-//	private OrderListPaging orderListPaging;
+	@Autowired
+	private OrderListPaging orderListPaging;
 	
 	//쿠폰
 	@Override
@@ -177,11 +177,20 @@ public class MypageServiceImpl implements MypageService {
 
 	//구매내역 가져오기
 	@Override
-	public List<OrderListDTO> getMypageOrderList(String id) {
+	public List<OrderListDTO> getMypageOrderList(Map<String, Object> map) {
 	
-		List<OrderListDTO> list = mypageDAO.getMypageOrderList(id);
+	//	List<OrderListDTO> list = mypageDAO.getMypageOrderList(map);
+		String pg = (String) map.get("pg");
+		//1페이지당 3개씩
+		int endNum = Integer.parseInt(pg)*3;
+		int startNum = endNum-2;
+				
+		map.put("startNum", startNum);
+		map.put("endNum", endNum);
+				
+		return mypageDAO.getMypageOrderList(map);
 		
-		return list;
+	//	return list;
 
 	}
 
@@ -205,10 +214,10 @@ public class MypageServiceImpl implements MypageService {
 	}
 
 	@Override
-	public List<OrderListDTO> getMypageOrderYearList(Map<String, String> map) {
+	public List<OrderListDTO> getMypageOrderYearList(Map<String, Object> map) {
 		
 		List<OrderListDTO> list = mypageDAO.getMypageOrderYearList(map);
-		System.out.println("서비스 잘왔어!");
+	//	System.out.println("서비스 잘왔어!");
 		
 		for(OrderListDTO dto : list) {
 			System.out.println(dto);
@@ -216,12 +225,6 @@ public class MypageServiceImpl implements MypageService {
 		return list;
 	}
 
-	@Override
-	public OrderListPaging orderListPaging(String pg) {
-		// TODO Auto-generated method stub
-		return null;
-
-	}
 
 	@Override
 	public String isExistPickSeller(String id, String sellerName) {
@@ -237,21 +240,21 @@ public class MypageServiceImpl implements MypageService {
 	}
 
 	
-	
-	/*
-	 * @Override public OrderListPaging orderListPaging(String pg) {
-	 * 
-	 * int totalA = mypageDAO.getOrderListTotalA();//총글수
-	 * 
-	 * orderListPaging.setCurrentPage(Integer.parseInt(pg));
-	 * orderListPaging.setPageBlock(3); orderListPaging.setPageSize(5);
-	 * orderListPaging.setTotalA(totalA); orderListPaging.makePagingHTML();
-	 * 
-	 * return orderListPaging; }
-	 */
-
-	
-
+	//페이징
+	@Override 
+	public OrderListPaging orderListPaging(Map<String, Object> map) {
+		
+		int totalA = mypageDAO.getOrderListTotalA(map);//총글수
+		String pg = (String) map.get("pg");
+		orderListPaging.setCurrentPage(Integer.parseInt(pg));
+		orderListPaging.setPageBlock(3); 
+		orderListPaging.setPageSize(5);
+		orderListPaging.setTotalA(totalA);
+		orderListPaging.makePagingHTML();
+	  
+		return orderListPaging; 
+	}
+	 
 	
 
 }

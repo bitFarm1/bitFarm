@@ -123,6 +123,12 @@ public class OrderDAOMybatis implements OrderDAO {
 		
 	}
 
+	@Override
+	public void updatePoint(Map<String, String> map) {
+		sqlSession.update("orderSQL.updatePoint",map);
+		
+	}
+
 
 
 	

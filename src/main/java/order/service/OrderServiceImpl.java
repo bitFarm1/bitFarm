@@ -149,8 +149,8 @@ public class OrderServiceImpl implements OrderService {
 		List<OrderItemDTO> list = orderDAO.getItemIdNQty(orderId);
 		
 		for(OrderItemDTO data : list) {
-			System.out.println("id>>>"+data.getOrder_item_id());
-			System.out.println("qty>>>"+data.getOrder_item_qty());
+		//	System.out.println("id>>>"+data.getOrder_item_id());
+		//	System.out.println("qty>>>"+data.getOrder_item_qty());
 			
 			String item_id = data.getOrder_item_id();
 			int item_qty = data.getOrder_item_qty();
@@ -171,6 +171,12 @@ public class OrderServiceImpl implements OrderService {
 			
 		}
 	
+	}
+
+	@Override
+	public void updatePoint(Map<String, String> map) {
+		orderDAO.updatePoint(map);
+		
 	}
 
 

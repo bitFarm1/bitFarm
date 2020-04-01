@@ -285,19 +285,24 @@ public class MypageController {
 	
 	//구매내역
 	/* @RequestMapping(value="/mypagePurchaseList", method=RequestMethod.GET) */
-	 @RequestMapping(value="/mypageMain", method=RequestMethod.GET) 
+	 @RequestMapping(value="/mypagePurchaseList", method=RequestMethod.GET) 
 	public ModelAndView mypagePurchaseList(@RequestParam(required=false, defaultValue="1") String pg ,HttpSession session) {
 		
+		ModelAndView mav = new ModelAndView();
 		String id = (String)session.getAttribute("memberId");
-		List<OrderListDTO> list = mypageService.getMypageOrderList(id);
+		
 		
 		//페이징 처리
-	//	OrderListPaging orderListPaging = mypageService.orderListPaging(pg);
+		Map<String, Object> map = new HashMap<String,Object>();
+		map.put("id",id);
+		map.put("pg",pg);
 		
-		ModelAndView mav = new ModelAndView();
+		List<OrderListDTO> list = mypageService.getMypageOrderList(map);
 		
-	//	mav.addObject("pg", pg);
-	//	mav.addObject("orderListPaging", orderListPaging);
+		OrderListPaging orderListPaging = mypageService.orderListPaging(map);
+		
+		mav.addObject("pg", pg);
+		mav.addObject("orderListPaging", orderListPaging);
 		
 		mav.addObject("list",list);
 		mav.addObject("memberId",id);
@@ -369,31 +374,42 @@ public class MypageController {
 	//구매내역 선택별로 
 	@RequestMapping(value="/purchaseListYear", method=RequestMethod.GET)
 	@ResponseBody
-	public ModelAndView purchaseListYear(@RequestParam String year, HttpSession session) {
-		System.out.println("잘도착쓰");
+	public ModelAndView purchaseListYear(@RequestParam(required=false, defaultValue="1") String pg, @RequestParam String year, HttpSession session) {
+	//	System.out.println("잘도착쓰");
 		String id = (String)session.getAttribute("memberId");
 		List<OrderListDTO> list = null;
-		System.out.println(">>>>"+year);
+		OrderListPaging orderListPaging = null;
+	//	System.out.println(">>>>"+year);
 		
 		if(year.equals("all")) {
-			System.out.println("전체");
-			list = mypageService.getMypageOrderList(id);
+		//	System.out.println("전체");
+			Map<String, Object> map = new HashMap<String,Object>();
+			map.put("id",id);
+			map.put("pg",pg);
+			list = mypageService.getMypageOrderList(map);
+	//		orderListPaging = mypageService.orderListPaging(map);
 		}else {
-			System.out.println("연도별");
-			Map<String, String> map = new HashMap<String, String>();
+		//	System.out.println("연도별");
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("pg",pg);
 			map.put("id",id);
 			map.put("year",year);
 
 			list = mypageService.getMypageOrderYearList(map);
+	//		orderListPaging = mypageService.orderListPaging(map);
 		}
 			
 		ModelAndView mav = new ModelAndView();
+		
+		mav.addObject("pg", pg);
+//		mav.addObject("orderListPaging", orderListPaging);
+	
 		mav.addObject("list",list);
 		mav.addObject("memberId",id);
 		mav.addObject("display","/mypage/mypageMain.jsp");
 		mav.addObject("mypage","/mypage/mypagePurchaseList.jsp");
 		mav.setViewName("/main/main");
-		System.out.println("컨트롤러에도 잘왔어");
+	//	System.out.println("컨트롤러에도 잘왔어");
 			
 		return mav;
 	}

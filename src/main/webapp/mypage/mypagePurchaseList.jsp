@@ -59,12 +59,17 @@
 <br><br>
 </c:forEach>
 </c:if>
+<div id="orderListPagingDiv" style="text-align: center;">${orderListPaging.pagingHTML}</div>
 </form>
-<div id="orderListPagingDiv" style="display:inline-block; width: 700px; text-align: center;"></div>
 </div>
 
 <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
+
+function orderListPaging(pg){
+	location.href="mypagePurchaseList?pg="+pg;
+}
+
 function itemClick(seq){
 	location.href='/bitFarm/item/getItemView?seq='+seq;
 }
@@ -72,14 +77,11 @@ function itemClick(seq){
 $('#purchaseYear').change(function(){   
 	
 	let selectYear = $('#purchaseYear option:selected').val();
-	alert(selectYear);
+//	alert(selectYear);
 	
-	document.purchaseListForm.action = '/bitFarm/mypage/purchaseListYear?year='+selectYear;
+	document.purchaseListForm.action = '/bitFarm/mypage/purchaseListYear?pg='+${pg}+'year='+selectYear;
 	document.purchaseListForm.submit();
 });      
 
-/* $(document).ready(function(){
-	$('#orderListPagingDiv').html(orderListPaging.pagingHTML);
-}); */
 </script>
 

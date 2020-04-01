@@ -40,6 +40,8 @@ public interface OrderDAO {
 
 	public void setItemState(String item_id);
 
+	public void updatePoint(Map<String, String> map);
+
 
 
 }

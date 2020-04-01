@@ -23,17 +23,17 @@ public class OrderListPaging {
 			endPage = totalP;
 		
 		if(startPage > pageBlock)
-			pagingHTML.append("[<span id='paging' onclick='imageboardPaging("+(startPage-1)+")'>이전</span>]");
+			pagingHTML.append("[<span id='paging' onclick='orderListPaging("+(startPage-1)+")'>이전</span>]");
 
 		for(int i=startPage; i<=endPage; i++) {
 			if(i == currentPage)
-				pagingHTML.append("[<span id='currentPaging' onclick='imageboardPaging("+i+")'>"+i+"</span>]");
+				pagingHTML.append("[<span id='currentPaging' onclick='orderListPaging("+i+")'>"+i+"</span>]");
 			else 
-				pagingHTML.append("[<span id='paging' onclick='imageboardPaging("+i+")'>"+i+"</span>]");
+				pagingHTML.append("[<span id='paging' onclick='orderListPaging("+i+")'>"+i+"</span>]");
 		}
 		
 		if(endPage < totalP)
-			pagingHTML.append("[<span id='paging' onclick='imageboardPaging("+(endPage+1)+")'>다음</span>]");
+			pagingHTML.append("[<span id='paging' onclick='orderListPaging("+(endPage+1)+")'>다음</span>]");
 	}
 }
 

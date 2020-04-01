@@ -28,7 +28,7 @@
 		<li><a href="/bitFarm/member/logout">로그아웃</a></li>
 	</c:if>
 	<c:if test="${memberId!=null && sellerId==null}"> 
-		<li><a href="/bitFarm/mypage/mypageMain">마이페이지</a>
+		<li><!-- <a href="/bitFarm/mypage/mypageMain">마이페이지</a> --><a href="/bitFarm/mypage/mypagePurchaseList?pg=1">마이페이지</a>
 			<ul>
 				<li><a href="/bitFarm/mypage/mypagePickItem">찜한 상품</a></li>
 			 	<li><a href="/bitFarm/mypage/mypagePickSeller">찜한 판매자</a></li>

@@ -57,7 +57,7 @@ public interface MypageService {
 
 	public void deleteCoupon(Map<String, String> map);
  
-	public List<OrderListDTO> getMypageOrderList(String id);
+	public List<OrderListDTO> getMypageOrderList(Map<String, Object> map);
 
 	public OrderDTO getMypageOrder(Map<String, String> map);
 
@@ -65,9 +65,9 @@ public interface MypageService {
 
 	public List<InformationQnADTO> getMyQnaList(String id);
 
-	public List<OrderListDTO> getMypageOrderYearList(Map<String, String> map);
+	public List<OrderListDTO> getMypageOrderYearList(Map<String, Object> map);
 
-	public OrderListPaging orderListPaging(String pg);
+	public OrderListPaging orderListPaging(Map<String, Object> map);
 
 	public String isExistPickSeller(String id, String sellerName);
 

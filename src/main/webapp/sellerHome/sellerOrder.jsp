@@ -18,8 +18,7 @@
 </style>
 
 
-<jsp:include page="sellerLeft.jsp"/>
-<div style="width: 68%; text-align: center; padding: 50px 0px 50px 420px;">
+<div>
 	
 	<!-- 판매상품 & 주문현황 Title -->
 	<h2 align="center">판매상품 주문현황</h2>

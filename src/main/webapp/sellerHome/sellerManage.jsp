@@ -20,18 +20,18 @@
 }
 </style>
 
+
 <div>
-	<h2 align="center">판매상품 모아보기</h2>
-	<div style="text-align: center;">판매자의 판매중인 상품입니다</div>
-	<br><br><br><br>
+	<h2 align="center">품절상품 관리하기</h2>
+	<div style="text-align: center;">재입고 된 상품을 등록해 주세요.</div>
 	
 	<c:set var="i" value="0" /> 
 	<c:set var="j" value="3" /> 
 	<table align="center" width="100%" cellpadding="40">
-		<c:forEach var="itemDTO" items="${sellerList}">
+		<c:forEach var="itemDTO" items="${soldoutList}">
 		<c:if test="${i%j == 0}"><tr></c:if> 
 			<td align="center">
-				<img class="mainImageList_image" src="../storage/${itemDTO.item_main_image}" onclick="itemClick(${itemDTO.item_id})"><br><br>
+				<img class="mainImageList_image" src="../storage/${itemDTO.item_main_image}" onclick="itemUpdate(${itemDTO.item_id})"><br><br>
 				<strong>${itemDTO.item_name}</strong><br>
 				<fmt:formatNumber pattern="#,###원">${itemDTO.item_price}</fmt:formatNumber> 
 			</td> 
@@ -40,11 +40,10 @@
 		</c:forEach> 
 	</table>
 </div>
-<p style="clear: both; height: 20px;"></p>
 
 <!-- script -->
 <script type="text/javascript">
-function itemClick(seq){
-	location.href='/bitFarm/item/getItemView?seq='+seq;
+function itemUpdate(seq){
+	location.href='/bitFarm/sellerHome/sellerItemUpdate?seq='+seq;
 }
 </script>

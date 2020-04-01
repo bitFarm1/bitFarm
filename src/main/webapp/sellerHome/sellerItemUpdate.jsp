@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
 <style type="text/css">
 .sellerAddTable{
 	text-align: center;
@@ -33,44 +34,44 @@
 </style>
 
 <div>
-	<h2 align="center">판매상품 등록하기</h2>
-	<div style="text-align: center;">판매하실 상품을 등록해 주세요.</div>
+	<h2 align="center">상품 정보 수정하기</h2>
+	<div style="text-align: center;">수정할 정보를 정확하게 기입해주세요.</div>
 	
-	<h3 align="left">&emsp;&emsp;판 매 상 품  등 록 하 기</h3>
-	<form name="sellerAddForm" enctype="multipart/form-data" method="post" action="/bitFarm/item/itemAdd">
+	<h3 align="left">&emsp;&emsp;판 매 상 품  수 정 하 기</h3>
+	<form name="sellerUpdateForm" enctype="multipart/form-data" method="post" action="/bitFarm/item/itemUpdate">
 	<table class="sellerAddTable" cellpadding="20" cellspacing="100" frame="hsides" rules="rows">
 		<tr>
 			<th width="30%">상품 이름</th>
 			<td>
-				<input class="sellerAddText" type="text" name="item_name" id="item_name" placeholder="상품 이름을 입력해주세요.">
+				<input class="sellerAddText" type="text" name="item_name" id="item_name" placeholder="상품 이름을 입력해주세요." value="${itemDTO.item_name}">
 				<div id="item_name_div"></div>
 			</td>
 		</tr>
 		<tr>
 			<th>상품 가격</th>
 			<td>
-				<input class="sellerAddText" type="text" name="item_price" id="item_price" placeholder="상품 가격을 입력해주세요.">
+				<input class="sellerAddText" type="text" name="item_price" id="item_price" placeholder="상품 가격을 입력해주세요." value="${itemDTO.item_price}">
 				<div id="item_price_div"></div>
 			</td>
 		</tr>
 		<tr>
 			<th>상품 메인 이미지</th>
 			<td style="height:50;">
-				<input type="file" name="img" id="image_main_image" placeholder="상품 이미지를 등록해주세요.">
+				<input type="file" name="img" id="image_main_image" placeholder="상품 이미지를 등록해주세요." value="${itemDTO.item_main_image}">
 				<div id="item_main_image_div"></div>
 			</td>
 		</tr>
 		<tr>
 			<th>상품 상세 이미지</th>
 			<td style="height:50;">
-				<input type="file" name="img" id="image_detail_image" placeholder="상품 이미지를 등록해주세요." >
+				<input type="file" name="img" id="image_detail_image" placeholder="상품 이미지를 등록해주세요." value="${itemDTO.item_detail_image}">
 				<div id="item_detail_image_div"></div>
 			</td>
 		</tr>
 		<tr>
 			<th>상품 설명</th>
 			<td>
-				<input class="sellerAddText" type="text" name="item_explain" id="image_explain" placeholder="상품의 간단한 설명을 입력해주세요.">
+				<input class="sellerAddText" type="text" name="item_explain" id="image_explain" placeholder="상품의 간단한 설명을 입력해주세요." value="${itemDTO.item_explain}">
 				<div id="item_explain_div"></div>
 			</td>
 		</tr>
@@ -89,7 +90,7 @@
 		<tr>
 			<th>상품 재고 수량</th>
 			<td>
-				<input class="sellerAddText" type="text" name="item_amount" id="item_amount" placeholder="상품 재고수량을 입력해주세요.">
+				<input class="sellerAddText" type="text" name="item_amount" id="item_amount" placeholder="상품 재고수량을 입력해주세요." >
 				<div id="item_amount_div"></div>
 			</td>
 		</tr>
@@ -102,8 +103,7 @@
 	</table>
 	</form>
 	<br><br>
-	<div style="text-align: center;"><input type="button" value="상품 등록하기" id="itemAddBtn"></div>
-	
+	<div style="text-align: center;"><input type="button" value="상품 수정하기" id="itemAddBtn"></div>
 </div>
 <p style="clear: both; height: 10px;"></p>
 
@@ -138,12 +138,12 @@ $('#itemAddBtn').click(function(){
 		$('#item_explain_div').text('상품의 간단한 설명을 등록하세요');
 		$('#item_explain_div').css('color', 'red');
 		$('#item_explain_div').css('font-size', '10pt');
-	}else if($('#image_amount').val()==''){
+	}else if($('#item_amount').val()==''){
 		$('#item_amount_div').text('상품의 재고수량을 등록하세요');
 		$('#item_amount_div').css('color', 'red');
 		$('#item_amount_div').css('font-size', '10pt');
 	}else {
-		$('form[name=sellerAddForm]').submit();
+		$('form[name=sellerUpdateForm]').submit();
 	}
 });
 </script>

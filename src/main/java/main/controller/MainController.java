@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import item.bean.ItemDTO;
+import item.bean.ItemMainListDTO;
 import item.service.ItemService;
 
 @Controller
@@ -22,7 +23,7 @@ public class MainController {
 	public ModelAndView main() {
 		ModelAndView mav = new ModelAndView();
 		
-		List<ItemDTO> bestList = itemService.getBestItemList();
+		List<ItemMainListDTO> bestList = itemService.getBestItemList();
 		List<ItemDTO> newList = itemService.getNewItemList();
 		
 		mav.addObject("bestList", bestList);

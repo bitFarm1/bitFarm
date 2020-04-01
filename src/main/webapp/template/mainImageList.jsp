@@ -28,7 +28,7 @@
 	<c:forEach var="itemDTO" items="${bestList}">
 	<c:if test="${i%j == 0 }"><tr></c:if> 
 		<td align="center">
-			<img class="mainImageList_image" src="../storage/${itemDTO.item_main_image}" onclick="itemClick(${itemDTO.item_id})"><br><br>
+			<img class="mainImageList_image" src="../storage/${itemDTO.item_main_image}" onclick="itemClick(${itemDTO.order_item_id})"><br><br>
 			<strong>${itemDTO.item_name}</strong><br>
 			<fmt:formatNumber pattern="#,###원">${itemDTO.item_price}</fmt:formatNumber> 
 		</td> 

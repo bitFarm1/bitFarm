@@ -23,15 +23,31 @@
 			1)
 	</insert>
 	
+	<update id="itemUpdate" parameterType="item">
+		update item set
+		item_name = #{item_name},
+		item_price = #{item_price},
+		item_main_image = #{item_main_image},
+		item_detail_image = #{item_detail_image},
+		item_explain = #{item_explain},
+		item_add_date = sysdate,
+		item_category_name = #{item_category_name}, 
+		item_amount = #{item_amount},
+		item_order_able = 1
+		where item_id = #{item_id}
+	</update>
+	
 	<select id="getAllItemList" resultType="item">
 		select * from item
 	</select>
 	
-	<select id="getBestItemList" resultType="item">
-		select * from 
-		(select rownum rn, tt.* from 
-		(select * from item )tt)
-		where rn >=1 and rn<![CDATA[<]]>=8 and ITEM_ORDER_ABLE = 1
+	<select id="getBestItemList" resultType="item.bean.ItemMainListDTO">
+		select sum(order_item_qty), order_item_id, item_name, seller_name, item_price, item_main_image, item_order_able
+		from item
+		join purchase on(order_item_id = item_id) 
+		group by order_item_id, item_name, seller_name, item_price, item_main_image, item_order_able
+		having item_order_able = 1
+		order by 1 desc
 	</select>
 
 	<select id="getNewItemList" resultType="item">
@@ -42,7 +58,7 @@
 	</select>
 	
 	<select id="getSellerItemList" parameterType="String" resultType="item">
-		select * from item where seller_name=#{sellerName}
+		select * from item where seller_name=#{sellerName} and ITEM_ORDER_ABLE = 1
 	</select> 
  
 	<select id="getCategoryList" parameterType="String" resultType="item">
@@ -51,6 +67,10 @@
  
  	<select id="getSearchList" parameterType="String" resultType="item">
  		select * from item where item_name like '%'||#{searchT}||'%' and ITEM_ORDER_ABLE = 1
+ 	</select>
+ 	
+ 	<select id="getSellerSoldOutList" parameterType="String" resultType="item">
+ 		select * from item where seller_name=#{sellerName} and ITEM_ORDER_ABLE = 0
  	</select>
  
  

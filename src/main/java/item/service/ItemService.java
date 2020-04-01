@@ -3,6 +3,7 @@ package item.service;
 import java.util.List;
 
 import item.bean.ItemDTO;
+import item.bean.ItemMainListDTO;
 
 public interface ItemService {
 
@@ -10,7 +11,7 @@ public interface ItemService {
 
 	public void itemAdd(ItemDTO itemDTO);
 
-	public List<ItemDTO> getBestItemList();
+	public List<ItemMainListDTO> getBestItemList();
 
 	public List<ItemDTO> getNewItemList();
 
@@ -21,6 +22,10 @@ public interface ItemService {
 	public List<ItemDTO> getSearchList(String searchT);
 
 	public List<ItemDTO> getAllItemList();
+
+	public List<ItemDTO> getSellerSoldOutList(String sellerName);
+
+	public void itemUpdate(ItemDTO itemDTO);
 
 
 }

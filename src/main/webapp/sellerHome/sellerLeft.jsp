@@ -7,12 +7,10 @@ a.sellerA:link {color: black; text-decoration: none;}
 a.sellerA:visited {color: black; text-decoration: none;}
 a.sellerA:hover {color: #5f0080; text-decoration: none; font-weight: bolder;}
 a.sellerA:active {color: black; text-decoration: none;}
+
 .sellerLeftDiv{	
-	margin
-	width: 20%; 
 	float: left; 
 	text-align: center;
-	/* border: 1px dotted red; */
 }
 .pickSellerBtn{
 	width: 150pt;
@@ -29,7 +27,6 @@ a.sellerA:active {color: black; text-decoration: none;}
 }
 </style>
 
-<div style = "padding: 5px 0px 0px 200px;">
 <div class="sellerLeftDiv" >
 	<c:set value="${sellerName}" var="seller" />
 	<input type="hidden" name="seller_id" value="${sellerDTO.seller_id}">
@@ -40,9 +37,12 @@ a.sellerA:active {color: black; text-decoration: none;}
 	<input type="button" value="판매자 찜하기" class="pickSellerBtn">
 	<br><br>
 	<table width="100%" height="300px">
-	  <c:if test="${sessionScope.memberId==null && sessionScope.sellerId == sellerDTO.seller_id}">
+	  <c:if test="${memberId==null && sellerId == sellerDTO.seller_id}">
 		<tr>
 			<td><a class="sellerA" href="/bitFarm/sellerHome/sellerAddForm">판매상품 등록하기</a></td>
+		</tr>
+		<tr>
+			<td><a class="sellerA" href="/bitFarm/sellerHome/sellerManage">품절 상품 관리하기</a></td>
 		</tr>
 	  </c:if>
 		<tr>

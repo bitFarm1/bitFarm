@@ -20,7 +20,8 @@
 		
 		<typeAlias type="cart.bean.CartDTO" alias="cart" />  	
 		<typeAlias type="cart.bean.CartListDTO" alias="cartList" />  	
-		<typeAlias type="item.bean.ItemDTO" alias="item" />  			
+		<typeAlias type="item.bean.ItemDTO" alias="item" />  
+		<typeAlias type="item.bean.ItemMainListDTO" alias="itemMainList" />  
 		<typeAlias type="review.bean.ReviewDTO" alias="review" />  	
 		<typeAlias type="order.bean.OrderDTO" alias="orderDTO" /> 	
 		<typeAlias type="order.bean.OrderListDTO" alias="orderListDTO" />

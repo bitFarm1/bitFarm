@@ -24,8 +24,13 @@ public class ItemServiceImpl implements ItemService {
 	}
 
 	@Override
-	public List<ItemDTO> getAllItemList() {
-		return itemDAO.getAllItemList();
+	public List<ItemDTO> getBestItemList() {
+		return itemDAO.getBestItemList();
+	}
+
+	@Override
+	public List<ItemDTO> getNewItemList() {
+		return itemDAO.getNewItemList();
 	}
 
 	@Override
@@ -42,5 +47,11 @@ public class ItemServiceImpl implements ItemService {
 	public List<ItemDTO> getSearchList(String searchT) {
 		return itemDAO.getSearchList(searchT);
 	}
+
+	@Override
+	public List<ItemDTO> getAllItemList() {
+		return itemDAO.getAllItemList();
+	}
+
 
 }

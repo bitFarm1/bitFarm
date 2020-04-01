@@ -38,7 +38,9 @@ public interface InformationDAO {
    
 	public List<InformationQnADTO> infoALLADMIN();
 
-	public void deleteInfo(String seq);           
+	public void deleteInfo(String seq);
+
+	public void upHit(String seq);            
  
 }  
       

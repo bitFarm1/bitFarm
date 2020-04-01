@@ -39,7 +39,11 @@
 	
 	<select id="infoALLADMIN" resultType="informationQnADTO">
 		select * from QnABoard 
-	</select> 		      
+	</select> 
+	 		      
+	<update id="upHit" parameterType="String">
+	 update information set information_views = information_views+1 where information_number = ${seq}  
+	 </update>
 	 
 	<select id="writeQnAAnswer" parameterType="String" resultType="informationQnADTO">
 		select * from QnABoard where infoQnA_seq = #{seq}

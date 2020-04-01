@@ -105,16 +105,16 @@
 		</tr>   
 	
 		<tr id="hidden1">		
-			<th class="subject">현재비밀번호*</th> 
+			<th class="subject">현재비밀번호</th> 
 			<td style="padding-top: 2px;"><input class="layoutT" type="password" name="pwd">
 			<br id="pwd_p" style="display: none;"><span id="pwdDiv" ></span></br></td> 
 		</tr>
 		<tr id="hidden2">   
-			<th class="subject">비밀번호변경*</th>   
+			<th class="subject">비밀번호변경</th>   
 			<td><input class="layoutT" type="password" name="member_pwd" readonly="readonly"></td>
 		</tr>
-		<tr id="hidden3">
-			<th class="subject">비밀번호변경확인*</th> 
+		<tr id="hidden3"> 
+			<th class="subject">비밀번호변경확인</th> 
 			<td style="padding-top: 2px;"><input class="layoutT" type="password" name="member_repwd" readonly="readonly">
 			<br id="member_pwd_p" style="display: none;"><span id="member_pwd_Div" ></span></br></td>
 		</tr>
@@ -158,14 +158,14 @@
 		<tr>
 			<th class="subject">생년월일</th> 
 			<c:if test="${memberDTO.member_birth != 0}"> 
-			<td><input class="layoutT" type="text" name="member_birth" placeholder="YYYYMMDD" value="${memberDTO.member_birth }">
+			<td><input class="layoutT" type="text" name="member_birth" id="birth" placeholder="YYYYMMDD" value="${memberDTO.member_birth }">
 			</c:if>
 			<c:if test="${memberDTO.member_birth == 0}"> 
-			<td><input class="layoutT" type="text" name="member_birth" placeholder="YYYYMMDD">
+			<td><input class="layoutT" type="text" name="member_birth" id="birth" placeholder="YYYYMMDD">
 			</c:if> 
 			<br id="member_birth_p" style="display: none;"><span id="member_birth_Div" ></span></br>
 			</td>
-	</table>
+	</table>  
 </div> 
 	<div style="height: 40px;"></div>   
 	<div style="weight: 600px; height: 100px; text-align: center;"> 
@@ -175,6 +175,12 @@
 
 <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
+
+
+var sname = true;
+var semail = true; 
+var sphone = true;
+var spwd = true
 	
 $(document).ready(function(){
 	if('${loginType}' != 'bit'){
@@ -186,7 +192,6 @@ $(document).ready(function(){
 });
 
 $('input[name=member_name]').focusout(function(){
-	
 	var RegexName = /^[가-힣]{2,5}$/; //이름 유효성 검사 2~4자 사이
 	$('#member_name_p').css("display", "none"); 
 	$('#member_name_Div').empty(); 
@@ -197,33 +202,21 @@ $('input[name=member_name]').focusout(function(){
 		$('#member_name_Div').css('color','red'); 
 		$('#member_name_Div').css('font-weight','bold');
 		$('#member_name_Div').css('font-size','10pt'); 
-		
-		}else if ( !RegexName.test($.trim($("#name").val())) ){
-			$('#member_name_p').css("display", "block"); 
-			$('#member_name_Div').text('이름을 정확히 입력하세요.'); 
-			$('#member_name_Div').css('color','red'); 
-			$('#member_name_Div').css('font-weight','bold');
-			$('#member_name_Div').css('font-size','10pt');
-			return;
- 
-		}else{
-			sname = true;
-		} 	
-});
+		sname = false;
+		return;
+	}else if ( !RegexName.test($.trim($("#name").val())) ){
+		$('#member_name_p').css("display", "block"); 
+		$('#member_name_Div').text('이름을 정확히 입력하세요.'); 
+		$('#member_name_Div').css('color','red'); 
+		$('#member_name_Div').css('font-weight','bold');
+		$('#member_name_Div').css('font-size','10pt');
+		sname = false;
+		return;
 
-$('input[name=member_id]').focusout(function(){	
-	$('#member_id_p').css("display", "none"); 
-	$('#member_id_Div').empty(); 
-	
-	if($('input[name=member_id]').val()==''){
-		$('#member_id_p').css("display", "block"); 
-		$('#member_id_Div').text('아이디를 입력하세요.');  
-		$('#member_id_Div').css('color','#5f0080');
-		$('#member_id_Div').css('font-weight','bold');
-		$('#member_id_Div').css('font-size','10pt');	
+	}else{
+		sname = true;
 	} 	
 });
-
 
 $('input[name=pwd]').focusout(function(){
 	$('#pwd_p').css("display", "none"); 
@@ -259,7 +252,8 @@ $('input[name=pwd]').focusout(function(){
 	        		$('#pwdDiv').css('font-weight','bold'); 
 	        		$('#pwdDiv').css('font-size','9pt');  
 	        		$('input[name=member_pwd]').prop('readonly', false);
-	        		$('input[name=member_repwd]').prop('readonly', false);	        		  
+	        		$('input[name=member_repwd]').prop('readonly', false); 
+	        		
 				} 
 			} 
 		});
@@ -272,10 +266,10 @@ $('input[name=member_pwd]').focus(function(){
 	
 	if($('input[name=pwd]').val()==''){
 	$('#member_pwd_p').css("display", "block"); 
-			$('#member_pwd_Div').text('현재비밀번호를 입력하세요.'); 
+			$('#member_pwd_Div').text('변경을 원하시면 입력하세요.'); 
 			$('#member_pwd_Div').css('color','#5f0080');
 			$('#member_pwd_Div').css('font-weight','bold');
-			$('#member_pwd_Div').css('font-size','10pt');			
+			$('#member_pwd_Div').css('font-size','10pt');	 		
 	} 
 });
 
@@ -288,7 +282,8 @@ $('input[name=member_repwd]').focus(function(){
 			$('#member_pwd_Div').text('현재비밀번호를 입력하세요.'); 
 			$('#member_pwd_Div').css('color','#5f0080');
 			$('#member_pwd_Div').css('font-weight','bold');
-			$('#member_pwd_Div').css('font-size','10pt');			
+			$('#member_pwd_Div').css('font-size','10pt');	
+			
 	} 
 });
 
@@ -323,6 +318,7 @@ $('input[name=member_repwd]').focusout(function(){
 		$('#member_pwd_Div').css('color','#5f0080');
 		$('#member_pwd_Div').css('font-weight','bold'); 
 		$('#member_pwd_Div').css('font-size','10pt');
+		spwd = false; 
 		
 	}else if($('input[name=member_pwd]').val()==$('input[name=member_repwd]').val()){
 		$('#member_pwd_p').css("display", "block"); 
@@ -330,22 +326,37 @@ $('input[name=member_repwd]').focusout(function(){
 		$('#member_pwd_Div').css('color','green');
 		$('#member_pwd_Div').css('font-weight','bold'); 
 		$('#member_pwd_Div').css('font-size','10pt'); 
+		spwd = true;
 	}   
 });
 
 
 
 $('input[name=member_name]').focusout(function(){
+	var RegexName = /^[가-힣]{2,5}$/; //이름 유효성 검사 2~4자 사이
 	$('#member_name_p').css("display", "none"); 
 	$('#member_name_Div').empty(); 
 	
-	if($('input[name=member_name]').val()==''){
+	if($('input[name=member_name]').val()==''){ 
 	$('#member_name_p').css("display", "block"); 
 		$('#member_name_Div').text('이름을 입력하세요.'); 
-		$('#member_name_Div').css('color','#5f0080'); 
+		$('#member_name_Div').css('color','red'); 
 		$('#member_name_Div').css('font-weight','bold');
 		$('#member_name_Div').css('font-size','10pt'); 
-		} 	
+		sname = false;
+		return;
+	}else if ( !RegexName.test($.trim($("#name").val())) ){
+		$('#member_name_p').css("display", "block"); 
+		$('#member_name_Div').text('이름을 정확히 입력하세요.'); 
+		$('#member_name_Div').css('color','red'); 
+		$('#member_name_Div').css('font-weight','bold');
+		$('#member_name_Div').css('font-size','10pt');
+		sname = false;
+		return;
+
+	}else{
+		sname = true;
+	} 		
 });
 
 $('input[name=member_email]').change(function(){	
@@ -354,7 +365,7 @@ $('input[name=member_email]').change(function(){
 		semail = false;
 	} 
 }); 
-
+ 
 $('input[name=member_email]').focus(function(){
 	if($('input[name=auth]').val() == 'ok'){ 
 		$('#member_email_p').css("display", "block");  
@@ -408,6 +419,29 @@ $('input[name=checkEmail]').click(function(){
 	 }	
 });      
 
+$('input[name=member_birth]').focusout(function(){ 
+	var userCheck = RegExp(/^[0-9]{8}$/)
+	$('#member_birth_p').css("display", "none"); 
+	$('#member_birth_Div').empty(); 
+	 
+	if($('input[name=member_birth]').val()==''){ 
+	$('#member_birth_p').css("display", "block"); 
+			$('#member_birth_Div').text('생일을 입력하세요.');   
+			$('#member_birth_Div').css('color','#5f0080');
+			$('#member_birth_Div').css('font-weight','bold');
+			$('#member_birth_Div').css('font-size','10pt'); 
+			
+	}else if(!(userCheck.test($('#birth').val()))){	 	 
+		$('#member_birth_p').css("display", "block") ;  
+		$('#member_birth_Div').text('예시 : 19941112');   
+		$('#member_birth_Div').css('color','red'); 
+		$('#member_birth_Div').css('font-weight','bold');
+		$('#member_birth_Div').css('font-size','10pt'); 
+		$('#modifyFormBtn').attr('disabled', true); 
+	}else {
+		$('#modifyFormBtn').attr('disabled', false); 
+	}
+});
 
     
 $('input[name=member_phone]').focusout(function(){
@@ -422,6 +456,7 @@ $('input[name=member_phone]').focusout(function(){
 		$('#member_phone_Div').css('color','red');
 		$('#member_phone_Div').css('font-weight','bold');
 		$('#member_phone_Div').css('font-size','10pt');
+		sphone = false;
 		  
 	}else if (!regExp.test($('input[name=member_phone]').val())) {
 		$('#member_phone_p').css("display", "block"); 
@@ -429,6 +464,7 @@ $('input[name=member_phone]').focusout(function(){
 		$('#member_phone_Div').css('color','red');
 		$('#member_phone_Div').css('font-weight','bold'); 
 		$('#member_phone_Div').css('font-size','10pt');
+		sphone = false;
 	}else{
 		sphone = true;
 	}		
@@ -461,20 +497,27 @@ $('input[name=member_address2]').focusout(function(){
 		} 	 
 });
 
-$('input[name=member_birth]').focusout(function(){  
+$('input[name=member_birth]').focusout(function(){ 
 	var userCheck = RegExp(/^[0-9]{8}$/)
 	$('#member_birth_p').css("display", "none"); 
 	$('#member_birth_Div').empty(); 
 	 
-	if($('input[name=member_birth]').val()!='' && !(userCheck.test($('#birth').val()))){	 	 
+	if($('input[name=member_birth]').val()==''){ 
+	$('#member_birth_p').css("display", "block"); 
+			$('#member_birth_Div').text('생일은 선택사항 입니다.');   
+			$('#member_birth_Div').css('color','#5f0080');
+			$('#member_birth_Div').css('font-weight','bold');
+			$('#member_birth_Div').css('font-size','10pt'); 
+			 
+	}else if(!(userCheck.test($('#birth').val()))){	 	 
 		$('#member_birth_p').css("display", "block") ;  
-		$('#member_birth_Div').text('예시 19941112');   
+		$('#member_birth_Div').text('예시 : 19941112');    
 		$('#member_birth_Div').css('color','red'); 
-		$('#member_birth_Div').css('font-weight','bold');
+		$('#member_birth_Div').css('font-weight','bold'); 
 		$('#member_birth_Div').css('font-size','10pt'); 
 		$('#modifyFormBtn').attr('disabled', true); 
 	}else {
-		$('#modifyFormBtn').attr('disabled', false);  
+		$('#modifyFormBtn').attr('disabled', false);       
 	}
 });
 
@@ -497,7 +540,18 @@ $('#modifyFormBtn').click(function(){
 				return; 
 	}
 	
-	document.modifyForm.method = 'post';
+	if(!(spwd && sname && semail && sphone)){
+		
+		console.log("spwd="+spwd);  
+		console.log("sname="+sname); 
+		console.log("semail="+semail);  
+		console.log("sphone="+sphone);      
+	
+		alert("필수 입력 사항을 확인하세요!"); 
+		return;    
+	}
+	 
+	document.modifyForm.method = 'post'; 
 	document.modifyForm.action = '/bitFarm/member/modify'; 
 	document.modifyForm.submit();
 
@@ -536,8 +590,7 @@ $('#modifyFormBtn').click(function(){
                 // 우편번호와 주소 정보를 해당 필드에 넣는다. 
                  
                 document.getElementById("member_address1").value = "("+data.zonecode+") "+roadAddr;
-                document.getElementById("member_address2").value = data.jibunAddress; 
-                                               
+                                                               
             }
         }).open();
     }

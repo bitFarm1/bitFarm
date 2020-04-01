@@ -31,23 +31,22 @@
 
 	<h3>인증 번호를 입력하세요. </h3><input class="layoutT" type="text" id="number" name="number" placeholder="인증 번호를 입력하세요.">&emsp;
 	<input class="layoutB" type="button" id="numberCheck" name="numberCheck" value="확인">
-	<br id="number_p" style="display: none;"><span id="numberDiv" ></span></br></td>		
-	
+	<span id="numberDiv" ></span>     		
+	 
 	
 <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
 $('#numberCheck').click(function(){
 	
-	if($('#number').val() == '${num}'){  
+	if($('#number').val() == '${num}'){    
 		alert("성공");
-		opener.document.forms[0].auth.value = 'ok';  
-		window.close();           
-		opener.document.forms[0].seller_email.focus(); 
-	 
-	}else{		
-		alert("다시 시도해주세요.")
-		window.close();
-	}
+		opener.document.forms[0].auth.value = 'ok';     
+		window.close();       
+		opener.document.forms[0].member_phone.focus();
+	}else{
+		alert("번호가 일치하지 않습니다."); 
+	} 
 });
+
 </script>			
      

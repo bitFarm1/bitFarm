@@ -40,7 +40,7 @@ a.searchA:active {color: black; text-decoration: none;}
 	</div>
 		<div style="height:5px;"></div>
 	<div>
-		<input class="layout" type="password" name="pwd" placeholder=" 비밀번호를 입력해주세요" style="font-size:15px; width:308px;">
+		<input class="layout" type="password" name="pwd" id="pwd" placeholder=" 비밀번호를 입력해주세요" style="font-size:15px; width:308px;">
 		<div id="loginPwdDiv" align="left"></div>   
 		
 	</div>
@@ -99,6 +99,12 @@ $('#loginBtn').click(function(){
 		}); 
 		
 	}
+});
+ 
+$("#pwd").keydown(function (key) { 
+    if (key.keyCode == 13) { // 엔터키면
+        $("#loginBtn").focus(); // 암호에 포커스
+    }
 });
 </script>
 

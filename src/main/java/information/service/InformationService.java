@@ -3,6 +3,8 @@ package information.service;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.http.HttpRequest;
+
 import information.bean.InformationDTO;
 import information.bean.InformationPaging;
 import information.bean.InformationQnADTO;
@@ -39,7 +41,9 @@ public interface InformationService {
   
 	public List<InformationQnADTO> infoALLADMIN();
 
-	public void deleteInfo(String seq);         
+	public void deleteInfo(String seq);
+ 
+	public void upHit(String seq);         
 
 }   
     

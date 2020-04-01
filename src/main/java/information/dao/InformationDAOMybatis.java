@@ -111,6 +111,12 @@ public class InformationDAOMybatis implements InformationDAO{
 	public void deleteInfo(String seq) {
 		sqlSession.delete("informationSQL.deleteInfo", seq); 
 		
+	}
+
+	@Override
+	public void upHit(String seq) {
+		sqlSession.update("informationSQL.upHit", seq); 
+		
 	} 
  
 }  

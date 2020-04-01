@@ -43,7 +43,8 @@
 									#{phoneNumber},
 									#{addr1},
 									#{addr2},
-									#{ps}
+									#{ps},
+									#{item_id}
 									)
 	</insert>
 	
@@ -76,6 +77,22 @@
 		update member set member_point = (select sum(point_price) from point where point_user_id = #{id}) where member_id = #{id};
 		end;
 	</insert>
+	
+	<select id = "getItemIdNQty" parameterType = "String"  resultType = "order.bean.OrderItemDTO">
+		select order_item_qty, order_item_id from purchase where order_id = #{orderId}
+	</select>
+	
+	<update id = "setItemIdNQty" parameterType = "java.util.Map">
+		update item set item_amount = item_amount - #{item_qty} where item_id = #{item_id}
+	</update>
+	
+	<select id = "getItemQty" parameterType = "String"  resultType = "int">
+		select item_amount from item where item_id = #{item_id}
+	</select>
  
+ 	<select id = "setItemState" parameterType = "String">
+ 		update item set item_order_able = 0 where item_id = #{item_id}
+ 	</select>
+ 	
 
 </mapper>

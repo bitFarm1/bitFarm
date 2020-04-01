@@ -14,6 +14,7 @@ import member.bean.MemberDTO;
 import mypage.bean.MypageCouponDTO;
 import mypage.bean.MypagePointDTO;
 import order.bean.OrderDTO;
+import order.bean.OrderItemDTO;
 import order.dao.OrderDAO;
 
 @Service(value="orderService")
@@ -78,6 +79,7 @@ public class OrderServiceImpl implements OrderService {
 			map.put("item_main_image",data.getItem_main_image());
 			map.put("item_price",tempMap.get("item_price"));
 			map.put("item_qty",data.getItem_qty());
+			map.put("item_id",data.getItem_id());
 		
 			/*
 			System.out.println(map.get("order_id")); //order_id
@@ -138,6 +140,37 @@ public class OrderServiceImpl implements OrderService {
 			int su = orderDAO.deletePoint(tempMap);
 		}
 
+	}
+
+	@Override
+	public void deleteItemQty(String orderId) {
+		
+		//주문테이블에서 주문한 아이템과 수량 가져오기
+		List<OrderItemDTO> list = orderDAO.getItemIdNQty(orderId);
+		
+		for(OrderItemDTO data : list) {
+			System.out.println("id>>>"+data.getOrder_item_id());
+			System.out.println("qty>>>"+data.getOrder_item_qty());
+			
+			String item_id = data.getOrder_item_id();
+			int item_qty = data.getOrder_item_qty();
+			
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("item_id",item_id);
+			map.put("item_qty",item_qty);
+			
+			//item 수량 업데이트
+			orderDAO.setItemIdNQty(map);
+			
+			//item 수량 확인
+			int qty = orderDAO.getItemQty(item_id);
+			
+			if(qty == 0) {
+				orderDAO.setItemState(item_id);
+			}
+			
+		}
+	
 	}
 
 

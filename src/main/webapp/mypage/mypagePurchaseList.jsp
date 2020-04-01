@@ -36,7 +36,7 @@
 			<div style="height: 75px; width: 300px; float: left; margin-top: 5px;">
 				<dl style="margin: 0px; padding: 0px;">
 					<dt style="float: left; font-size: 10pt;">구매일자</dt>
-					<dd style="float: left; font-weight: bold; font-size: 10pt;"><fmt:formatDate value="${orderListDTO.order_date}" pattern="yyyy년MM월dd일 HH시mm분"/></dd>
+					<dd style="float: left; font-weight: bold; font-size: 10pt;"><fmt:formatDate type = "date" value="${orderListDTO.order_date}" pattern="yyyy년MM월dd일 HH시 mm분"/></dd>
 				</dl>
 				<br>
 				<dl style="margin: 0px; padding: 0px;">

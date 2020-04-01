@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import member.bean.MemberDTO;
 import mypage.bean.MypageCouponDTO;
 import order.bean.OrderDTO;
+import order.bean.OrderItemDTO;
 
 @Repository("orderDAO")
 @Transactional
@@ -97,6 +98,32 @@ public class OrderDAOMybatis implements OrderDAO {
 		int su = sqlSession.insert("orderSQL.deletePoint",tempMap);
 		return su;
 	}
+
+	@Override
+	public List<OrderItemDTO> getItemIdNQty(String orderId) {
+		
+		List<OrderItemDTO> list = sqlSession.selectList("orderSQL.getItemIdNQty",orderId);
+		return list;
+	}
+
+	@Override
+	public void setItemIdNQty(Map<String, Object> map) {
+		sqlSession.update("orderSQL.setItemIdNQty",map);
+		
+	}
+
+	@Override
+	public int getItemQty(String item_id) {
+		return sqlSession.selectOne("orderSQL.getItemQty",item_id);
+	}
+
+	@Override
+	public void setItemState(String item_id) {
+		sqlSession.update("orderSQL.setItemState",item_id);
+		
+	}
+
+
 
 	
 

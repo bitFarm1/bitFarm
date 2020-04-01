@@ -76,10 +76,13 @@
 		(select pick_seller_user_id from pickseller where pick_seller_user_id = #{id}) and pick_seller_id in #{check}
 	</delete>
 	
+<<<<<<< HEAD
 	<select id="isExistPickSeller" parameterType = "java.util.Map" resultType = "int">
 		select count(*) from pickseller where pick_seller_name=#{sellerName} and pick_seller_user_id=#{id}
 	</select>
 	
+=======
+>>>>>>> 0330ksj
 
 	<!-- 구매내역 -->
 	<select id = "getMypageOrderList" resultType = "orderListDTO" parameterType="String">
@@ -89,7 +92,7 @@
     		row_number() over (partition by order_id order by order_item_main_image desc) rn
     		from purchase
 		)
-		where rn = 1 and order_user_id = #{id}
+		where rn = 1 and order_user_id = #{id} order by order_date desc
 	</select>
 	
 	<select id = "getMypageOrder" resultType = "orderDTO" parameterType="java.util.Map">

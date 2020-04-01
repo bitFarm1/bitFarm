@@ -105,6 +105,9 @@ public class OrderController {
 		map.put("orderId",orderId);
 		orderService.deletePointNCoupon(map);
 		
+		//판매수량 관리하기
+		orderService.deleteItemQty(orderId);
+		
 		//카트 비우기
 	//	session.removeAttribute("cartList");
 		session.removeAttribute("orderId");

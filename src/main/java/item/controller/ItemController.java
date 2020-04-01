@@ -20,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import item.bean.ItemDTO;
 import item.service.ItemService;
+import order.service.OrderService;
 import review.bean.ReviewDTO;
 import review.service.ReviewService;
 
@@ -30,6 +31,9 @@ public class ItemController {
 	private ItemService itemService;
 	@Autowired
 	private ReviewService reviewService;
+	
+	@Autowired
+	private OrderService orderService;
 	
 	//판매자 홈에서 판매자가 판매할 상품 등록
 	@RequestMapping(value="itemAdd", method=RequestMethod.POST)

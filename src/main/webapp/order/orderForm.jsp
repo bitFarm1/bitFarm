@@ -155,8 +155,7 @@
 		</tr>
 	<tr>
 			<th>최종 결제 금액</th>
-			
-		<!-- 	<td><div id = "totalMoneyDiv" style = "display:inline;"></div>	원</td> -->
+			<td><div id = "totalMoneyDiv" style = "display:inline;"></div>	원</td>
 
 			</tr>
 	</table>

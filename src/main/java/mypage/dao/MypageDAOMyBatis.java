@@ -178,11 +178,13 @@ public class MypageDAOMyBatis implements MypageDAO {
 	@Override
 	public int getOrderListTotalA() {
 		return sqlSession.selectOne("mypageSQL.getOrderListTotalA");
+
 	}
 
 	@Override
 	public int isExistPickSeller(Map<String, String> map) {
 		return sqlSession.selectOne("mypageSQL.isExistPickSeller", map);
+
 	}
 
 	

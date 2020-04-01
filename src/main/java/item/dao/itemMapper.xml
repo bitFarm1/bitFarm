@@ -31,14 +31,14 @@
 		select * from 
 		(select rownum rn, tt.* from 
 		(select * from item )tt)
-		where rn >=1 and rn<![CDATA[<]]>=8
+		where rn >=1 and rn<![CDATA[<]]>=8 and ITEM_ORDER_ABLE = 1
 	</select>
 
 	<select id="getNewItemList" resultType="item">
 		select * from 
 		(select rownum rn, tt.* from 
 		(select * from item order by item_add_date desc)tt)
-		where rn >=1 and rn<![CDATA[<]]>=8
+		where rn >=1 and rn<![CDATA[<]]>=8 and ITEM_ORDER_ABLE = 1
 	</select>
 	
 	<select id="getSellerItemList" parameterType="String" resultType="item">
@@ -46,11 +46,11 @@
 	</select> 
  
 	<select id="getCategoryList" parameterType="String" resultType="item">
-		select * from item where item_category_name=#{item_category_name}
+		select * from item where item_category_name=#{item_category_name} and ITEM_ORDER_ABLE = 1
 	</select>
  
  	<select id="getSearchList" parameterType="String" resultType="item">
- 		select * from item where item_name like '%'||#{searchT}||'%'
+ 		select * from item where item_name like '%'||#{searchT}||'%' and ITEM_ORDER_ABLE = 1
  	</select>
  
  

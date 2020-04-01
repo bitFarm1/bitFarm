@@ -56,7 +56,7 @@
 		<ul>
 			<li class="itemDetailLi" id="itemDetailLi"><h4>상품설명</h4></li>
 			<li class="itemReviewLi"><h4>고객후기</h4></li>
-			<li class="itemQnaLi"><h4>상품문의</h4></li>
+			<!-- <li class="itemQnaLi"><h4>상품문의</h4></li> -->
 		</ul>
 	</div>
 	<p style="clear: both; height: 5px;"></p>
@@ -71,7 +71,7 @@
 		<ul>
 			<li class="itemDetailLi"><h4>상품설명</h4></li>
 			<li class="itemReviewLi" id="itemReviewLi"><h4>고객후기</h4></li>
-			<li class="itemQnaLi"><h4>상품문의</h4></li>
+			<!-- <li class="itemQnaLi"><h4>상품문의</h4></li> -->
 		</ul>
 	</div>
 	<p style="clear: both; height: 10px;"></p>
@@ -84,7 +84,7 @@
 	</div>
 	
 	<!-- 문의 -->
-	<p style="clear: both; height: 100px;"></p>
+<!-- 	<p style="clear: both; height: 100px;"></p>
 	<div class="itemMenu">
 		<ul>
 			<li class="itemDetailLi"><h4>상품설명</h4></li>
@@ -95,7 +95,7 @@
 	<p style="clear: both; height: 5px;"></p>
 	<div class="itemBtnDiv">
 		<input type="button" class="itemViewSellerQnaBtn" value="문의하러가기">
-	</div>
+	</div> -->
 </div>
 <p style="clear: both; height: 10px;"></p>
 

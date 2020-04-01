@@ -85,11 +85,11 @@
 }
 	
 </style>
-<form name="sellerWriteForm">   
+<form name="sellerWriteForm" method="post" enctype="multipart/form-data" action="/bitFarm/seller/write">   
 <h2 align="center">판매자 회원가입</h2>
 <div style="height:20px;"></div>
 <div> 
-	<table cellpadding="10px">   
+	<table cellpadding="10px">    
 		<tr> 
 			<th class="subject">아이디*</th>
 			<td style="vertical-align: top;"><input class="layoutT" type="text" id="id" name="seller_id" placeholder="6자 이상의 영문 혹은 영문과 숫자를 조합">&emsp;
@@ -152,6 +152,12 @@
 			<br id="seller_address1_p" style="display: none;"><span id="seller_address1_Div" ></span></br>
 			</td>
 		</tr> 
+		
+		<tr>  
+			<th class="subject">이미지 업로드</th>
+			<td><input id="upload1" type="file" name="img" size="50">		
+			</td>
+		</tr>    
 	  
 	</table> 
 </div> 
@@ -485,8 +491,6 @@ function checkSellerWrite(){
 				
 	}else if($('#check1').is(":checked") && $('#check2').is(":checked") && $('#seller_check3').is(":checked")){
 
-		document.sellerWriteForm.method = 'post';
-		document.sellerWriteForm.action = '/bitFarm/seller/write';
 		document.sellerWriteForm.submit(); 
 		  
 	}else{  

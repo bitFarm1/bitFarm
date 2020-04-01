@@ -76,13 +76,10 @@
 		(select pick_seller_user_id from pickseller where pick_seller_user_id = #{id}) and pick_seller_id in #{check}
 	</delete>
 	
-<<<<<<< HEAD
 	<select id="isExistPickSeller" parameterType = "java.util.Map" resultType = "int">
 		select count(*) from pickseller where pick_seller_name=#{sellerName} and pick_seller_user_id=#{id}
 	</select>
 	
-=======
->>>>>>> 0330ksj
 
 	<!-- 구매내역 -->
 	<select id = "getMypageOrderList" resultType = "orderListDTO" parameterType="String">

@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <style type="text/css">
-	a.info {color:black; text-decoration: none; font-size: 11pt;}  
+	a.info {color:black; text-decoration: none; font-size: 10pt;}  
 	a.info:link {color: black; text-decoration: none;}
 	a.info:visited {color: black; text-decoration: none;}
 	a.info:hover {color: #5f0080; text-decoration: none; font-weight: bolder;} 
@@ -82,11 +82,11 @@
 				<option value="information_name">아이디 
 	</select>       
 	<input type="text" valign="center" name="keyword" value="${keyword }" style="height:30px; ">   
-	<img align="top" src="../image/search.png" id="searchBtn" name="searchBtn" style="height:35px;">  
+	<img align="top" src="../image/search.png" id="searchBtn" name="searchBtn" style="height:35px; cursor: pointer;">  
 	<!-- <input type="button" id="searchBtn" name="searchBtn" value="검색">  -->
 	</td></tr>
 	</table> 
-	</div> 
+	</div>  
 </div> 
 </form> 
 	
@@ -103,10 +103,15 @@ $('#searchBtn').click(function(event){
 	document.infoBoardListForm.action = '/bitFarm/information/getInfoSearch';
 	document.infoBoardListForm.submit();  
 });   
-  
+   
 function infoSearch(pg){    
 	$('#pg').val(pg);  
 	$('#searchBtn').trigger('click'); 	  
 } 
 
+$("#keyword").keydown(function (key) { 
+    if (key.keyCode == 13) { // 엔터키면
+        $("#searchBtn").focus(); // 암호에 포커스
+    }
+});
 </script>

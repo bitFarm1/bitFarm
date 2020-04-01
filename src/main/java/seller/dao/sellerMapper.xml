@@ -11,8 +11,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		,#{seller_phone} 
 		,#{seller_license}	
 		,#{seller_address1} 
-		,#{seller_address2} 
-		,sysdate,0)   
+		,#{seller_address2}  
+		,sysdate,nvl(#{seller_profileImage}, 'user.png'))   
 	</insert> 	   
 	
 	<select id="getSellerPwd" parameterType="String" resultType="String">

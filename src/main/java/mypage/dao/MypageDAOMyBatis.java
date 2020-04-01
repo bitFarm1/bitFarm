@@ -78,7 +78,6 @@ public class MypageDAOMyBatis implements MypageDAO {
 	//찜한 물건
 	@Override
 	public List<MypagePickItemDTO> getMypagePickItem(String id) {
-		
 		return sqlSession.selectList("mypageSQL.getMypagePickItem",id);
 	}
 	

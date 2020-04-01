@@ -23,7 +23,7 @@
 		</td>
 		<td>
 			<input class = "pickSellerHomeBtn" type="button" value="판매자 홈" 
-			onclick="javascript:location.href='/bitFarm/sellerHome/sellerAll?sellerName=${mypagePickSellerDTO.pick_seller_name}'" >
+				onclick="javascript:location.href='/bitFarm/sellerHome/sellerAll?sellerName=${mypagePickSellerDTO.pick_seller_name}'" >
 			<input class = "pickSellerDeleteBtn" type="button" value="삭제" name="deleteBtn" id="${mypagePickSellerDTO.pick_seller_id }">
 		</td>
 	</tr>

@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import cart.bean.CartListDTO;
 import member.bean.MemberDTO;
 import mypage.bean.MypagePickItemDTO;
+import mypage.service.MypageService;
 import mypage.bean.MypageCouponDTO;
 
 import order.service.OrderService;
@@ -27,6 +28,8 @@ import order.service.OrderService;
 public class OrderController {
 	@Autowired
 	private OrderService orderService;
+	@Autowired
+	private MypageService mypageService;
 	
 	@RequestMapping(value="orderForm", method=RequestMethod.GET)
 	public ModelAndView orderForm(HttpSession session) {
@@ -55,14 +58,7 @@ public class OrderController {
 		return mav;
 	}
 	
-	@RequestMapping(value="pickItemOrder", method=RequestMethod.POST)
-	public ModelAndView pickItemOrder(@ModelAttribute List<MypagePickItemDTO> list) {
-		ModelAndView mav = new ModelAndView();
-		
-		System.out.println(list.size());
-		
-		return mav;
-	}
+	
 	////////////////////////////////////////////////////
 	@RequestMapping(value="writeOrder", method=RequestMethod.POST)
 	@ResponseBody

@@ -16,7 +16,7 @@
 	</tr>
 </thead>
 <tbody>
-<c:forEach var="myPickItemDTO" items="${list }">
+<c:forEach var="myPickItemDTO" items="${list}">
 <c:set var = "item_id" value = "${myPickItemDTO.pick_item_id }"/>
 <c:set var = "item_img" value = "${myPickItemDTO.pick_item_main_img }"/>
 <c:set var = "item_seller" value = "${myPickItemDTO.pick_item_seller_name }"/>
@@ -44,8 +44,6 @@
 </form>
 <div id = "pickItemBlank"></div>
 <input class = "pickItemSelectDeleteBtn" id = "choiceDeleteBtn" type="button" value="선택삭제" >	
-<div id = "pickItemBlank2"></div>
-<input class = "pickItemAllOrderBtn" type="button" value="전체주문" >
 
 <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
@@ -104,14 +102,6 @@ $('.pickItemBasketBtn').click(function(){
 				}
 			}
 		});
-	}
-});
-
-//전체주문
-$('.pickItemAllOrderBtn').click(function(){
-	if(confirm("상품을 모두 주문하시겠습니까?")){
-		document.pickItemListForm.action = '/bitFarm/order/pickItemOrder';
-		document.pickItemListForm.submit();
 	}
 });
 

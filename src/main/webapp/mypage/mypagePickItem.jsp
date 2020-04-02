@@ -3,9 +3,9 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <link rel="stylesheet" href= "../css/mypage.css">
 
-<!-- <div id = "pickItemList">찜한 상품</div> -->
+
 <h3>찜한 상품</h3>
-<!-- <form id="pickItemListForm" method="post" action="/bitFarm/mypage/deletePickItem"> -->
+
 <form name = "pickItemListForm" id="pickItemListForm" method="post">
 <table class = "pickItemTable" frame="hsides" rules = "rows" cellpadding="10" >
 <thead>
@@ -28,7 +28,7 @@
 		<dl>
 			<dt style="font-size: 12pt; font-weight: bold;margin-bottom: 5px;"><a style="cursor:pointer" onclick="itemClick(${myPickItemDTO.pick_item_id})" class = "pickItemDetailA">[${item_seller}] ${item_name }</a></dt>
 			<dd style="font-size: 10pt;">
-			<fmt:formatNumber pattern="#,###원">${item_price}</fmt:formatNumber>
+			<fmt:formatNumber pattern="#,###원">${item_sprice}</fmt:formatNumber>
 			</dd>
 		</dl>
 		</td>
@@ -63,7 +63,6 @@ $('#choiceDeleteBtn').click(function(){
 		alert("삭제할 항목을 선택하세요");
 	else{
 		if(confirm("정말로 삭제하시겠습니까")){
-		//	$('#pickItemListForm').submit();
 			document.pickItemListForm.action = "/bitFarm/mypage/deleteChoicePickItem";
 			document.pickItemListForm.submit();
 		}
@@ -93,7 +92,6 @@ $('.pickItemBasketBtn').click(function(){
 			data : 'item_id=' + item_id + '&item_qty=' + 1 + '&itemAllPrice=' + item_price,
 			dataType : 'text',
 			success: function(data){
-				//alert(data);
 				if(data=='true'){
 					location.href = '/bitFarm/cart/cartForm';
 				}else{

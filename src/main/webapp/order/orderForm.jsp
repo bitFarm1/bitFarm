@@ -137,10 +137,6 @@
 			<th>총 상품금액</th>
 			<td><fmt:formatNumber pattern="#,###원" value="${totalMoney}"/></td>
 		</tr>
-		<!-- <tr>
-			<th>할인 금액</th>
-			<td>0원</td>
-		</tr> -->
 		<tr>
 			<th>배송비</th>
 			<td>3,000원</td>
@@ -180,9 +176,6 @@
 
 $('.orderBtn').click(function(){
 
-//	alert($('input[name=total]').val()); 
-//	alert($('input[name=point]').val());   
-//	alert($('input[name=coupon]').val()); 
 	let radioBtn = $(":input:radio[name=payment]:checked").val();
 	
 	if( $('#addr1').val() == '' || $('#addr2').val() =='' || $('#name').val() == '' || $('#phone').val() ==''){
@@ -213,25 +206,15 @@ $('.orderBtn').click(function(){
 		    buyer_email : '${memberDTO.member_email}',
 		    buyer_name : '${memberDTO.member_name}',
 		    buyer_tel : '${memberDTO.member_phone}',
-		//  buyer_addr : '서울특별시 강남구 삼성동',
-		//  buyer_postcode : '123-456',
-		//    m_redirect_url : '/bitFarm/main/main'	//이거는 안먹는데 뭐지
 		}, function(rsp) {
 		    if ( rsp.success ) {
-			//        var msg = '결제가 완료되었습니다.';
-		    //    msg += '고유ID : ' + rsp.imp_uid;
-		     //   msg += '상점 거래ID : ' + rsp.merchant_uid;
-		      //  msg += '결제 금액 : ' + rsp.paid_amount;
-		       // msg += '카드 승인번호 : ' + rsp.apply_num;
-		  //      alert(msg);
-		  //      location.href = '/bitFarm/order/orderSuccess';	//주문 성공 됐다는 페이지 만들기
+
 		        $.ajax({
 		    		type : 'post',
 		    		url : '/bitFarm/order/writeOrder',
 		    		data : $('#orderForm').serialize(),
 		    		success : function(){
-		    		//	alert('짠');
-		    			//alert(JSON.stringify(data)); 
+		   
 		    			location.href = '/bitFarm/order/orderSuccess';
 		    		}
 		    	});
@@ -301,7 +284,7 @@ $('#selectCoupon').change(function(){
 	   let total = totalMoney + 3000 - usePoint - useCoupon; 
 	 
 	   let couponId = $('#couponOption').attr('name');
-	// alert(couponId);
+
 	   
 	   $('input[name=couponId]').val(couponId); //
 	   $('input[name=coupon]').val(useCoupon); //

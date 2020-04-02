@@ -21,7 +21,6 @@ import mypage.bean.MypageCouponDTO;
 import mypage.bean.MypagePickItemDTO;
 import mypage.bean.MypagePickSellerDTO;
 import mypage.bean.MypagePointDTO;
-import mypage.bean.MypageReviewDTO;
 import mypage.bean.MypageReviewListDTO;
 import mypage.service.MypageService;
 
@@ -108,14 +107,6 @@ public class MypageController {
 		mm.addAttribute("couponTotal", couponTotal);
 		mm.addAttribute("pointTotal", pointTotal);
 		return mm;
-	}
-	
-	
-	@RequestMapping(value="/mypageDeliveryTracking", method=RequestMethod.GET)
-	public String mypageDeliveryTracking(Model model) {
-		model.addAttribute("display","/mypage/mypageMain.jsp");
-		model.addAttribute("mypage","/mypage/mypageDeliveryTracking.jsp");
-		return "/main/main";
 	}
 	
 	//리뷰
@@ -220,7 +211,7 @@ public class MypageController {
 	
 	@RequestMapping(value="/mypagePickSellerAdd", method=RequestMethod.POST)
 	public String mypagePickSellerAdd(Model model, HttpSession session, @RequestParam String sellerName) {
-		//System.out.println(sellerName);
+
 		String id = (String)session.getAttribute("memberId");
 		
 		String exist = mypageService.isExistPickSeller(id, sellerName);
@@ -284,9 +275,8 @@ public class MypageController {
 	
 	
 	//구매내역
-	/* @RequestMapping(value="/mypagePurchaseList", method=RequestMethod.GET) */
 	 @RequestMapping(value="/mypagePurchaseList", method=RequestMethod.GET) 
-	public ModelAndView mypagePurchaseList(@RequestParam(required=false, defaultValue="1") String pg ,HttpSession session) {
+	public ModelAndView mypagePurchaseList(@RequestParam(required=false, defaultValue="1")String pg ,HttpSession session) {
 		
 		ModelAndView mav = new ModelAndView();
 		String id = (String)session.getAttribute("memberId");
@@ -309,8 +299,6 @@ public class MypageController {
 		mav.addObject("display","/mypage/mypageMain.jsp");
 		mav.addObject("mypage","/mypage/mypagePurchaseList.jsp");
 		mav.setViewName("/main/main");
-	//	model.addAttribute("display","/mypage/mypageMain.jsp");
-	//	model.addAttribute("mypage","/mypage/mypagePurchaseList.jsp");
 		
 		return mav;
 	}
@@ -326,7 +314,6 @@ public class MypageController {
 		
 		OrderDTO orderDTO = mypageService.getMypageOrder(map);
 		List<OrderImageDTO> imageList = mypageService.getMypageOrderImage(map);
-	//	System.out.println(">>>>"+imageList.size());
 		
 		ModelAndView mav = new ModelAndView();
 		
@@ -338,11 +325,8 @@ public class MypageController {
 		mav.setViewName("/main/main");
 		
 		return mav;
-	//	model.addAttribute("display","/mypage/mypageMain.jsp");
-	//	model.addAttribute("mypage","/mypage/mypagePurchaseDetail.jsp");
-	//	return "/main/main";
+
 	}
-	
 	
 	
 	@RequestMapping(value="/mypageQna", method=RequestMethod.GET)
@@ -370,49 +354,6 @@ public class MypageController {
 		 
 		return mav; 
 	}
-	
-	//구매내역 선택별로 
-	@RequestMapping(value="/purchaseListYear", method=RequestMethod.GET)
-	@ResponseBody
-	public ModelAndView purchaseListYear(@RequestParam(required=false, defaultValue="1") String pg, @RequestParam String year, HttpSession session) {
-	//	System.out.println("잘도착쓰");
-		String id = (String)session.getAttribute("memberId");
-		List<OrderListDTO> list = null;
-		OrderListPaging orderListPaging = null;
-	//	System.out.println(">>>>"+year);
-		
-		if(year.equals("all")) {
-		//	System.out.println("전체");
-			Map<String, Object> map = new HashMap<String,Object>();
-			map.put("id",id);
-			map.put("pg",pg);
-			list = mypageService.getMypageOrderList(map);
-	//		orderListPaging = mypageService.orderListPaging(map);
-		}else {
-		//	System.out.println("연도별");
-			Map<String, Object> map = new HashMap<String, Object>();
-			map.put("pg",pg);
-			map.put("id",id);
-			map.put("year",year);
 
-			list = mypageService.getMypageOrderYearList(map);
-	//		orderListPaging = mypageService.orderListPaging(map);
-		}
-			
-		ModelAndView mav = new ModelAndView();
-		
-		mav.addObject("pg", pg);
-//		mav.addObject("orderListPaging", orderListPaging);
-	
-		mav.addObject("list",list);
-		mav.addObject("memberId",id);
-		mav.addObject("display","/mypage/mypageMain.jsp");
-		mav.addObject("mypage","/mypage/mypagePurchaseList.jsp");
-		mav.setViewName("/main/main");
-	//	System.out.println("컨트롤러에도 잘왔어");
-			
-		return mav;
-	}
-	
 	
 }

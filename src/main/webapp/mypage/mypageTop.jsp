@@ -24,7 +24,6 @@ $(document).ready(function(){
 		url: '/bitFarm/mypage/getTopTotal',
 		dataType:'json',
 		success : function(data){
-		//	alert(JSON.stringify(data));
 			$('#pointTotal').text(data.pointTotal);
 			$('#couponTotal').text(data.couponTotal);	
 		}

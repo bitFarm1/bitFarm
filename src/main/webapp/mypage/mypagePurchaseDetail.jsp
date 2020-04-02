@@ -35,12 +35,7 @@
 		</td>
 		
 		<td  style="color:#5f0080; font-weight: bold; ">${orderDTO.order_state}</td>
-		<!-- <td>
-			<input class = "purchaseDetailBasketBtn" type="button" value="장바구니" onclick="javascript:location.href='/bitFarm/cart/cartForm.do'" >
-			<div id = "purchaseDetailBasketBtnDiv">
-				<a class = "purchaseDetailBasketA" href="#">장바구니</a>
-			</div>
-		</td> -->
+	
 	</tr>
 	</c:forEach>
 </table>
@@ -48,16 +43,6 @@
 
 </c:if>
 <div style="width: 35%; height: 10px; float:left;"></div>
-<!-- <div id = "purchaseDetailAllOrderBtnDiv">
-	<a class = "purchaseDetailAllOrderA" href="#">전체 상품 다시 담기</a>
-</div>
-<input class = "purchaseDetailAllOrderBtn" type="button" value="전체 상품 다시 담기">
-<div style="width: 40px; height: 10px; float:left;"></div>
-<div id = "purchaseDetailAllDeleteBtnDiv">
-	<a class = "purchaseDetailAllDeleteA" href="#">전체 상품 주문 취소</a>
-</div>
-<input class = "purchaseDetailAllDeleteBtn" type="button" value="전체 상품 주문 취소">
-<div style=" border : solid red; width: 230px; height: 10px; float:left;"></div> -->
 
 <div id = "purchaseDetailPayDiv">결제 정보</div>
 
@@ -120,10 +105,7 @@
 		<td>받는 분 핸드폰</td>
 		<td>${orderDTO.order_phone}</td>
 	</tr>
-	<!-- <tr>
-		<td>우편번호</td>
-		<td>12345</td>
-	</tr> -->
+	
 	<tr>
 		<td>주소</td>
 		<td>${orderDTO.order_addr1} ${orderDTO.order_addr2}</td>

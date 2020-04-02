@@ -44,6 +44,6 @@
 <!-- script -->
 <script type="text/javascript">
 function itemUpdate(seq){
-	location.href='/bitFarm/sellerHome/sellerItemUpdate?seq='+seq;
+	location.href='/bitFarm/sellerHome/sellerItemUpdateForm?seq='+seq;
 }
 </script>

@@ -92,7 +92,7 @@ public class ItemController {
 		String fileName;
 		File file;
 		
-		System.out.println(itemDTO.getItem_name());
+		System.out.println(itemDTO.getItem_amount());
 		
 		//파일 복사 1번째거 메인이미지
 		if(img[0] != null) {
@@ -134,6 +134,7 @@ public class ItemController {
 		itemDTO.setSeller_name((String)session.getAttribute("sellerName"));
 		
 		itemService.itemUpdate(itemDTO);
+		
 		model.addAttribute("display", "/sellerHome/itemAddSuccess.jsp");
 		return "/main/main";
 	}

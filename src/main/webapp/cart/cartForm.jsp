@@ -54,7 +54,6 @@
 <!-- 항목 삭제버튼 div -->
 <div style="width: 80%; margin:0 auto;">
 	<input type="button" class="smallBtn" id="choiceDeleteBtn" value="선택삭제">
-	<input type="button" class="smallBtn" value="품절 물품 삭제">
 	<br><br>
 	<p style="clear: both; height: 10px;"></p>
 </div>

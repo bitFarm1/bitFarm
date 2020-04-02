@@ -38,6 +38,7 @@
 	<div style="text-align: center;">수정할 정보를 정확하게 기입해주세요.</div>
 	<br><br>
 	<form name="sellerUpdateForm" enctype="multipart/form-data" method="post" action="/bitFarm/item/itemUpdate">
+	<input type="hidden" name="item_id" value="${itemDTO.item_id}">
 	<table class="sellerAddTable" cellpadding="20" cellspacing="100" frame="hsides" rules="rows">
 		<tr>
 			<th width="30%">상품 이름</th>

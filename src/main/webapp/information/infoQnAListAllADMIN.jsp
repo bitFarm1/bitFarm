@@ -97,9 +97,9 @@
 		</td> 
 	<c:if test="${infoQnA_imageName != '0'}"> 
 		<td colspan="3"  align="center"> 
-			<img src="../storage/${infoQnA_imageName }" width="200" height="200">			 
+			<img src="../storage/${infoQnA_imageName }" onclick="location.href='../storage/${infoQnA_imageName }'" width="200" height="200">			 
 		</td>   
-	</c:if>	
+	</c:if>	  
 		<c:if test="${infoQnA_imageName == '0'}"> 
 		<td colspan="3"  align="center">    
 						  
@@ -154,8 +154,9 @@ $('#${seq}reply').click(function(){
 </script>   
 </c:forEach>  
 </table>  
+    <div align="center" id="pagingDiv">${informationPaging.pagingHTML}</div>    
 	<div style="height:20px;"></div>   
-    <%-- <div align="center" id="pagingDiv">${informationPaging.pagingHTML}</div> --%> 
+     
 <input type="hidden" name="pg" value="${pg }">
 <input type="hidden" id="dis" name="dis" value="">
 </div>  

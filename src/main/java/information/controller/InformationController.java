@@ -216,16 +216,16 @@ public class InformationController {
 	@RequestMapping(value="/infoQnAListAllADMIN", method=RequestMethod.GET)
 	public ModelAndView infoQnAListAllADMIN(@RequestParam(required=false, defaultValue="1") String pg, HttpSession session) {
 		
-		//InformationPaging informationPaging = informationService.infoQnAListAllADMINPaging(pg);
+		InformationPaging informationPaging = informationService.infoQnAListAllADMINPaging(pg);
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("pg",pg); 
-		//List<InformationQnADTO> list = informationService.infoQnAListAllADMIN(map); 
-		List<InformationQnADTO> list = informationService.infoALLADMIN();//이거지우고 주석풀어
+		List<InformationQnADTO> list = informationService.infoQnAListAllADMIN(map); 
+		//List<InformationQnADTO> list = informationService.infoALLADMIN();//이거지우고 주석풀어
 		  
 		ModelAndView mav = new ModelAndView();    
 		mav.addObject("pg", pg);   
-		mav.addObject("list", list);
-		//mav.addObject("informationPaging", informationPaging);   
+		mav.addObject("list", list);  
+		mav.addObject("informationPaging", informationPaging);   
 		mav.addObject("display", "/information/infoMain.jsp");
 		mav.addObject("info", "/information/infoQnAListAllADMIN.jsp"); 
 		mav.setViewName("/main/main");

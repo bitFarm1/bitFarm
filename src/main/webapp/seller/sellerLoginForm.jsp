@@ -59,7 +59,7 @@ a.searchA:active {color: black; text-decoration: none;}
 	</div>	  
 	
 
- 
+  
 </form>
 
 <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
@@ -68,10 +68,10 @@ $('#loginBtn').click(function(){
 	$('#loginIdDiv').empty();
 	$('#loginPwdDiv').empty(); 
 	if($('input[name=id]').val()==''){
-		$('#loginIdDiv').text('아이디를 입력해주세요.');
+		$('#loginIdDiv').text('아이디를 입력해주세요.'); 
 		$('#loginIdDiv').css('color','red');
 		$('#loginIdDiv').css('font-weight','bold');
-		$('#loginIdDiv').css('font-size','9pt');
+		$('#loginIdDiv').css('font-size','9pt'); 
 		
 	}else if($('input[name=pwd]').val()==''){
     		$('#loginPwdDiv').text('비밀번호를 입력해주세요.'); 

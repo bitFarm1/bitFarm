@@ -6,7 +6,7 @@
 <mapper namespace="reviewSQL">
 
 	<select id="getItemReviewList" parameterType="int" resultType="review">
-		select * from review where item_id=#{item_id}
+		select * from review where item_id=#{item_id} order by review_id desc
 	</select>
 
 	<select id="getItemDTO" parameterType="String" resultType="item">

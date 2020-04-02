@@ -319,11 +319,14 @@ $('.goSellerHomeBtn').click(function(){
 	let sid = '${sellerId}';
 	let id = '${memberId}';
 	
-	if(sName=='${sellerName}'){
+	if(sName=='${sellerName}'){	//판매자 : 내가 해당 상품을 파는 판매자 본인일떄
 		location.href='/bitFarm/sellerHome/sellerHomeMain?sellerName=' + sName;
-	}else if(sName!='${sellerName}'){
-		alert('판매자 계정으로 다른사람의 판매자홈에 들어 갈 수 없습니다.');
-	}else{
+	}else if(id!=null || id!=''){
+		location.href='/bitFarm/sellerHome/sellerHomeMain?sellerName=' + sName;
+	}else if(sName!='${sellerName}'){	//판매자 : 내가 해당상품을 파는 판매자가 아닐때
+		alert('회원 계정으로만 판매자 홈으로 이동 할 수 있습니다.');
+	}
+	else{
 		location.href='/bitFarm/sellerHome/sellerHomeMain?sellerName=' + sName;
 	}
 });		

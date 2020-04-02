@@ -51,21 +51,23 @@ a.sellerA:active {color: black; text-decoration: none;}
 		<tr>
 			<td><a class="sellerA" href="/bitFarm/sellerHome/sellerStore">오프라인 매장</a></td>
 		</tr>
+	  <c:if test="${memberId==null && sellerId == sellerDTO.seller_id}">
 		<tr>
 			<td><a class="sellerA" href="/bitFarm/sellerHome/sellerOrder?pg=1">주문 현황</a></td>
 		</tr>
 		<tr>
 			<td><a class="sellerA" href="/bitFarm/sellerHome/sellerSell">매출 현황</a></td>
 		</tr>
+	  </c:if>
 	</table>
-</div>
 </div>
 
 <!-- script -->
 <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
 $('.pickSellerBtn').click(function(){
-	if(${sellerId!=null}){
+	let sid = '${sellerId}';
+	if(sid!=null || sid!=''){
 		alert('판매자는 찜하기 기능을 이용 할 수 없습니다.');
 	}
 	

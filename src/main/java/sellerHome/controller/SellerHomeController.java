@@ -117,18 +117,32 @@ public class SellerHomeController {
 	}
 	
 	//판매자가 판매 할 상품 등록하는 Form 띄워주는 메소드
-	@RequestMapping(value="sellerItemUpdate", method=RequestMethod.GET)
-	public String sellerItemUpdate(Model model, @RequestParam String seq) {
+	@RequestMapping(value="sellerItemUpdateForm", method=RequestMethod.GET)
+	public String sellerItemUpdateForm(Model model, @RequestParam String seq) {
 		
 		ItemDTO itemDTO = itemService.getItemView(Integer.parseInt(seq));
 		
 		SellerDTO sellerDTO = sellerService.getSellerDTO((String)session.getAttribute("sellerName"));
+		
 		model.addAttribute("sellerDTO", sellerDTO);
 		model.addAttribute("itemDTO", itemDTO);
 		model.addAttribute("sellerHome", "/sellerHome/sellerItemUpdate.jsp");
 		model.addAttribute("display", "/sellerHome/sellerHomeMain.jsp");
 		return "/main/main";
 	}	
+	
+//	@RequestMapping(value="sellerItemUpdate", method=RequestMethod.POST)
+//	public String sellerItemUpdate(Model model, @RequestParam ItemDTO itemDTO) {
+//		
+//		System.out.println(">>" + itemDTO.getItem_amount());
+//		itemService.itemUpdate(itemDTO);
+//		
+//		SellerDTO sellerDTO = sellerService.getSellerDTO((String)session.getAttribute("sellerName"));
+//		model.addAttribute("sellerDTO", sellerDTO);
+//		model.addAttribute("sellerHome", "/sellerHome/sellerItemUpdate.jsp");
+//		model.addAttribute("display", "/sellerHome/sellerHomeMain.jsp");
+//		return "/main/main";
+//	}	
 	
 	//지도 띄워주는거
 	@RequestMapping(value="sellerStore", method=RequestMethod.GET)

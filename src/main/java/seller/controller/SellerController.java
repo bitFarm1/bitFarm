@@ -108,7 +108,7 @@ public class SellerController {
 		else
 			mav.addObject("exist","exist");  
 		
-		mav.setViewName("jsonView");
+		mav.setViewName("jsonView"); 
 		return mav;   
 	}  
 	
@@ -123,7 +123,82 @@ public class SellerController {
 		return mav; 
 	}	
 	
+	@RequestMapping(value="/findIdForm", method=RequestMethod.GET)
+	public ModelAndView findId() {
+		ModelAndView mav = new ModelAndView();
+		
+		mav.addObject("display", "/seller/findIdForm.jsp");
+		mav.setViewName("/main/main");
+		return mav; 
+	}
 	
+	@RequestMapping(value="/findPwdForm", method=RequestMethod.GET)
+	public ModelAndView findpwd() { 
+		ModelAndView mav = new ModelAndView();
+		
+		mav.addObject("display", "/seller/findPwdForm.jsp");
+		mav.setViewName("/main/main");
+		return mav; 
+	}
+	
+	@RequestMapping(value="/getFindId", method=RequestMethod.POST)
+	public ModelAndView getFindId(@RequestParam Map<String, String> map) {
+		ModelAndView mav = new ModelAndView();
+		
+		SellerDTO sellerDTO = sellerService.getFindId(map);
+		if(sellerDTO == null) {
+			mav.addObject("find","no");
+		}else {
+			mav.addObject("find","yes"); 
+			mav.addObject("sellerDTO", sellerDTO);			
+		}
+		mav.setViewName("jsonView");
+		return mav;
+	}
+	
+	@RequestMapping(value="/getFindPwd", method=RequestMethod.POST)
+	public ModelAndView getFindPwd(@RequestParam Map<String, String> map) {
+		ModelAndView mav = new ModelAndView();
+				
+		if(sellerService.getFindPwd(map)) {
+			mav.addObject("find","yes");
+			
+		}else {				
+			mav.addObject("find","no"); 
+		}
+		mav.setViewName("jsonView");
+		return mav;
+	}	
+	
+	@RequestMapping(value="/resetPwdForm", method=RequestMethod.GET)
+	public ModelAndView getFindPwd(@RequestParam String seller_id) {
+		ModelAndView mav = new ModelAndView();
+		
+		mav.addObject("seller_id", seller_id);		 
+		mav.addObject("display", "/seller/resetPwdForm.jsp");   
+		mav.setViewName("/main/main"); 
+		return mav;
+	}
+	
+	
+	@RequestMapping(value="/resetPwd", method=RequestMethod.POST)
+	public ModelAndView resetPwd(@RequestParam Map<String, String> map) {
+		ModelAndView mav = new ModelAndView();
+		String inputPwd = map.get("seller_pwd");
+		String pwd = pwdEncoder.encode(inputPwd);
+		  
+		map.put("pwd", pwd);		
+		
+		int reset = sellerService.resetPwd(map);  
+		
+		if(reset > 0)
+			mav.addObject("change","success"); 
+		else
+			mav.addObject("change", "fail");
+		
+		mav.setViewName("jsonView"); 
+		return mav;  
+	}
 	
 	
 }

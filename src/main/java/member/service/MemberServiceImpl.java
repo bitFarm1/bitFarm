@@ -95,7 +95,7 @@ public class MemberServiceImpl implements MemberService {
 	   
 				mailSender.send(message);	
 			} catch (Exception e) {   
-				System.out.println(e);           
+				System.out.println(e);            
 			}
 			return true; 
 		}
@@ -213,8 +213,6 @@ public class MemberServiceImpl implements MemberService {
 	public int sellerCount() {
 		// TODO Auto-generated method stub 
 		return memberDAO.sellerCount();
-	}
-
-	
+	}	
 
 }

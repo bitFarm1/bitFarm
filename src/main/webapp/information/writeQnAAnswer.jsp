@@ -88,7 +88,7 @@
 				<table align="center" style="padding: 0; width:100%;"> 
 					<tr>    
 						<td class="tdstyle">제목</td>   
-						<td colspan="3" style="border-top: 1px solid #e8e8e8;"><input type="text" style="width: 300; height: 30;" name="infoQnA_answerSubject"></td> 
+						<td colspan="3" style="border-top: 1px solid #e8e8e8;"><input type="text" style="width: 300; height: 30;" id="infoQnA_answerSubject" name="infoQnA_answerSubject"></td> 
 					</tr>
 					 
 					<tr>
@@ -102,7 +102,7 @@
 				<td height="30px" style="border-bottom: 0px"></td>
 			</tr>
 			<tr><td style="border-bottom: 0px">
-				<textarea name="infoQnA_answerContent" style="width: 590; height: 240;"></textarea><br> 
+				<textarea name="infoQnA_answerContent" id="infoQnA_answerContent" style="width: 590; height: 240;"></textarea><br> 
 								   
 			</td></tr>  
 			<tr> 
@@ -120,7 +120,14 @@
 <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">   
 $('#answer').click(function(){
-
+	if($('#infoQnA_answerSubject').val() == ''){ 
+		alert("제목을 입력하세요.");
+		return false;	 
+	}
+	if($('#infoQnA_answerContent').val() == ''){ 
+		alert("답글을 입력하세요.");
+		return false;	
+	}
 	$.ajax({
 		type : 'post',
 		url : '/bitFarm/information/answerWrite',

@@ -47,13 +47,13 @@ a.searchA:active {color: black; text-decoration: none;}
 	<div style="width:340px; height:20px;"> 
 	
 	</div>
-	<div align="right">
-		<a class="searchA" href="/bitFarm/findID">아이디 찾기</a> 
-		<a class="searchA" href="/bitFarm/member/findPWD">비밀번호 찾기</a>&nbsp; 
+	<div align="right"> 
+		<a class="searchA" href="/bitFarm/seller/findIdForm">아이디 찾기</a> 
+		<a class="searchA" href="/bitFarm/seller/findPwdForm">비밀번호 찾기</a>&nbsp; 
 		<div style="height:5px;"></div> 
 		<input class="layout" type="button" id="loginBtn" value="로그인" style="color: white; background-color: #5f0080; border: #5f0080; border-radius: 5px; cursor: pointer;">
 	</div>  
-		<div style="height:5px;"></div>
+		<div style="height:5px;"></div> 
 	<div>
 		<input class="layout" type="button" value="회원가입" onclick="location.href='/bitFarm/member/signUp'" style="border-radius: 5px; cursor: pointer;"> 
 	</div>	  

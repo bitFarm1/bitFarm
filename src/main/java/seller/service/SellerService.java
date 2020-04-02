@@ -3,6 +3,7 @@ package seller.service;
 import java.util.List;
 import java.util.Map;
 
+import member.bean.MemberDTO;
 import seller.bean.SellerDTO;
 import seller.bean.SellerSell;
 
@@ -22,7 +23,13 @@ public interface SellerService {
 
 	public List<SellerSell> sellerSell(String attribute);
 
-	public String sellerSellDetail(Map<String, String> map);       
+	public String sellerSellDetail(Map<String, String> map);
+  
+	public SellerDTO getFindId(Map<String, String> map);
+
+	public boolean getFindPwd(Map<String, String> map);
+
+	public int resetPwd(Map<String, String> map);         
    
  
 }

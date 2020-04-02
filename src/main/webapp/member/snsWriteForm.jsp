@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+	<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <style type="text/css">
 	table {		
@@ -177,12 +177,7 @@
 
 var sphone = false;
 var semail = false;
-
-$(document).ready(function(){
-	if('${email}'=='undefined'){
-		$('input[name=member_email]').attr('readonly',false);
-	}  
-});
+  
     
 $('input[name=member_phone]').focusout(function(){
 	var regExp = /^\d{3}-\d{3,4}-\d{4}$/;
@@ -205,7 +200,7 @@ $('input[name=member_phone]').focusout(function(){
 		$('#member_phone_Div').css('font-size','10pt');
 	}else{
 		sphone = true;
-	}		
+	}		 
 });
  
 

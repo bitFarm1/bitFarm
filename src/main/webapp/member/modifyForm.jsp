@@ -118,10 +118,10 @@
 			<td style="padding-top: 2px;"><input class="layoutT" type="password" name="member_repwd" readonly="readonly">
 			<br id="member_pwd_p" style="display: none;"><span id="member_pwd_Div" ></span></br></td>
 		</tr>
-	
+	 
 		<tr>
 			<th class="subject">이름*</th>
-			<td><input class="layoutT" type="text" name="member_name" placeholder="고객님의 이름을 입력해주세요" value="${memberDTO.member_name }">
+			<td><input class="layoutT" type="text" id="name" name="member_name" placeholder="고객님의 이름을 입력해주세요" value="${memberDTO.member_name }">
 			<br id="member_name_p" style="display: none;"><span id="member_name_Div" ></span></br>
 			</td>
 		</tr> 
@@ -139,7 +139,7 @@
 			<td><input class="layoutT" type="text" name="member_phone" placeholder="010-1234-1234" value="${memberDTO.member_phone }">
 			<br id="member_phone_p" style="display: none;"><span id="member_phone_Div" ></span></br>
 			</td> 
-		</tr>
+		</tr> 
 		<tr>
 			<th class="subject">배송 주소*</th>
 			<td><input class="layoutT" type="text" id="member_address1" name="member_address1" readonly="readonly" value="${memberDTO.member_address1 }">&emsp;

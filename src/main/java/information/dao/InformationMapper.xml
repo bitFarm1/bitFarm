@@ -35,9 +35,9 @@
 		<![CDATA[ 
 		select * from (select rownum rn, tt.* from (select * from QnABoard order by infoQnA_seq desc)tt) where rn>=#{startNum} and rn<=#{endNum} 
 		]]> 
-	</select> 
+	</select>  
 	
-	<select id="infoALLADMIN" resultType="informationQnADTO">
+	<select id="infoALLADMIN" resultType="informationQnADTO"> 
 		select * from QnABoard 
 	</select> 
 	 		      

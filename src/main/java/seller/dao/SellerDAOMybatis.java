@@ -57,6 +57,24 @@ public class SellerDAOMybatis implements SellerDAO {
 	public String sellerSellDetail(Map<String, String> map) { 
 		// TODO Auto-generated method stub     
 		return sqlSession.selectOne("sellerSQL.sellerSellDetail", map); 
+	}
+
+	@Override
+	public SellerDTO getFindId(Map<String, String> map) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("sellerSQL.getFindId", map);
+	}
+ 
+	@Override
+	public SellerDTO getFindPwd(Map<String, String> map) { 
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("sellerSQL.getFindPwd", map);
+	}
+
+	@Override 
+	public int resetPwd(Map<String, String> map) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("sellerSQL.resetPwd", map);
 	}  
  
 } 

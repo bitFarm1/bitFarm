@@ -90,16 +90,21 @@
 		</c:if>	 			
 	</tr>	    
 	 
-	<tr id="hidden1${seq }" style="display:none; " > 
+	<tr id="hidden1${seq }" style="display:none; background: rgb(248, 248, 248);" > 
 		<td></td> 
 		<td colspan="2" style="width: 500px;" align="left">  
 		<pre class="contents">${infoQnA_content }<br></pre> 
 		</td> 
-	<c:if test="${infoQnA_imageName != '0'}">
+	<c:if test="${infoQnA_imageName != '0'}"> 
 		<td colspan="3"  align="center"> 
 			<img src="../storage/${infoQnA_imageName }" width="200" height="200">			 
 		</td>   
-	</c:if>			  
+	</c:if>	
+		<c:if test="${infoQnA_imageName == '0'}"> 
+		<td colspan="3"  align="center">    
+						  
+		</td>   
+	</c:if>			  		  
 	</tr>     
 	
 	<c:if test="${informationQnADTO.infoQnA_answerSubject != '0'}">

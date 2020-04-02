@@ -42,10 +42,10 @@ $('#numberCheck').click(function(){
 		alert("성공");
 		opener.document.forms[0].auth.value = 'ok';     
 		window.close();       
-		opener.document.forms[0].member_phone.focus();
+		opener.document.forms[0].member_email.focus();  
 	}else{
 		alert("번호가 일치하지 않습니다."); 
-	} 
+	}  
 });
 
 </script>			

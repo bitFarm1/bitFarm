@@ -5,10 +5,11 @@
 	<typeAliases>
 		<typeAlias type="member.bean.MemberDTO" alias="memberDTO" />
 		<typeAlias type="seller.bean.SellerDTO" alias="sellerDTO" />
+		<typeAlias type="seller.bean.SellerSell" alias="sellerSell"/> 
 		<typeAlias type="information.bean.InformationQnADTO" alias="informationQnADTO" />
 		<typeAlias type="information.bean.InformationDTO" alias="informationDTO" />
 		
-		
+		  
 		<!--mypage.bean  -->
 		<typeAlias type="mypage.bean.MypageCouponDTO" alias="mypageCouponDTO" />  
 		<typeAlias type="mypage.bean.MypagePointDTO" alias="mypagePointDTO" />

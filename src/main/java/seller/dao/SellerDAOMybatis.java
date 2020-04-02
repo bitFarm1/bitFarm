@@ -1,6 +1,7 @@
 package seller.dao;
 
 
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import seller.bean.SellerDTO;
+import seller.bean.SellerSell;
  
 @Repository("sellerDAO") 
 @Transactional
@@ -42,7 +44,19 @@ public class SellerDAOMybatis implements SellerDAO {
 	@Override
 	public SellerDTO getSellerDTO(String sellerName) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne("sellerSQL.getSellerDTO", sellerName);
+		return sqlSession.selectOne("sellerSQL.getSellerDTO", sellerName); 
+	}
+
+	@Override
+	public List<SellerSell> sellerSell(String sellerName) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("sellerSQL.sellerSell", sellerName); 
+	}
+
+	@Override
+	public String sellerSellDetail(Map<String, String> map) { 
+		// TODO Auto-generated method stub     
+		return sqlSession.selectOne("sellerSQL.sellerSellDetail", map); 
 	}  
  
 } 

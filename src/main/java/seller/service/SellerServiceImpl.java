@@ -1,6 +1,7 @@
 package seller.service;
 
 
+import java.util.List;
 import java.util.Map;
 
 import javax.mail.internet.MimeMessage;
@@ -11,6 +12,7 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
 import seller.bean.SellerDTO;
+import seller.bean.SellerSell;
 import seller.dao.SellerDAO;
 
 @Service(value="sellerService")   
@@ -72,7 +74,19 @@ public class SellerServiceImpl implements SellerService {
 
 	@Override
 	public SellerDTO getSellerDTO(String sellerName) {
-		return sellerDAO.getSellerDTO(sellerName);
+		return sellerDAO.getSellerDTO(sellerName); 
+	}
+
+	@Override
+	public List<SellerSell> sellerSell(String sellerName) {
+		// TODO Auto-generated method stub
+		return sellerDAO.sellerSell(sellerName); 
+	}
+
+	@Override 
+	public String sellerSellDetail(Map<String, String> map) {
+		return sellerDAO.sellerSellDetail(map);   
+		
 	} 
 
 } 

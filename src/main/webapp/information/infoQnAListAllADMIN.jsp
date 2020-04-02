@@ -90,7 +90,7 @@
 		</c:if>	 			
 	</tr>	    
 	 
-	<tr id="hidden1${seq }" style="display:none;" > 
+	<tr id="hidden1${seq }" style="display:none; " > 
 		<td></td> 
 		<td colspan="2" style="width: 500px;" align="left">  
 		<pre class="contents">${infoQnA_content }<br></pre> 
@@ -111,14 +111,14 @@
 		</td>  
 	</tr>     
 		
-	<tr id="hidden2${seq }" style="display:none;">   
+	<tr id="hidden2${seq }" style="display:none; background: rgb(248, 248, 248);">   
 		<td> </td> 
 			<td  colspan="4" align="left" style="width: 425px;">    
 				<pre class="contents">${informationQnADTO.infoQnA_answerContent }<br></pre> 
 			</td> 
 		<td> </td>
 	</tr> 
-	</c:if>	 
+	</c:if>	  
 
    
 <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>

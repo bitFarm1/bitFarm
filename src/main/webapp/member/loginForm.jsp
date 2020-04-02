@@ -94,7 +94,7 @@ a.searchA:active {color: black; text-decoration: none;}
 	); 
 	
 	/* 설정정보를 초기화하고 연동을 준비 */ 
-	naverLogin.init();
+	naverLogin.init(); 	
 	
 //////////////////////////////////////////////////////////////////////////////////////////////
 	
@@ -116,8 +116,8 @@ a.searchA:active {color: black; text-decoration: none;}
                    alert(JSON.stringify(error));  
                  }
                }); 
-        },
-        fail: function(err) {
+        }, 
+        fail: function(err) { 
           alert(JSON.stringify(err));
         }
       });

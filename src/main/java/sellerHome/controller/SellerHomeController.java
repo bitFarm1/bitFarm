@@ -12,12 +12,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import item.bean.ItemDTO;
 import item.service.ItemService;
 import order.bean.OrderSellerHomeDTO;
 import order.service.OrderService;
 import seller.bean.SellerDTO;
+import seller.bean.SellerSell;
 import seller.service.SellerService;
 import sellerHome.bean.SellerOrderNumberListPaging;
 import sellerHome.service.SellerHomeService;
@@ -163,6 +165,7 @@ public class SellerHomeController {
 		return "/main/main";
 	}
 	
+
 	//주문내역 리스트 클릭하면 상세주문 리스트 return하는 메소드
 	@RequestMapping(value="orderNumberList", method=RequestMethod.GET)
 	public String orderNumberList(Model model, @RequestParam String seq, @RequestParam String id) {	//주문번호, 구매자 id 가져옴
@@ -170,22 +173,20 @@ public class SellerHomeController {
 		model.addAttribute("orderNumberList", list);
 		return "/sellerHome/orderNumberList";
 	}
-	
-	
-	
-	
-	
-	
-	
-	
+
+
 	@RequestMapping(value="sellerSell", method=RequestMethod.GET)
 	public String sellerSell(Model model) {
 		SellerDTO sellerDTO = sellerService.getSellerDTO((String)session.getAttribute("sellerName"));
-		model.addAttribute("sellerDTO", sellerDTO);
+		
+		List<SellerSell> list = sellerService.sellerSell((String)session.getAttribute("sellerName"));
+		
+		model.addAttribute("list", list);
+		model.addAttribute("sellerDTO", sellerDTO); 
 		model.addAttribute("sellerHome", "/sellerHome/sellerSell.jsp");
 		model.addAttribute("display", "/sellerHome/sellerHomeMain.jsp");
 		return "/main/main";
-	}
+	} 
 	
 	
 	//========================================================================sellerHome Mapping 안되어있음
@@ -232,10 +233,30 @@ public class SellerHomeController {
 	
 	
 	
-	@RequestMapping(value="sellerSellDetail", method=RequestMethod.GET)
-	public String sellerSellDetail(Model model) {
-		model.addAttribute("display", "/sellerHome/sellerSellDetail.jsp");
-		return "/main/main";
+	@RequestMapping(value="/sellerSellDetail", method=RequestMethod.GET)
+	public ModelAndView sellerSellDetail(@RequestParam String item_id) {
+		ModelAndView mav = new ModelAndView();
+		
+		ItemDTO itemDTO = itemService.getItemView(Integer.parseInt(item_id)); 
+		
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("item_id", item_id); 
+		String[] sellData = new String[7];		
+		     
+		for(int i=0; i<7; i++) {
+			map.put("i", i+"");   
+			System.out.println(map.get("i"));  
+			sellData[i] = sellerService.sellerSellDetail(map);
+			mav.addObject("sellData"+i, sellData[i]); 	 		
+		}  
+		SellerDTO sellerDTO = sellerService.getSellerDTO((String)session.getAttribute("sellerName"));
+				
+		mav.addObject("itemDTO", itemDTO);
+		mav.addObject("sellerDTO", sellerDTO);  
+		mav.addObject("sellerHome", "/sellerHome/sellerSellDetail.jsp");
+		mav.addObject("display", "/sellerHome/sellerHomeMain.jsp");
+		mav.setViewName("/main/main"); 
+		return mav; 
 	}
 	
 	//

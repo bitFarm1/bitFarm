@@ -20,9 +20,7 @@
 	<!-- 상품등록페이지 Title -->
 	<h2 align="center">판매상품 매출현황</h2>
 	<div style="text-align: center;">판매상품 매출현황입니다.</div>
-	<br><br><br><br>
-	
-	<h3 align="left">판매상품 매출현황</h3>
+	<br><br>
 	<table class="sellerStatTable" cellpadding="15" frame="hsides" rules="rows">
 		<tr>
 			<th>상품번호</th>

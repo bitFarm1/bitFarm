@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
-
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
 <style type="text/css">
 .sellerStoreHr{
 	text-align: left;
@@ -14,46 +15,77 @@
 }
 </style> 
 
+<body>
+<!-- <p style="margin-top:-12px">
+    <em class="link">
+        <a href="javascript:void(0);" onclick="window.open('http://fiy.daum.net/fiy/map/CsGeneral.daum', '_blank', 'width=981, height=650')">
+            í˜¹ì‹œ ì£¼ì†Œ ê²°ê³¼ê°€ ì˜ëª» ë‚˜ì˜¤ëŠ” ê²½ìš°ì—ëŠ” ì—¬ê¸°ì— ì œë³´í•´ì£¼ì„¸ìš”.
+        </a>
+    </em>
+</p> -->
+
 <div style="width : 90%; margin: 0 auto;">
-	<!-- »óÇ°µî·ÏÆäÀÌÁö Title -->
-	<h2 align="center">¿ÀÇÁ¶óÀÎ ¸ÅÀå</h2>
+	<!-- ìƒí’ˆë“±ë¡í˜ì´ì§€ Title -->
+	<h3 align="left">ì˜¤í”„ë¼ì¸ ë§¤ì¥</h3>
 	
-	<h3 align="left">&emsp;ÆÇ¸ÅÀÚ ¸ÅÀå À§Ä¡</h3>
+	<!-- <h3 align="left">&emsp;íŒë§¤ì ë§¤ì¥ ìœ„ì¹˜</h3> -->
 	<table class="sellerStoreHr" cellpadding="15" frame="hsides" rules="rows">
 	
-	<tr><th>¸ÅÀå ÁÖ¼Ò : ¼­¿ïÆ¯º°½Ã ¼­ÃÊ±¸ °­³²´ë·Î 459- ºñÆ®ºôµù 103È£</th></tr>
+	<tr><th>ë§¤ì¥ ì£¼ì†Œ : ${addr} ${sellerDTO.seller_address2} </th></tr>
 	
 	</table>
-	<!-- Áöµµ image -->
-	<!-- <tr><td><img src="../image/map.JPG" width="1290"></td></tr> -->
-	<div id="map" style="width:1300px;height:300px;"></div>
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2c1ef5e207ff379d73296383f7e8dd32"></script>
-	<div class="map_wrap">
-
-    <!-- ÁöµµÅ¸ÀÔ ÄÁÆ®·Ñ div ÀÔ´Ï´Ù -->
-    <div id="map" style="width:100%; height:100%; position:relative; overflow:hidden;"></div> 
-   
-
-		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2c1ef5e207ff379d73296383f7e8dd32"></script>
-		<script>
-		var mapContainer = document.getElementById('map'), // Áöµµ¸¦ Ç¥½ÃÇÒ div 
-		mapOption = { 
-		    center: new kakao.maps.LatLng(37.502998, 127.024198), // ÁöµµÀÇ Áß½ÉÁÂÇ¥
-		    level: 3 // ÁöµµÀÇ È®´ë ·¹º§
-		};
-		
-		var map = new kakao.maps.Map(mapContainer, mapOption); // Áöµµ¸¦ »ı¼ºÇÕ´Ï´Ù
-		
-		//ÀÏ¹İ Áöµµ¿Í ½ºÄ«ÀÌºä·Î Áöµµ Å¸ÀÔÀ» ÀüÈ¯ÇÒ ¼ö ÀÖ´Â ÁöµµÅ¸ÀÔ ÄÁÆ®·ÑÀ» »ı¼ºÇÕ´Ï´Ù
-		var mapTypeControl = new kakao.maps.MapTypeControl();
-		
-		//Áöµµ¿¡ ÄÁÆ®·ÑÀ» Ãß°¡ÇØ¾ß ÁöµµÀ§¿¡ Ç¥½ÃµË´Ï´Ù
-		//kakao.maps.ControlPositionÀº ÄÁÆ®·ÑÀÌ Ç¥½ÃµÉ À§Ä¡¸¦ Á¤ÀÇÇÏ´Âµ¥ TOPRIGHT´Â ¿À¸¥ÂÊ À§¸¦ ÀÇ¹ÌÇÕ´Ï´Ù
-		map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
-		
-		//Áöµµ È®´ë Ãà¼Ò¸¦ Á¦¾îÇÒ ¼ö ÀÖ´Â  ÁÜ ÄÁÆ®·ÑÀ» »ı¼ºÇÕ´Ï´Ù
-		var zoomControl = new kakao.maps.ZoomControl();
-		map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
-		</script>
-	</div>
+<div id="map" style="width:100%;height:350px;"></div>
 </div>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2c1ef5e207ff379d73296383f7e8dd32&libraries=services"></script>
+<script>
+var mapContainer = document.getElementById('map'), // ì§€ë„ë¥¼ í‘œì‹œí•  div 
+    mapOption = {
+        center: new kakao.maps.LatLng(33.450701, 126.570667), // ì§€ë„ì˜ ì¤‘ì‹¬ì¢Œí‘œ
+        level: 3 // ì§€ë„ì˜ í™•ëŒ€ ë ˆë²¨
+    };  
+
+// ì§€ë„ë¥¼ ìƒì„±í•©ë‹ˆë‹¤    
+var map = new kakao.maps.Map(mapContainer, mapOption); 
+
+//ì¼ë°˜ ì§€ë„ì™€ ìŠ¤ì¹´ì´ë·°ë¡œ ì§€ë„ íƒ€ì…ì„ ì „í™˜í•  ìˆ˜ ìˆëŠ” ì§€ë„íƒ€ì… ì»¨íŠ¸ë¡¤ì„ ìƒì„±í•©ë‹ˆë‹¤
+var mapTypeControl = new kakao.maps.MapTypeControl();
+
+//ì§€ë„ì— ì»¨íŠ¸ë¡¤ì„ ì¶”ê°€í•´ì•¼ ì§€ë„ìœ„ì— í‘œì‹œë©ë‹ˆë‹¤
+//kakao.maps.ControlPositionì€ ì»¨íŠ¸ë¡¤ì´ í‘œì‹œë  ìœ„ì¹˜ë¥¼ ì •ì˜í•˜ëŠ”ë° TOPRIGHTëŠ” ì˜¤ë¥¸ìª½ ìœ„ë¥¼ ì˜ë¯¸í•©ë‹ˆë‹¤
+map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
+
+//ì§€ë„ í™•ëŒ€ ì¶•ì†Œë¥¼ ì œì–´í•  ìˆ˜ ìˆëŠ”  ì¤Œ ì»¨íŠ¸ë¡¤ì„ ìƒì„±í•©ë‹ˆë‹¤
+var zoomControl = new kakao.maps.ZoomControl();
+map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+
+
+// ì£¼ì†Œ-ì¢Œí‘œ ë³€í™˜ ê°ì²´ë¥¼ ìƒì„±í•©ë‹ˆë‹¤
+var geocoder = new kakao.maps.services.Geocoder();
+
+// ì£¼ì†Œë¡œ ì¢Œí‘œë¥¼ ê²€ìƒ‰í•©ë‹ˆë‹¤
+geocoder.addressSearch('${addr}', function(result, status) {
+
+    // ì •ìƒì ìœ¼ë¡œ ê²€ìƒ‰ì´ ì™„ë£Œëìœ¼ë©´ 
+     if (status === kakao.maps.services.Status.OK) {
+
+        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+        // ê²°ê³¼ê°’ìœ¼ë¡œ ë°›ì€ ìœ„ì¹˜ë¥¼ ë§ˆì»¤ë¡œ í‘œì‹œí•©ë‹ˆë‹¤
+        var marker = new kakao.maps.Marker({
+            map: map,
+            position: coords
+        });
+
+        // ì¸í¬ìœˆë„ìš°ë¡œ ì¥ì†Œì— ëŒ€í•œ ì„¤ëª…ì„ í‘œì‹œí•©ë‹ˆë‹¤
+        var infowindow = new kakao.maps.InfoWindow({
+            content: '<div style="width:150px;text-align:center;padding:6px 0;">${sellerDTO.seller_name}</div>'
+        });
+        infowindow.open(map, marker);
+
+        // ì§€ë„ì˜ ì¤‘ì‹¬ì„ ê²°ê³¼ê°’ìœ¼ë¡œ ë°›ì€ ìœ„ì¹˜ë¡œ ì´ë™ì‹œí‚µë‹ˆë‹¤
+        map.setCenter(coords);
+    } 
+});    
+</script>
+</body>
+</html>

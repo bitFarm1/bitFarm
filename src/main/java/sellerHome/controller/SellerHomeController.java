@@ -146,9 +146,15 @@ public class SellerHomeController {
 	
 	//지도 띄워주는거
 	@RequestMapping(value="sellerStore", method=RequestMethod.GET)
-	public String sellerStore(Model model) {
-		SellerDTO sellerDTO = sellerService.getSellerDTO((String)session.getAttribute("sellerName"));
+	public String sellerStore(@RequestParam String sellerName,Model model) {
 		
+	//	SellerDTO sellerDTO = sellerService.getSellerDTO((String)session.getAttribute("sellerName"));		
+		
+		SellerDTO sellerDTO = sellerService.getSellerDTO(sellerName);
+		
+		String addr = sellerDTO.getSeller_address1().substring(8);
+		System.out.println(addr);
+		model.addAttribute("addr",addr);
 		model.addAttribute("sellerDTO", sellerDTO);
 		model.addAttribute("sellerHome", "/sellerHome/sellerStore.jsp");
 		model.addAttribute("display", "/sellerHome/sellerHomeMain.jsp");

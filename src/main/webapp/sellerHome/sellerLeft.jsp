@@ -49,7 +49,7 @@ a.sellerA:active {color: black; text-decoration: none;}
 			<td><a class="sellerA" href="/bitFarm/sellerHome/sellerAll?sellerName=${sellerName}">상품 모아보기</a></td>
 		</tr>
 		<tr>
-			<td><a class="sellerA" href="/bitFarm/sellerHome/sellerStore">오프라인 매장</a></td>
+			<td><a class="sellerA" href="/bitFarm/sellerHome/sellerStore?sellerName=${sellerName}">오프라인 매장</a></td><!-- sellerName=${sellerName}추가 -->
 		</tr>
 	  <c:if test="${memberId==null && sellerId == sellerDTO.seller_id}">
 		<tr>

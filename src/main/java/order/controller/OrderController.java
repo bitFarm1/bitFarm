@@ -8,7 +8,6 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,7 +16,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import cart.bean.CartListDTO;
 import member.bean.MemberDTO;
-import mypage.bean.MypagePickItemDTO;
 import mypage.service.MypageService;
 import mypage.bean.MypageCouponDTO;
 
@@ -36,7 +34,6 @@ public class OrderController {
 		ModelAndView mav = new ModelAndView();
 		
 		List<CartListDTO> list = (List<CartListDTO>)session.getAttribute("cartList");
-		//System.out.println(list.size());
 		
 		MemberDTO memberDTO = orderService.getMemberInfo((String)session.getAttribute("memberId"));
 		
@@ -75,21 +72,13 @@ public class OrderController {
 		map.put("cartList",cartList);
 
 		String orderId = orderService.orderNum();
-//		System.out.println(orderId);
 		
 		map.put("orderId",orderId);
 		
-//		System.out.println(">>>>"+cartList.size());
 		
 		orderService.writeOrder(map);
 		
 		session.setAttribute("orderId", orderId);
-//		System.out.println("성공이야!");
-//		ModelAndView mav = new ModelAndView();
-		
-//		mav.addObject("display", "/order/orderSuccess.jsp");
-//		mav.setViewName("/main/main");
-//		return mav;
 	}
 	/////////////////////////////////////////////////////
 	//결제 성공 페이지
@@ -109,7 +98,6 @@ public class OrderController {
 		orderService.deleteItemQty(orderId);
 		
 		//카트 비우기
-	//	session.removeAttribute("cartList");
 		session.removeAttribute("orderId");
 		
 		//포인트 적립하기

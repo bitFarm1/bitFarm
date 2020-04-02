@@ -9,12 +9,10 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import information.bean.InformationQnADTO;
-import member.bean.MemberDTO;
 import mypage.bean.MypageCouponDTO;
 import mypage.bean.MypagePickItemDTO;
 import mypage.bean.MypagePickSellerDTO;
 import mypage.bean.MypagePointDTO;
-import mypage.bean.MypageReviewDTO;
 import order.bean.OrderDTO;
 
 import mypage.bean.MypageReviewListDTO;
@@ -149,30 +147,21 @@ public class MypageDAOMyBatis implements MypageDAO {
 
 	public List<OrderListDTO> getMypageOrderList(Map<String, Object> map) {
 		return  sqlSession.selectList("mypageSQL.getMypageOrderList",map);
-	//	return null;
 	}
 
 	@Override
 	public OrderDTO getMypageOrder(Map<String, String> map) {
-	//	System.out.println("getMypageOrder");
 		return sqlSession.selectOne("mypageSQL.getMypageOrder", map);
 	}
 
 	@Override
 	public List<OrderImageDTO> getMypageOrderImage(Map<String, String> map) {
-	//	System.out.println("getMypageOrderImage");
 		return sqlSession.selectList("mypageSQL.getMypageOrderImage", map);
 	}
 
 	@Override
 	public List<InformationQnADTO> getMyQnaList(String id) {
 		return sqlSession.selectList("mypageSQL.getMyQnaList", id);
-	}
-	
-	@Override
-	public List<OrderListDTO> getMypageOrderYearList(Map<String, Object> map) {
-		System.out.println("yearDAO");
-		return  sqlSession.selectList("mypageSQL.getMypageOrderYearList",map);
 	}
 
 	@Override

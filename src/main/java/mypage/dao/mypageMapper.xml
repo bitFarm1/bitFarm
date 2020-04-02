@@ -83,13 +83,6 @@
 
 	<!-- 구매내역 -->
 	<select id = "getMypageOrderList" resultType = "orderListDTO" parameterType="java.util.Map">
-		<!-- select order_id, order_item_main_image, order_item_id, order_user_id, order_state, order_total_price, order_date from
-		(
-			select order_id, order_item_main_image, order_item_id, order_user_id, order_state, order_total_price, order_date,
-    		row_number() over (partition by order_id order by order_item_main_image desc) rn
-    		from purchase
-		)
-		where rn = 1 and order_user_id = #{id} order by order_date desc -->
 		<![CDATA[
 		select * from(
 		select rownum rn, ab.* from
@@ -111,16 +104,6 @@
 	
 	<select id = "getMypageOrderImage" resultType = "orderImageDTO" parameterType="java.util.Map">
 		select order_id, order_seller_name, order_seller_item, order_item_main_image, order_item_price, order_item_qty, order_state, order_item_id from purchase where order_id = #{order_id} and order_user_id = #{id}
-	</select>
-	
-	<select id = "getMypageOrderYearList" resultType = "orderListDTO" parameterType="java.util.Map">
-			select order_id, order_item_main_image, order_item_id, order_user_id, order_state, order_total_price, order_date from
-		(
-			select order_id, order_item_main_image, order_item_id, order_user_id, order_state, order_total_price, order_date,
-    		row_number() over (partition by order_id order by order_item_main_image desc) rn
-    		from purchase
-		)
-		where rn = 1 and order_user_id = #{id} and to_char(order_date,'YYYY') = #{year}
 	</select>
 	
 	<select id = "getOrderListTotalA" parameterType="java.util.Map" resultType = "int">

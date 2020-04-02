@@ -12,8 +12,6 @@ import org.springframework.stereotype.Service;
 import cart.bean.CartListDTO;
 import member.bean.MemberDTO;
 import mypage.bean.MypageCouponDTO;
-import mypage.bean.MypagePointDTO;
-import order.bean.OrderDTO;
 import order.bean.OrderItemDTO;
 import order.dao.OrderDAO;
 
@@ -65,7 +63,7 @@ public class OrderServiceImpl implements OrderService {
 
 	@Override
 	public void writeOrder(Map<String, Object> map) {
-	//	System.out.println("service 도착");
+
 		List<CartListDTO> list = (List<CartListDTO>) map.get("cartList");
 		
 		for(CartListDTO data : list) {
@@ -81,33 +79,6 @@ public class OrderServiceImpl implements OrderService {
 			map.put("item_qty",data.getItem_qty());
 			map.put("item_id",data.getItem_id());
 		
-			/*
-			System.out.println(map.get("order_id")); //order_id
-			System.out.println(map.get("seller_name")); //order_seller_name
-			System.out.println(map.get("item_name")); //order_seller_item
-			System.out.println(map.get("item_main_image")); //order_item_main_image
-			System.out.println(map.get("item_price")); // order_item_price 
-			System.out.println(map.get("item_qty")); // order_item_qty
-			// order_state "결제완료"
-			System.out.println(map.get("before_price")); // order_before_price
-			System.out.println(map.get("couponId")); // order_coupon_id
-			System.out.println(map.get("coupon")); // order_coupon
-			
-			System.out.println(map.get("point")); // order_point
-			System.out.println(map.get("total")); // order_total_price
-			System.out.println(map.get("payment")); // order_pay
-			
-			System.out.println(map.get("id")); // order_user_id
-			System.out.println(map.get("user_name")); // order_user_name
-			System.out.println(map.get("user_phone")); // order_user_phone
-			System.out.println(map.get("email")); // order_user_email
-			// order_date -sysdate
-			System.out.println(map.get("name")); // order_name
-			System.out.println(map.get("phoneNumber")); // order_phone
-			System.out.println(map.get("addr1")); // order_addr1
-			System.out.println(map.get("addr2")); // order_addr2
-			System.out.println(map.get("ps")); // order_ps
-			*/
 			
 			
 			int su = orderDAO.writeOrder(map);
@@ -149,9 +120,7 @@ public class OrderServiceImpl implements OrderService {
 		List<OrderItemDTO> list = orderDAO.getItemIdNQty(orderId);
 		
 		for(OrderItemDTO data : list) {
-		//	System.out.println("id>>>"+data.getOrder_item_id());
-		//	System.out.println("qty>>>"+data.getOrder_item_qty());
-			
+	
 			String item_id = data.getOrder_item_id();
 			int item_qty = data.getOrder_item_qty();
 			

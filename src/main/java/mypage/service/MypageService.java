@@ -4,12 +4,10 @@ import java.util.List;
 import java.util.Map;
 
 import information.bean.InformationQnADTO;
-import member.bean.MemberDTO;
 import mypage.bean.MypageCouponDTO;
 import mypage.bean.MypagePickItemDTO;
 import mypage.bean.MypagePickSellerDTO;
 import mypage.bean.MypagePointDTO;
-import mypage.bean.MypageReviewDTO;
 import order.bean.OrderDTO;
 
 import mypage.bean.MypageReviewListDTO;
@@ -64,8 +62,6 @@ public interface MypageService {
 	public List<OrderImageDTO> getMypageOrderImage(Map<String, String> map);
 
 	public List<InformationQnADTO> getMyQnaList(String id);
-
-	public List<OrderListDTO> getMypageOrderYearList(Map<String, Object> map);
 
 	public OrderListPaging orderListPaging(Map<String, Object> map);
 

@@ -4,19 +4,10 @@
 <link rel="stylesheet" href= "../css/mypage.css">
 <div id = "mypagePurchaseList" style="margin-bottom: 110px;">
 <div id = "purchaseList">주문내역</div>
-<div id = "purchaseListA">지난 3년간의 주문 내역 조회가 가능합니다 </div>
-<div style="width:80%; height: 10px; float: left;"></div><!-- width : 570px -> 85%  -->
+<div style="width:80%; height: 10px; float: left;"></div>
 <form id = "purchaseListForm" name = "purchaseListForm">
 <input type="hidden" name="pg" id="pg" value="${pg }">
-<div>
-	<select name = "year" id = "purchaseYear">
-		<option>연도선택</option>
-		<option id = "all" value = "all">전체기간</option>
-		<option id = "2020" value = "2020">2020</option>
-		<option id = "2019" value = "2019">2019</option>
-		<option id = "2018" value = "2018">2018</option>
-	</select>	
-</div>
+
 <p style="clear: both; height: 5px;"></p>
 
 <c:if test="${list!=null}">
@@ -51,7 +42,6 @@
 			</div>
 			</td>
 		<td width="200px" align="center">
-			<!-- <div id = "purchaseListQnABtnDiv"><a class = "purchaseListQnA" href="#">1:1 문의</a></div> -->
 			<input class = "purchaseListQnABtn" type="button" value="1:1문의" onclick="location.href='/bitFarm/mypage/mypageInfoQnABoard?order_id='+${orderListDTO.order_id}" >
 		</td>
 	</tr>
@@ -65,23 +55,12 @@
 
 <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
-
-function orderListPaging(pg){
-	location.href="mypagePurchaseList?pg="+pg;
-}
-
 function itemClick(seq){
 	location.href='/bitFarm/item/getItemView?seq='+seq;
 }
-
-$('#purchaseYear').change(function(){   
-	
-	let selectYear = $('#purchaseYear option:selected').val();
-//	alert(selectYear);
-	
-	document.purchaseListForm.action = '/bitFarm/mypage/purchaseListYear?pg='+${pg}+'year='+selectYear;
-	document.purchaseListForm.submit();
-});      
+function orderListPaging(pg){
+	location.href="mypagePurchaseList?pg="+pg;
+} 
 
 </script>
 

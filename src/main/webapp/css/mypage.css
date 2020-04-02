@@ -7,18 +7,6 @@
 .mypageL:active {color: black; text-decoration: none;}
 
 /* mypageTop.jsp - css  */
-#paging{
-	color: black;
-	text-decoration: none;
-	cursor: pointer;
-	font-weight : bold;
-}
-#currentPaging{
-	color: red;
-	text-decoration: underline;
-	cursor: pointer;
-	font-weight : bold;
-}
 #profile{
 	width: 180px; 
 	height: 100px;
@@ -69,6 +57,19 @@
 
 /* mypagePurchaseList.jsp - css  */
 
+#paging{
+	color: black;
+	text-decoration: none;
+	cursor: pointer;
+	font-weight : bold;
+}
+
+#currentPaging{
+	color: #5f0080;
+	text-decoration: none;
+	cursor: pointer;
+	font-weight : bold;
+}
 #purchaseList{
 	width: 80px;
 	height: 25px;
@@ -136,25 +137,7 @@
 	outline: 0;
 	float: left;
 	cursor: pointer;
-	
 } 
-
-/* #purchaseListQnABtnDiv{
-	border: 1px solid #5f0080; 
-	text-align:center; 
-	float: right; 
-	margin-right: 10px; 
-	margin-top: 7px; 
-	padding: 5px 10px 5px 10px;
-	width: 120px;
-}
-
-.purchaseListQnA {color:#5f0080; text-decoration: none; }
-.purchaseListQnA:link {text-decoration: none;}
-.purchaseListQnA:visited {color: black; text-decoration: none;}
-.purchaseListQnA:hover {color: #5f0080; text-decoration: none;}
-.purchaseListQnA:active {color: black; text-decoration: none;} */
-
 
 /* mypagePickItem.jsp - css  */
 
@@ -218,60 +201,11 @@
 	cursor: pointer;
 } 
 
-/* #pickItemBasketBtnDiv{
-	border: 1px solid #5f0080; 
-	width: 120px; 
-	text-align:center; 
-	background-color:#795b8f; 
-	margin-right: 0px; 
-	margin-top: 20px; 
-	padding: 5px 10px 5px 10px;
-}
-
-.pickItemBasketA {color:white; text-decoration: none; }
-.pickItemBasketA:link {color: white; text-decoration: none;}
-.pickItemBasketA:visited {color: white; text-decoration: none;}
-.pickItemBasketA:hover {color: white; text-decoration: none;}
-.pickItemBasketA:active {color: white; text-decoration: none;}
-
-#pickItemDeleteBtnDiv{
-	border: 1px solid #5f0080; 
-	width: 120px; 
-	text-align:center;
-	margin-right: 0px; 
-	margin-top: 20px; 
-	margin-bottom:15px;  
-	padding: 5px 10px 5px 10px;
-}
-
-.pickItemDeleteA {color:#5f0080; text-decoration: none; }
-.pickItemDeleteA:link {color: #5f0080; text-decoration: none;}
-.pickItemDeleteA:visited {color:#5f0080; text-decoration: none;}
-.pickItemDeleteA:hover {color: #5f0080; text-decoration: none;}
-.pickItemDeleteA:active {color: #5f0080; text-decoration: none;}
- */
 #pickItemBlank{
 	height: 10px; 
-	width: 79%; /* 690px -> 76% */
+	width: 90%; 
 	float: left;
 }
-
-/* #pickItemSelectDeleteBtnDiv{
-	border: 1px solid #5f0080; 
-	width: 120px; 
-	text-align:center;
-	margin-right: 0px; 
-	margin-top: 20px; 
-	margin-bottom:15px;  
-	padding: 5px 10px 5px 10px;
-	float: left;
-}
-
-.pickItemSelectDeleteA {color:#5f0080; text-decoration: none; }
-.pickItemSelectDeleteA:link {color: #5f0080; text-decoration: none;}
-.pickItemSelectDeleteA:visited {color:#5f0080; text-decoration: none;}
-.pickItemSelectDeleteA:hover {color: #5f0080; text-decoration: none;}
-.pickItemSelectDeleteA:active {color: #5f0080; text-decoration: none;} */
 
 #pickItemBlank2{
 	height: 10px; 
@@ -309,23 +243,6 @@
 	margin-top: 10px;
 	cursor: pointer;
 } 
-/* #pickItemAllOrderBtnDiv{
-	border: 1px solid #5f0080; 
-	width: 120px; 
-	text-align:center; 
-	background-color:#795b8f; 
-	margin-right: 0px; 
-	margin-top: 20px; 
-	padding: 5px 10px 5px 10px;
-	float: left;
-	
-}
-
-.pickItemAllOrderA{color:white; text-decoration: none; }
-.pickItemAllOrderA:link {color: white; text-decoration: none;}
-.pickItemAllOrderA:visited {color: white; text-decoration: none;}
-.pickItemAllOrderA:hover {color: white; text-decoration: none;}
-.pickItemAllOrderA:active {color: white; text-decoration: none;} */
 
 /* mypagePickSeller.jsp - css  */
 
@@ -405,62 +322,11 @@
 	cursor: pointer;
 }
 
-
-/* #pickSellerHomeBtnDiv{
-	border: 1px solid #5f0080; 
-	width: 120px; 
-	text-align:center; 
-	background-color:#795b8f; 
-	margin-right: 0px; 
-	margin-top: 20px; 
-	padding: 5px 10px 5px 10px
-}
-
-.pickSellerHomeA {color:white; text-decoration: none; }
-.pickSellerHomeA:link {color: white; text-decoration: none;}
-.pickSellerHomeA:visited {color: white; text-decoration: none;}
-.pickSellerHomeA:hover {color: white; text-decoration: none;}
-.pickSellerHomeA:active {color: white; text-decoration: none;}
-
-#pickSellerDeleteBtnDiv{
-	border: 1px solid #5f0080; 
-	width: 120px; 
-	text-align:center;
-	margin-right: 0px; 
-	margin-top: 20px; 
-	margin-bottom:15px;  
-	padding: 5px 10px 5px 10px
-}
-
-.pickSellerDeleteA {color:#5f0080; text-decoration: none; }
-.pickSellerDeleteA:link {color: #5f0080; text-decoration: none;}
-.pickSellerDeleteA:visited {color:#5f0080; text-decoration: none;}
-.pickSellerDeleteA:hover {color: #5f0080; text-decoration: none;}
-.pickSellerDeleteA:active {color: #5f0080; text-decoration: none;}
- */
 #pickSellerBlank{
 	height: 10px; 
 	width: 90%; /* 850px -> 86% */
 	float: left;
 }
-
-/* #pickSellerSelectDeleteBtnDiv{
-	border: 1px solid #5f0080; 
-	width: 120px; 
-	text-align:center;
-	margin-right: 0px; 
-	margin-top: 20px; 
-	margin-bottom:15px;  
-	padding: 5px 10px 5px 10px;
-	float: left;
-}
-
-.pickSellerSelectDeleteA {color:#5f0080; text-decoration: none; }
-.pickSellerSelectDeleteA:link {color: #5f0080; text-decoration: none;}
-.pickSellerSelectDeleteA:visited {color:#5f0080; text-decoration: none;}
-.pickSellerSelectDeleteA:hover {color: #5f0080; text-decoration: none;}
-.pickSellerSelectDeleteA:active {color: #5f0080; text-decoration: none;}
- */
 
 /* mypageDeliveryTracking.jsp - css  */
 
@@ -567,22 +433,6 @@
 	margin-top: 20px;
 	cursor: pointer;
 }
-/* #couponInputBtn{
-	border: 1px solid #5f0080; 
-	width: 120px; 
-	text-align:center; 
-	background-color:#795b8f; 
-	margin-right: 0px; 
-	margin-top: 20px; 
-	padding: 5px 5px 5px 5px;
-	float: left;
-} */
-
-/* .couponInput {color:white; text-decoration: none; font-size: 10pt;}
-.couponInput:link {color: white; text-decoration: none;}
-.couponInput:visited {color: white; text-decoration: none;}
-.couponInput:hover {color: white; text-decoration: none;}
-.couponInput:active {color: white; text-decoration: none;} */
 
 .couponTable{
 	border-top: 2px solid #5f0080;
@@ -649,15 +499,6 @@
 	padding-bottom: 15px;
 }
 
-/* //삭제 
-#purchaseDetailBlankDiv{
-	width: 60%; 
-	height: 10px; 
-	float: left;
-	border: solid;
-}
-*/
-
 .purchaseDetailQnA{color:#5f0080; text-decoration: none; font-size: 10pt;}
 .purchaseDetailQnA:link {color: #5f0080; text-decoration: none;}
 .purchaseDetailQnA:visited {color: #5f0080; text-decoration: none;}
@@ -694,61 +535,6 @@
 .purchaseDetailItem:hover {color: #5f0080; text-decoration: none; font-weight: bold;}
 .purchaseDetailItem:active {color: black; text-decoration: none;}
 
-
-
-/* #purchaseDetailBasketBtnDiv{
-	border: 1px solid #5f0080; 
-	width: 120px; 
-	text-align:center;
-	background-color: #795b8f;
-	margin-right: 0px; 
-	margin-top: 20px; 
-	margin-bottom:15px;  
-	padding: 5px 10px 5px 10px;
-} */
-
-/* .purchaseDetailBasketA {color:white; text-decoration: none; }
-.purchaseDetailBasketA:link {color: white; text-decoration: none;}
-.purchaseDetailBasketA:visited {color:white; text-decoration: none;}
-.purchaseDetailBasketA:hover {color: white; text-decoration: none;}
-.purchaseDetailBasketA:active {color: white; text-decoration: none;}
- */
-
-/* #purchaseDetailAllOrderBtnDiv{
-	border: 1px solid #5f0080; 
-	width: 150px; 
-	text-align:center;
-	background-color: #795b8f;
-	margin-right: 0px; 
-	margin-top: 20px; 
-	margin-bottom:15px;  
-	padding: 5px 10px 5px 10px;
-	float: left;
-} */
-
-/* .purchaseDetailAllOrderA {color:white; text-decoration: none; }
-.purchaseDetailAllOrderA:link {color: white; text-decoration: none;}
-.purchaseDetailAllOrderA:visited {color:white; text-decoration: none;}
-.purchaseDetailAllOrderA:hover {color: white; text-decoration: none;}
-.purchaseDetailAllOrderA:active {color: white; text-decoration: none;} */
-
-/* #purchaseDetailAllDeleteBtnDiv{
-	border: 1px solid #5f0080; 
-	width: 150px; 
-	text-align:center;
-	margin-right: 0px; 
-	margin-top: 20px; 
-	margin-bottom:15px;  
-	padding: 5px 10px 5px 10px;
-	float: left;
-}
- */
-/* .purchaseDetailAllDeleteA {color:#5f0080; text-decoration: none; }
-.purchaseDetailAllDeleteA:link {color: #5f0080; text-decoration: none;}
-.purchaseDetailAllDeleteA:visited {color:#5f0080; text-decoration: none;}
-.purchaseDetailAllDeleteA:hover {color: #5f0080; text-decoration: none;}
-.purchaseDetailAllDeleteA:active {color: #5f0080; text-decoration: none;}
- */
 #purchaseDetailPayDiv{
 	width: 200px;
 	font-size: 12pt;

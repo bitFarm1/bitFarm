@@ -10,12 +10,6 @@
 		<th>유효기간</th>
 		<th>금액</th>
 	</tr>
-<!-- 	<tr>
-		<td align="center">20.01.01</td>
-		<td align="center">[구매적립]주문(주문번호)N% 적립</td>
-		<td align="center">20.12.31</td>
-		<td align="center">+1,000원</td>
-	</tr> -->
 </table>
 </div>
 

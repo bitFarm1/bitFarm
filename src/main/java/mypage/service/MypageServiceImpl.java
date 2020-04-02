@@ -12,14 +12,12 @@ import mypage.bean.MypageCouponDTO;
 import mypage.bean.MypagePickItemDTO;
 import mypage.bean.MypagePickSellerDTO;
 import mypage.bean.MypagePointDTO;
-import mypage.bean.MypageReviewDTO;
 import mypage.bean.MypageReviewListDTO;
 import mypage.dao.MypageDAO;
 import order.bean.OrderDTO;
 import order.bean.OrderImageDTO;
 import order.bean.OrderListDTO;
 import order.bean.OrderListPaging;
-import seller.bean.SellerDTO;
 import seller.dao.SellerDAO;
 
 @Service
@@ -179,7 +177,7 @@ public class MypageServiceImpl implements MypageService {
 	@Override
 	public List<OrderListDTO> getMypageOrderList(Map<String, Object> map) {
 	
-	//	List<OrderListDTO> list = mypageDAO.getMypageOrderList(map);
+	
 		String pg = (String) map.get("pg");
 		//1페이지당 3개씩
 		int endNum = Integer.parseInt(pg)*3;
@@ -190,12 +188,10 @@ public class MypageServiceImpl implements MypageService {
 				
 		return mypageDAO.getMypageOrderList(map);
 		
-	//	return list;
 
 	}
 
 	@Override
-
 	public List<InformationQnADTO> getMyQnaList(String id) {
 		return mypageDAO.getMyQnaList(id);
 }
@@ -214,19 +210,6 @@ public class MypageServiceImpl implements MypageService {
 	}
 
 	@Override
-	public List<OrderListDTO> getMypageOrderYearList(Map<String, Object> map) {
-		
-		List<OrderListDTO> list = mypageDAO.getMypageOrderYearList(map);
-	//	System.out.println("서비스 잘왔어!");
-		
-		for(OrderListDTO dto : list) {
-			System.out.println(dto);
-		}
-		return list;
-	}
-
-
-	@Override
 	public String isExistPickSeller(String id, String sellerName) {
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("id", id);
@@ -238,7 +221,6 @@ public class MypageServiceImpl implements MypageService {
 			return "false";
 		}
 	}
-
 	
 	//페이징
 	@Override 
@@ -246,6 +228,7 @@ public class MypageServiceImpl implements MypageService {
 		
 		int totalA = mypageDAO.getOrderListTotalA(map);//총글수
 		String pg = (String) map.get("pg");
+		String year = (String) map.get("year");
 		orderListPaging.setCurrentPage(Integer.parseInt(pg));
 		orderListPaging.setPageBlock(3); 
 		orderListPaging.setPageSize(5);

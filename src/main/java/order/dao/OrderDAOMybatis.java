@@ -43,7 +43,6 @@ public class OrderDAOMybatis implements OrderDAO {
 
 	@Override
 	public int writeOrder(Map<String, Object> map) {
-	//	System.out.println("DAO도착");
 		int su = sqlSession.insert("orderSQL.writePurchase",map);
 		return su;
 	}

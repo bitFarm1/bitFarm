@@ -166,14 +166,14 @@ public class MemberController {
 	public ModelAndView naver(@RequestParam Map<String, String> map, HttpSession session)  {
 		MemberDTO memberDTO = memberService.checkAccount(map);		
 		ModelAndView mav = new ModelAndView(); 
-		
+		System.out.println("로그인");
 		if(memberDTO != null) {
 			if(map.get("type").equals(memberDTO.getMember_loginType())) {
 				session.setAttribute("memberId", memberDTO.getMember_id());	//session은 내장 기본 객체 default 30분  
 				session.setAttribute("memberName", memberDTO.getMember_name()); 
 				session.setAttribute("memberEmail", memberDTO.getMember_email());
-				mav.addObject("display","/template/body.jsp"); 
-			}else {
+				mav.addObject("display","/member/snsLoginSuccess.jsp"); 
+			}else {  
 				mav.addObject("display","/member/snsLoginFail.jsp");
 			}			 
 			
@@ -181,8 +181,9 @@ public class MemberController {
 			mav.addObject("display", "/member/snsWriteForm.jsp");  
 		} 
 		
-		mav.setViewName("/main/main"); 
-		return mav;   
+		System.out.println("메인으로"); 
+		mav.setViewName("/main/main");  
+		return mav;    
 	}
 	
 	@RequestMapping(value="/checkID", method=RequestMethod.POST) 

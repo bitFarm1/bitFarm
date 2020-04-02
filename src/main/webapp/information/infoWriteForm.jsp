@@ -1,4 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+   
+<%@page import="java.util.*"%>
+<%
+    request.setCharacterEncoding("UTF-8");
+%>   
+
 <style type="text/css">
 	table.QnAtable{
 		width: 800px;
@@ -6,7 +12,7 @@
 		border-top: 2px solid #5f0080;
 		border-bottom: 2px solid #5f0080;
 	} 
-	.join {
+	.join { 
 	    width: 270px;
 	    height: 54px;
 	    border: 0 none; 
@@ -20,7 +26,7 @@
 	}
  	.title{  
  		width: 100px; 
- 		text-align: left;
+ 		text-align: left; 
  		font-size: 10pt; 
  		font-weight: bold; 
  		background-color: #F7F5F8; 
@@ -62,7 +68,7 @@
 </style>
 <div style="width:1200px; margin: 0 auto;">  
 <h3>*관리자용* 공지사항 등록</h3>  
-<form name="infoWriteForm" id="infoWriteForm" method="post" enctype="multipart/form-data" action="">
+<form name="infoWriteForm" id="infoWriteForm" method="post" enctype="multipart/form-data" accept-charset="utf-8" action="">
 <table class="QnAtable" cellpadding="5px" style="border-color: grey; width:1200px;">   
 	<tr>   
 		<td class="title">&emsp;제목</td> 
@@ -127,17 +133,18 @@ $("#infoWriteBtn").click(function(){
     }
     oEditors.getById["information_content"].exec("UPDATE_CONTENTS_FIELD", []);
          	
-	let formData = new FormData($('#infoWriteForm')[0]);
+    $("#infoWriteForm").attr("enctype","multipart/form-data");
+	let formData = new FormData($('#infoWriteForm')[0]); 
 	
 	$.ajax({  
-		type : 'post',  
-		enctype : 'multipart/form-data',
+		type : 'post',   
+		enctype : 'multipart/form-data', 
 		processData : false, //데이터를 컨텐트 타입에 맞게 변환 여부
-		contentType : false, //요청 컨텐트 타입 
-		url : '/bitFarm/information/infoWrite',        
+		contentType: false,
+		url : '/bitFarm/information/infoWrite',            
 		data : formData,  
 		success : function(){   
-			alert("등록 완료");  
+			alert("등록 완료");    
 			location.href='/bitFarm/information/infoBoardList';   
 		} 			 
 	});			 

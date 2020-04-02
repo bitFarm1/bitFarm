@@ -31,6 +31,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getSellerDTO" parameterType="String" resultType="sellerDTO">
 		select * from seller where seller_name = #{sellerName}
 	</select>
-		 	 
+	
+	<select id="sellerSell" parameterType="String" resultType="sellerSell">
+		select item_id, sum(order_item_qty) as qty, item_name as item, seller_name as seller_name, item_price, item_main_image
+		from item
+		join purchase on(order_item_id = item_id) 
+		where seller_name = '${sellerName}'
+		group by order_item_id, item_name, seller_name, item_price, item_main_image, 
+		item_id
+		order by 2 desc 
+	</select>  
+	
+	<select id="sellerSellDetail" parameterType="java.util.Map" resultType="String"> 
+		select nvl(count(order_item_qty), '0')    
+		from purchase   
+		where order_item_id = '${item_id}' and order_date between to_char(sysdate-#{i},'yyyymmdd') and to_char(sysdate+1-#{i},'yyyymmdd')
+		group by order_item_id
+	</select>    
+		  
 </mapper>          
  

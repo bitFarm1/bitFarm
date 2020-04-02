@@ -117,11 +117,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	  
 	 </select>
 	 
-	 <select id="getLastMonth2" resultType="int">
-	 	select count(*)
+	 <select id="getLastMonth2" resultType="int"> 
+	 	select count(*) 
 		from member
-		where member_signupdate between to_date(ADD_MONTHS(TRUNC(sysdate,'MM'), -2)) and to_date(ADD_MONTHS(TRUNC(sysdate,'MM'), -1))
-	 
+		where member_signupdate between to_date(ADD_MONTHS(TRUNC(sysdate,'MM'), -2)) and to_date(ADD_MONTHS(TRUNC(sysdate,'MM'), -1))	 
 	 </select>
 	   
 	 <select id="getLastMonth3" resultType="int">
@@ -133,10 +132,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	 <select id="weekData"  resultType="int"> 
 	 	select count(*)    
 		from member
-		where member_signupdate between to_char(sysdate-1-#{i},'yyyymmdd') and to_char(sysdate-#{i},'yyyymmdd') 	 	
+		where member_signupdate between to_char(sysdate-#{i},'yyyymmdd') and to_char(sysdate+1-#{i},'yyyymmdd') 	 	
 	 </select>
 	 
-	 <select id="memberCount" resultType="int">
+	 <select id="memberCount" resultType="int"> 
 	 	select count(*) from member  
 	 </select> 
 	 

@@ -151,16 +151,16 @@
 			<td style="padding-top: 2px;"><input class="layoutT" type="text" id="seller_address2" name="seller_address2" >
 			<br id="seller_address1_p" style="display: none;"><span id="seller_address1_Div" ></span></br>
 			</td>
-		</tr> 
+		</tr>  
 		
 		<tr>  
 			<th class="subject">이미지 업로드</th>
 			<td><input id="upload1" type="file" name="img" size="50">		
 			</td>
-		</tr>    
+		</tr>     
 	  
 	</table> 
-</div> 
+</div>  
 
 <div class="box">
 	<div style="height: 70px;">
@@ -458,8 +458,8 @@ $('input[name=seller_address2]').focusout(function(){
 
 function checkSellerWrite(){ 
 	if(!(semail)){
-		alert("이메일을 확인해주세요");
-		return;
+		alert("필수 항목을 확인해주세요");
+		return; 
 	}
 	if($('input[name=seller_address1]').val()==''){
 		$('#seller_address1_p').css("display", "block"); 

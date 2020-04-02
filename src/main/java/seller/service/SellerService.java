@@ -1,8 +1,10 @@
 package seller.service;
 
+import java.util.List;
 import java.util.Map;
 
 import seller.bean.SellerDTO;
+import seller.bean.SellerSell;
 
 public interface SellerService {
 
@@ -16,8 +18,12 @@ public interface SellerService {
 
 	public String getSellerPwd(String id);
 
-	public SellerDTO getSellerDTO(String sellerName);  
- 
+	public SellerDTO getSellerDTO(String sellerName);
+
+	public List<SellerSell> sellerSell(String attribute);
+
+	public String sellerSellDetail(Map<String, String> map);       
+   
  
 }
  

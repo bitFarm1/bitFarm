@@ -1,11 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <style type="text/css"> 
-	.wrap{
-		width: 1300px;
-		margin: 0 auto;
+	.wrap{  
+		width: 1300px; 
+		margin: 0 auto;   
 	
 	} 
 	
@@ -17,7 +16,7 @@
 	.tdstyle{
 	    width: 130px;
 	    padding: 13px 0 13px 20px;
-	    background-color: #F7F5F8;
+	    background-color: #F7F5F8; 
 	    
 	    text-align: left;
 	}
@@ -49,24 +48,24 @@
  
 <div class="wrap">
 	
-		<h3>°øÁö»çÇ×<span style="font-size: 9pt; font-weight: normal;">&emsp;ºñÆ®³óÀåÀÇ »õ·Î¿î ¼Ò½Äµé°ú À¯¿ëÇÑ Á¤º¸µéÀ» ÇÑ°÷¿¡¼­ È®ÀÎÇÏ¼¼¿ä.</span></h3> 
+		<h3>ê³µì§€ì‚¬í•­<span style="font-size: 9pt; font-weight: normal;">&emsp;ë¹„íŠ¸ë†ì¥ì˜ ìƒˆë¡œìš´ ì†Œì‹ë“¤ê³¼ ìœ ìš©í•œ ì •ë³´ë“¤ì„ í•œê³³ì—ì„œ í™•ì¸í•˜ì„¸ìš”.</span></h3> 
 		<table width="1300px" > 
 			<tr><td style="border-top: 2px solid #5f0080;" > 
 				<table align="center" style="padding: 0; width:100%;">
 					<tr>  
-						<td class="tdstyle">Á¦¸ñ</td>  
+						<td class="tdstyle">ì œëª©</td>  
 						<td colspan="3" style="border-top: 1px solid #e8e8e8;">${informationDTO.information_subject }</td> 						
 					</tr>
 					 
 					<tr>
-						<td class="tdstyle">ÀÛ¼ºÀÚ</td>
+						<td class="tdstyle">ì‘ì„±ì</td>
 						<td colspan="3">${informationDTO.information_name }</td> 
 					</tr>
 					
 					<tr>
-						<td class="tdstyle">ÀÛ¼ºÀÏ</td> 
-						<td ><fmt:formatDate pattern="yyyy³â MM¿ù ddÀÏ" value="${informationDTO.information_date }"/></td> 
-						<td class="tdstyle">Á¶È¸¼ö</td>
+						<td class="tdstyle">ì‘ì„±ì¼</td> 
+						<td ><fmt:formatDate pattern="yyyyë…„ MMì›” ddì¼" value="${informationDTO.information_date }"/></td> 
+						<td class="tdstyle">ì¡°íšŒìˆ˜</td>
 						<td width="50%">${informationDTO.information_views }</td>
 					</tr>	
 				</table>
@@ -80,13 +79,13 @@
 				<img src="../storage/${informationDTO.information_imageName }">
 			</c:if>
 			</td></tr>  
-			<tr> 
+			<tr>   
 				<td height="30px"></td>
 			</tr>
 			<tr><td align="center" style="border-bottom: 2px solid #5f0080; border-top: 2px solid #5f0080;">
-				<input class="layoutB" id="goBackBtn" type="button" value="¸ñ·Ï">
+				<input class="layoutB" id="goBackBtn" type="button" value="ëª©ë¡">
 				<c:if test="${admin =='admin' }"> 
-				<input class="layoutB" id="delBtn" type="button" value ="»èÁ¦">
+				<input class="layoutB" id="delBtn" type="button" value ="ì‚­ì œ">
 				</c:if>
 			</td></tr>						
 		</table>	
@@ -106,7 +105,7 @@ $('#delBtn').click(function(){
 		data : {'seq' : $('input[name=seq]').val()},
 		dataType : 'json',
 		success : function(data){ 			
-			alert("»èÁ¦¿Ï·á"); 
+			alert("ì‚­ì œì™„ë£Œ"); 
 			location.href='/bitFarm/information/infoBoardList';
 		}
 	});

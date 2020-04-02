@@ -16,8 +16,8 @@
 		<c:if test="${admin == 'admin' }"> 
 			<a class="infoA" href="/bitFarm/information/infoWriteForm">[관리자] 공지사항 등록</a><br><br>	
 		</c:if>  
- 
-		<c:if test="${memberId != null || admin == 'admin' }"> 
+  
+		<c:if test="${memberId != null}"> 
 			<a class="infoA" href="/bitFarm/information/infoQnABoard">고객 1:1 문의작성</a><br><br>
 			<a class="infoA" href="/bitFarm/information/infoQnAList">고객 1:1 문의내역</a><br><br> 
 		</c:if>
@@ -27,4 +27,4 @@
 			<a class="infoA" href="/bitFarm/information/dataList">회원데이터</a>	<br><br>
 		</c:if> 
 	  
-</div>    
+</div>     

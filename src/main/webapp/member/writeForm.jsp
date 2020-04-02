@@ -486,7 +486,7 @@ function checkMemberWrite(){
 	if($('#event').is(":checked")) $('#mea').val("yes");    
 	else $('#mea').val("no");
 	if(!(semail)){
-		alert("이메일을 확인해주세요");
+		alert("필수 항목을 확인 해주세요");  
 		return;
 	}
 	if($('input[name=member_address1]').val()==''){

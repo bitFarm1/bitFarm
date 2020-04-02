@@ -105,12 +105,17 @@ public class InformationController {
 						break;
 					}
 				}else if((String)session.getAttribute("admin") != null) {
-					if(ar[i].getName().equals((String)session.getAttribute("admin")+seq+"")){ 
+					if(ar[i].getName().equals((String)session.getAttribute("admin")+seq+"")){  
+						cookie = ar[i];					
+						break;
+					} 
+				} else if((String)session.getAttribute("sellerId") != null) { 
+					if(ar[i].getName().equals((String)session.getAttribute("sellerId")+seq+"")){ 
 						cookie = ar[i];					
 						break;
 					} 
 				} 
-			}
+			}   
 		}
 		
 		if(cookie == null){									
@@ -123,6 +128,12 @@ public class InformationController {
 				cookie = new Cookie((String)session.getAttribute("admin")+seq+"", (String)session.getAttribute("admin"));
 				cookie.setMaxAge(60*60*24);
 				response.addCookie(cookie);
+				informationService.upHit(seq); 	
+				 
+			}else if((String)session.getAttribute("sellerId") != null) {
+				cookie = new Cookie((String)session.getAttribute("sellerId")+seq+"", (String)session.getAttribute("sellerId"));
+				cookie.setMaxAge(60*60*24);
+				response.addCookie(cookie); 
 				informationService.upHit(seq); 	
 			}
 		}			

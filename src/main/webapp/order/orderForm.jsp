@@ -93,8 +93,7 @@
 				<c:forEach var="couponDTO" items="${couponList }">
 
 					<option id = "couponOption"  name = "${couponDTO.coupon_id }" value = "${couponDTO.coupon_price }">[${couponDTO.coupon_name }] ${couponDTO.coupon_content}</option>	 
-
-					<option name = "${couponDTO.coupon_id }" value = "${couponDTO.coupon_price }">[${couponDTO.coupon_name }] ${couponDTO.coupon_content}</option>	 
+	 
 				</c:forEach>
 					 	
 				</select>
@@ -162,7 +161,6 @@
 <br><br>
 <div style="width: 40%; margin: 0 auto; text-align: center;">
 	<input type="button" id="purchaseBtn" class="orderBtn"  value="주문하기"><br><br>
-	<font style="color: grey;">* 주문 취소는 <strong>'입금확인'</strong> 상태일 경우에만 가능합니다.</font>
 
 </div>
 </form>

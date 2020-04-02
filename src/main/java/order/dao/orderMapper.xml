@@ -95,14 +95,12 @@
  	</select>
 
  	<update id="updatePoint" parameterType = "java.util.Map">
- 		insert into point values(#{id},sysdate,'구매적립금',ADD_MONTHS(sysdate, 6),(select distinct(order_total_price) * 0.05 from purchase where order_id = #{orderId}),'구매적립금','purchase_point')
+ 		insert into point values(#{id},sysdate,'구매적립금',ADD_MONTHS(sysdate, 6),(select distinct(order_total_price) * 0.005 from purchase where order_id = #{orderId}),'구매적립금','purchase_point')
  	</update>
 
  	<select id="isOrder" parameterType="java.util.Map" resultType="int">
  		select count(*) from purchase where order_user_id=#{id} and order_item_id=#{item_id}
  	</select>
- 	
- 	
  	
  	<select id="orderNumberList" parameterType="java.util.Map" resultType="order.bean.OrderSellerHomeDTO">
  		select * from purchase where order_user_id=#{id} and order_id=#{seq}

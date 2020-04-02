@@ -88,20 +88,24 @@ public class OrderController {
 		String id = (String)session.getAttribute("memberId");
 		String orderId = (String)session.getAttribute("orderId");
 		
-		//사용한 포인트, 쿠폰 삭제
+		
 		Map<String,String>map = new HashMap<String,String>();
 		map.put("id",id);
 		map.put("orderId",orderId);
-		orderService.deletePointNCoupon(map);
+		
 		
 		//판매수량 관리하기
 		orderService.deleteItemQty(orderId);
 		
 		//카트 비우기
 		session.removeAttribute("orderId");
+		session.removeAttribute("cartList");
 		
 		//포인트 적립하기
 		orderService.updatePoint(map);
+		
+		//사용한 포인트, 쿠폰 삭제
+		orderService.deletePointNCoupon(map);
 		
 		ModelAndView mav = new ModelAndView();
 		

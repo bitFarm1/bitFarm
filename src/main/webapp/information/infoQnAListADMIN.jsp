@@ -74,7 +74,7 @@ th{
 		</td>			
 	</tr>	  
 	 
-	<tr id="hidden${seq }" style="display:none;" >  
+	<tr id="hidden${seq }" style="display:none; background: rgb(248, 248, 248);" >  
 		<td colspan="2"  align="left"> 
 			<pre class="contents">${infoQnA_content }<br></pre> 
 		</td>
@@ -97,7 +97,7 @@ th{
  
 var ishidden = false;
 	
-$('#${seq}').click(function(){
+$('#${seq}').click(function(){ 
 	ishidden = !ishidden;
 	if(ishidden){
 		$('#hidden${seq}').css("display", "table-row"); 

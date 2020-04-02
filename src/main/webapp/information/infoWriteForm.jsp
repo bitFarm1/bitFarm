@@ -128,7 +128,7 @@ $("#infoWriteBtn").click(function(){
     	return false;
     } 
     if($('input[name=information_content]').val() == ''){
-    	alert("내용을 입력하세요."); 
+    	alert("내용을 입력하세요.");   
     	return false;
     }
     oEditors.getById["information_content"].exec("UPDATE_CONTENTS_FIELD", []);

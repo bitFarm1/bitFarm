@@ -43,11 +43,29 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>  
 	
 	<select id="sellerSellDetail" parameterType="java.util.Map" resultType="String"> 
-		select nvl(count(order_item_qty), '0')    
-		from purchase   
+		select nvl(sum(order_item_qty), '0')    
+		from purchase     
 		where order_item_id = '${item_id}' and order_date between to_char(sysdate-#{i},'yyyymmdd') and to_char(sysdate+1-#{i},'yyyymmdd')
 		group by order_item_id
 	</select>    
+	
+	<select id="getsellerPwd" parameterType="String" resultType="String">
+		select seller_pwd from seller where seller_id = #{id}   
+	</select>
+	
+	<select id="getFindPwd" parameterType="java.util.Map" resultType="sellerDTO">
+		select * from seller where seller_name = #{seller_name} and seller_email = #{seller_email} and seller_id = #{seller_id}
+	</select>
+	
+	<select id="getFindId" parameterType="java.util.Map" resultType="sellerDTO">
+		select * from seller where seller_name = #{seller_name} and seller_email = #{seller_email}
+	</select>
+	  
+	  <update id="resetPwd" parameterType="java.util.Map">
+		update seller 
+		set seller_pwd = #{pwd}    
+		where seller_id = #{seller_id}  
+	</update>
 		  
 </mapper>          
- 
+  

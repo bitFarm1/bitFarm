@@ -70,7 +70,7 @@
 			<td style="width:200px" align="center"> 
 				답변 대기중
 			</td>
-		</c:if>	 
+		</c:if>	  
 		<c:if test="${informationQnADTO.infoQnA_answerSubject != '0'}">
 			<td style="width:200px" align="center">  
 				답변 완료
@@ -78,7 +78,7 @@
 		</c:if>	 			
 	</tr>	    
 	 
-	<tr id="hidden1${seq }" style="display:none;" >
+	<tr id="hidden1${seq }" style="display:none; background: rgb(248, 248, 248);" >
 		<td></td>  
 		<td colspan="2" style="width: 500px;">   
 			<pre class="contents">${infoQnA_content }<br></pre> 
@@ -102,7 +102,7 @@
 		<td> </td>     
 	</tr>      
 		  
-	<tr id="hidden2${seq }" style="display:none;">  
+	<tr id="hidden2${seq }" style="display:none; background: rgb(248, 248, 248);">  
 		<td> </td> 
 			<td  colspan="4" align="left" style="width: 425px;">     
 				<pre class="contents">${informationQnADTO.infoQnA_answerContent }<br></pre> 

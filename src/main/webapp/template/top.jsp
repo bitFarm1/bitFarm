@@ -46,6 +46,8 @@
 				<li><a href="/bitFarm/sellerHome/sellerAddForm">상품 등록하기</a></li>
 				<li><a href="/bitFarm/sellerHome/sellerManage">품절목록 관리하기</a></li>
 			 	<li><a href="/bitFarm/sellerHome/sellerAll?sellerName=${sellerName}">상품 모아보기</a></li>
+			 	<li><a href="/bitFarm/sellerHome/sellerOrder?pg=1">주문 현황</a></li>
+			 	<li><a href="/bitFarm/sellerHome/sellerSell">매출 분석</a></li>
 			</ul>
 		</li>
 	</c:if>

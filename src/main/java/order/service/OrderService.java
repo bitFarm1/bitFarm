@@ -34,7 +34,7 @@ public interface OrderService {
 
 	public String isOrder(String id, String item_id);
 
-	public List<OrderSellerHomeDTO> getSellItemList(String name);
+	public List<OrderSellerHomeDTO> orderNumberList(String id, String seq);
 
 
 

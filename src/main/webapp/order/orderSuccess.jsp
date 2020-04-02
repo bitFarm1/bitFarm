@@ -38,7 +38,7 @@
 	<h1 style="font-color: red;">주문을 완료하였습니다</h1>
 	<font style="color: gray;">또 다른 상품을 둘러보세요!</font>
 	<br><br><br><br><br><br>
-	<input type="button" class="goMypageBtn" value="주문내역보기" onclick="location.href='/bitFarm/mypage/mypageMain'">
+	<input type="button" class="goMypageBtn" value="주문내역보기" onclick="location.href='/bitFarm/mypage/mypagePurchaseList?pg=1'">
 	&emsp;&emsp;&emsp;
 	<input type="button" class="goShopping" value="쇼핑계속하기" onclick="location.href='/bitFarm/main/main'">
 </div>

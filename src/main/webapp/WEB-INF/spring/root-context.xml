@@ -39,6 +39,10 @@
 	
 	<context:component-scan base-package="seller.dao" />
 	<context:component-scan base-package="seller.service" />
+	
+	<context:component-scan base-package="sellerHome.bean" />
+	<context:component-scan base-package="sellerHome.dao" />
+	<context:component-scan base-package="sellerHome.service" />
 
 	<context:component-scan base-package="spring.conf"/> 
 	

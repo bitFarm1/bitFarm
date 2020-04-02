@@ -102,14 +102,10 @@
  		select count(*) from purchase where order_user_id=#{id} and order_item_id=#{item_id}
  	</select>
  	
- 	<select id="getSellItemList" parameterType="String" resultType="order.bean.OrderSellerHomeDTO">
- 		select order_seller_name, order_id, order_item_main_image, order_item_id, order_user_id, order_state, order_total_price, order_date from
-		(
-		    select order_seller_name, order_id, order_item_main_image, order_item_id, order_user_id, order_state, order_total_price, order_date,
-		    row_number() over (partition by order_id order by order_item_main_image desc) rn
-		    from purchase
-		)
-		where order_seller_name=#{name} order by order_date desc
- 	</select>	
+ 	
+ 	
+ 	<select id="orderNumberList" parameterType="java.util.Map" resultType="order.bean.OrderSellerHomeDTO">
+ 		select * from purchase where order_user_id=#{id} and order_id=#{seq}
+ 	</select>
  
 </mapper>

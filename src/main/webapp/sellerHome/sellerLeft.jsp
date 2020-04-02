@@ -52,10 +52,10 @@ a.sellerA:active {color: black; text-decoration: none;}
 			<td><a class="sellerA" href="/bitFarm/sellerHome/sellerStore">오프라인 매장</a></td>
 		</tr>
 		<tr>
-			<td><a class="sellerA" href="/bitFarm/sellerHome/sellerOrder">(보류)주문현황</a></td>
+			<td><a class="sellerA" href="/bitFarm/sellerHome/sellerOrder?pg=1">주문 현황</a></td>
 		</tr>
 		<tr>
-			<td><a class="sellerA" href="/bitFarm/sellerHome/sellerSell">(보류)매출현황</a></td>
+			<td><a class="sellerA" href="/bitFarm/sellerHome/sellerSell">매출 현황</a></td>
 		</tr>
 	</table>
 </div>

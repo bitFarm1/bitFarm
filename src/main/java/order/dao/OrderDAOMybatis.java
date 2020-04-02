@@ -134,8 +134,8 @@ public class OrderDAOMybatis implements OrderDAO {
 	}
 
 	@Override
-	public List<OrderSellerHomeDTO> getSellItemList(String name) {
-		return sqlSession.selectList("orderSQL.getSellItemList", name);
+	public List<OrderSellerHomeDTO> orderNumberList(Map<String, String> map) {
+		return sqlSession.selectList("orderSQL.orderNumberList", map);
 	}
 
 

@@ -1,6 +1,8 @@
 package sellerHome.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -17,6 +19,8 @@ import order.bean.OrderSellerHomeDTO;
 import order.service.OrderService;
 import seller.bean.SellerDTO;
 import seller.service.SellerService;
+import sellerHome.bean.SellerOrderNumberListPaging;
+import sellerHome.service.SellerHomeService;
 
 @Controller
 @RequestMapping(value="sellerHome")
@@ -29,6 +33,8 @@ public class SellerHomeController {
 	private SellerService sellerService;
 	@Autowired
 	private OrderService orderService;
+	@Autowired
+	private SellerHomeService sellerHomeService;
 	
 	//판매자 홈의 홈 역할
 	//판매자가 파는 모든 상품의 리스트를 띄워줌
@@ -135,23 +141,35 @@ public class SellerHomeController {
 	
 	//내가 판 상품에 한해서 주문내역 뽑아오기
 	@RequestMapping(value="sellerOrder", method=RequestMethod.GET)
-	public String sellerOrder(Model model) {
+	public String sellerOrder(Model model, @RequestParam(required=false, defaultValue="1") String pg) {
 		
 		String name = (String)session.getAttribute("sellerName");
 		
-		List<OrderSellerHomeDTO> list = orderService.getSellItemList(name);
-		//System.out.println("sellerHomeController : " + list.size());
+		//페이징
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("name", name);
+		map.put("pg", pg);
+		SellerOrderNumberListPaging sellerOrderNumberListPaging = sellerHomeService.sellerOrderNumberListPaging(map);
+		
+		List<OrderSellerHomeDTO> list = sellerHomeService.getSellItemList(map);
 		
 		SellerDTO sellerDTO = sellerService.getSellerDTO((String)session.getAttribute("sellerName"));
 		model.addAttribute("sellerDTO", sellerDTO);
 		
 		model.addAttribute("list", list);
+		model.addAttribute("sellerOrderNumberListPaging", sellerOrderNumberListPaging);
 		model.addAttribute("sellerHome", "/sellerHome/sellerOrder.jsp");
 		model.addAttribute("display", "/sellerHome/sellerHomeMain.jsp");
 		return "/main/main";
 	}
 	
-	
+	//주문내역 리스트 클릭하면 상세주문 리스트 return하는 메소드
+	@RequestMapping(value="orderNumberList", method=RequestMethod.GET)
+	public String orderNumberList(Model model, @RequestParam String seq, @RequestParam String id) {	//주문번호, 구매자 id 가져옴
+		List<OrderSellerHomeDTO> list = orderService.orderNumberList(id, seq);
+		model.addAttribute("orderNumberList", list);
+		return "/sellerHome/orderNumberList";
+	}
 	
 	
 	

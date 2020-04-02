@@ -45,7 +45,7 @@ public interface OrderDAO {
 
 	public int isOrder(Map<String, String> map);
 
-	public List<OrderSellerHomeDTO> getSellItemList(String name);
+	public List<OrderSellerHomeDTO> orderNumberList(Map<String, String> map);
 
 
 

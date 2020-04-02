@@ -161,8 +161,11 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-	public List<OrderSellerHomeDTO> getSellItemList(String name) {
-		return orderDAO.getSellItemList(name);
+	public List<OrderSellerHomeDTO> orderNumberList(String id, String seq) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("id", id);
+		map.put("seq", seq);
+		return orderDAO.orderNumberList(map);
 	}
 
 

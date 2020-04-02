@@ -114,8 +114,8 @@ public class SellerServiceImpl implements SellerService {
 				messageHelper.setFrom("bitFarmBOT@gmail.com", "비트팜봇"); // 보내는사람 생략하면 정상작동을 안함
 				messageHelper.setTo(map.get("seller_email")); // 받는사람 이메일
 				messageHelper.setSubject("비트팜 비밀번호"); // 메일제목은 생략이 가능하다
-				messageHelper.setText("<a href='http://localhost:8080/bitFarm/seller/resetPwdForm?seller_id="+sellerDTO.getSeller_id()+"'>일로와라</a>", true); // 메일 내용
-	   
+				messageHelper.setText("<a href='http://localhost:8080/bitFarm/seller/resetPwdForm?seller_id="+sellerDTO.getSeller_id()+"'>비밀번호 변경 링크입니다.</a>", true); // 메일 내용
+	    
 				mailSender.send(message);	 
 			} catch (Exception e) {   
 				System.out.println(e);           

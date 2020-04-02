@@ -85,7 +85,12 @@
 		</td> 
 	  <c:if test="${infoQnA_imageName != '0'}"> 
 		<td colspan="3"  align="center"> 
-			<img src="../storage/${infoQnA_imageName }" width="200" height="200">			 
+			<img src="../storage/${infoQnA_imageName }" onclick="location.href='../storage/${infoQnA_imageName }'" width="200" height="200">			 
+		</td> 
+	  </c:if>	
+	   <c:if test="${infoQnA_imageName == '0'}">  
+		<td colspan="3"  align="center">  
+				 
 		</td> 
 	  </c:if>			  
 	</tr>     

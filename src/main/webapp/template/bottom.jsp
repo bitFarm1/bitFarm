@@ -2,5 +2,5 @@
 
 <p style="clear: both; height: 20px;"></p>
 <div style="width: 100%; text-align: center; margin: 0 auto;">
-	<img src="../image/bottom.JPG" height="60">
+	<img src="../image/bottom (2).jpg" width="100%">
 </div>

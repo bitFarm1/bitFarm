@@ -231,7 +231,7 @@ public class MypageServiceImpl implements MypageService {
 		String year = (String) map.get("year");
 		orderListPaging.setCurrentPage(Integer.parseInt(pg));
 		orderListPaging.setPageBlock(3); 
-		orderListPaging.setPageSize(5);
+		orderListPaging.setPageSize(3);
 		orderListPaging.setTotalA(totalA);
 		orderListPaging.makePagingHTML();
 	  

@@ -24,19 +24,23 @@
 		cursor: pointer; 
 	}	
 	
+	td{
+		border-bottom: 1px solid #e5e5e5; 
+	}
+	
 </style>
 <form id="infoBoardListForm" name="infoBoardListForm">
 <input type="hidden" id="pg" name="pg" value="${pg }">
 <div style="width:1200px; margin: 0 auto;">
 <h3>공지사항</h3>  
-	<table width="1200px" border="1" cellpadding="15" frame="hsides" rules="rows"> 
+	<table width="1200px" cellpadding="15" style="border-top: 2px solid #5f0080; font-size: 12px; border-collapse: collapse;"> 
 		<tr> 
-			<th>글번호</th> 
-			<th width="250px;">제목</th>
+			<th>글번호</th>  
+			<th width="250px;">제목</th>  
 			<th>작성자</th>
 			<th>작성일</th> 
 			<th>조회</th> 
-		</tr>
+		</tr> 
 		 
 <c:forEach var="informationDTO" items="${list }">
 <c:set var="seq" value="${informationDTO.information_number }"/>

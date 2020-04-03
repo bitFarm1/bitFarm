@@ -27,8 +27,10 @@
 	
 	<select id="getInfoListADMIN" parameterType="java.util.Map" resultType="informationQnADTO">
 		<![CDATA[ 
-		select * from (select rownum rn, tt.* from (select * from QnABoard order by infoQnA_seq desc)tt)where rn>=#{startNum} and rn<=#{endNum} and infoQnA_answerSubject = '0' 
-		]]> 
+		select * from QnABoard 
+		where infoQnA_answerSubject = '0' 
+		order by infoQnA_seq
+		]]>  
 	</select> 	 
 	
 	<select id="infoQnAListAllADMIN" parameterType="java.util.Map" resultType="informationQnADTO">

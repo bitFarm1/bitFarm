@@ -94,52 +94,9 @@ public class InformationController {
 	
 	@RequestMapping(value="/infoView", method=RequestMethod.GET)
 	public ModelAndView infoView(@RequestParam String seq, @RequestParam String pg, HttpServletRequest request,HttpServletResponse response, HttpSession session) {
-		Cookie[] ar = request.getCookies();		
-		Cookie cookie = null;			
- 
-		if(ar != null){							
-			for(int i = 0; i < ar.length; i++){		
-				if((String)session.getAttribute("memberId") != null) {
-					if(ar[i].getName().equals((String)session.getAttribute("memberId")+seq+"")){ 
-						cookie = ar[i];					
-						break;
-					}
-				}else if((String)session.getAttribute("admin") != null) {
-					if(ar[i].getName().equals((String)session.getAttribute("admin")+seq+"")){  
-						cookie = ar[i];					
-						break;
-					} 
-				} else if((String)session.getAttribute("sellerId") != null) { 
-					if(ar[i].getName().equals((String)session.getAttribute("sellerId")+seq+"")){ 
-						cookie = ar[i];					
-						break;
-					} 
-				} 
-			}   
-		}
-		
-		if(cookie == null){									
-			if((String)session.getAttribute("memberId") != null) {
-				cookie = new Cookie((String)session.getAttribute("memberId")+seq+"", (String)session.getAttribute("memberId"));
-				cookie.setMaxAge(60*60*24);
-				response.addCookie(cookie);
-				informationService.upHit(seq); 	
-			}else if((String)session.getAttribute("admin") != null) {
-				cookie = new Cookie((String)session.getAttribute("admin")+seq+"", (String)session.getAttribute("admin"));
-				cookie.setMaxAge(60*60*24);
-				response.addCookie(cookie);
-				informationService.upHit(seq); 	
-				 
-			}else if((String)session.getAttribute("sellerId") != null) {
-				cookie = new Cookie((String)session.getAttribute("sellerId")+seq+"", (String)session.getAttribute("sellerId"));
-				cookie.setMaxAge(60*60*24);
-				response.addCookie(cookie); 
-				informationService.upHit(seq); 	
-			}
-		}			
-		
+				
 		InformationDTO informationDTO = informationService.infoView(seq);
-		
+		 
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("informationDTO", informationDTO);
 		mav.addObject("display", "/information/infoMain.jsp");
@@ -178,7 +135,7 @@ public class InformationController {
 	  
 	@RequestMapping(value="/infoQnAList", method=RequestMethod.GET)
 	public ModelAndView infoList(@RequestParam(required=false, defaultValue="1") String pg, HttpSession session) {
-		
+	 		
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("memberId",(String)session.getAttribute("memberId"));
 		map.put("pg",pg);

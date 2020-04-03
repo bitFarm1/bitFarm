@@ -37,8 +37,7 @@
 			<th>글번호</th>    
 			<th width="250px;">제목</th>
 			<th>작성자</th> 
-			<th>작성일</th> 
-			<th>조회</th> 
+			<th>작성일</th> 	 
 		</tr>
 		  
 <c:forEach var="informationDTO" items="${list }"> 
@@ -46,10 +45,10 @@
 <c:set var="information_subject" value="${informationDTO.information_subject }"/>
 <c:set var="information_name" value="${informationDTO.information_name }"/>
 <c:set var="information_date" value="${informationDTO.information_date }"/>
-<c:set var="information_views" value="${informationDTO.information_views }"/>
 
-	<tr> 
-		<td>
+
+	<tr>  
+		<td align="center">
 		${seq }   
 		</td> 
 		    
@@ -58,18 +57,16 @@
 		</td>  
 		
 		  
-		<td> 
+		<td align="center"> 
 		${information_name } 
 		</td>  
-		
-		<td>   
+		    
+		<td align="center">   
 
 		<fmt:formatDate pattern="yyyy년 MM월 dd일" value="${information_date}"/> 		   		 
 		</td>	
 		
-		<td> 
-		${information_views } 
-		</td>				
+			
 	</tr>	 
 </c:forEach> 
 </table>  
@@ -90,7 +87,7 @@
 	</td></tr>
 	</table>
 	</div> 
-</div> 
+</div>  
 </form>   
 	
 <p style="clear: both; height: 30px;"></p> 

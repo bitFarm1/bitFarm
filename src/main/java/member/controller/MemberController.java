@@ -285,8 +285,6 @@ public class MemberController {
 	public ModelAndView delete(@RequestParam Map<String, String> map, HttpSession session) {
 		ModelAndView mav = new ModelAndView(); 
 		session.invalidate();
-		System.out.println("dd"); 
-		System.out.println(map.get("id"));
 		mypageService.deleteCoupon(map); 
 		mypageService.deletePoint(map); 
 		memberService.delete(map);   

@@ -140,16 +140,16 @@ $('#deleteBtn').click(function(){
 		        		$('#pwdDiv').css('color','red');
 		        		$('#pwdDiv').css('font-weight','bold');
 		        		$('#pwdDiv').css('font-size','9pt');
-					}else{ 
-						alert("dd");
-						$('#deleteForm').submit();						
+					}else{ 	
+						$('#deleteForm').submit();		
+						alert("처리되었습니다. 감사합니다.");  
 					} 
 				}
 			});	
-		}
+		}            
 	}else{
 		$('#deleteForm').submit();
-		alert("처리되었습니다. 감사합니다.") 
+		alert("처리되었습니다. 감사합니다.");  
 	} 
 	
 });

@@ -66,21 +66,22 @@ a.sellerA:active {color: black; text-decoration: none;}
 <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
 $('.pickSellerBtn').click(function(){
-	let sid = '${sellerId}';
-	if(sid!=null || sid!=''){
-		alert('판매자는 찜하기 기능을 이용 할 수 없습니다.');
-	}
-	
-	$.ajax({
-		type : 'post',
-		url : '/bitFarm/mypage/mypagePickSellerAdd',
-		data : 'sellerName=${sellerName}',
-		success: function(){
-			alert("찜하기 성공");
-			if(confirm("찜한 물품 페이지로 이동하시겠습니까?")){
-				location.href = '/bitFarm/mypage/mypagePickSeller';
+	let id = '${memberId}';
+	if(id!=''){
+		$.ajax({
+			type : 'post',
+			url : '/bitFarm/mypage/mypagePickSellerAdd',
+			data : 'sellerName=${sellerName}',
+			success: function(){
+				alert("찜하기 성공");
+				if(confirm("찜한 판매자 페이지로 이동하시겠습니까?")){
+					location.href = '/bitFarm/mypage/mypagePickSeller';
+				}
 			}
-		}
-	});
+		});
+	}else{
+		alert('회원 계정으로만 찜하기 기능을 이용 할 수 있습니다.');
+	}
+
 });
 </script>

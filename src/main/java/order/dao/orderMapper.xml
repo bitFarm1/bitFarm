@@ -17,7 +17,7 @@
 	</select>
 	
 	<select id = "orderPointAll" resultType = "int" parameterType="String">
-		select sum(point_price) from point where point_user_id = #{memberId}
+		select nvl(sum(point_price),0) from point where point_user_id = #{memberId}
 	</select>
 	
 	<insert id = "writePurchase" parameterType = "java.util.Map">
@@ -75,6 +75,7 @@
 		begin
 		insert into point values(#{id},sysdate,'사용완료',sysdate,#{usePoint}*-1,'사용한적립금','usePoint');
 		update member set member_point = (select sum(point_price) from point where point_user_id = #{id}) where member_id = #{id};
+		delete from cart where member_id = #{id};
 		end;
 	</insert>
 	

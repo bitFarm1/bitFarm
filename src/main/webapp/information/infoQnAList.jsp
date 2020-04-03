@@ -7,6 +7,20 @@
 	a.info:visited {color: black; text-decoration: none;}
 	a.info:hover {color: #5f0080; text-decoration: none; font-weight: bolder;} 
 	a.info:active {color: black; text-decoration: none;} 
+
+	#paging {  
+		color: black;
+		text-decoration: none;
+		cursor: pointer; 
+	}   
+	
+	#currentpaging {
+		color: #5f0080;
+		text-decoration: none;
+		cursor: pointer; 
+	}	
+	
+	
 	th{
 		background-color: #F7F5F8;
 	}
@@ -146,7 +160,16 @@ $('#${seq}reply').click(function(){
 </c:forEach> 
     
 </table> 
+<div align="center" id="pagingDiv">${informationPaging.pagingHTML}</div>    
 <input type="hidden" name="pg" value="${pg }">
 <input type="hidden" id="dis" name="dis" value="">
 </div>  
+
+<script type="text/javascript"> 
+function informationPaging(pg){   
+	location.href='infoQnAList?pg='+pg;       
+	
+}  
+
+</script>
 

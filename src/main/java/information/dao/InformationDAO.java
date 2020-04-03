@@ -43,6 +43,8 @@ public interface InformationDAO {
  
 	public void upHit(String seq);
 
+	public int qnaPaging(Map<String, String> map);
+ 
  
 }  
       

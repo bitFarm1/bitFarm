@@ -139,23 +139,24 @@ public class InformationController {
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("memberId",(String)session.getAttribute("memberId"));
 		map.put("pg",pg);
+		InformationPaging informationPaging = informationService.qnaPaging(map); 
 		List<InformationQnADTO> list = informationService.getInfoList(map); 
-		 
+		  
+		
 		ModelAndView mav = new ModelAndView();  
 		mav.addObject("pg", pg); 
-		mav.addObject("list", list);
-		 
-		mav.addObject("display", "/information/infoMain.jsp");
+		mav.addObject("list", list);    
+		mav.addObject("informationPaging", informationPaging);
+		mav.addObject("display", "/information/infoMain.jsp");     
 		mav.addObject("info", "/information/infoQnAList.jsp"); 
 		mav.setViewName("/main/main");
-		    
+		   
 		return mav;
 	}
 	
 	@RequestMapping(value="/infoQnAListADMIN", method=RequestMethod.GET)
 	public ModelAndView infoQnAListADMIN(@RequestParam(required=false, defaultValue="1") String pg, HttpSession session) {
-		
-		
+				
 		//(String)session.getAttribute("memberId"));
 	
 		List<InformationQnADTO> list = informationService.getInfoListADMIN(pg);  

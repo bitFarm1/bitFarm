@@ -31,8 +31,7 @@ public class InformationServiceImpl implements InformationService {
 	public List<InformationQnADTO> getInfoList(Map<String, String> map) { 
 		// TODO Auto-generated method stub 
 		int endNum = Integer.parseInt(map.get("pg"))*10;
-		int startNum = endNum-9;   
-		
+		int startNum = endNum-9;   		
 		
 		map.put("startNum", startNum+"");
 		map.put("endNum", endNum+"");
@@ -69,8 +68,8 @@ public class InformationServiceImpl implements InformationService {
 		int totalA = informationDAO.informationTotalA();
 		
 		informationPaging.setCurrentPage(Integer.parseInt(pg)); 
-		informationPaging.setPageBlock(5);
-		informationPaging.setPageSize(8); 
+		informationPaging.setPageBlock(3);
+		informationPaging.setPageSize(8);  
 		informationPaging.setTotalA(totalA);  
 		informationPaging.makePagingHTML(); 
 		
@@ -107,8 +106,8 @@ public class InformationServiceImpl implements InformationService {
 		int totalA = informationDAO.getInfoSearchTotalA(map);//총글수
 		
 		informationPaging.setCurrentPage(Integer.parseInt(map.get("pg"))); 
-		informationPaging.setPageBlock(5);
-		informationPaging.setPageSize(8); 
+		informationPaging.setPageBlock(3);
+		informationPaging.setPageSize(8);   
 		informationPaging.setTotalA(totalA);
 		informationPaging.makeSearchPagingHTML();   
 		return informationPaging; 
@@ -175,6 +174,19 @@ public class InformationServiceImpl implements InformationService {
 	public void upHit(String seq) {
 		// TODO Auto-generated method stub
 		informationDAO.upHit(seq);  
+	}  
+
+	@Override
+	public InformationPaging qnaPaging(Map<String, String> map) {
+		
+		int totalA = informationDAO.qnaPaging(map);//총글수
+		
+		informationPaging.setCurrentPage(Integer.parseInt(map.get("pg"))); 
+		informationPaging.setPageBlock(3);
+		informationPaging.setPageSize(8);    
+		informationPaging.setTotalA(totalA);
+		informationPaging.makePagingHTML();  
+		return informationPaging; 
 	}
 	
 }

@@ -118,6 +118,12 @@ public class InformationDAOMybatis implements InformationDAO{
 	public void upHit(String seq) {
 		sqlSession.update("informationSQL.upHit", seq); 
 		
+	}
+
+	@Override 
+	public int qnaPaging(Map<String, String> map) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("informationSQL.qnaPaging", map);
 	} 
  
 }  

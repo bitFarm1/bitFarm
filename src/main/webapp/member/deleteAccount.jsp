@@ -146,7 +146,7 @@ $('#deleteBtn').click(function(){
 					} 
 				}
 			});	
-		}            
+		}             
 	}else{
 		$('#deleteForm').submit();
 		alert("처리되었습니다. 감사합니다.");  

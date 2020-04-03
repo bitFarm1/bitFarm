@@ -65,9 +65,9 @@
 					<tr>
 						<td class="tdstyle">작성일</td> 
 						<td ><fmt:formatDate pattern="yyyy년 MM월 dd일" value="${informationDTO.information_date }"/></td> 
-						<td class="tdstyle">조회수</td>
-						<td width="50%">${informationDTO.information_views }</td>
-					</tr>	
+						<td ></td> 
+						<td width="50%"></td>
+					</tr>	 
 				</table>
 			</td></tr> 
 			<tr> 

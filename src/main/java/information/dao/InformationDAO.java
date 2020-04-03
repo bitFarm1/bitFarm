@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import information.bean.InformationDTO;
+import information.bean.InformationPaging;
 import information.bean.InformationQnADTO;
 
 public interface InformationDAO {
@@ -39,8 +40,9 @@ public interface InformationDAO {
 	public List<InformationQnADTO> infoALLADMIN();
 
 	public void deleteInfo(String seq);
+ 
+	public void upHit(String seq);
 
-	public void upHit(String seq);            
  
 }  
       

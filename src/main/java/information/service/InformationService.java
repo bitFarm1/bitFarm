@@ -43,7 +43,7 @@ public interface InformationService {
 
 	public void deleteInfo(String seq);
  
-	public void upHit(String seq);         
-
+	public void upHit(String seq);
+ 
 }   
     

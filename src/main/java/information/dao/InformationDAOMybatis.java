@@ -9,13 +9,14 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import information.bean.InformationDTO;
+import information.bean.InformationPaging;
 import information.bean.InformationQnADTO;
 
-@Repository("informationDAO")
+@Repository("informationDAO") 
 @Transactional
 public class InformationDAOMybatis implements InformationDAO{
 	@Autowired
-	private SqlSession sqlSession;
+	private SqlSession sqlSession; 
 	
 	@Override
 	public void infoQnABoardWrite(InformationQnADTO informationQnADTO) {
@@ -28,7 +29,7 @@ public class InformationDAOMybatis implements InformationDAO{
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("informationSQL.getInfoList", map);
 	}
-
+ 
 	@Override
 	public void infoWrite(InformationDTO informationDTO) {
 		sqlSession.insert("informationSQL.infoWrite", informationDTO); 		 

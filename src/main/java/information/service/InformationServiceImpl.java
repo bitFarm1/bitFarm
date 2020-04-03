@@ -17,7 +17,7 @@ import information.dao.InformationDAO;
 @Service
 public class InformationServiceImpl implements InformationService {	
 	@Autowired 
-	private InformationDAO informationDAO;
+	private InformationDAO informationDAO; 
 	@Autowired
 	private InformationPaging informationPaging;
 
@@ -145,8 +145,7 @@ public class InformationServiceImpl implements InformationService {
 	public List<InformationQnADTO> infoQnAListAllADMIN(Map<String, String> map) {
 		
 		int endNum = Integer.parseInt(map.get("pg"))*6;
-		int startNum = endNum-5;   
-		
+		int startNum = endNum-5;   		
 		 
 		map.put("startNum", startNum+""); 
 		map.put("endNum", endNum+"");
